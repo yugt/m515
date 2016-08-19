@@ -1,17 +1,14 @@
-Course information {#course-information .unnumbered}
+Course information
 ------------------
 
-Meeting times
-:   T,Th from 10:30–11:45am
-
-Meeting place
-:   TBA
+Meeting times: T,Th from 10:30–11:45am
+Meeting place: TBA
 
 Textbook
 :   Tao, *Measure theory* and Bruckner et al, *Real analysis*
 
 My email
-:   `scoskey@boisestate`
+:   `scoskey@boisestate.edu`
 
 My office
 :   MB 237-A
@@ -19,7 +16,7 @@ My office
 Office hours
 :   W 10–11am, F 1–2pm, and by appointment
 
-Course topics {#course-topics .unnumbered}
+Course topics
 -------------
 
 Measure theory
@@ -39,14 +36,14 @@ Functional analysis
     cover topics from from Bruckner et al, chapters 12–14. This includes
     Banach spaces, $L^p$ spaces, and Hilbert spaces.
 
-Grading {#grading .unnumbered}
+Grading
 -------
 
 -   Exams 20% ($\times3$)
 
 -   Homework 40%
 
-Tentative exam dates {#tentative-exam-dates .unnumbered}
+Tentative exam dates
 --------------------
 
 -   Midterm 1: Thursday, September
@@ -55,7 +52,7 @@ Tentative exam dates {#tentative-exam-dates .unnumbered}
 
 -   Final: Thursday, December 15, 10am–12pm
 
-Homework {#homework .unnumbered}
+Homework
 --------
 
 Homework assignments will be assigned weekly, and collected on the
