@@ -2,14 +2,10 @@ Course information
 ------------------
 
 Meeting times: T,Th from 10:30–11:45am  
-Meeting place: MB 124
-
-Textbook: Tao, *Measure theory* and Bruckner et al, *Real analysis*
-
-My email: `scoskey@boisestate.edu`
-
-My office: MB 237-A
-
+Meeting place: MB 124  
+Textbook: Tao, *Measure theory* and Bruckner et al, *Real analysis*  
+My email: `scoskey@boisestate.edu`  
+My office: MB 237-A  
 Office hours: W 10–11am, F 1–2pm, and by appointment
 
 Course topics
