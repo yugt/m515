@@ -1,8 +1,7 @@
 Course information
 ------------------
 
-Meeting times: T,Th from 10:30–11:45am
-
+Meeting times: T,Th from 10:30–11:45am  
 Meeting place: MB 124
 
 Textbook: Tao, *Measure theory* and Bruckner et al, *Real analysis*
