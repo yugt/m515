@@ -19,16 +19,13 @@ Grading
 -------
 
 * Exams 20% (times 3)
-
 * Homework 40%
 
 Tentative exam dates
 --------------------
 
 * Midterm 1: Thursday, September
-
 * Midterm 2: Thursday, November
-
 * Final: Thursday, December 15, 10am–12pm
 
 Homework
