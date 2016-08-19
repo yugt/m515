@@ -18,12 +18,12 @@ Course topics
 
 Measure theory: This is a cornerstone of real analysis which shows up in many pure and applied areas of math including geometry, calculus, probability, and physical science. I plan to spend up to two-thirds of the semester on measure theory. We will cover a selection of topics from Tao’s book, sections 1.1–1.4. This includes the classical Lebesgue measure, measurable functions, integration, and abstract measure theory.
 
-Functional analysis: This is another area of analysis that is important in a wide range of fields including differential equations, noncommutative algebra, and quantum mechanics. I plan to spend roughly one-third of the course on functional analysis. We will cover topics from from Bruckner et al, chapters 12–14. This includes Banach spaces, $L^p$ spaces, and Hilbert spaces.
+Functional analysis: This is another area of analysis that is important in a wide range of fields including differential equations, noncommutative algebra, and quantum mechanics. I plan to spend roughly one-third of the course on functional analysis. We will cover topics from from Bruckner et al, chapters 12–14. This includes Banach spaces, L^p spaces, and Hilbert spaces.
 
 Grading
 -------
 
-* Exams 20% ($\times3$)
+* Exams 20% (times 3)
 
 * Homework 40%
 
