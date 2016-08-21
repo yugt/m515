@@ -1,0 +1,140 @@
+\documentclass[11pt,oneside]{amsbook}
+
+\title{Real and linear analysis}
+\author{Course notes\\Based on material from ``Measure theory'' by T.\ Tao and ``Real analysis'' by Bruckner et al}
+
+\usepackage[vscale=.8,vmarginratio=4:3]{geometry}
+\usepackage{mathpazo,amssymb}
+\usepackage{setspace}\onehalfspacing\raggedbottom
+\renewcommand{\labelitemi}{$\circ$}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\chaptername}{Part}
+\renewcommand{\thechapter}{\Roman{chapter}}
+\usepackage{remreset}
+\makeatletter\@removefromreset{section}{chapter}\makeatother
+\usepackage{etoolbox}
+\makeatletter
+\pretocmd{\@seccntformat}{\S}{}{}
+\patchcmd{\tocsection}{#2.}{\S#2.}{}{}
+\apptocmd{\tocsection}{\dotfill}{}{}
+\makeatother
+\usepackage[linktoc=all]{hyperref}
+\usepackage{tikz}
+
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\rng}{rng}
+
+\theoremstyle{definition}
+\newtheorem{exerc}{Exercise}[section]
+\swapnumbers
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{example}[thm]{Example}
+\newtheorem*{notes}{Notes and further reading}
+\newtheorem*{reading}{Reading}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\renewcommand{\theequation}{\arabic{section}.e\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{section}.f\arabic{figure}}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Measure theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The measure problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S1.1 introduction, and \S1.2.3.
+\end{reading}
+
+``Measure'' is a number assigned to a set which represents its size. There are many senses in which we may mean size. Some of these are length, area, volume, mass, and even probability. Note that other senses of size such as cardinality, diameter, and density are not usually associated with measure.
+
+The problem of finding a measure thus sounds geometric. But given our models of space, in which coordinate axes are indexed by infinitesimal points drawn from the real number system, the problem really turns out to be analytic. (In particular, this means lots of $\epsilon$'s will show up!)
+
+The classical problem of finding a measure can be made into a formal mathematical question as follows: Does there exist a measure function $m$ which assigns to each subset $A\subset\RR$ a value $m(A)\in[0,\infty]$ satisfying:
+\begin{enumerate}
+\item $m(I)=$ the length of $I$ for every interval $I$;
+\item $m(x+A)=m(A)$ for every $A$ (translation-invariance); and
+\item $m(\bigcup A_n)=\sum m(A_n)$ for every seqence of pairwise disjoint sets $A_n$ (countable additivity).
+\end{enumerate}
+
+Perhaps surprisingly, no such measure function exists! The three very natural properties (i)--(iii) actually turn out to be mutually inconsistent.
+
+\begin{thm}[Vitali]
+  There exists a set $A\subset[0,1]$ such that no measure can be assigned to $A$.
+\end{thm}
+
+\begin{proof}
+  Consider the collection of additive cosets of the rationals $\QQ$ as a subgroup of the reals $\RR$. The cosets are of the form $a+\QQ$. We may choose a system of coset representatives $A$ for this collection. We can even assume that $A\subset[0,1]$, since all the cosets are dense and therefore meet the interval $[0,1]$.
+
+  Now every real number can be written uniquely as $a+q$ for $a\in A$ and $q\in\QQ$. In particular, every element of $[0,1]$ can be written uniqely as $a+q$ for $a\in A$ and $q\in[-1,1]\cap\QQ$. In other words we have that
+  \[[0,1]\subset\bigcup\nolimits_{q\in[-1,1]\cap\QQ}A+q\subset[-1,2]
+  \]
+  It follows from (i) and (iii) that the measure of the set $\bigcup_{q\in[-1,1]\cap\QQ}A+q$ lies somewhere between $1$ and $3$.
+
+  On the other hand, by (ii) and (iii) we have that
+  \[m(\bigcup\nolimits_{q\in[-1,1]\cap\QQ}A+q)
+  =\sum\nolimits_{q\in[-1,1]\cap\QQ}m(A+q)=\sum\nolimits_{q\in[-1,1]\cap\QQ}m(A)
+  \]
+  This means that the measure of $\bigcup_{q\in[-1,1]\cap\QQ}A+q$ is an infinite sum of some constant value. But such a sum can only possibly equal $0$ or $\infty$, contradicting the conclusion of the previous paragraph!
+\end{proof}
+
+The lesson is that we must weaken our demands on a measure $m$. Dropping condition (i) can lead to trivial measures. Dropping conditon (ii) leads to several interesting problems in set theory. Dropping condition (iii) leads to interesting solutions as well.
+
+Yet the simplest path forward (and the one that we take) is to drop the condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most commin analytical applications (see the notes below). We will simply drop the requirement that $A$ and other sets like it be in the domain of $m$. In the end, our measure function have a domain which is a proper subset of $\mathcal P(\RR)$ but still contains a huge class of sets. And it will satisy properties (i)--(iii) for all the sets in its domain.
+
+In the next section, we will begin this process by taking a step backwards and build measures with much smaller domains, and satisfying just fragments of (i)--(iii).
+
+\begin{notes}
+  The measure problem can just as easily be formulated for $\RR^n$, with condition (i) replaced by the condition that the measure of a box is equal to its volume.
+
+  The proof of Vitali's theorem requires the Axiom of Choice. Specifically, it is needed to find a system of coset representatives for an uncountable collection. Solovay showed that the use of AC is essential, and that it is consistent with $\neg$AC that every set is measurable.
+\end{notes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Elementary measure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S1.1.1
+\end{reading}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Functional analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Banach space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
