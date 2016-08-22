@@ -87,23 +87,24 @@ Perhaps surprisingly, no such measure function exists! The three very natural pr
 \end{thm}
 
 \begin{proof}
-  Consider the collection of additive cosets of the rationals $\QQ$ as a subgroup of the reals $\RR$. The cosets are of the form $a+\QQ$. We may choose a system of coset representatives $A$ for this collection. We can even assume that $A\subset[0,1]$, since all the cosets are dense and therefore meet the interval $[0,1]$.
+  We will consider just the unit interval $[0,1)$ with addition modulo $1$. If there is a measure $m$ on all subsets of $\RR$, then by conditions (ii) and (iii) $m$ restricts to a measure on subsets of $[0,1)$ which satisfies (ii) with addition modulo $1$.
 
-  Now every real number can be written uniquely as $a+q$ for $a\in A$ and $q\in\QQ$. In particular, every element of $[0,1]$ can be written uniqely as $a+q$ for $a\in A$ and $q\in[-1,1]\cap\QQ$. In other words we have that
-  \[[0,1]\subset\bigcup\nolimits_{q\in[-1,1]\cap\QQ}A+q\subset[-1,2]
-  \]
-  It follows from (i) and (iii) that the measure of the set $\bigcup_{q\in[-1,1]\cap\QQ}A+q$ lies somewhere between $1$ and $3$.
+  Now let $\QQ_1$ denote the rationals of $[0,1)$, that is $\QQ\cap[0,1)$, and consider the collection of additive cosets of $\QQ_1$ inside $[0,1)$. The cosets are of the form $a+\QQ_1$ where again addition is interpreted modulo $1$. We now let $A\subset[0,1)$ denote a system of coset representatives for this collection.
+
+  Now every number in $[0,1)$ can be written uniquely as $a+q$ for $a\in A$ and $q\in\QQ_1$. This means that the collection of translates of $A$ by elements $q\in\QQ_1$ covers all of $[0,1)$. In particular, by (i) the measure of $\bigcup_{q\in\QQ_1}(A+q)$ is exactly $1$.
 
   On the other hand, by (ii) and (iii) we have that
-  \[m(\bigcup\nolimits_{q\in[-1,1]\cap\QQ}A+q)
-  =\sum\nolimits_{q\in[-1,1]\cap\QQ}m(A+q)=\sum\nolimits_{q\in[-1,1]\cap\QQ}m(A)
+  \[m\left(\bigcup\nolimits_{q\in\QQ_1}(A+q)\right)
+  =\sum\nolimits_{q\in\QQ_1}m(A+q)=\sum\nolimits_{q\in\QQ_1}m(A)
   \]
-  This means that the measure of $\bigcup_{q\in[-1,1]\cap\QQ}A+q$ is an infinite sum of some constant value. But such a sum can only possibly equal $0$ or $\infty$, contradicting the conclusion of the previous paragraph!
+  By the previous paragraph, the left-hand side of the above equation is $1$. On the other hand the right-hand side is an infinite sum of some nonnegative constant, and hence must be either $0$ or $\infty$. This is a contradiction!
 \end{proof}
 
-The lesson is that we must weaken our demands on a measure $m$. Dropping condition (i) can lead to trivial measures. Dropping conditon (ii) leads to several interesting problems in set theory. Dropping condition (iii) leads to interesting solutions as well.
+We remark that it is possible to argue directly inside of $\RR$ instead of in the unit interval with addition modulo $1$. For instance this is how it is done in Tao's book.
 
-Yet the simplest path forward (and the one that we take) is to drop the condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most commin analytical applications (see the notes below). We will simply drop the requirement that $A$ and other sets like it be in the domain of $m$. In the end, our measure function have a domain which is a proper subset of $\mathcal P(\RR)$ but still contains a huge class of sets. And it will satisy properties (i)--(iii) for all the sets in its domain.
+The lesson is that we must weaken our demands on a measure $m$. Dropping condition (i) can lead to trivial measures. Dropping conditon (ii) leads to several interesting problems in set theory. Dropping condition (iii) leads to interesting set-theoretic solutions as well.
+
+Yet the simplest path forward (and the one that we take) is to drop the condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most commin analytical applications (see the notes below). We will simply drop the requirement that $A$ and other sets like it be in the domain of $m$. In the end, our measure function have a domain which is a proper subset of $\mathcal P(\RR)$ but still contains a rich class of sets. And it will satisy properties (i)--(iii) for all the sets in its domain.
 
 In the next section, we will begin this process by taking a step backwards and build measures with much smaller domains, and satisfying just fragments of (i)--(iii).
 
