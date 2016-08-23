@@ -4,7 +4,7 @@
 
 Meeting times: T,Th from 10:30–11:45am  
 Meeting place: MB 124  
-Textbook: Tao, *Measure theory* [link](http://terrytao.files.wordpress.com/2012/12/gsm-126-tao5-measure-book.pdf), and Bruckner et al, *Real analysis* [link](http://classicalrealanalysis.info/documents/BBT-AlllChapters-Landscape.pdf)
+Textbook: Tao, *Measure theory* ([link](http://terrytao.files.wordpress.com/2012/12/gsm-126-tao5-measure-book.pdf)), and Bruckner et al, *Real analysis* ([link](http://classicalrealanalysis.info/documents/BBT-AlllChapters-Landscape.pdf))  
 Web site: `github.com/scoskey/m515`  
 My email: `scoskey@boisestate.edu`  
 My office: MB 237-A  
