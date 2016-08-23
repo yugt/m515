@@ -8,7 +8,7 @@ Textbook: Tao, *Measure theory* ([link](http://terrytao.files.wordpress.com/2012
 Web site: `github.com/scoskey/m515`  
 My email: `scoskey@boisestate.edu`  
 My office: MB 237-A  
-Office hours: W 10–11am, F 1–2pm, and by appointment
+Office hours: W 10&ndash;11am, F 1&ndash;2pm, and by appointment
 
 ## Course topics
 
@@ -25,7 +25,7 @@ Functional analysis: This is another area of analysis that is important in a wid
 
 * Exam 1: Thursday, September 22
 * Exam 2: Thursday, October 27
-* Exam 3: Thursday, December 15, 10am–12pm
+* Exam 3: Thursday, December 15, 10am&ndash;12pm
 
 ## Homework
 
