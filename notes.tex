@@ -1,7 +1,7 @@
 \documentclass[11pt,oneside]{amsbook}
 
 \title{Real and linear analysis}
-\author{Course notes\\Based on material from ``Measure theory'' by T.\ Tao and ``Real analysis'' by Bruckner et al}
+\author{Course notes\\Based on material from\\``Measure theory'' by Terence Tao, and\\``Real analysis'' by Bruckner et al}
 
 \usepackage[vscale=.8,vmarginratio=4:3]{geometry}
 \usepackage{mathpazo,amssymb}
@@ -26,6 +26,8 @@
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\QQ}{\mathbb Q}
 \newcommand{\RR}{\mathbb R}
+\DeclareMathOperator{\len}{len}
+\DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\rng}{rng}
 
@@ -75,9 +77,9 @@ The problem of finding a measure thus sounds geometric. But given our models of 
 
 The classical problem of finding a measure can be made into a formal mathematical question as follows: Does there exist a measure function $m$ which assigns to each subset $A\subset\RR$ a value $m(A)\in[0,\infty]$ satisfying:
 \begin{enumerate}
-\item $m(I)=$ the length of $I$ for every interval $I$;
-\item $m(x+A)=m(A)$ for every $A$ (translation-invariance); and
-\item $m(\bigcup A_n)=\sum m(A_n)$ for every seqence of pairwise disjoint sets $A_n$ (countable additivity).
+\item (normality) $m(I)=$ the length of $I$ for every interval $I$;
+\item (translation-invariance) $m(x+A)=m(A)$ for every $A$; and
+\item (countable additivity) $m(\bigcup A_n)=\sum m(A_n)$ for every seqence of pairwise disjoint sets $A_n$.
 \end{enumerate}
 
 Perhaps surprisingly, no such measure function exists! The three very natural properties (i)--(iii) actually turn out to be mutually inconsistent.
@@ -100,17 +102,17 @@ Perhaps surprisingly, no such measure function exists! The three very natural pr
   By the previous paragraph, the left-hand side of the above equation is $1$. On the other hand the right-hand side is an infinite sum of some nonnegative constant, and hence must be either $0$ or $\infty$. This is a contradiction!
 \end{proof}
 
-We remark that it is possible to argue directly inside of $\RR$ instead of in the unit interval with addition modulo $1$. For instance this is how it is done in Tao's book.
+We remark that it is possible to modify the argument to apply directly to a measure on $\RR$ rather than going via the unit interval with addition modulo $1$. See Tao for this version.
 
 The lesson is that we must weaken our demands on a measure $m$. Dropping condition (i) can lead to trivial measures. Dropping conditon (ii) leads to several interesting problems in set theory. Dropping condition (iii) leads to interesting set-theoretic solutions as well.
 
 Yet the simplest path forward (and the one that we take) is to drop the condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most commin analytical applications (see the notes below). We will simply drop the requirement that $A$ and other sets like it be in the domain of $m$. In the end, our measure function have a domain which is a proper subset of $\mathcal P(\RR)$ but still contains a rich class of sets. And it will satisy properties (i)--(iii) for all the sets in its domain.
 
+Of course we are also interested in the measure problem for subsets $\RR^n$. It can be formulated in just the same way, with condition (i) replaced by the condition that the measure of a box is equal to its volume. And a Vitali-type result can also easily be established for this version of the measure problem.
+
 In the next section, we will begin this process by taking a step backwards and build measures with much smaller domains, and satisfying just fragments of (i)--(iii).
 
 \begin{notes}
-  The measure problem can just as easily be formulated for $\RR^n$, with condition (i) replaced by the condition that the measure of a box is equal to its volume.
-
   The proof of Vitali's theorem requires the Axiom of Choice. Specifically, it is needed to find a system of coset representatives for an uncountable collection. Solovay showed that the use of AC is essential, and that it is consistent with $\neg$AC that every set is measurable.
 \end{notes}
 
@@ -122,6 +124,69 @@ In the next section, we will begin this process by taking a step backwards and b
   Tao, \S1.1.1
 \end{reading}
 
+In this section we define a very simple measure on $\RR^n$ which is capable just of measuring a very simple type of set. The development serves two purposes: first it reveals some of the techniques which we will use later, and second it will be used explicitly in the construction of more powerful measures.
+
+Recall that an \emph{interval} is any subset of $\RR$ of the form $(a,b)$, $[a,b)$, $(a,b]$, or $[a,b]$. We shall use the term \emph{box} for any subset of $\RR^n$ which is a Cartesian product of intervals.
+
+\begin{defn}
+  A subset $E\subset\RR^n$ is \emph{elementary} if it can be expressed as a union of finitely many boxes.
+\end{defn}
+
+In defining elementary measure, we of course assign the measure of each interval $I=(a,b)$ or $[a,b)$ or $(a,b]$ or $[a,b]$ to simply be its length; thus in all four cases $\len(I)=b-a$. Next we define the volume of a box $B=\prod I_n$ to be the product of its side lengths; thus $\vol(B)=\prod\len(I_n)$. Great.
+
+We now wish to define the measure of an elementary set to be the sum of the finitely many boxes it is composed of. However there are two issues with this: first the constituent boxes need not be disjoint, and second there is in general more than one way to express an elementary set as a union of boxes. The following two lemmas address these two issues.
+
+\begin{lem}
+  Any elementary set $E$ can be expressed as a finite union of disjoint boxes.
+\end{lem}
+
+\begin{proof}
+  First assume that $E\subset\RR^1$ and that $E=\bigcup I_i$. Then by considering all endpoints of the $I_i$ in increasing order $a_1,\ldots,a_m$ it is easy to write $E$ as the union of sets of the form $(a_i,a_{i+1})$ together with sets of the form $[a_i,a_i]$ (single points). Such a union is clearly disjoint.
+
+  In general if $E\subset\RR^n$ and $E=\bigcup B_i$ then for each dimension $d\leq n$ consider in turn the $d$th sides of the boxes $I_i^d$. Again consider the endpoints of these intervals in increasing order $a_i^d,\ldots,a_{m_d}^d$. Then we can write $E$ as a union of small boxes which are products of sets of the form $(a_i^d,a_{i+1}^d)$ or of the form $[a_i^d,a_{i+1}^d]$. Such boxes are again disjoint.
+\end{proof}
+
+\begin{lem}
+  Suppose the elementary set $E$ can be expressed in two ways a a finite union of disjoint boxes: $E=\bigsqcup B_i=\bigsqcup C_j$. Then $\sum\vol(B_i)=\sum\vol(C_j)$.
+\end{lem}
+
+\begin{proof}
+  We first note that $I$ is an interval with endpoints $a,b$, and if $a=a_1,a_2,\ldots,a_m=b$ is an increasing sequence then $\len(I)=\sum\len(a_i,a_{i+1})$. This is simply because the latter summation telescopes.
+  
+  Next if $B$ is a box whose $d$th side has endpoints $a^d,b^d$, and if $a^d=a_1^d,a_2^d,\ldots,a_{m_d}^d=b^d$ then $\vol(B)=$ the sum of all small boxes of the form $\prod(a_{i_d}^d,a_{i_d+1}^d)$. We will call the set of such small boxes a perfect grid. Intuitively, if you break a box into a perfect grid of sub-boxes, then the volume of the box is the sum of the volumes of the sub-boxes.
+
+  Now if $B$ is a box and one expresses it as a disjoint union of sub-boxes $B=\bigsqcup B_i$, then $\vol(B)=\sum\vol(B_i)$. This is because it is possible to find a refinement of the disjoint union $B=\bigcup D_i$ where $\{D_i\}$ is a perfect grid as in the previoius paragraph, and each $B_i$ is the union of a perfect grid of sets all of which are in the collection $\{D_i\}$. Then one can simply apply the argument of the previous paragraph to $B$ and to each $B_i$.
+
+  Finally given $E$, $B_i$, and $C_j$ as in the problem statement, one can find a third expression $E=\bigsqcup E_k$ where $\{E_k\}$ is a \emph{refinement} of both $\{B_i\}$ and of $\{C_j\}$. That is, each $B_i$ and each $C_j$ is a disjoint union of elements of $\{E_k\}$. It follows from the previous paragraph that $\sum\vol(B_i)=\sum\vol(E_k)$ and analogously that $\sum\vol(C_j)=\sum\vol(E_k)$. This completes the proof.
+\end{proof}
+
+The two lemmas together imply that it is well-defined to define the elementary measure function on elementary sets by writing $m(\bigsqcup B_i)=\sum m(B_i)$. That wasn't too difficult, but perhaps not as easy as one would have thought!
+
+\begin{prop}
+  The elementary measure function $m$ satisfies
+  \begin{enumerate}
+  \item (normality)
+  \item (translation-invariance)
+  \item (finite additivity)
+  \end{enumerate}
+\end{prop}
+
+Normality is clear from the defenition of $m$. The translation-invarinace is easy because it is true of length and volume, and moreover is preserved even when we take disjoint unions. The finite additivity property is again clear from the definition of $m$. We remark that $m$ satisfies countable additivity as well (restricted to elementary sets of course), but that is much more difficult and will be addressed later on.
+
+The above three core properties imply further useful properties as well.
+
+\begin{prop}
+  The elementary measure function $m$ satisfies
+  \begin{itemize}
+  \item (monotonicity)
+  \item (subadditivity)
+  \end{itemize}
+\end{prop}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Jordan measure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

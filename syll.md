@@ -4,7 +4,8 @@
 
 Meeting times: T,Th from 10:30–11:45am  
 Meeting place: MB 124  
-Textbook: Tao, *Measure theory* and Bruckner et al, *Real analysis*  
+Textbook: Tao, *Measure theory* and Bruckner et al, *Real analysis*
+Web site: `github.com/scoskey/m515`  
 My email: `scoskey@boisestate.edu`  
 My office: MB 237-A  
 Office hours: W 10–11am, F 1–2pm, and by appointment
@@ -17,14 +18,14 @@ Functional analysis: This is another area of analysis that is important in a wid
 
 ## Grading
 
-* Exams 20% (times 3)
+* Exams 20% each (3)
 * Homework 40%
 
 ## Tentative exam dates
 
-* Midterm 1: Thursday, September
-* Midterm 2: Thursday, November
-* Final: Thursday, December 15, 10am–12pm
+* Exam 1: Thursday, September 22
+* Exam 2: Thursday, October 27
+* Exam 3: Thursday, December 15, 10am–12pm
 
 ## Homework
 
