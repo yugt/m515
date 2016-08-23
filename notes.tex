@@ -82,20 +82,20 @@ The classical problem of finding a measure can be made into a formal mathematica
 \item (countable additivity) $m(\bigcup A_n)=\sum m(A_n)$ for every seqence of pairwise disjoint sets $A_n$.
 \end{enumerate}
 
-Perhaps surprisingly, no such measure function exists! The three very natural properties (i)--(iii) actually turn out to be mutually inconsistent.
+Perhaps surprisingly, no such measure function exists! The three very natural properties (a)--(c) actually turn out to be mutually inconsistent.
 
 \begin{thm}[Vitali]
-  There exists a set $A\subset[0,1]$ such that no measure can be assigned to $A$.
+  There exists a set $A\subset\RR$ such that no measure can be assigned to $A$ consistently with (a)--(c).
 \end{thm}
 
 \begin{proof}
-  We will consider just the unit interval $[0,1)$ with addition modulo $1$. If there is a measure $m$ on all subsets of $\RR$, then by conditions (ii) and (iii) $m$ restricts to a measure on subsets of $[0,1)$ which satisfies (ii) with addition modulo $1$.
+  We will consider just the unit interval $[0,1)$ with addition modulo $1$. If there is a measure $m$ on all subsets of $\RR$, then by conditions (b) and (c), $m$ restricts to a measure on subsets of $[0,1)$ which satisfies (b) with respect to addition modulo $1$.
 
-  Now let $\QQ_1$ denote the rationals of $[0,1)$, that is $\QQ\cap[0,1)$, and consider the collection of additive cosets of $\QQ_1$ inside $[0,1)$. The cosets are of the form $a+\QQ_1$ where again addition is interpreted modulo $1$. We now let $A\subset[0,1)$ denote a system of coset representatives for this collection.
+  Now let $\QQ_1$ denote the rationals of $[0,1)$, that is, $\QQ_1=\QQ\cap[0,1)$, and consider the collection of additive cosets of $\QQ_1$ inside $[0,1)$. The cosets are of the form $a+\QQ_1$ where again addition is interpreted modulo $1$. We now let $A\subset[0,1)$ denote a system of coset representatives for this collection.
 
-  Now every number in $[0,1)$ can be written uniquely as $a+q$ for $a\in A$ and $q\in\QQ_1$. This means that the collection of translates of $A$ by elements $q\in\QQ_1$ covers all of $[0,1)$. In particular, by (i) the measure of $\bigcup_{q\in\QQ_1}(A+q)$ is exactly $1$.
+  Now every number in $[0,1)$ can be written uniquely as $a+q$ for $a\in A$ and $q\in\QQ_1$. This means that the collection of translates of $A$ by elements $q\in\QQ_1$ covers all of $[0,1)$. In particular, by (a) the measure of $\bigcup_{q\in\QQ_1}(A+q)$ is exactly $1$.
 
-  On the other hand, by (ii) and (iii) we have that
+  On the other hand, by (b) and (c) we have that
   \[m\left(\bigcup\nolimits_{q\in\QQ_1}(A+q)\right)
   =\sum\nolimits_{q\in\QQ_1}m(A+q)=\sum\nolimits_{q\in\QQ_1}m(A)
   \]
@@ -104,13 +104,13 @@ Perhaps surprisingly, no such measure function exists! The three very natural pr
 
 We remark that it is possible to modify the argument to apply directly to a measure on $\RR$ rather than going via the unit interval with addition modulo $1$. See Tao for this version.
 
-The lesson is that we must weaken our demands on a measure $m$. Dropping condition (i) can lead to trivial measures. Dropping conditon (ii) leads to several interesting problems in set theory. Dropping condition (iii) leads to interesting set-theoretic solutions as well.
+The lesson is that we must weaken our demands on a measure $m$. Dropping condition (a) can lead to trivial measures. Dropping conditon (b) leads to several interesting problems in set theory. Weakening condition (c) to finite additivity leads to interesting solutions, but only in dimensions $\leq2$. (In dimensions $\geq3$ the Banach--Tarski paradox again gives a contradiction.)
 
-Yet the simplest path forward (and the one that we take) is to drop the condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most commin analytical applications (see the notes below). We will simply drop the requirement that $A$ and other sets like it be in the domain of $m$. In the end, our measure function have a domain which is a proper subset of $\mathcal P(\RR)$ but still contains a rich class of sets. And it will satisy properties (i)--(iii) for all the sets in its domain.
+Yet the simplest path forward (and the one that we take) is to drop the condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most commin analytical applications (see the notes below). We will simply drop the requirement that $A$ and other sets like it be in the domain of $m$. In the end, our measure function have a domain which is a proper subset of $\mathcal P(\RR)$ but still contains a rich class of sets. And it will satisy properties (a)--(c) for all the sets in its domain.
 
-Of course we are also interested in the measure problem for subsets $\RR^n$. It can be formulated in just the same way, with condition (i) replaced by the condition that the measure of a box is equal to its volume. And a Vitali-type result can also easily be established for this version of the measure problem.
+Of course we are also interested in the measure problem for subsets $\RR^n$. It can be formulated in just the same way, with condition (a) replaced by the condition that the measure of a box is equal to its volume. And a Vitali-type result can also easily be established for this version of the measure problem.
 
-In the next section, we will begin this process by taking a step backwards and build measures with much smaller domains, and satisfying just fragments of (i)--(iii).
+In the next section, we will begin this process by taking a step backwards and build measures with much smaller domains, and satisfying just fragments of (a)--(c).
 
 \begin{notes}
   The proof of Vitali's theorem requires the Axiom of Choice. Specifically, it is needed to find a system of coset representatives for an uncountable collection. Solovay showed that the use of AC is essential, and that it is consistent with $\neg$AC that every set is measurable.
@@ -183,13 +183,16 @@ The above three core properties imply further useful properties as well.
   \end{itemize}
 \end{prop}
 
-The above results give an essentially complete solution to the measure problem for elementary sets. That wasn't too difficult, but perhaps not as easy as one would have thought! Even so, what about measuring other simple sets such as circles, triangles, blobs, Cantor sets, and so on? In the next section we will continue on the road to doing this.
+These results give an essentially complete solution to the measure problem for elementary sets. It wasn't too difficult to achieve, but perhaps not as easy as one would have thought! Even so, what about measuring other simple sets such as circles, triangles, blobs, Cantor sets, and so on? In the next section we will continue on the road to doing this.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Jordan measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{reading}
+  Tao, \S1.1.2.
+\end{reading}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
