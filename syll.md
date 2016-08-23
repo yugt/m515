@@ -12,9 +12,9 @@ Office hours: W 10&ndash;11am, F 1&ndash;2pm, and by appointment
 
 ## Course topics
 
-Measure theory: This is a cornerstone of real analysis which shows up in many pure and applied areas of math including geometry, calculus, probability, and physical science. I plan to spend up to two-thirds of the semester on measure theory. We will cover a selection of topics from Tao’s book, sections 1.1–1.4. This includes the classical Lebesgue measure, measurable functions, integration, and abstract measure theory.
+Measure theory: This is a cornerstone of real analysis which shows up in many pure and applied areas of math including geometry, calculus, probability, and physical science. I plan to spend up to two-thirds of the semester on measure theory. We will cover a selection of topics from Tao's book, sections 1.1&ndash;1.4. This includes the classical Lebesgue measure, measurable functions, integration, and abstract measure theory.
 
-Functional analysis: This is another area of analysis that is important in a wide range of fields including differential equations, noncommutative algebra, and quantum mechanics. I plan to spend roughly one-third of the course on functional analysis. We will cover topics from from Bruckner et al, chapters 12–14. This includes Banach spaces, L^p spaces, and Hilbert spaces.
+Functional analysis: This is another area of analysis that is important in a wide range of fields including differential equations, noncommutative algebra, and quantum mechanics. I plan to spend roughly one-third of the course on functional analysis. We will cover topics from from Bruckner et al, chapters 12&ndash;14. This includes Banach spaces, L^p spaces, and Hilbert spaces.
 
 ## Grading
 
@@ -29,4 +29,4 @@ Functional analysis: This is another area of analysis that is important in a wid
 
 ## Homework
 
-Homework assignments will be assigned weekly, and collected on the following Thursday. I will check your work for completeness, and spot-check certain problems for correcteness and mathematical style. I encourage you to collaborate with your peers, and I don’t discourage you from using online resources when you are stuck. But please keep in mind that you must always fully understand your solutions and most importantly *write them in your own words*.
+Homework assignments will be given for each week, finalized on the following Tuesday, and due on the following Thursday. All work will be evaluated for completeness, and certain problems will be evaluated for correcteness and mathematical style. You are encouraged to collaborate with your peers, you are welcome to use online resources when you are stuck. But please keep in mind that you must always fully understand your solutions and most importantly *write them in your own words*.
