@@ -160,14 +160,14 @@ We now wish to define the measure of an elementary set to be the sum of the fini
   Finally given $E$, $B_i$, and $C_j$ as in the problem statement, one can find a third expression $E=\bigsqcup E_k$ where $\{E_k\}$ is a \emph{refinement} of both $\{B_i\}$ and of $\{C_j\}$. That is, each $B_i$ and each $C_j$ is a disjoint union of elements of $\{E_k\}$. It follows from the previous paragraph that $\sum\vol(B_i)=\sum\vol(E_k)$ and analogously that $\sum\vol(C_j)=\sum\vol(E_k)$. This completes the proof.
 \end{proof}
 
-The two lemmas together imply that it is well-defined to define the elementary measure function on elementary sets by writing $m(\bigsqcup B_i)=\sum m(B_i)$. That wasn't too difficult, but perhaps not as easy as one would have thought!
+The two lemmas together imply that it is well-defined to define the elementary measure function on elementary sets by writing $m(\bigsqcup B_i)=\sum m(B_i)$.
 
 \begin{prop}
   The elementary measure function $m$ satisfies
   \begin{enumerate}
-  \item (normality)
-  \item (translation-invariance)
-  \item (finite additivity)
+  \item (normality) $m(B)=\vol(B)$ for $B$ a box;
+  \item (translation-invariance) $m(x+E)=m(E)$ for $E$ elementary; and
+  \item (finite additivity) $m(E\cup F)=\m(E)+m(F)$ for disjoint elementary $E,F$.
   \end{enumerate}
 \end{prop}
 
@@ -178,10 +178,12 @@ The above three core properties imply further useful properties as well.
 \begin{prop}
   The elementary measure function $m$ satisfies
   \begin{itemize}
-  \item (monotonicity)
-  \item (subadditivity)
+  \item (monotonicity) $m(E)\leq m(F)$ for elementary sets $E\subset F$; and
+  \item (subadditivity) $m(E\cup F)\leq m(E)+m(F)$ for elementary $E,F$.
   \end{itemize}
 \end{prop}
+
+The above results give an essentially complete solution to the measure problem for elementary sets. That wasn't too difficult, but perhaps not as easy as one would have thought! Even so, what about measuring other simple sets such as circles, triangles, blobs, Cantor sets, and so on? In the next section we will continue on the road to doing this.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
