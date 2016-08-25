@@ -204,15 +204,44 @@ Instead we will measure the circle the way it has always been done, by using \em
     \underline m_j&=\inf\set{m(A):A\subset E,\, A\text{ elementary}}\\
     \overline m_j&=\inf\set{m(B):E\subset B,\, B\text{ elementary}}
   \end{align*}
-  Then if $\underline m_j(E)=\overline m_j(E)$ we say that $E$ is \emph{Jordan measurable} and simply denote this common quantity by $m(E)$.
+  Then if $\underline m_j(E)=\overline m_j(E)$ we say that $E$ is \emph{Jordan measurable}, call the common quantity the \emph{Jordan measure} of $E$, and denote it by $m(E)$.
 \end{defn}
 
-It is immediate from the definition Jordan measure extends elementary measure in the sense that they agree on the elementary sets. Moreover, we will show that the Jordan measure inherits many of the properties of the elementary measure.
+It is immediate from the definition Jordan measure extends elementary measure in the sense that they agree on the elementary sets. This means we are justified in using ``$m$'' both for the elementary and Jordan measure. Moreover, we will show that the Jordan measure inherits many of the properties of the elementary measure.
 
 \begin{thm}
   The Jordan measure satisfies normality, translation-invariance, finite additivity, monotonicity, and finite subadditivity.
 \end{thm}
 
+The normality and translation-invariance properties hold simply because they hold for elementary measure. To prove finite additivity, we first need the following characterization and properties of Jordan measurability.
+
+\begin{lem}
+  The set $E$ is Jordan measurable if and only if either of the following holds:
+  \begin{itemize}
+  \item For all $\epsilon>0$ there are elementary sets $A,B$ such that $A\subset E\subset B$ such that $m(B\smallsetminus A)=0$.
+    % Note: for homework students should show the difference of elementary sets is elementary
+  \item For all $\epsilon>0$ there is an elementary set $A$ such that $m(E\triangle A)=0$.
+  \end{itemize}
+\end{lem}
+
+\begin{proof}
+  We establish only the equivalence of Jordan measurability with the first item. To begin, assume that $E$ is Jordan measurable and let $\epsilon>0$ be given. By the $\underline m_j$ definition of Jordan measure, we can find an elementary set $A\subset E$ such that $m(E)-m(A)<\epsilon/2$. By the $\overline m_j$ definition of jordan measure we can find an elementary set $B$ such that $E\subset B$ and $m(B)-m(E)<\epsilon/2$. It follows that 
+\[m(B\smallsetminus A)=m(B)-m(A)=(m(B)-m(E))-(m(E)-m(A))<\epsilon
+\]
+as desired.
+
+  For the converse, assume that the first item is true, and let $\epsilon>0$ be arbitrary. Then we can find elementary sets $A,B$ such that $A\subset E\subset B$ and $m(B)-m(A)<\epsilon$. From the definitions of lower and upper Jordan measure, we have that $m(A)\leq\underline m_j(E)\leq\overline m_j(E)\leq m(B)$. It follows that $\overline m_j(E)-\underline m_j(E)<\epsilon$. Since $\epsilon$ was arbitrary, we may conclude that $\underline m_j(E)=\overline m_j(E)$ and therefore that $E$ is Jordan measurable.
+\end{proof}
+
+Note that in the proof, one has to be careful when making a claim such as $m(B\smallsetminus A)=m(B)-m(A)$. It is true in these cases because: the elementary sets are closed under set differences, and so all three sets are elementary, together with the finite additivity property for elementary measure.
+
+\begin{lem}
+  If $E,F$ are Jordan measurable, then so are $E\cup F$, $E\cap F$, and $E\setminus F$.
+\end{lem}
+
+\begin{proof}
+  We prove only the case of $E\cup F$. Suppose that $E,F$ are Jordan measurable. By the previous lemma, we can find elementary sets $A,B,A',B'$ such that $A\subset E\subset B$, and $A'\subset F\subset B'$, and $m(B\smallsetminus A),m(B'\smallsetminus A')<\epsilon/2$. Then we have $A\cup A'\subset E\cup F\subset F\cup F'$ and using some algebra together with the finite subadditivity of elementary measure, $m(B\cup B'\smallsetminus(A\cup A'))\leq m(B\smallsetminus A)+m(B'\smallsetminus A')<\epsilon$. Again by the previous lemma, this shows that $E\cup F$ is Jordan measurable.
+\end{proof}
 
 
 
