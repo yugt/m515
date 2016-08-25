@@ -179,7 +179,7 @@ The above three core properties imply further useful properties as well.
   The elementary measure function $m$ satisfies
   \begin{itemize}
   \item (monotonicity) $m(E)\leq m(F)$ for elementary sets $E\subset F$; and
-  \item (subadditivity) $m(E\cup F)\leq m(E)+m(F)$ for elementary $E,F$.
+  \item (finite subadditivity) $m(E\cup F)\leq m(E)+m(F)$ for elementary $E,F$.
   \end{itemize}
 \end{prop}
 
@@ -199,12 +199,21 @@ In the previous section we showed that the intuitive definition of area is sensi
 Instead we will measure the circle the way it has always been done, by using \emph{approximation}. It is not hard to visualize a circle being approximated by elementary sets, using smaller and smaller boxes towards the boundary. The approximation technique will help us measure most traditional geometric figures, and even many blobby thingies.
 
 \begin{defn}
-  Let $E$ be a bounded subset of $\RR^n$.
+  Let $E$ be a bounded subset of $\RR^n$. First define the lower and upper Jordan forms:
   \begin{align*}
     \underline m_j&=\inf\set{m(A):A\subset E,\, A\text{ elementary}}\\
     \overline m_j&=\inf\set{m(B):E\subset B,\, B\text{ elementary}}
   \end{align*}
+  Then if $\underline m_j(E)=\overline m_j(E)$ we say that $E$ is \emph{Jordan measurable} and simply denote this common quantity by $m(E)$.
 \end{defn}
+
+It is immediate from the definition Jordan measure extends elementary measure in the sense that they agree on the elementary sets. Moreover, we will show that the Jordan measure inherits many of the properties of the elementary measure.
+
+\begin{thm}
+  The Jordan measure satisfies normality, translation-invariance, finite additivity, monotonicity, and finite subadditivity.
+\end{thm}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
