@@ -194,6 +194,19 @@ These results give an essentially complete solution to the measure problem for e
   Tao, \S1.1.2.
 \end{reading}
 
+In the previous section we showed that the intuitive definition of area is sensible for elementary sets, but then remarked that simple shapes like polygons and circles are not elementary. It is easy to imagine extending the elementary measure to triangles by cutting, and to polygons by applying rotations, stretches, and skews. However no such operation (called \emph{affine} transformations) can help measure a circle.
+
+Instead we will measure the circle the way it has always been done, by using \emph{approximation}. It is not hard to visualize a circle being approximated by elementary sets, using smaller and smaller boxes towards the boundary. The approximation technique will help us measure most traditional geometric figures, and even many blobby thingies.
+
+\begin{defn}
+  Let $E$ be a bounded subset of $\RR^n$.
+  \begin{align*}
+    \underline m_j&=\inf\set{m(A):A\subset E,\, A\text{ elementary}}\\
+    \overline m_j&=\inf\set{m(B):E\subset B,\, B\text{ elementary}}
+  \end{align*}
+\end{defn}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Functional analysis}
