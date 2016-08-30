@@ -209,7 +209,9 @@ Instead we will measure the circle the way it has always been done, by using \em
 
 It is immediate from the definition Jordan measure extends elementary measure in the sense that they agree on the elementary sets. This means we are justified in using ``$m$'' both for the elementary and Jordan measure. Moreover, we will show that the Jordan measure inherits many of the properties of the elementary measure: normality, translation-invariance, finite additivity, monotonicity, and finite subadditivity.
 
-The normality and translation-invariance properties hold simply because they hold for elementary measure. To prove finite additivity, we first need the following characterization and properties of Jordan measurability. As we will be working with approximations, the following results also illustrate our first use of $\epsilon$-style analytical arguments.
+The normality and translation-invariance properties hold simply because they hold for elementary measure. The finite properties will take a little more work. For instance, in order to even state the finite additivity property, we first need to establish Boolean closure: the union of measurable sets is measurable.
+
+Before we begin these results, it will be useful to establish the following characterization of Jordan measurability. As we will be working with approximations, the following results also illustrate our first use of $\epsilon$-style analytical arguments.
 
 \begin{lem}
   \label{lem:jordan-equiv}
@@ -232,22 +234,22 @@ as desired.
 
 Note that in the proof, one has to be careful when making a claim such as $m(B\smallsetminus A)=m(B)-m(A)$. It is true in these cases because: the elementary sets are closed under set differences, and so all three sets are elementary, together with the finite additivity property for elementary measure.
 
-\begin{lem}
+\begin{prop}
   If $E,F$ are Jordan measurable, then so are $E\cup F$, $E\cap F$, and $E\setminus F$.
-\end{lem}
+\end{prop}
 
 \begin{proof}
   We prove only the case of $E\cup F$. Suppose that $E,F$ are Jordan measurable. By the previous lemma, we can find elementary sets $A,B,A',B'$ such that $A\subset E\subset B$, and $A'\subset F\subset B'$, and $m(B\smallsetminus A),m(B'\smallsetminus A')<\epsilon/2$. Then we have $A\cup A'\subset E\cup F\subset F\cup F'$ and using some algebra together with the finite subadditivity of elementary measure, $m(B\cup B'\smallsetminus(A\cup A'))\leq m(B\smallsetminus A)+m(B'\smallsetminus A')<\epsilon$. Again by the previous lemma, this shows that $E\cup F$ is Jordan measurable.
 \end{proof}
 
-We are now ready to establish the rest of the previously stated properties of Jordan measure. The following result states finite additivity, and the first paragraph of its proof gives finite subadditivity. The monotonicity property follows immediately from finite additivity.
+We are now ready to establish the remaining stated properties of Jordan measure. The following result states finite additivity, and the first paragraph of its proof gives finite subadditivity. The monotonicity property follows immediately from finite additivity.
 
 \begin{thm}
   The Jordan measure satisfies finite additivity, that is, if $E,F$ are Jordan measurable and disjoint, then $m(E\cup F)=m(E)+m(F)$.
 \end{thm}
 
 \begin{proof}
-  We first show subbaditivity, that is, that $m(E\cup F)\leq m(E)+m(F)$. Let $\epsilon>0$ be given. Using Lemma~\ref{lem:jordan-equiv}, we can find elementary sets $B,B'$ such that $E\subset B$, $F\subset B'$, $m(B)-m(E)<\epsilon/2$, and $m(B')-m(F')<\epsilon/2$. Using the monotonicity and subadditivity properties of the elementary measure, together with the definition of Jordan measurability, we now have:
+  We first show subbaditivity, that is, that $m(E\cup F)\leq m(E)+m(F)$. Let $\epsilon>0$ be given. Using the fact that $m=\overline m_j$ we can find elementary sets $B,B'$ such that $E\subset B$, $F\subset B'$, $m(B)-m(E)<\epsilon/2$, and $m(B')-m(F')<\epsilon/2$. Using the monotonicity and subadditivity properties of the elementary measure, together with the definition of Jordan measurability, we now have:
   \begin{align*}
     m(E\cup F)&=\overline m_j(E\cup F)\\
               &\leq m(B\cup B')\\
@@ -255,8 +257,9 @@ We are now ready to establish the rest of the previously stated properties of Jo
               &< m(E)+m(F)+\epsilon
   \end{align*}
   Since $\epsilon$ was arbitrary, we achieve the desired inequality.
+% question: do we need to use the outer version here?
   
-  Now additionally assume that $E,F$ are disjoint, and again let $\epsilon>0$. Again using Lemma~\ref{lem:jordan-equiv}, we can find elementary sets $A,A'$ such that $A\subset E$, $A'\subset E'$, $m(E)-m(A)<\epsilon/2$, and $m(F)-m(A')<\epsilon/2$. Using the fact that $A,A'$ are disjoint, the finite additivity of elementary measure, and the definition of Jordan measurability, we now have:
+  Now additionally assume that $E,F$ are disjoint, and again let $\epsilon>0$. This time using $m=\underline m_j$, we can find elementary sets $A,A'$ such that $A\subset E$, $A'\subset E'$, $m(E)-m(A)<\epsilon/2$, and $m(F)-m(A')<\epsilon/2$. Using the fact that $A,A'$ are disjoint, the finite additivity of elementary measure, and the definition of Jordan measurability, we now have:
   \begin{align*}
     m(E\cup F)&=\underline m_j(E\cap F)\\
               &\geq m(A\cup A')\\
