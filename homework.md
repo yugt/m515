@@ -2,7 +2,9 @@
 
 ### Homework 2, due Thursday, September 8
 
-...
+* Tao 1.1.12
+* Tao 1.1.19
+* ...
 
 ### Homework 1, due Thursday, September 1
 
