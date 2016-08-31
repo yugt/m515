@@ -331,15 +331,20 @@ As was the case with the elementary measure, one must check that the value of th
   The Riemann integral satisfies the three properties:
   \begin{itemize}
   \item (normality) If $E$ is a Jordan measurable subset of $[a,b]$, then $\chi_E$ is Riemann integrable over $[a,b]$ and $\int\chi_E=m(E)$.
-  \item (linearity)
-  \item (monotonicity)
+  \item (linearity) If $f,g$ are Riemann integrable then so are $cf$ and $f+g$ and we have $\int cf=c\int f$, and $\int(f+g)=\int f+\int g$.
+  \item (monotonicity) If $f,g$ are Riemann integrable and $f\leq g$ then $\int f\leq \int g$.
   \end{itemize}
 \end{prop}
 
 \begin{proof}
-  We establish only the normality property.
-
-  \ldots
+  We establish only the normality property. By Lemma~\ref{lem:jordan-equiv}, for any $\epsilon$ we can find disjoint intervals $I_j$ and disjoint intervals $J_k$ such that $\bigcup I_j\subset E\subset\bigcup J_k$ and $m(\bigcup J_k\smallsetminus\bigcup I_j)<\epsilon$. It is easy to see from the definition of the pc integral that $\text{pc}\int\chi_{\bigcup I_j}=m(\bigcup I_i)$, and similarly $\text{pc}\int\chi_{\bigcup J_k}=m(\bigcup J_k)$. We now have
+  \[m(\bigcup I_i)\leq\underline\int\chi_E\leq\overline\int\chi_E
+  \leq m(\bigcup J_k)
+  \]
+  Since the left and right-hand sides differ by $<\epsilon$, it follows that the lower and upper integrals differ by $<\epsilon$ as well. Since $\epsilon$ was arbitrary, it follows that $\chi_E$ is integrable. And since we also have
+  \[m(\bigcup I_i)\leq m(E)\leq m(\bigcup J_k)
+  \]
+  we may conclude that $\int\chi_E$ is equal to $m(E)$.
 \end{proof}
 
 If one re-examines the definition and properties of the Jordan measure, it should be that there is a close parallel between the Riemann integral and Jordan measure. The normality property above begins to make this connection formal. The next result further strenghens the two-way connection between the two notions.
@@ -349,7 +354,7 @@ If one re-examines the definition and properties of the Jordan measure, it shoul
 \end{thm}
 
 \begin{proof}
-  \ldots
+  
 \end{proof}
 
 Depending on when you last studied Riemann integration, you may better recall Riemann's classical approach rather than the Darboux approach above. This version involves a quite expansive notation:
