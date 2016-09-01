@@ -354,7 +354,9 @@ If one re-examines the definition and properties of the Jordan measure, it shoul
 \end{thm}
 
 \begin{proof}
-  
+  First suppose that $f$ is Riemann integrable and let $\epsilon>0$ be given. Choose pc functions $g,h$ such that $g\leq f\leq h$ and $\text{pc}\int(g-h)<\epsilon$. Let $A$ be the region under the graph of $g$ and let $B$ be the region under the graph of $h$. It is clear that $A,B$ are elementary, $A\subset E\subset B$, and $m(B\smallsetminus A)<\epsilon$.
+
+  Conversely if $E$ is Jordan measurable we can find an elementary $A$ such that $A\subset E$ and $m(E\smallsetminus A)<\epsilon$. Using our usual grid argument, we can suppose that there is a sequence of disjoint intervals $I_j$ such that $A$ is a union of boxes with horizontal sides selected from the $I_j$. Pairing each $I_j$ with the constant $c_j=$ the maximum of the vertical coordinates of all of the boxes with horizontal side $I_j$, we obtain a pc function $g$. It is easy to see that $m(A)\leq \text{pc}\int(g)\leq m(E)$. This shows that the lower Riemann integral of $f$ is $m(E)$. We can proceed similarly using an outer approximation $B$ to show that the upper Riemann integral of $f$ is $m(E)$ too.
 \end{proof}
 
 Depending on when you last studied Riemann integration, you may better recall Riemann's classical approach rather than the Darboux approach above. This version involves a quite expansive notation:
