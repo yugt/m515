@@ -4,8 +4,8 @@
 
 * Tao 1.1.12
 * Tao 1.1.19
-* Tao 1.1.24 (1) and (2)
-* ...
+* Tao 1.1.23
+* Tao 1.1.24 (1) and (2) (you may assume 1.1.21)
 
 ### Homework 1, due Thursday, September 1
 
