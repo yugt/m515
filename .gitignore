@@ -2,6 +2,7 @@
 private
 *.pdf
 *~
+*.rel
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
