@@ -22,6 +22,7 @@
 \usepackage{tikz}
 
 \newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\renewcommand{\setminus}{\smallsetminus}
 \newcommand{\NN}{\mathbb N}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\QQ}{\mathbb Q}
@@ -199,12 +200,12 @@ In the previous section we showed that the intuitive definition of area is sensi
 Instead we will measure the circle the way it has always been done, by using \emph{approximation}. It is not hard to visualize a circle being approximated by elementary sets, using smaller and smaller boxes near the boundary. The approximation technique will help us measure most traditional geometric figures, and even many blobby thingies.
 
 \begin{defn}
-  Let $E$ be a bounded subset of $\RR^n$. First define the lower and upper Jordan forms:
+  Let $E$ be a bounded subset of $\RR^n$. First define the \emph{inner} and \emph{outer Jordan} measures (sometimes called lower and upper):
   \begin{align*}
-    \underline m_j&=\inf\set{m(A):A\subset E,\, A\text{ elementary}}\\
-    \overline m_j&=\inf\set{m(B):E\subset B,\, B\text{ elementary}}
+    m_{*j}&=\inf\set{m(A):A\subset E,\, A\text{ elementary}}\\
+    m^{*j}&=\inf\set{m(B):E\subset B,\, B\text{ elementary}}
   \end{align*}
-  Then if $\underline m_j(E)=\overline m_j(E)$ we say that $E$ is \emph{Jordan measurable}, call the common quantity the \emph{Jordan measure} of $E$, and denote it by $m(E)$.
+  Then if $m_{*j}(E)=m^{*j}(E)$ we say that $E$ is \emph{Jordan measurable}, call the common quantity the \emph{Jordan measure} of $E$, and denote it by $m(E)$.
 \end{defn}
 
 It is immediate from the definition Jordan measure extends elementary measure in the sense that they agree on the elementary sets. This means we are justified in using ``$m$'' both for the elementary and Jordan measure. Moreover, we will show that the Jordan measure inherits many of the properties of the elementary measure: normality, translation-invariance, finite additivity, monotonicity, and finite subadditivity.
@@ -217,29 +218,29 @@ Before we begin these results, it will be useful to establish the following char
   \label{lem:jordan-equiv}
   The set $E$ is Jordan measurable if and only if either of the following holds:
   \begin{itemize}
-  \item For all $\epsilon>0$ there are elementary sets $A,B$ such that $A\subset E\subset B$ such that $m(B\smallsetminus A)<\epsilon$.
+  \item For all $\epsilon>0$ there are elementary sets $A,B$ such that $A\subset E\subset B$ such that $m(B\setminus A)<\epsilon$.
     % Note: for homework students should show the difference of elementary sets is elementary
   \item For all $\epsilon>0$ there is an elementary set $A$ such that $m(E\triangle A)=0$.
   \end{itemize}
 \end{lem}
 
 \begin{proof}
-  We establish only the equivalence of Jordan measurability with the first item. To begin, assume that $E$ is Jordan measurable and let $\epsilon>0$ be given. By the $\underline m_j$ definition of Jordan measure, we can find an elementary set $A\subset E$ such that $m(E)-m(A)<\epsilon/2$. By the $\overline m_j$ definition of jordan measure we can find an elementary set $B$ such that $E\subset B$ and $m(B)-m(E)<\epsilon/2$. It follows that 
-\[m(B\smallsetminus A)=m(B)-m(A)=(m(B)-m(E))-(m(E)-m(A))<\epsilon
+  We establish only the equivalence of Jordan measurability with the first item. To begin, assume that $E$ is Jordan measurable and let $\epsilon>0$ be given. By the $m_{*j}$ definition of Jordan measure, we can find an elementary set $A\subset E$ such that $m(E)-m(A)<\epsilon/2$. By the $m^{*j}$ definition of jordan measure we can find an elementary set $B$ such that $E\subset B$ and $m(B)-m(E)<\epsilon/2$. It follows that 
+\[m(B\setminus A)=m(B)-m(A)=(m(B)-m(E))-(m(E)-m(A))<\epsilon
 \]
 as desired.
 
-  For the converse, assume that the first item is true, and let $\epsilon>0$ be arbitrary. Then we can find elementary sets $A,B$ such that $A\subset E\subset B$ and $m(B)-m(A)<\epsilon$. From the definitions of lower and upper Jordan measure, we have that $m(A)\leq\underline m_j(E)\leq\overline m_j(E)\leq m(B)$. It follows that $\overline m_j(E)-\underline m_j(E)<\epsilon$. Since $\epsilon$ was arbitrary, we may conclude that $\underline m_j(E)=\overline m_j(E)$ and therefore that $E$ is Jordan measurable.
+  For the converse, assume that the first item is true, and let $\epsilon>0$ be arbitrary. Then we can find elementary sets $A,B$ such that $A\subset E\subset B$ and $m(B)-m(A)<\epsilon$. From the definitions of inner and outer Jordan measure, we have that $m(A)\leq m_{*j}(E)\leq m^{*j}(E)\leq m(B)$. It follows that $m^{*j}(E)-m_{*j}(E)<\epsilon$. Since $\epsilon$ was arbitrary, we may conclude that $m_{*j}(E)=m^{*j}(E)$ and therefore that $E$ is Jordan measurable.
 \end{proof}
 
-Note that in the proof, one has to be careful when making a claim such as $m(B\smallsetminus A)=m(B)-m(A)$. It is true in these cases because: the elementary sets are closed under set differences, and so all three sets are elementary, together with the finite additivity property for elementary measure.
+Note that in the proof, one has to be careful when making a claim such as $m(B\setminus A)=m(B)-m(A)$. It is true in these cases because: the elementary sets are closed under set differences, and so all three sets are elementary, together with the finite additivity property for elementary measure.
 
 \begin{prop}
   If $E,F$ are Jordan measurable, then so are $E\cup F$, $E\cap F$, and $E\setminus F$.
 \end{prop}
 
 \begin{proof}
-  We prove only the case of $E\cup F$. Suppose that $E,F$ are Jordan measurable. By the previous lemma, we can find elementary sets $A,B,A',B'$ such that $A\subset E\subset B$, and $A'\subset F\subset B'$, and $m(B\smallsetminus A),m(B'\smallsetminus A')<\epsilon/2$. Then we have $A\cup A'\subset E\cup F\subset F\cup F'$ and using some algebra together with the finite subadditivity of elementary measure, $m(B\cup B'\smallsetminus(A\cup A'))\leq m(B\smallsetminus A)+m(B'\smallsetminus A')<\epsilon$. Again by the previous lemma, this shows that $E\cup F$ is Jordan measurable.
+  We prove only the case of $E\cup F$. Suppose that $E,F$ are Jordan measurable. By the previous lemma, we can find elementary sets $A,B,A',B'$ such that $A\subset E\subset B$, and $A'\subset F\subset B'$, and $m(B\setminus A),m(B'\setminus A')<\epsilon/2$. Then we have $A\cup A'\subset E\cup F\subset F\cup F'$ and using some algebra together with the finite subadditivity of elementary measure, $m(B\cup B'\setminus(A\cup A'))\leq m(B\setminus A)+m(B'\setminus A')<\epsilon$. Again by the previous lemma, this shows that $E\cup F$ is Jordan measurable.
 \end{proof}
 
 We are now ready to establish the remaining stated properties of Jordan measure. The following result states finite additivity, and the first paragraph of its proof gives finite subadditivity. The monotonicity property follows immediately from finite additivity.
@@ -249,9 +250,9 @@ We are now ready to establish the remaining stated properties of Jordan measure.
 \end{thm}
 
 \begin{proof}
-  We first show subbaditivity, that is, that $m(E\cup F)\leq m(E)+m(F)$. Let $\epsilon>0$ be given. Using the fact that $m=\overline m_j$ we can find elementary sets $B,B'$ such that $E\subset B$, $F\subset B'$, $m(B)-m(E)<\epsilon/2$, and $m(B')-m(F')<\epsilon/2$. Using the monotonicity and subadditivity properties of the elementary measure, together with the definition of Jordan measurability, we now have:
+  We first show subbaditivity, that is, that $m(E\cup F)\leq m(E)+m(F)$. Let $\epsilon>0$ be given. Using the fact that $m=m^{*j}$ we can find elementary sets $B,B'$ such that $E\subset B$, $F\subset B'$, $m(B)-m(E)<\epsilon/2$, and $m(B')-m(F')<\epsilon/2$. Using the monotonicity and subadditivity properties of the elementary measure, together with the definition of Jordan measurability, we now have:
   \begin{align*}
-    m(E\cup F)&=\overline m_j(E\cup F)\\
+    m(E\cup F)&=m^{*j}(E\cup F)\\
               &\leq m(B\cup B')\\
               &\leq m(B)+m(B')\\
               &< m(E)+m(F)+\epsilon
@@ -259,9 +260,9 @@ We are now ready to establish the remaining stated properties of Jordan measure.
   Since $\epsilon$ was arbitrary, we achieve the desired inequality.
 % question: do we need to use the outer version here?
   
-  Now additionally assume that $E,F$ are disjoint, and again let $\epsilon>0$. This time using $m=\underline m_j$, we can find elementary sets $A,A'$ such that $A\subset E$, $A'\subset E'$, $m(E)-m(A)<\epsilon/2$, and $m(F)-m(A')<\epsilon/2$. Using the fact that $A,A'$ are disjoint, the finite additivity of elementary measure, and the definition of Jordan measurability, we now have:
+  Now additionally assume that $E,F$ are disjoint, and again let $\epsilon>0$. This time using $m=m_{*j}$, we can find elementary sets $A,A'$ such that $A\subset E$, $A'\subset E'$, $m(E)-m(A)<\epsilon/2$, and $m(F)-m(A')<\epsilon/2$. Using the fact that $A,A'$ are disjoint, the finite additivity of elementary measure, and the definition of Jordan measurability, we now have:
   \begin{align*}
-    m(E\cup F)&=\underline m_j(E\cap F)\\
+    m(E\cup F)&=m_{*j}(E\cap F)\\
               &\geq m(A\cup A')\\
               &=m(A)+m(A')\\
               &>m(E)+m(F)-\epsilon
@@ -284,12 +285,12 @@ To make this argument we need to know that Jordan measure is invariant under $18
   So let $\epsilon>0$ be given, and choose $\delta>0$ as above. Shrinking $\delta$ if necessary, we can suppose that $\len(I)/\delta$ is an integer $k$. Partitioning $I$ into intervals $J_1,\ldots,J_k$ each of lengh $\delta$, we have that the graph of $f$ is contained in the set
   \[E=\bigcup_{i\leq k} J_i\times[\min f(J_i),\max f(J_i)]
   \]
-  Note that the min and max values in the definition of $E$ exist by the extreme value theorem. Now $E$ is a union of $k$ many rectangles each of size at most $\delta\epsilon$. Thus $E$ is elementary and its measure is at most $k\delta\epsilon$. This latter value is $\len(I)\epsilon$, so the upper measure $\overline m_j$ of the graph of $f$ is at most $\len(I)\epsilon$. Taking $\epsilon\to0$, we conclude that $f$ is Jordan measurable with measure $0$.
+  Note that the min and max values in the definition of $E$ exist by the extreme value theorem. Now $E$ is a union of $k$ many rectangles each of size at most $\delta\epsilon$. Thus $E$ is elementary and its measure is at most $k\delta\epsilon$. This latter value is $\len(I)\epsilon$, so the upper measure $m^{*j}$ of the graph of $f$ is at most $\len(I)\epsilon$. Taking $\epsilon\to0$, we conclude that $f$ is Jordan measurable with measure $0$.
 \end{proof}
 
 It is now not difficult to conclude that all polygons are Jordan measurable and have the expeted measure. This is because all polygons can be decomposed into a union of axis parallel triangles (possibly overlapping on their measure zero edges).
 
-A simple example of a set which is not Jordan measurable is the set $\QQ_1=\QQ\cap[0,1]$ of rational numbers in the unit interval. Indeed the only elementary sets $A\subset\QQ_1$ are the finite sets, and so $\underline m_j(\QQ_1)=0$. And the only elementary sets $B$ such that $\QQ_1\subset B$ are of the form $[0,1]\smallsetminus F$ where $F$ is finite, and so $\overline m_j(\QQ_1)=1$.
+A simple example of a set which is not Jordan measurable is the set $\QQ_1=\QQ\cap[0,1]$ of rational numbers in the unit interval. Indeed the only elementary sets $A\subset\QQ_1$ are the finite sets, and so $m_{*j}(\QQ_1)=0$. And the only elementary sets $B$ such that $\QQ_1\subset B$ are of the form $[0,1]\setminus F$ where $F$ is finite, and so $m^{*j}(\QQ_1)=1$.
 
 We can conclude from these examples that Jordan measure works very well for classical geometric objects, but not very well even for simple analytic objects such as countable dense sets, the Cantor set, and so forth. To handle such sets, we will soon work to describe the Lebesgue measure, which  satisfies \emph{countable} additivity. Before going to such generality, however, we explore the connection between Jordan measure and the Riemann integral.
 
@@ -321,8 +322,8 @@ As was the case with the elementary measure, one must check that the value of th
 \begin{defn}
   Let $f$ be a bounded function on $[a,b]$. First define the lower and upper Riemann forms:
   \begin{align*}
-    \underline\int f&=\sup\set{\left.\text{pc}\!\!\int\!\! f\,\right| g\leq f\text{, $g$ pc}}\\
-    \overline\int f&=\inf\set{\left.\text{pc}\!\!\int\!\! h\,\right| f\leq h\text{, $h$ pc}}
+    \underline\int f&=\sup\set{\left.\text{pc}\!\!\int\!\! f\;\right|\;g\leq f\text{, $g$ pc}}\\
+    \overline\int f&=\inf\set{\left.\text{pc}\!\!\int\!\! h\;\right|\;f\leq h\text{, $h$ pc}}
   \end{align*}
   Then if $\underline\int f=\overline\int f$ we say that $f$ is \emph{Riemann integrable}, and denote the common value simply by $\int f$.
 \end{defn}
@@ -337,7 +338,7 @@ As was the case with the elementary measure, one must check that the value of th
 \end{prop}
 
 \begin{proof}
-  We establish only the normality property. By Lemma~\ref{lem:jordan-equiv}, for any $\epsilon$ we can find disjoint intervals $I_j$ and disjoint intervals $J_k$ such that $\bigcup I_j\subset E\subset\bigcup J_k$ and $m(\bigcup J_k\smallsetminus\bigcup I_j)<\epsilon$. It is easy to see from the definition of the pc integral that $\text{pc}\int\chi_{\bigcup I_j}=m(\bigcup I_i)$, and similarly $\text{pc}\int\chi_{\bigcup J_k}=m(\bigcup J_k)$. We now have
+  We establish only the normality property. By Lemma~\ref{lem:jordan-equiv}, for any $\epsilon$ we can find disjoint intervals $I_j$ and disjoint intervals $J_k$ such that $\bigcup I_j\subset E\subset\bigcup J_k$ and $m(\bigcup J_k\setminus\bigcup I_j)<\epsilon$. It is easy to see from the definition of the pc integral that $\text{pc}\int\chi_{\bigcup I_j}=m(\bigcup I_i)$, and similarly $\text{pc}\int\chi_{\bigcup J_k}=m(\bigcup J_k)$. We now have
   \[m(\bigcup I_i)\leq\underline\int\chi_E\leq\overline\int\chi_E
   \leq m(\bigcup J_k)
   \]
@@ -354,9 +355,9 @@ If one re-examines the definition and properties of the Jordan measure, it shoul
 \end{thm}
 
 \begin{proof}
-  First suppose that $f$ is Riemann integrable and let $\epsilon>0$ be given. Choose pc functions $g,h$ such that $g\leq f\leq h$ and $\text{pc}\int(g-h)<\epsilon$. Let $A$ be the region under the graph of $g$ and let $B$ be the region under the graph of $h$. It is clear that $A,B$ are elementary, $A\subset E\subset B$, and $m(B\smallsetminus A)<\epsilon$.
+  First suppose that $f$ is Riemann integrable and let $\epsilon>0$ be given. Choose pc functions $g,h$ such that $g\leq f\leq h$ and $\text{pc}\int(g-h)<\epsilon$. Let $A$ be the region under the graph of $g$ and let $B$ be the region under the graph of $h$. It is clear that $A,B$ are elementary, $A\subset E\subset B$, and $m(B\setminus A)<\epsilon$.
 
-  Conversely if $E$ is Jordan measurable we can find an elementary $A$ such that $A\subset E$ and $m(E\smallsetminus A)<\epsilon$. Using our usual grid argument, we can suppose that there is a sequence of disjoint intervals $I_j$ such that $A$ is a union of boxes with horizontal sides selected from the $I_j$. Pairing each $I_j$ with the constant $c_j=$ the maximum of the vertical coordinates of all of the boxes with horizontal side $I_j$, we obtain a pc function $g$. It is easy to see that $m(A)\leq \text{pc}\int(g)\leq m(E)$. This shows that the lower Riemann integral of $f$ is $m(E)$. We can proceed similarly using an outer approximation $B$ to show that the upper Riemann integral of $f$ is $m(E)$ too.
+  Conversely if $E$ is Jordan measurable we can find an elementary $A$ such that $A\subset E$ and $m(E\setminus A)<\epsilon$. Using our usual grid argument, we can suppose that there is a sequence of disjoint intervals $I_j$ such that $A$ is a union of boxes with horizontal sides selected from the $I_j$. Pairing each $I_j$ with the constant $c_j=$ the maximum of the vertical coordinates of all of the boxes with horizontal side $I_j$, we obtain a pc function $g$. It is easy to see that $m(A)\leq \text{pc}\int(g)\leq m(E)$. This shows that the lower Riemann integral of $f$ is $m(E)$. We can proceed similarly using an outer approximation $B$ to show that the upper Riemann integral of $f$ is $m(E)$ too.
 \end{proof}
 
 Depending on when you last studied Riemann integration, you may better recall Riemann's classical approach rather than the Darboux approach above. This version involves a quite expansive notation:
@@ -392,6 +393,35 @@ It is an exercise in both notation and partition management to check that $f$ is
 \begin{reading}
   Tao, \S1.2, first few pages
 \end{reading}
+
+The Jordan measure that we have constructed works very well for the sets that it measures. And the Riemann integral works very well for the functions that it integrates. But there are several shortcomings that we have not discussed, and several more too.
+\begin{itemize}
+\item Unbounded sets are not Jordan measurable, and unbounded functions are not Riemann integrable
+\item There are examples of bounded sets which are open or closed, but still not Jordan measurable
+\item A countable union of Jordan measurable sets need not be Jordan measurable
+\item A pointwise limit of Riemann integrable functions need not be Riemann integrable, even if it is again bounded
+\end{itemize}
+
+In this section we will tweak the definiton of Jordan measure. The resulting measure will be stronger, though it will be harder to establish that it has the properties we desire of a measure. Recalling the definition of Jordan outer measure, it is clear that we can write it as follows.
+\[m^{*j}(A)=\inf\set{\left.\sum_1^k m(B_i)\;\right|\;A\subset\bigcup_1^kB_i}
+\]
+The idea of the Lebesgue measure is simply to replace the finite union and summation with a countable one.
+
+\begin{defn}
+  Let $A$ be any subset of $\RR^n$. The \emph{Lebesgue outer measure} of $A$ is
+  \[m^*(A)=\inf\set{\left.\sum_1^\infty m(B_i)\;\right|\;A\subset\bigcup_1^\infty B_i}
+  \]
+\end{defn}
+
+Notice that we have dropped the assumption that $A$ is bounded. There are many examples of unbounded sets with Lebesgue outer measure zero. In fact, every countable set has lebesgue outer measure zero.
+
+We also remark that we will not define an ``inner'' version of Lebesgue measure analogous to the Jordan inner measure. The reason is that we do not wish to assume that positive measure sets will contain any positive volume boxes. For example, the set $[0,1]\setminus\QQ$ should have a measure of $1$ but has lower Jordan measure $0$. In fact, if one replaces the finite summation from Jordan inner measure with a countable summation, then the resulting value does not change!
+
+Without an inner measure, we cannot define Lebesgue measurability simply by requiring outer measure equals inner measure. In order to find another way to define Lebesgue measurability, we recall that Jordan measurability could equivalently be stated: $A$ is Jordan measurable if and only if for all $\epsilon>0$ there exists an elementary set $E$ such that $A\subset E$ and $m^{*j}(E\setminus A)<\epsilon$.
+
+\begin{defn}
+  Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists an open set $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
+\end{defn}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
