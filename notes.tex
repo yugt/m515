@@ -403,13 +403,13 @@ The Jordan measure that we have constructed works very well for the sets that it
 \end{itemize}
 
 In this section we will tweak the definiton of Jordan measure. The resulting measure will be stronger, though it will be harder to establish that it has the properties we desire of a measure. Recalling the definition of Jordan outer measure, it is clear that we can write it as follows.
-\[m^{*j}(A)=\inf\set{\left.\sum_1^k m(B_i)\;\right|\;A\subset\bigcup_1^kB_i}
+\[m^{*j}(A)=\inf\set{\left.\sum_1^k \vol(B_i)\;\right|\;A\subset\bigcup_1^kB_i}
 \]
 The idea of the Lebesgue measure is simply to replace the finite union and summation with a countable one.
 
 \begin{defn}
   Let $A$ be any subset of $\RR^n$. The \emph{Lebesgue outer measure} of $A$ is
-  \[m^*(A)=\inf\set{\left.\sum_1^\infty m(B_i)\;\right|\;A\subset\bigcup_1^\infty B_i}
+  \[m^*(A)=\inf\set{\left.\sum_1^\infty \vol(B_i)\;\right|\;A\subset\bigcup_1^\infty B_i}
   \]
 \end{defn}
 
@@ -423,6 +423,46 @@ Without an inner measure, we cannot define Lebesgue measurability simply by requ
   Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists an open set $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
 \end{defn}
 
+We will see in the rest of this section and the next that the Lebesgue measure agrees with the Jordan measure on the Jordan measurable sets, and moreover is capable of measuring significantly more sets. In fact the Lebesgue measurable sets encompass almost everything seen in real analysis and its applications, with exceptions including just certain set constructions from AC.  The Lebesgue measure also satisfies all the measure axioms that we have mentioned so far, including their countable versions.
+
+Likewise, later on we will introduce the corresponding Lebesgue integral. This integral agrees with the Riemann integral, and is capable of integrating significantly more functions. It also has significantly stronger properties than the Riemann integral, including a countable version of linearity.
+
+Before we begin working to establish all these claims, we study the Lebesgue outer measure further. Before continuing, it is useful to lay out what properties are expected of an outer measure. The following will be referred to as the \emph{outer measure axioms}.
+\begin{enumerate}
+\item (empty set) $m^*(\emptyset)=0$
+\item (monotonicity) If $E\subset F$ then $m^*(E)\leq m^*(F)$
+\item (countable subadditivity) $m^*(\bigcup E_n)\leq\sum m^*(E_n)$
+\end{enumerate}
+Since the outer measure applies to all sets, and we have seen there exist non-measurable sets, we do not expect it to satisfy additivity in general. Still axiom (c) is quite strong: the Jordan outer measure satisfies finite additivity but not countable subadditivity.
+
+\begin{prop}
+  The Lebesgue outer measure satisfies the outer measure axioms (a)--(c).
+\end{prop}
+
+\begin{proof}
+  The axioms (a) and (b) are both trivial, so it remains to prove only axiom (c). Let $E_n$ be arbitrary sets and let $\epsilon>0$ be given. From definition of Lebegue outer measure, for each $n$ we can find a sequence of boxes $B_i^n$ such that $E_n\subset\bigcup_iB_i^n$ and $\sum_im(B_i^n)<m^*(E_n)+\epsilon/2^n$.
+
+  Taking unions, we have $\bigcup E_n\subset\bigcup_n\bigcup_iB_i^n$, and moreover:
+  \begin{align*}
+    m^*(\bigcup E_n)&\leq\sum_n\sum_i\vol(B_i^n)\\
+                    &\leq\sum_n\left(m^*(E_n)+\epsilon/2^n\right)\\
+                    &\leq\sum_nm^*(E_n)+2\epsilon
+  \end{align*}
+  Taking $\epsilon\to0$, we obtain the desired inequality $m^*(\bigcup E_n)\leq\sum m^*(E_n)$.
+\end{proof}
+
+The bookkeeping used in the above proof is called an ``$\epsilon/2^n$ argument'', and is used frequently in countable approximations.
+
+In the next sections we will work to address under what circumstances the Lebesgue outer measure satisfies additivity or otherwise behaves well.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{More on Lebesgue outer measure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S 1.2.1.
+\end{reading}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
