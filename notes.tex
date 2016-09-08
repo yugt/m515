@@ -357,7 +357,7 @@ If one re-examines the definition and properties of the Jordan measure, it shoul
 \begin{proof}
   First suppose that $f$ is Riemann integrable and let $\epsilon>0$ be given. Choose pc functions $g,h$ such that $g\leq f\leq h$ and $\text{pc}\int(g-h)<\epsilon$. Let $A$ be the region under the graph of $g$ and let $B$ be the region under the graph of $h$. It is clear that $A,B$ are elementary, $A\subset E\subset B$, and $m(B\setminus A)<\epsilon$.
 
-  Conversely if $E$ is Jordan measurable we can find an elementary $A$ such that $A\subset E$ and $m(E\setminus A)<\epsilon$. Using our usual grid argument, we can suppose that there is a sequence of disjoint intervals $I_j$ such that $A$ is a union of boxes with horizontal sides selected from the $I_j$. Pairing each $I_j$ with the constant $c_j=$ the maximum of the vertical coordinates of all of the boxes with horizontal side $I_j$, we obtain a pc function $g$. It is easy to see that $m(A)\leq \text{pc}\int(g)\leq m(E)$. This shows that the lower Riemann integral of $f$ is $m(E)$. We can proceed similarly using an outer approximation $B$ to show that the upper Riemann integral of $f$ is $m(E)$ too.
+  Conversely if $E$ is Jordan measurable we can find an elementary $A$ such that $A\subset E$ and $m(E\setminus A)<\epsilon$. Using our usual grid argument, we can suppose that there is a sequence of disjoint intervals $I_j$ such that $A$ is a union of boxes with horizontal sides selected from the $I_j$. Pairing each $I_j$ with the constant $c_j=$ the maximum of the vertical coordinates of all of the boxes with horizontal side $I_j$, we obtain a pc function $g$. It is easy to see that $m(A)\leq \text{pc}\int g\leq m(E)$. This shows that the lower Riemann integral of $f$ is $m(E)$. We can proceed similarly using an outer approximation $B$ to show that the upper Riemann integral of $f$ is $m(E)$ too.
 \end{proof}
 
 Depending on when you last studied Riemann integration, you may better recall Riemann's classical approach rather than the Darboux approach above. This version involves a quite expansive notation:
@@ -387,7 +387,7 @@ It is an exercise in both notation and partition management to check that $f$ is
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Lebesge measure}
+\section{Introduction to Lebesgue measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -403,13 +403,13 @@ The Jordan measure that we have constructed works very well for the sets that it
 \end{itemize}
 
 In this section we will tweak the definiton of Jordan measure. The resulting measure will be stronger, though it will be harder to establish that it has the properties we desire of a measure. Recalling the definition of Jordan outer measure, it is clear that we can write it as follows.
-\[m^{*j}(A)=\inf\set{\left.\sum_1^k \vol(B_i)\;\right|\;A\subset\bigcup_1^kB_i}
+\[m^{*j}(A)=\inf\set{\left.\sum_1^k \vol(B_i)\;\right|\;\text{$B_i$ are boxes and }A\subset\bigcup_1^kB_i}
 \]
 The idea of the Lebesgue measure is simply to replace the finite union and summation with a countable one.
 
 \begin{defn}
   Let $A$ be any subset of $\RR^n$. The \emph{Lebesgue outer measure} of $A$ is
-  \[m^*(A)=\inf\set{\left.\sum_1^\infty \vol(B_i)\;\right|\;A\subset\bigcup_1^\infty B_i}
+  \[m^*(A)=\inf\set{\left.\sum_1^\infty \vol(B_i)\;\right|\;\text{$B_i$ are boxes and }A\subset\bigcup_1^\infty B_i}
   \]
 \end{defn}
 
@@ -422,6 +422,8 @@ Without an inner measure, we cannot define Lebesgue measurability simply by requ
 \begin{defn}
   Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists an open set $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
 \end{defn}
+
+%% Question: why not use countable unions of boxes in place of the open set O in this definition, too??
 
 We will see in the rest of this section and the next that the Lebesgue measure agrees with the Jordan measure on the Jordan measurable sets, and moreover is capable of measuring significantly more sets. In fact the Lebesgue measurable sets encompass almost everything seen in real analysis and its applications, with exceptions including just certain set constructions from AC.  The Lebesgue measure also satisfies all the measure axioms that we have mentioned so far, including their countable versions.
 
@@ -463,6 +465,28 @@ In the next sections we will work to address under what circumstances the Lebesg
 \begin{reading}
   Tao, \S 1.2.1.
 \end{reading}
+
+In the previous section we introduced the Lebesgue outer measure $m^*$ and showed that it satisfies the axioms of an outer measure: empty set, monotonicity, and countable subadditivity. We are really interested in countable additivity, but we know this axiom cannot hold for all sets $E_n$. Instead we will 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{More on Lebesgue measurability}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S 1.2.2.
+\end{reading}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{More on Lebesgue measure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter{Measure and integration}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
