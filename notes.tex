@@ -371,7 +371,7 @@ Depending on when you last studied Riemann integration, you may better recall Ri
 \item $x_1^*,\ldots,x_k^*$ denotes any selection of points such that $x_i^*\in[x_i,x_{i+1}]$.
 \end{itemize}
 
-With these pieces in hand, we can define
+With these pieces in hand, we can define the Riemann sums and the Riemann integral.
 
 \begin{defn}
   With $f$, $\mathcal P$, $\delta x_i$, $x_i^*$ as above, the corresponding \emph{Riemann sum} is:
@@ -442,7 +442,7 @@ Since the outer measure applies to all sets, and we have seen there exist non-me
 \end{prop}
 
 \begin{proof}
-  The axioms (a) and (b) are both trivial, so it remains to prove only axiom (c). Let $E_n$ be arbitrary sets and let $\epsilon>0$ be given. From definition of Lebegue outer measure, for each $n$ we can find a sequence of boxes $B_i^n$ such that $E_n\subset\bigcup_iB_i^n$ and $\sum_im(B_i^n)<m^*(E_n)+\epsilon/2^n$.
+  The axioms (a) and (b) are both trivial, so it remains to prove only axiom (c). Let $E_n$ be arbitrary sets and let $\epsilon>0$ be given. From the definition of Lebegue outer measure, for each $n$ we can find a sequence of boxes $B_i^n$ such that $E_n\subset\bigcup_iB_i^n$ and $\sum_im(B_i^n)<m^*(E_n)+\epsilon/2^n$.
 
   Taking unions, we have $\bigcup E_n\subset\bigcup_n\bigcup_iB_i^n$, and moreover:
   \begin{align*}
@@ -468,8 +468,10 @@ In the next sections we will work to address under what circumstances the Lebesg
 
 We have shown that the Lebesgue outer measure satisfies countable subadditivity. We are really interested in additivity, but we know that even the finite additivity axiom cannot hold for all sets. In the end, we will prove that countable additivity is true for measurable sets. For the moment, we will be satisfied with the following version of additivity which holds in special cases.
 
+%% But when is this used??
+
 \begin{lem}
-  Suppose that $E,F$ are finitely separated, that is, that $d(E,F)=\inf{d(x,y)\mid x\in E, y\in F}>0$. Then $m^*(E\cup F)=m^*(E)+m^*(F)$.
+  Suppose that $E,F$ are finitely separated, that is, that $d(E,F)=\inf\set{d(x,y)\mid x\in E, y\in F}>0$. Then $m^*(E\cup F)=m^*(E)+m^*(F)$.
 \end{lem}
 
 \begin{proof}
@@ -486,7 +488,7 @@ We have shown that the Lebesgue outer measure satisfies countable subadditivity.
   In the general case, we can reduce to the easy one by partitioning each $B_i$ into smaller boxes, each with diameter smaller than $d(E,F)$. Once this is done, each new box meets at most one of $E,F$ and we may proceed as above.
 \end{proof}
 
-Up to this point, we have not yet shown that $m^*$ ever takes a nonzero value! In fact it satisfies a normality axiom that the outer measure of an elementary is equal to its elementary measure. When we proved this property for Jordan measure, we started by showing that one cannot partition an interval into finitely many subintervals whose lengths somehow add up to less than the original. For countable partitions this is intuitively still true, but much harder to show!
+Up to this point, we have not yet shown that $m^*$ ever takes a nonzero value! In fact $m^*$ satisfies a normality axiom that the outer measure of an elementary is equal to its elementary measure. When we proved this property for Jordan measure, we started by showing that one cannot partition an interval into finitely many subintervals whose lengths somehow add up to less than the original. For countable partitions this is intuitively still true, but much harder to show!
 
 \begin{thm}
   If $E$ is an elementary subset of $\RR^n$, then $m^*(E)$ agrees with the elementary measure $m_e(E)$.
