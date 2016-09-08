@@ -423,7 +423,7 @@ Without an inner measure, we cannot define Lebesgue measurability simply by requ
   Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists an open set $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
 \end{defn}
 
-%% Question: why not use countable unions of boxes in place of the open set O in this definition, too??
+The definition can also be written with a countable union of boxes in place of the open set $O$; this is less elegant but allows greater symmetry with our definition of Lebesgue outer measure.
 
 We will see in the rest of this section and the next that the Lebesgue measure agrees with the Jordan measure on the Jordan measurable sets, and moreover is capable of measuring significantly more sets. In fact the Lebesgue measurable sets encompass almost everything seen in real analysis and its applications, with exceptions including just certain set constructions from AC.  The Lebesgue measure also satisfies all the measure axioms that we have mentioned so far, including their countable versions.
 
@@ -466,7 +466,88 @@ In the next sections we will work to address under what circumstances the Lebesg
   Tao, \S 1.2.1.
 \end{reading}
 
-In the previous section we introduced the Lebesgue outer measure $m^*$ and showed that it satisfies the axioms of an outer measure: empty set, monotonicity, and countable subadditivity. We are really interested in countable additivity, but we know this axiom cannot hold for all sets $E_n$. Instead we will 
+We have shown that the Lebesgue outer measure satisfies countable subadditivity. We are really interested in additivity, but we know that even the finite additivity axiom cannot hold for all sets. In the end, we will prove that countable additivity is true for measurable sets. For the moment, we will be satisfied with the following version of additivity which holds in special cases.
+
+\begin{lem}
+  Suppose that $E,F$ are finitely separated, that is, that $d(E,F)=\inf{d(x,y)\mid x\in E, y\in F}>0$. Then $m^*(E\cup F)=m^*(E)+m^*(F)$.
+\end{lem}
+
+\begin{proof}
+  Subbaditivity implies that $m^*(E\cup F)\leq m^*(E)+m^*(F)$, so it remains only to show $m^*(E\cup F)\geq m^*(E)+m^*(F)$. Applying the definition of $m^*(E\cup F)$, given any $\epsilon>0$ we can find boxes $B_i$ such that $E\cup F\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(E\cup F)<\epsilon$.
+
+  Let us first consider an easy case when each $B_i$ meets at most one of the sets $E,F$. Then we can rewrite the sequence $\{B_i\}$ as $\{C_i\}\cup\{D_i\}$, where the $C_i$'s meet only $E$ and the $D_i$'s meet only $F$. Now
+  \begin{align*}
+    m^*(E\cup F)&>\sum\vol(B_i)-\epsilon\\
+                &=\sum\vol(C_i)+\sum\vol(D_i)-\epsilon\\
+                &\geq m^*(E)+m^*(F)-\epsilon
+  \end{align*}
+  Taking $\epsilon\to0$, we are done in this case.
+
+  In the general case, we can reduce to the easy one by partitioning each $B_i$ into smaller boxes, each with diameter smaller than $d(E,F)$. Once this is done, each new box meets at most one of $E,F$ and we may proceed as above.
+\end{proof}
+
+Up to this point, we have not yet shown that $m^*$ ever takes a nonzero value! In fact it satisfies a normality axiom that the outer measure of an elementary is equal to its elementary measure. When we proved this property for Jordan measure, we started by showing that one cannot partition an interval into finitely many subintervals whose lengths somehow add up to less than the original. For countable partitions this is intuitively still true, but much harder to show!
+
+\begin{thm}
+  If $E$ is an elementary subset of $\RR^n$, then $m^*(E)$ agrees with the elementary measure $m_e(E)$.
+\end{thm}
+
+\begin{proof}
+  It is clear that $m^*(E)\leq m_e(E)$, since $E$ is itself a union of boxes whose volumes sum to $m(E)$. Thus it remains only to show $m^*(E)\geq m(E)$. Appealing to the definition of $m^*(E)$, given any $\epsilon>0$ we can find boxes $B_i$ such that $E\subset\bigcup B_i$ and $m^*(E)>\sum\vol(B_i)-\epsilon$. We would like to say that the latter quantity is $\geq m_e(E)$, but unfortunately the elementary measure is only \emph{finitely} subadditive.
+
+  In order to proceed, let us temporarily assume that $E$ is closed and the $B_i$ are open. Then by the compactness of $E$, just finitely many of the $B_i$ are needed to cover $E$. Thus the above argument works in this case!
+
+  In order to assume that the $B_i$ are open, we can enlarge each slightly and find an open box $B'_i$ such that $B_i\subset B'_i$ and $\vol(B'_i)-\vol(B_i)<\epsilon/2^n$.
+
+  In order to assume that $E$ is closed, first write it as a finite union of disjoint boxes $C_1,\ldots C_k$. Shrinking each $C_i$ slightly, we can find a closed box $C'_i\subset C_i$ such that $m_e(C_i\setminus C'_i)<\epsilon/k$. Replacing $E$ with $\bigcup C'_i$ we obtain a closed set as desired.
+\end{proof}
+
+As a consequence of the theorem, we now know that finite additivity holds for $m^*$ for finite unions of disjoint boxes (after all it is true for the elementary measure). In fact it also holds for finite unions of almost disjoint boxes: here two boxes are said to be \emph{almost disjoint} if they have disjoint interiors. The next result extends this from finite to countable unions.
+
+\begin{thm}
+  Suppose $B_i$ is a sequence of pairwise almost disjoint boxes. Then $m^*(\bigcup B_i)=\sum\vol(B_i)$.
+\end{thm}
+
+\begin{proof}
+  By subadditivity together with the previous theorem, we have $m^*(\bigcup B_i)\leq\sum m^*(B_i)=\sum\vol(B_i)$. Hence it remains only to show $m^*(\bigcup B_i)\geq\sum\vol(B_i)$. For this, let $N\in\NN$ be given, and note that $\bigcup_1^NB_i$ is an elementary set. Thus by monotonicity together with the previous theorem, we have
+  \begin{align*}
+    m^*(\bigcup B_i)&\geq m^*(\bigcup_1^NB_i)\\
+                    &=m_e(\bigcup_1^NB_i)\\
+                    &=\sum_1^N\vol(B_i)
+  \end{align*}
+  Taking $N\to\infty$, we obtain the desired inequality.
+\end{proof}
+
+We are finally making some progress: for unions of almost disjoint sequences of boxes, the additivity property holds and the measure of the union is equal to the expected quantity. This leads one to ask what kinds of sets can be written as unions of almost disjoint sequences of boxes, and the following result shows this at least includes the open sets.
+
+\begin{prop}
+  Any open set $O$ can be written as a union of a sequence of pairwise almost disjoint boxes.
+\end{prop}
+
+\begin{proof}
+  Consider the family $\mathcal Q$ of \emph{dyadic cubes}, that is, cubes with each side of the form $[m/2^n,(m+1)/2^n]$ where $m\leq 2^n$. The family $\mathcal Q$ has the nesting property, that is, any two such cubes are almost disjoint or else one is contained in the other.
+
+  It is not difficult to observe that $\mathcal Q$ is a basis for the topology of $\RR^n$. In particular, for any $x\in O$ there exists a cube $B_x\in\mathcal Q$ such that $x\in B_x\subset O$. Thu union of all $B_x$ for $x\in O$ is a covering of $O$ by dyadic cubes. Now eliminate duplicates from this covering, that is, remove any cube in the covering that is contained in some other cube of the covering. Since we have bounded the sizes of the cubes, there will still be maximal cubes left over. The result is a covering of $O$ by pairwise almost disjoint dyadic cubes.
+\end{proof}
+
+The above result gives a very direct method of calculating the Lebesgue outer measure (and hence the Lebesgue measure) of any open set! We close this section with the following so-called ``outer regularity lemma'', which shows that the Lebesgue outer measure is determined by its values on the open sets. When combined with the previous result, this gives a kind of general formula for the outer measure.
+
+\begin{lem}
+  Let $E$ be any subset of $\RR^n$. Then $m^*(E)=\inf\set{m^*(O)\mid\text{$O$ is open and }E\subset O}$.
+\end{lem}
+
+\begin{proof}
+  It is clear from monotonicity of $m^*$ that $\leq$ holds. Thus it remains only to show $\geq$. Applying the definition of $m^*(E)$ we can find boxes $B_i$ such that $E\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(E)<\epsilon$. Arguing as in an earlier proof, we can enlarge the $B_i$ slightly to assume without loss of generality that they are open. Then
+  \begin{align*}
+    m^*(E)&\geq\sum\vol(B_i)-\epsilon\\
+          &\geq m^*(\bigcup B_i)\\
+          &\geq \inf\set{m^*(O)\mid\text{$O$ is open and }E\subset O}-\epsilon
+  \end{align*}
+  Taking $\epsilon\to0$, we obtain the desired result.
+\end{proof}
+
+In the next section we will use these partial results to conclude that the Lebesgue (outer) measure always behaves well on the measurable sets.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{More on Lebesgue measurability}
