@@ -471,7 +471,7 @@ We have shown that the Lebesgue outer measure satisfies countable subadditivity.
 %% But when is this used??
 
 \begin{lem}
-  Suppose that $E,F$ are finitely separated, that is, that $d(E,F)=\inf\set{d(x,y)\mid x\in E, y\in F}>0$. Then $m^*(E\cup F)=m^*(E)+m^*(F)$.
+  Suppose that $E,F$ are separated, that is, that $d(E,F)=\inf\set{d(x,y)\mid x\in E, y\in F}>0$. Then $m^*(E\cup F)=m^*(E)+m^*(F)$.
 \end{lem}
 
 \begin{proof}
@@ -648,9 +648,55 @@ In the previous section we established that many sets are Lebesgue measurable. W
 \end{thm}
 
 \begin{proof}
-  \ldots
+  We have already established normality for $m=m^*$, and translation-invariance is clear from the definitions.
+
+  For countable additivity, first recall that we always have subadditivity so we need only show $m(\bigcup E_n)\geq\sum m(E_n)$. Suppose first that the $E_n$ are compact. Then they are pairwise separated, so by induction we can establish that $m(\bigcup_1^NE_n)=\sum_1^Nm(E_n)$. It follows that $m(\bigcup E_n)\geq\sum_1^Nm(E_n)$. Taking $N\to\infty$ we have $m(\bigcup E_n)\geq\sum m(E_n)$ as desired.
+
+  Next assume that the $E_n$ are bounded but not necessarily closed. By the measurability of $E_n^c$ we can find open sets $O_n$ such that $E_n^c\subset O_n$ and $m^*(O_n\setminus E_n)<\epsilon/2^n$. Taking complements we thus have compact sets $K_n\subset E_n$ such that $m^*(E_n\setminus K_n)<\epsilon/2^n$. Now using the additivity for compact sets,
+  \begin{align*}
+    m(\bigcup E_n)&\geq m(\bigcup K_n)\\
+                  &=\sum m(K_n)\\
+                  &\geq\sum(m(E_n)-\epsilon/2^n)\\
+                  &=\sum m(E_n)-\epsilon
+  \end{align*}
+  Taking $\epsilon\to0$, we are finished in this case.
+
+  Finally for general $E_n$, decompose $\RR^d$ into disjoint bounded cells $A_m$. Then $E_n=\bigcup_mE_n\cap A_m$.
+  \begin{align*}
+    m(\bigcup E_n)&=\sum_n\sum_mm(E_n\cap A_m)\\
+                  &=\sum m(E_n)
+  \end{align*}
+  and the proof is complete.
 \end{proof}
 
+We have now established the existence and all of the promised axioms of the Lebesgue measure. Additional useful properties can be derived from the axioms, such as the following result concerning continuity of the measure function.
+
+\begin{thm}
+  \begin{itemize}
+  \item (upwards monotone convergence theorem) If $E_n$ are measurable and $E_n\subset E_{n+1}$ then $m(\bigcup E_n)=\lim m(E_n)$.
+  \item (downwards monotone convergence theorem) If $E_n$ are measurable and $E_{n+1}\subset E_n$ then $m(\bigcap E_n)=\lim m(E_n)$, provided some $E_n$ has finite measure.
+  \end{itemize}
+\end{thm}
+
+\begin{proof}
+  For the upwards MCT, let $E'_n=E_n\setminus E_{n-1}$ and note that the $E'_n$ are disjoint and have the same union $\bigcup E'_n=\bigcup E_n$. As a base case we let $E_0=\emptyset$. Applying countable additivity, we now have
+  \begin{align*}
+    m(\bigcup E_n)&=m(\bigcup E'_n)\\
+                  &=\sum m(E'_n)\\
+                  &=\sum m(E_n)-m(E_{n-1})\\
+                  &=\lim_N\sum_1^N m(E_n)-m(E_{n-1})\\
+                  &=\lim_N m(E_N)
+  \end{align*}
+  The last equality holds simply by telescoping cancellation, and gives us the desired result.
+
+  For the downwards MCT, we can suppose without loss of generality that $E_1$ has finite measure. We thus take complements inside $E_1$ to obtain the sequence $F_n=E_1\setminus E_n$. Then the $F_n$ form an increasing sequence and $\bigcup F_n=E_1\setminus\bigcap E_n$. Using the upwards MCT, we now have
+  \begin{align*}
+    m(E_1)&=m(\bigcap E_n)+m(\bigcup F_n)\\
+          &=m(\bigcap E_n)+\lim m(F_n)\\
+          &=m(\bigcap E_n)+m(E_1)-\lim m(E_n)
+  \end{align*}
+  Cancelling the $m(E_1)$ from the first and last expression, we obtain that $0=m(\bigcap E_n)-\lim m(E_n)$, which implies the desired result.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -659,7 +705,7 @@ In the previous section we established that many sets are Lebesgue measurable. W
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Lebesgue integration}
+\section{Simple integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
