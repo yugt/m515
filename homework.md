@@ -1,5 +1,15 @@
 ## Math 515 homework
 
+### Review for exam 1, September 22 (not to be turned in)
+
+* Tao, ...
+
+### Homework 4, due Tuesday, September 20
+
+* Tao, ex. 1.2.8
+* Tao, ex. 1.2.11(iii)
+* Tao, ex. 1.2.15
+
 ### Homework 3, due Thursday, September 15
 
 * Tao, ex. 1.2.1.
