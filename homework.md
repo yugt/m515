@@ -2,7 +2,11 @@
 
 ### Review for exam 1, September 22 (not to be turned in)
 
-* Tao, ...
+* Tao, ex. 1.1.6
+* Tao, ex. 1.1.18
+* Tao, ex. 1.2.7
+* Tao, ex. 1.2.18
+* Tao, ex. 1.2.26
 
 ### Homework 4, due Tuesday, September 20
 
