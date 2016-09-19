@@ -308,13 +308,13 @@ If the picture of Lemma~\ref{lem:jordan-graph} reminded you of Riemann sums, it 
 Just as we defined the elementary measure before we defined the Jordan measure, we will now define the ``piecewise constant'' integral before we define the Riemann integral.
 
 \begin{defn}
-  Let $f$ be a real-valued function defined on $[a,b]$. Then $f$ is said to be \emph{piecewise constant} if there exists a partition $\mathcal P$ of $[a,b]$ into subintervals $I_j$ such that $f$ takes a constant value $c_j$ on each interval $I_j$.
+  Let $f$ be a real-valued function defined on $[a,b]$. Then $f$ is said to be \emph{piecewise constant} if there exists a partition $\mathcal P$ of $[a,b]$ into finitely many subintervals $I_j$ such that $f$ takes a constant value $c_j$ on each interval $I_j$.
 \end{defn}
 
-In other words, $f$ is piecewise constant if $f$ is of the form $\sum c_j\chi_{I_j}$, where $I_j$ are intervals. Here $\chi_{I_j}$ denotes the \emph{characteristic function} of $I_j$, that is, $\chi_{I_j}(x)=1$ if $x\in I_j$ and $\chi_{I_j}(x)=0$ otherwise.
+In other words, $f$ is piecewise constant if $f$ is of the form $\sum_1^k c_j\chi_{I_j}$, where $I_j$ are intervals. Here $\chi_{I_j}$ denotes the \emph{characteristic function} of $I_j$, that is, $\chi_{I_j}(x)=1$ if $x\in I_j$ and $\chi_{I_j}(x)=0$ otherwise.
 
 \begin{defn}
-  If $f=\sum c_j\chi_{I_j}$ then the \emph{pc integral} of $f$ is defined to be $\sum c_j\len I_j$.
+  If $f=\sum_1^kc_j\chi_{I_j}$ then the \emph{pc integral} of $f$ is defined to be $\sum_1^kc_j\len I_j$.
 \end{defn}
 
 As was the case with the elementary measure, one must check that the value of the pc integral is well-defined. That is, if $f$ is expressed in two different ways as a pc function, say $\sum c_j\chi_{I_j}=\sum d_k\chi_{J_k}$, then one must check that the two values $\sum c_j\len(I_j)$ and $\sum d_k\len(J_k)$ agree.
@@ -718,6 +718,43 @@ We have now established the existence and all of the promised axioms of the Lebe
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simple integration}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S 1.3 introduction
+\end{reading}
+
+In this chapter we investigate integration of real and complex-valued functions. Just as the Jordan measure corresponded tightly with the Riemann integral, the Lebesgue measure can be associated with the so-called Lebesgue integral. The integral will serve most of the purposes needed in calculus, and will also help set the stage for our investigations in functional analysis.
+
+Just like the situation with the two measures, the Lebsegue integral will generalize and extend the Riemann integral while still ensuring that many of the key properties hold. In addition many new stronger properties will hold as well, such as infinite versions of additivity and stability under limits.
+
+We will define integration in stages, beginning with the nonnegative real-valued functions $f$. To see why this is a good start, it is useful to recall the development of infinite series. Recall that if $a_n\geq0$ we can define $\sum a_n$ as simpl $\sup_N\sum_1^Na_n$. Next if $a_n$ are arbitrary real numbers we say that the terms are \emph{absolutely summable} if $\sum|a_n|<\infty$. In that case we divide the terms into the negative terms $a_{n_i}$ and nonnegative terms $a_{p_i}$, and write $\sum a_n=\sum a_{p_i}-\sum|a_{n_i}|$. Note that the assumption that $a_n$ is absolutely summable guarantees that the latter expression is not indeterminate. Finally if $a_n$ are complex numbers then we again assume that $\sum|a_n|<\infty$, that is, the terms is complex absolutely summable. In that case we can divide each term into its real part $\Re a_n$ and imaginary part $\Im a_n$, and define $\sum a_n=\sum\Re a_n+i\sum\Im a_n$.
+
+Recall that the Riemann integral was defined first for piecewise constant functions, that is, functions which take constant values on each of finitely many intervals. The Lebesgue integral will be defined in terms of the more powerful ``simple'' functions.
+
+\begin{defn}
+  A function $f\colon\RR^n\to\CC$ is called \emph{simple} if ther exists a partition of $\RR^n$ into finitely many Lebesgue measurable subsets $E_1,\ldots,E_k$ such that $f$ takes a constant value $c_i$ on each $E_i$.
+\end{defn}
+
+In other words, $f$ is piecewise constant if $f$ is of the form $\sum_1^kc_i\chi_{E_i}$ where $E_i$ are Lebesgue measurable subsets.
+
+\begin{defn}
+  If $f=\sum_1^kc_i\chi_{E_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sum_1^kc_im(E_i)$.
+\end{defn}
+
+Note that we assume $f\geq0$ to ensure that the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
+
+\begin{lem}
+  If $f=\sum_1^kc_i\chi_{E_i}$ and $f=\sum_1^ld_j\chi_{F_j}$ then we have $\sum_1^kc_im(E_i)=\sum_1^ld_j\chi_{F_j}$.
+\end{lem}
+
+\begin{proof}
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lebesgue measurability of functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
