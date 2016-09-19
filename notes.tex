@@ -664,7 +664,7 @@ In the previous section we established that many sets are Lebesgue measurable. W
 
   For countable additivity, first recall that we always have subadditivity so we need only show $m(\bigcup E_n)\geq\sum m(E_n)$. Suppose first that the $E_n$ are compact. Then they are pairwise separated, so by induction we can establish that $m(\bigcup_1^NE_n)=\sum_1^Nm(E_n)$. It follows that $m(\bigcup E_n)\geq\sum_1^Nm(E_n)$. Taking $N\to\infty$ we have $m(\bigcup E_n)\geq\sum m(E_n)$ as desired.
 
-  Next assume that the $E_n$ are bounded but not necessarily closed. By the measurability of $E_n^c$ we can find open sets $O_n$ such that $E_n^c\subset O_n$ and $m^*(O_n\setminus E_n)<\epsilon/2^n$. Taking complements we thus have compact sets $K_n\subset E_n$ such that $m^*(E_n\setminus K_n)<\epsilon/2^n$. Now using the additivity for compact sets,
+  Next assume that the $E_n$ are bounded but not necessarily closed. By the measurability of $E_n^c$ we can find open sets $O_n$ such that $E_n^c\subset O_n$ and $m^*(O_n\setminus E_n^c)<\epsilon/2^n$. Taking complements we thus have compact sets $K_n\subset E_n$ such that $m^*(E_n\setminus K_n)<\epsilon/2^n$. Now using the additivity for compact sets,
   \begin{align*}
     m(\bigcup E_n)&\geq m(\bigcup K_n)\\
                   &=\sum m(K_n)\\
