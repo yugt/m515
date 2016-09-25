@@ -739,18 +739,48 @@ Recall that the Riemann integral was defined first for piecewise constant functi
 In other words, $f$ is piecewise constant if $f$ is of the form $\sum_1^kc_i\chi_{E_i}$ where $E_i$ are Lebesgue measurable subsets.
 
 \begin{defn}
-  If $f=\sum_1^kc_i\chi_{E_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sum_1^kc_im(E_i)$.
+  If $f=\sum_1^kc_i\chi_{E_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\text{s}\int f=\sum_1^kc_im(E_i)$.
 \end{defn}
 
 Note that we assume $f\geq0$ to ensure that the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
 
 \begin{lem}
-  If $f=\sum_1^kc_i\chi_{E_i}$ and $f=\sum_1^ld_j\chi_{F_j}$ then we have $\sum_1^kc_im(E_i)=\sum_1^ld_j\chi_{F_j}$.
+  If $f=\sum_1^lc_i\chi_{E_i}$ and $f=\sum_1^md_j\chi_{F_j}$ then we have $\sum_1^lc_im(E_i)=\sum_1^md_j\chi_{F_j}$.
 \end{lem}
 
 \begin{proof}
-
+  We use the common refinement approach. By considering intersections of all $k+l$ sets, we can find a sequence of nonempty disjoint sets $A_1,\ldots,A_n$ such that each of the $E_i$ and $F_j$ can be written as a union of some of the $A_k$'s. Note that since the $E_i$ and $F_j$ are measurable, the $A_k$ are measurable too. Now let $x_k$ be an arbitrary point in $A_k$. We can calculate
+  \begin{align*}
+    \sum_{i=1}^lc_im(E_i)
+    &=\sum_{i=1}^lc_i\sum_{A_k\subset E_i}m(A_k)\\
+    &=\sum_{k=1}^n\sum_{E_i\supset A_k}c_im(A_k)\\
+    &=\sum_{k=1}^nf(x_k)m(A_k)\\
+    &=\sum_{k=1}^n\sum_{F_j\supset A_k}d_jm(A_k)\\
+    &=\sum_{k=1}^n\sum_{F_j\supset A_k}d_jm(A_k)=\sum_{j=1}^md_jm(F_j)
+  \end{align*}
+  This is what we desired.
 \end{proof}
+
+Having defined the simple integral, we outline some of its important properties that will be used later on. The first of these is that the value of the simple integral is insensitive to changes on a null set.
+
+In order to state this property and others cleanly, we introduce the terminology \emph{almost everywhere}. If a statement $S(x)$ with variable $x\in\RR$ holds for every $x$ outside of a null set, we sat that $S$ is true almost everywhere. For example, if $f(x)=0$ for $x\notin\QQ$ and $f(x)=1$ for $x\in\QQ$ (the Dirichlet function) we can say that $f=0$ almost everywhere.
+
+\begin{prop}
+  Let $f,g$ be simple functions.
+  \begin{enumerate}
+  \item (equivalence) if $f=g$ almost everywhere then $\text{s}\int f=\text{s}\int g$
+  \item (monotonicity) if $f\leq g$ almost everywhere then $\text{s}\int f\leq\text{s}\int g$.
+  \item (linearity) $\text{s}\int (cf)=c\cdot\text{s}\int f$, and $\text{s}\int (f+g)=\text{s}\int f+\text{s}\int g$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  We prove the first property (i), since after that properties (ii) and (iii) are very similar to the analogous properties of the Riemann integral. Given simple functions $f$ and $g$, we can refine their expressions to find measurable sets $E_1,\ldots,E_n$ and a null set $N$ such that $f=\sum c_i\chi_{E_i}+d\chi_n$ and $g=\sum c_i\chi_{E_i}+e\chi_N$. Then clearly the simple integral of both $f$ and $g$ evaluates to $\sum c_im(E_i)+0$.
+\end{proof}
+
+Throwing away null sets is common in analysis, and thanks to our understanding of the Lebesgue measure it carries with it a lot of power. When studying sets and functions in the measure context, it will even be useful to modify our logic. We will use the quantifiers $\forall^*x$ and $\exists^*x$ to mean ``the statement holds for all but a null set of $x$'' and ``there exists a non-null set of $x$ such that the statement holds''.
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
