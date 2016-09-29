@@ -728,6 +728,8 @@ In this chapter we investigate integration of real and complex-valued functions.
 
 Just like the situation with the two measures, the Lebsegue integral will generalize and extend the Riemann integral while still ensuring that many of the key properties hold. In addition many new stronger properties will hold as well, such as infinite versions of additivity and stability under limits.
 
+% The following preview will actually be applied two sections from now. One may consider moving it there.
+
 We will define integration in stages, beginning with the nonnegative real-valued functions $f$. To see why this is a good start, it is useful to recall the development of infinite series. Recall that if $a_n\geq0$ we can define $\sum a_n$ as simpl $\sup_N\sum_1^Na_n$. Next if $a_n$ are arbitrary real numbers we say that the terms are \emph{absolutely summable} if $\sum|a_n|<\infty$. In that case we divide the terms into the negative terms $a_{n_i}$ and nonnegative terms $a_{p_i}$, and write $\sum a_n=\sum a_{p_i}-\sum|a_{n_i}|$. Note that the assumption that $a_n$ is absolutely summable guarantees that the latter expression is not indeterminate. Finally if $a_n$ are complex numbers then we again assume that $\sum|a_n|<\infty$, that is, the terms is complex absolutely summable. In that case we can divide each term into its real part $\Re a_n$ and imaginary part $\Im a_n$, and define $\sum a_n=\sum\Re a_n+i\sum\Im a_n$.
 
 Recall that the Riemann integral was defined first for piecewise constant functions, that is, functions which take constant values on each of finitely many intervals. The Lebesgue integral will be defined in terms of the more powerful ``simple'' functions.
@@ -743,6 +745,8 @@ In other words, $f$ is piecewise constant if $f$ is of the form $\sum_1^kc_i\chi
 \end{defn}
 
 Note that we assume $f\geq0$ to ensure that the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
+
+% Why did we not do this check in the case of the pc integral?
 
 \begin{lem}
   If $f=\sum_1^lc_i\chi_{E_i}$ and $f=\sum_1^md_j\chi_{F_j}$ then we have $\sum_1^lc_im(E_i)=\sum_1^md_j\chi_{F_j}$.
@@ -781,10 +785,90 @@ In order to state this property and others cleanly, we introduce the terminology
 Throwing away null sets is common in analysis, and thanks to our understanding of the Lebesgue measure it carries with it a lot of power. When studying sets and functions in the measure context, it will even be useful to modify our logic. We will use the quantifiers $\forall^*x$ and $\exists^*x$ to mean ``the statement holds for all but a null set of $x$'' and ``there exists a non-null set of $x$ such that the statement holds''.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lebesgue measurability of functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Just as the Riemann integral was able to integrate functions that can be well approximated by pc functions, the Lebesgue integral will be able to integrate functions that can be well approximated by simple functions. At the time we did not dive any direct definition of the Riemann integrable functions. This time we will define in advance the class of functions for which the Lebesgue integral will make sense. As indicated, we begin with just the nonnegative real-valued functions.
+
+\begin{defn}
+  A nonnegative function $f$ on $\RR^n$ is said to be a \emph{measurable function} if $f$ is the pointwise limit of nonnegative simple functions.
+\end{defn}
+
+As was the case with Lebsegue measurable sets, the Lebesgue measurable functions can be equivalently described in a number of ways, each being in useful in some situations.
+
+\begin{thm}
+  A nonnegative function $f$ is measurable if and only if either of the following holds.
+  \begin{enumerate}
+  \item there is a sequence $f_n$ of simple functions such that the $f_n$ are bounded and have bounded support, the $f_n$ are increasing $f_n\leq f_{n+1}$, and $f=\sup f_n$;
+  \item for any open set $S$ (respectively: closed set, interval, ray, etc) the preimage $f^{-1}(S)$ is Lebesgue measurable.
+  \end{enumerate}
+\end{thm}
+
+Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf_N\sup_{n\geq N}x_n$ and $\liminf x_n=\sup_N\inf_{n\geq N}x_n$. The $\limsup$ is the largest limit point of $x_n$ and the $\liminf$ is the smallest limit point of $x_n$. The limit $\lim x_n$ exists if and only if $\limsup x_n=\liminf x_n$, and $\lim x_n$ equals this common value.
+
+\begin{proof}
+  We first show that if $f$ is measurable, then (b) holds. So let $f_n$ be simple functions such that $f=\lim f_n$ pointwise. Note that by the above discussion, we have that $f=\limsup f_n$ pointwise. Now suppose that $S=(\lambda,\infty)$ be an open infinite ray. Then we want to say that
+  \begin{align*}
+    x\in f6{-1}(S)&\iff f(x)>\lambda\\
+          &\iff \inf_N\sup_{n\geq N}f_n(x)>\lambda\\
+          &\iff (\forall N)(\exists n\geq N)f_n(x)>\lambda\\
+          &\iff x\in\bigcap_N\bigcup_{n\geq N}f_n^{-1}(\lambda,\infty]
+  \end{align*}
+  Since the $f_n$ are simple, it is clear that the set in the last line is measurable and therefore $f^{-1}(S)$ would be measurable. However the argument isn't right since for example it isn't quite true that $\inf_Nx_N\geq\lambda$ is equivalent to $(\forall N)x_N\geq\lambda$. The correct calculation introduces a couple additional steps but ultimately accomplishes the same thing:
+  \begin{align*}
+    x\in f^{-1}(S)&\iff f(x)>\lambda\\
+          &\iff (\exists\epsilon)f(x)\geq \lambda+\epsilon\\
+          &\iff (\exists\epsilon)(\forall N)\sup_{n\geq N} f_n(x)\geq\lambda+\epsilon\\
+          &\iff (\exists\epsilon)(\forall N)(\forall\eta)\sup_{n\geq N}f_n(x)>\lambda+\epsilon-\eta\\
+          &\iff (\exists\epsilon)(\forall N)(\forall\eta)(\exists n\geq N)f_n(x)>\lambda+\epsilon-\eta\\
+          &\iff x\in\bigcup_i\bigcap_N\bigcap_j\bigcup_{n\geq N}f_n^{-1}\left(\lambda+\frac1i-\frac1j,\infty\right]
+  \end{align*}
+  Once again, this establishes that $f^{-1}(S)$ is measurable. Now an analogous argument will allow us to handle the case when $S$ is a closed ray. Since any interval can be written in terms of rays using intersections and complements, and any open set can be written as a countable union of intervals, we can therefore conclude that if $S$ is any open set then $f^{-1}(S)$ is measurable. This establishes (b).
+
+  Next we argue that (b) implies (a). Suppose that $f$ satisfies condition (b). Given any $n$, we will define a nonnegative simple function $f_n\leq f$ as follows:
+  \[f_n(x)=
+    \begin{cases}
+      \max\set{\frac{i}{2^n}\mid \frac{i}{2^n}\leq f(x),n}&x\in[-n,n]\\
+      0&\text{otherwise}
+    \end{cases}
+  \]
+  The definition clearly ensures that $f_n$ has a bounded support, that $f_n$ is bounded, that $f_n\leq f$, that $f_n\leq f_{n+1}$, and that $f_n\to f$. It remains only to show that $f_n$ is simple, and since $f_n$ clearly takes just finitely many values we only have to check that each of these values has measurable preimage. But for instance we have $f_n(x)=\frac{i}{2^n}$ if and only if $f(x)$ lies in the interval $[\frac{i}{2^n},\frac{i+1}{2^n})$. It follows from property (b) that $f_n^{-1}(\frac{i}{2^n})$ is a measurable set, and therefore we have that $f_n$ is simple and $f$ satisfies property (a).
+
+  Finally it is trivial that (a) implies $f$ is measurable, so we have completed the proof.
+\end{proof}
+
+It is worth remarking that by property (b) of the Lemma, measurability can be viewed as a massive generalization of continuity. Recall that a function $f$ is continuous if and only if whenever $S$ is open we have $f^{-1}(S)$ open. In the property (b) we ask merely that $f^{-1}(S)$ be Lebesgue measurable, a much weaker demand.
+
+Notice also that since preimages are stable under unions, intersections, and complements, property (b) implies that if $S$ is Borel then $f^{-1}(S)$ will be measurable too. But if $S$ is merely measurable, there is no guarantee that $f^{-1}(S)$ will be measurable! To see this consider a function $f$ which is a bijection between $[0,1]$ and a null set. For example one can map $[0,1]$ into the Cantor set $C$ injectively almost everywhere by operating on binary and ternary expansions as follows:
+\[0.b_1b_2b_3\cdots\text{ (base 2)}\quad\mapsto\quad 0.(2b_1)(2b_2)(2b_3)\cdots\text{ (base 3)}
+\]
+Now if $N$ is a Lebesgue nonmeasurable subset of $[0,1]$, we have that $S=f(N)$ is null but the preimage $f^{-1}(S)$ is non-measurable.
+
+To close the section, we extended the definition of measurable function from nonnegative functions only to complex-valued functions in the following way. Recall that if $f$ is a real-valued function, then we can define its \emph{positive and negative parts}:
+\begin{align*}
+  f^+&=\max(f,0)\\
+  f^-&=\max(-f,0)
+\end{align*}
+We then have that $f^+$ and $f^-$ are nonnegative functions with $f=f^+-f^-$.
+
+\begin{defn}
+  If $f$ is an almost-everywhere defined complex-valued function on $\RR^n$ then $f$ is a \emph{measurable function} if and only if the positive and negative parts of its real and imaginary parts are measurable functions.
+\end{defn}
+
+We note that the alternate approach of simply replacing nonnegative simple functions with complex-valued simple functions in the definition of measurable function yields an equivalent definition.
+
+\begin{lem}
+  If $f$ is a comlex-valued function on $\RR^n$ then $f$ is measurable if and only if it is a pointwise limit of complex-valued simple functions.
+\end{lem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Lebesgue integral of nonnegative functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Lebesgue measurability of functions}
+\section{Absolutely integrable functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
