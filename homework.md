@@ -1,5 +1,12 @@
 ## Math 515 homework
 
+### Homework 5, due Thursday, October 6
+
+(under construction)
+* Tao, ex. 1.3.1 (but not the furthermore part)
+* Tao, ex. 1.3.3(i)&ndash;(v)
+* Tao, ex. 1.3.5
+
 ### Review for exam 1, September 22 (not to be turned in)
 
 * Tao, ex. 1.1.6
