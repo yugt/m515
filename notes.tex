@@ -31,6 +31,9 @@
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\rng}{rng}
+\newcommand{\sint}{\text{s}\kern-3pt\int}
+\newcommand{\lint}{\underline\int}
+\newcommand{\ovint}{\overline\int}
 
 \theoremstyle{definition}
 \newtheorem{exerc}{Exercise}[section]
@@ -322,10 +325,10 @@ As was the case with the elementary measure, one must check that the value of th
 \begin{defn}
   Let $f$ be a bounded function on $[a,b]$. First define the lower and upper Riemann forms:
   \begin{align*}
-    \underline\int f&=\sup\set{\left.\text{pc}\!\!\int\!\! f\;\right|\;g\leq f\text{, $g$ pc}}\\
-    \overline\int f&=\inf\set{\left.\text{pc}\!\!\int\!\! h\;\right|\;f\leq h\text{, $h$ pc}}
+    \lint f&=\sup\set{\left.\text{pc}\!\!\int\!\! f\;\right|\;g\leq f\text{, $g$ pc}}\\
+    \ovint f&=\inf\set{\left.\text{pc}\!\!\int\!\! h\;\right|\;f\leq h\text{, $h$ pc}}
   \end{align*}
-  Then if $\underline\int f=\overline\int f$ we say that $f$ is \emph{Riemann integrable}, and denote the common value simply by $\int f$.
+  Then if $\lint f=\ovint f$ we say that $f$ is \emph{Riemann integrable}, and denote the common value simply by $\int f$.
 \end{defn}
 
 \begin{prop}
@@ -339,7 +342,7 @@ As was the case with the elementary measure, one must check that the value of th
 
 \begin{proof}
   We establish only the normality property. By Lemma~\ref{lem:jordan-equiv}, for any $\epsilon$ we can find disjoint intervals $I_j$ and disjoint intervals $J_k$ such that $\bigcup I_j\subset E\subset\bigcup J_k$ and $m(\bigcup J_k\setminus\bigcup I_j)<\epsilon$. It is easy to see from the definition of the pc integral that $\text{pc}\int\chi_{\bigcup I_j}=m(\bigcup I_i)$, and similarly $\text{pc}\int\chi_{\bigcup J_k}=m(\bigcup J_k)$. We now have
-  \[m(\bigcup I_i)\leq\underline\int\chi_E\leq\overline\int\chi_E
+  \[m(\bigcup I_i)\leq\lint\chi_E\leq\ovint\chi_E
   \leq m(\bigcup J_k)
   \]
   Since the left and right-hand sides differ by $<\epsilon$, it follows that the lower and upper integrals differ by $<\epsilon$ as well. Since $\epsilon$ was arbitrary, it follows that $\chi_E$ is integrable. And since we also have
@@ -741,7 +744,7 @@ Recall that the Riemann integral was defined first for piecewise constant functi
 In other words, $f$ is piecewise constant if $f$ is of the form $\sum_1^kc_i\chi_{E_i}$ where $E_i$ are Lebesgue measurable subsets.
 
 \begin{defn}
-  If $f=\sum_1^kc_i\chi_{E_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\text{s}\int f=\sum_1^kc_im(E_i)$.
+  If $f=\sum_1^kc_i\chi_{E_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sint f=\sum_1^kc_im(E_i)$.
 \end{defn}
 
 Note that we assume $f\geq0$ to ensure that the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
@@ -772,9 +775,9 @@ In order to state this property and others cleanly, we introduce the terminology
 \begin{prop}
   Let $f,g$ be simple functions.
   \begin{enumerate}
-  \item (equivalence) if $f=g$ almost everywhere then $\text{s}\int f=\text{s}\int g$
-  \item (monotonicity) if $f\leq g$ almost everywhere then $\text{s}\int f\leq\text{s}\int g$.
-  \item (linearity) $\text{s}\int (cf)=c\cdot\text{s}\int f$, and $\text{s}\int (f+g)=\text{s}\int f+\text{s}\int g$.
+  \item (equivalence) if $f=g$ almost everywhere then $\sint f=\sint g$
+  \item (monotonicity) if $f\leq g$ almost everywhere then $\sint f\leq\sint g$.
+  \item (linearity) $\sint (cf)=c\cdot\sint f$, and $\sint (f+g)=\sint f+\sint g$.
   \end{enumerate}
 \end{prop}
 
@@ -798,6 +801,7 @@ Just as the Riemann integral was able to integrate functions that can be well ap
 As was the case with Lebsegue measurable sets, the Lebesgue measurable functions can be equivalently described in a number of ways, each being in useful in some situations.
 
 \begin{thm}
+  \label{thm:measurable-equiv}
   A nonnegative function $f$ is measurable if and only if either of the following holds.
   \begin{enumerate}
   \item there is a sequence $f_n$ of simple functions such that the $f_n$ are bounded and have bounded support, the $f_n$ are increasing $f_n\leq f_{n+1}$, and $f=\sup f_n$;
@@ -866,8 +870,87 @@ We note that the alternate approach of simply replacing nonnegative simple funct
 \section{The Lebesgue integral of nonnegative functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Previously we defined the simple functions, showed that they can be integrated in an obvious way, and showed that integral satisfied basic desirable properties such as additivity. Next we will define the lower integral for an arbitrary nonnegative function using approximations by simple integrals. After establishing some basic properties of the lower integral, we will see that it behaves very well when applied to measurable functions, and in that case we will simply call it the Lebesgue integral.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{defn}
+  Let $f$ be a nonnegative function on $\RR^d$. We define the \emph{lower Lebesgue integral} of $f$ by
+  \[\underline{\int}f=\sup\left\{\left.\text{s}\kern-2pt\int g\;\right|\; g\leq f,\text{ $g$ nonnegative simple}\right\}
+  \]
+  If $f$ is measurable, we define the \emph{Lebesgue integral} of $f$ to be $\int f=\lint f$.
+\end{defn}
+
+Before investigating the Lebesgue integral itself, we will describe several properties of the lower Lebesgue integral. While it is also possible to define the upper Lebesgue integral, it is of more limited use than in the Riemann case. Later we will define the upper Lebesgue integral just for bounded functions with bounded support. In general there are functions which are measurable and should have finite integral, that do have the correct lower Lebesgue integral, but do not have a finite upper Lebesgue integral.
+
+It is clear that the lower Lebesgue integral agrees with the simple integral on the simple functions. It also inherits the equivalence and monotonicity properties from the simple integral, but it does not quite inherit the additivity property in general.
+
+\begin{prop}
+  The lower Lebesgue integral satisfies the properties:
+  \begin{enumerate}
+  \item (equivalence) if $f=g$ almost everywhere then $\lint f=\lint g$;
+  \item (monotonicity) if $f\leq g$ almost everywhere then $\lint f\leq\lint g$; and
+  \item (superadditivity) $\lint(f+g)\geq\lint f+\lint g$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  The equivalence and monotonicity properties are clear from the analogous properties of simple integrals. For superadditivity, let $\epsilon>0$ be given and find simple functions $h$ and $k$ such that $h\leq f$, $k\leq g$, $\lint f-\sint h<\epsilon$, and $\lint g-\sint k<\epsilon$. Then we have $h+k\leq f+g$, and using monotinicity plus additivity for simple integrals:
+  \begin{align*}
+    \lint(f+g)&\geq\sint(h+k)\\
+              &=\sint h+\sint k\\
+              &>\lint f+\lint g-2\epsilon
+  \end{align*}
+  Letting $\epsilon\to0$, we obtain the desired result.
+\end{proof}
+
+The following fundamental pair of results establish that arbitrary functions can be approximated well by bounded functions with bounded support. This will prove very useful since the Lebesgue integral is much easier to work with in this case.
+
+\begin{lem}
+  Let $f$ be a nonnegative function on $\RR^d$. The lower Lebesgue integral satisfies the following identities.
+  \begin{enumerate}
+  \item (range truncation) If $f^N=\min(f,N)$ then $\lint f^N\to\lint f$.
+  \item (domain trunctation) If $f_N=f\chi_{[-N,N]^d}$ then $\lint f_N\to\lint f$.
+  \end{enumerate}
+\end{lem}
+
+\begin{proof}
+  For range truncation, let us first assume that $\lint f<\infty$. Given $\epsilon>0$ we can find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. By our assumption $g$ must be bounded almost everywhere, which implies that for $N$ large enough we have $g\leq f^N$ too. Now by monotonicity $\lint f-\lint f^N\leq \lint f-\sint g<\epsilon$, which shows the desired result. The argument is similar in the case $\lint f=\infty$.
+
+  (b) Again let $\epsilon$ be given and find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. Write $g=\sum_1^kc_i\chi_{E_i}$. Now we look at the simple integral of $g_N$:
+  \begin{align*}
+    \sint g_N&=\sum_1^kc_im(E_i\cap[-N,N]^d)\\
+                    &\to\sum_1^kc_im(E_i)=\sint g
+  \end{align*}
+  Where here $N\to\infty$ and we are applying the upwards monotone convergence theorem. Thus we can find $N$ large enough that $\sint g-\sint g_N<\epsilon$. Again using monotonicity we conclude that $\lint f-\lint f_N\leq\lint f-\sint g_N<2\epsilon$.
+\end{proof}
+
+We are now ready to show that the Lebesgue integral behaves well when applied to measurable functions.
+
+\begin{thm}
+  If $f,g$ are nonnegative measurable functions, then $\int(f+g)=\int f+\int g$.
+\end{thm}
+
+\begin{proof}
+  First suppose that $f,g$ are bounded functions with bounded supports. For such functions, it is useful to define the upper Lebesgue integral in the obvious way:
+  \[\ovint f=\inf\left\{\left.\sint h\;\right|\;f\leq h\text{, $h$ simple}\right\}
+  \]
+  We claim that under our hypotheses, we in fact have $\lint f=\ovint f$ (and similarly for $g$ and $f+g$).
+
+  To see this recall that since $f$ is measurable, we can find simple functions $f_n$ such that $f_n\leq f_{n+1}$ and $f_n\to f$. Note also that since $f$ is bounded, the construction of the $f_n$ from Theorem~\ref{thm:measurable-equiv} in fact showed that the $f_n$ converge \emph{uniformly} to $f$. (Indeed once $n$ surpasses the bound for $f$, then $f_n$ always lie within $1/n$ of $f$.) Thus given $\epsilon>0$ we can find $n$ such that
+  \[f\geq f_n\geq f-\epsilon\chi_S
+  \]
+  where $S$ is a support for $f$. Taking $\lint$ of the first inequality and $\ovint$ of the second, we obtain
+  \[\lint f\geq\sint f_n\geq\ovint(f-\epsilon\chi_S)=\ovint f-\epsilon m(S)
+  \]
+  Letting $\epsilon\to0$ we obtain the desired result.
+
+  Now we have already shown that $\lint$ satisfies the superadditivity property. Using a parallel argumentn, it is easy to show that $\ovint$ satisies the analogous \emph{subadditivity} property. And since $\lint=\ovint$ on the functions $f$, $g$, and $f+g$, we can put the two together to conclude the additivity property!
+
+  Finally for general measurable functions $f$ and $g$, we can always apply the truncation lemmas to replace $f$ and $g$ with bounded functions with bounded supports. Each truncation costs us an $\epsilon$ in the additivity property, but afterwards we can let $\epsilon\to0$ and obtain the desired result.
+\end{proof}
+
+Later we will show that the Lebesgue integral even satisfies countable additivity for nonnegative measurable functions.
+
+
 \section{Absolutely integrable functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
