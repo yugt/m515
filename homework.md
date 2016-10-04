@@ -2,7 +2,6 @@
 
 ### Homework 5, due Thursday, October 6
 
-(under construction)
 * Tao, ex. 1.3.1 (but not the furthermore part)
 * Tao, ex. 1.3.3(i)&ndash;(v)
 * Tao, ex. 1.3.5
