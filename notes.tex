@@ -951,13 +951,104 @@ We are now ready to show that the Lebesgue integral behaves well when applied to
 Later we will show that the Lebesgue integral even satisfies countable additivity for nonnegative measurable functions.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Absolutely integrable functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+We have now defined and explored the Lebesgue integral for nonnegative functions. As previously explained, we will now proceed to extend this definition to signed and even complex-valued functions. Some care will of course be needed; to see this consider what would happen when trying to find the integral of $\sin(x)$ or of $1/x$ over the whole real line! In order to proceed, we will provide an assumption which guarantees that such issues will not occur.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{Functional analysis}
+\begin{defn}
+  Let $f$ be a complex-valued measurable function on $\RR^d$ (it need only be defined almost everywhere). We say that $f$ is \emph{absolutely integrable}, or a member of $L^1$, if $\int|f|<\infty$.
+\end{defn}
+
+We can now define the Lebesgue integral for absolutely integrable functions $f$, by using the real, imaginary, positive, and negative parts.
+
+\begin{defn}
+  If $f$ is absolutely integrable and real-valued, let $\int f=\int f^+-\int f^-$. If $f$ is absoulutely integrable and complex-valued, let $\int f=\int\Re f+i\int\Im f$.
+\end{defn}
+
+Since $f^+,f^-\leq|f|$, the hypothesis of absolute integrability means that $\int f$ will not be an indeterminate expression. The definition of $\int f$ agrees with the nonnegative integral when both are defined.
+
+Functions which are not absolutely integrable include $\sin(x)$ and $1/x$, defined on all of $\RR$. Another interesting example is the function $f=(-1)^n/n\chi_{[n,n+1)}$. In some sense this integral ``should'' have value $\sum(-1)^n/n$, which is a convergent series. One may wish to define an improper integral which works for $f$, but it is difficult to do so without sacrificing some of the properties of the Lebesgue integral.
+
+Next, we consider some of the elementary properties of the absolutely convergent integral. Our first result states that the real-valued version of the absolutely convergent Lebesgue integral agrees with and extends the Riemann integral.
+
+%% monotonicity?
+
+%% next result: should be moved to the previous section, but then referenced in the next proposition as an inherited property
+
+\begin{prop}
+  Let $f\colon[a,b]\to\RR$ be a Riemann integrable function. Then intepreting $f$ as a function defined on all of $\RR$ which is zero outside of $[a,b]$, we have that $f$ is Lebesgue absolutely integrable with the same value.
+\end{prop}
+
+\begin{proof}
+  Let us first assume that $f$ is nonnegative. Then since pc functions are simple, we clearly have that the lower Darboux integral of $f$ is less than or equal to the lower Lebesgue integral of $f$. On the other hand by monotonicity the lower Lebesgue integral of $f$ is less than or equal to the upper Darboux integral of $f$. Since the lower and upper Darboux integrals are equal, we must have that it agrees with the Lebesgue integral of $f$.
+
+  If $f$ is real-valued, then we can write $\int f=\int f^+-\int f^-$, and this expression is valid for both the Darboux and absolutely convergent Lebesgue integrals. Applying the previous argument to both $f^+$ and $f^-$, we have the desired result.
+\end{proof}
+
+Next, the absolutely convergent Lebsegue integral of course inherits many of the properties of the nonnegative integral, and has some new ones too.
+
+\begin{prop}
+  \begin{enumerate}
+  \item (linearity) $\int(f+g)=\int f+\int g$, $\int cf=c\int f$, and $\int\bar f=\overline{\int f}$;
+  \item (triangle inequality for integrals) $\left|\int f\right|\leq\int|f|$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  The linearity properties are easily proved using the analogous property for the nonnegative integral. For example, if $f,g$ are real-valued and $h=f+g$, then $h^+-h^-=f^+-f^-+g^+-g^-$. Rearranging terms we have $f^-+g^-+h^+=f^++g^++h^-$. From the nonnegative linearity we know $\int f^-+\int g^-+\int h^+=\int f^++\int g^++\int h^-$. Rearranging back, we obtain $\int h=\int f+\int g$.
+
+  For the triangle inequality for integrals, first assume that $f$ is real-valued. Then we can write $f=f^+-f^-$ and $|f|=f^++f^-$. Thus using linearity together with the triangle inequality, we have
+  \begin{align*}
+    \left|\int f\right|&=\left|\int f^+-\int f^-\right|\\
+                       &\leq\int f^++\int f^-\\
+                       &=\int|f|
+  \end{align*}
+  Next if $f$ is complex-valued we can find an angle $\theta$ such that $e^{i\theta}\int f=\left|\int f\right|$. Again using linearity, together with the definition of the complex-valued integral, we have
+  \begin{align*}
+    \left|\int f\right|&=\Re\left|\int f\right|\\
+                       &=\Re e^{i\theta}\int f\\
+                       &=\int \Re e^{i\theta}f\\
+                       &\leq\int|f|
+  \end{align*}
+  The last inequality following from monotonicity, and gives the desired result.
+\end{proof}
+
+One of the most appreciable aspects of the theory of integration is that the class of absolutely integrable functions forms a vector space. Although the space is of course infinite dimensional, it has a substantial amount of structure! Recall that a nonnegative function $\|\cdot\|$ defined on a vector space is called a \emph{seminorm} if $\|v+w\|\leq\|v\|+\|w\|$, and $\|cv\|=|c|\|v\|$.
+
+\begin{prop}
+  The collection of absolutely integrable functions forms a vector space. In fact it is a seminormed vector space with the seminorm $\|f\|=\int|f|$.
+\end{prop}
+
+\begin{proof}
+  By the linearity shown above, the absolutely integrable functions are closed under linear combinations. To see that $\|\cdot\|$ is a seminorm, first note that the triangle inequality implies that $|f+g|\leq|f|+|g|$, and so monotonicity implies the first axiom. Last we have $|cf|=|c||f|$ and linearity implies the second axiom.
+\end{proof}
+
+A seminorm is called a \emph{norm} if it additionally satisfies $\|v\|=0\implies v=0$. If one is willing to \emph{identify} functions $f,g$ which agree almost everywhere as being equal, then the norm $\|f\|=\int|f|$ becomes a true norm. Indeed, it is an exercise to check that if $\int|f|=0$ then $f=0$ almost everywhere, and thus in this sense $f=0$.
+
+While the vector space of absolutely integrable functions is infinite dimensional, the next result shows that it is not too unwieldy topologically. Recall that a subset $D$ of a (semi-)normed vector space $V$ is \emph{dense} if for every $v\in V$ and every $\epsilon$ there exists $d\in D$ such that $\|v-d\|<\epsilon$.
+
+\begin{thm}
+  The following are all dense subsets of the space of absolutely integrable functions.
+  \begin{enumerate}
+  \item absolutely integrable simple functions;
+  \item absolutely integrable simple functions $\sum_1^kc_i\chi_{B_i}$ where $B_i$ are all boxes; and
+  \item continuous, compactly supported functions.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  For part (a), first assume that $f$ is nonnegative. Then by the definition of the integral, we can find a simple function $g$ such that $g\leq f$ and $\int f-\int g<\epsilon$. It follows that $\int(f-g)<\epsilon$, and since $f-g$ is nonnegative, clearly $\int|f-g|<\epsilon$. It is easy to extend this argument to complex-valued functions using the standard technique.
+
+  For part (b), we now know it is sufficient to approximate any simple function by a function of this type. Using linearity, it is enough to approximate a single term $\chi_E$, with $m(E)<\infty$, by a function of this type. We have already seen that for any such $E$ there exists an elementary set $A$ such that $m(E\triangle A)<\epsilon$. This means that $\int|\chi_E-\chi_A|<\epsilon$, so the result follows.
+
+  For part (c), we now know it is sufficient to approximate any simple function $\chi_B$ by a function of this type. It is possible to do this explicity. For example in one dimension we have $B=I$ is an interval, and the step function $I$ can easily be approximated by a continuous function which looks like a trapezoid.
+\end{proof}
+
+We will see later that this density result fits in with several results which loosely state that integrable functions are ``almost continuous.''
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
