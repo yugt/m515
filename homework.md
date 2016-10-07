@@ -1,5 +1,12 @@
 ## Math 515 homework
 
+### Homework 6, due Thursday, October 13
+
+* Tao, ex. 1.3.13
+* Tao, ex. 1.3.18
+* Tao, ex. 1.3.25(i)
+* Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
+
 ### Homework 5, due Thursday, October 6
 
 * Tao, ex. 1.3.1 (but not the furthermore part)
