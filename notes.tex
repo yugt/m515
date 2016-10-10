@@ -1050,8 +1050,115 @@ We will see later that this density result fits in with several results which lo
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Convergence theorems}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{reading}
+  Tao, \S 1.4.5, though assume all functions are defined on $\RR^d$.
+\end{reading}
+
+In the previous section we have seen that the Lebesgue integral satisfies all of the key properties that the Riemann integral does, while at the same time being able to integrate many more functions. But given that the Lebesgue measure enjoys much stronger properties than the Jordan measure does, it is natural to ask whether the Lebesgue integral does too.
+
+In order to find such strong properties, a good test question to ask is whether $f_n\to f$ implies $\int f_n\to f$. We saw that in the case of the Riemann integral, this does hold if $f_n,f$ are all defined on an interval and $f_n\to f$ uniformly. In the case of the Lebesgue integral, the same proof shows that it works when $f_n,f$ are all supported on a common set of finite measure, and $f_n\to f$ uniformly.
+
+But without these special hypotheses, such a convergence theorem can fail. So before looking for situations where it does hold, let us examine some of the examples where it does not.
+
+\begin{example}[Domain escape to infinity]
+  Let $f_n=\chi_{[n,n+1]}$ and $f=0$. That is, $f_n$ is a sequence of moving unit bumps. Then $f_n\to f$ pointwise (not uniformly), but we have $\int f_n=1$ for all $n$, and $\int f=0$.
+\end{example}
+
+\begin{example}[Domain width escape to infinity]
+  Let $f_n=\frac1n\chi_{[0,n]}$ and $f=0$. That is, $f_n$ is a sequence of widening and shortening bumps. Then $f_n\to f$ uniformly, but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
+\end{example}
+
+\begin{example}[Range escape to infinity]
+  Let $f_n=n\chi_{[1/n,2/n]}$ and $f=0$. That is, $f_n$ is a sequence of narrowing and tallening bumps. Then $f_n\to f$ pointwise (not uniformly), but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
+\end{example}
+
+Provided we can close off these situations where the mass of a region can escape to infinity, we can successfully find situations in which a convergence theorem is true. In our first such situation we impose the conditon that the sequence of functions $f_n$ be an increasing one.
+
+\begin{thm}[Monotone convergence theorem]
+  Let $f_n$ be a sequence of nonnegative measurable functions, and suppose that $f_n\leq f_{n+1}$ for all $n$. Let $f=\sup f_n$, so that we automatically have $f_n\to f$. Then $\int f_n\to\int f$.
+\end{thm}
+
+\begin{proof}
+  We first observe that if the $f_n$ were all characteristic functions, then this theorem would follow directly from the upwards monotone convergence theorem for Lebesgue measurable sets. Thus our strategy is to reduce to a situation in which we can apply the upwards monotone convergence theorem.
+
+  First, since $f_n\leq f_{n+1}$, by the montonicity of the integral we know that $\int f_n\leq\int f_{n+1}$. Siminarly since $f_n\leq f$ we know that $\int f_n\leq\int f$. It follows that the values $\int f_n$ converge and that $\lim\int f_n\leq\int f$.
+
+  To show that $\int f\leq\lim\int f_n$, it is sufficient to show that $\int g\leq \lim\int f_n$ for any simple function $g$ such that $g\leq f$. Given such a $g$, we can express it as $g=\sum c_i\chi_{E_i}$ where the $E_i$ are disjoint measurable sets. Using the range truncation lemma, we can suppose that $c_i\neq\infty$ for all $i$.
+
+  Now fix just one of the sets $E_i$ and let $\epsilon>0$ be given. We define the sets
+  \[A_n^i=\{x\in E_i\mid f_n(x)>(1-\epsilon)c_i\}
+  \]
+  so that we have $f_n>\sum(1-\epsilon)c_i\chi_{A_n^i}$. Now since $\lim f_n\geq g$, for all $x\in E_i$ for $n$ large enough we have that $f_n(x)>(1-\epsilon)c_i$. In other words, as $n\to\infty$ the $A_n^i$ increase to $E_i$. Now the upwards monotone convergence theorem for sets implies that as $n\to\infty$ we have $m(A_n^i)\to m(E_i)$.
+
+  Putting this all together, we have
+  \begin{align*}
+    \lim\int f_n&\geq\lim\int\sum(1-\epsilon)c_i\chi_{A_n^i}\\
+                &=\lim\sum (1-\epsilon)c_im(A_n^i)\\
+                &=\sum (1-\epsilon)c_im(E_i)\\
+                &=(1-\epsilon)\int g
+  \end{align*}
+  Taking $\epsilon\to0$ we therefore conclude that $\lim\int f_n\geq\int g$, as desired.  
+\end{proof}
+
+It is worth remarking that the monotone convergence theorem can fail for signed functions $f_n$. As a silly example, if $f_n=-1/n$ then $f_n\to0$, $\int f_n=-\infty$ but $\int f=0$.
+
+\begin{cor}
+  If $f_n$ is a sequence of nonnegative measurable functions, then $\int\sum f_n=\sum\int f_n$. In other words, the nonnegative Lebesgue integral is countably linear.
+\end{cor}
+
+\begin{proof}
+  Using the monotone convergence theorem and then finite linearity, we have:
+  \begin{align*}
+    \int\sum f_n&=\int\lim\sum_1^Nf_n\\
+                &=\lim_N\int\sum_1^Nf_n\\
+                &=\lim_N\sum_1^N\int f_n\\
+                &=\sum\int f_n
+  \end{align*}
+  as desired.
+\end{proof}
+
+Random application of this.
+
+Next we consider what can be shown without any assumption of monotonicity. To begin observe that in all three of our examples of failure, mass was destroyed in the limit and never created in the limit. The following general result confirms that mass can never be created in the limit..
+
+\begin{thm}[Fatou's lemma]
+  
+\end{thm}
+
+\begin{thm}[Dominated convergence theorem]
+
+\end{thm}
+
+We conclude with the following amusing application.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Abstract measure theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S 1.4.1--1.4.3
+\end{reading}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Abstract integration theory}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S 1.4.4
+\end{reading}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter{Functional analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Banach space}
