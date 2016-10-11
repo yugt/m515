@@ -1120,8 +1120,6 @@ It is worth remarking that the monotone convergence theorem can fail for signed 
   as desired.
 \end{proof}
 
-Random application of this.
-
 Next we consider what can be shown without any assumption of monotonicity. To begin observe that in all three of our examples of failure, mass was destroyed in the limit and never created in the limit. The following general result confirms that mass can never be created in the limit..
 
 \begin{thm}[Fatou's lemma]
@@ -1148,19 +1146,16 @@ The next theorem gives a very general and elegant way to prevent mass from escap
 \end{thm}
 
 \begin{proof}
-  
+  By separating $f_n$ and $f$ into their real and imaginary parts, we may assume that they are all real-valued. Thus our hypothesis says that $-G\leq f_n\leq G$. Since $f_n\to f$ we also have that $-G\leq f\leq G$. Now $f_n+G$ is nonnegative, so we can use Fatou's lemma to obtain:
+  \[\int f+G\leq\liminf\int f_n+G
+  \]
+  Similarly $G-f_n$ is nonnegative so we can again use Fatou's lemma to obtain:
+  \[\int G-f\leq\liminf\int G-f_n
+  \]
+  Putting the two equations together, we conclude that $\int f\leq\liminf\int f_n$ and $\int f\geq\limsup\int f_n$, and hence $\int f=\lim\int f_n$.
 \end{proof}
 
 We conclude with the following amusing application: the dominated convergence theorem implies that the harmonic series $\sum\frac1n$ diverges. To see this, suppose towards a contradiction that $\sum\frac1n<\infty$. Now the sequence of functions $f_n=\frac1n\chi_{[0,n]}$ described in the ``Escape to width infinity'' is dominated by the single function $G=\sum 1/n\chi_{[n-1,n)}$. Assuming $\sum\frac1n<\infty$ we would have that $G$ is absolutely integrable. Thus the dominated convergence theorem implies $\int f_n\to 0$, which contradicts that $\int f_n=1$!
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Convergence theorems, part II}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{reading}
-  Tao, \S 1.4.5
-\end{reading}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
