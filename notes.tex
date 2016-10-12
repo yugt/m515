@@ -792,6 +792,10 @@ Throwing away null sets is common in analysis, and thanks to our understanding o
 \section{Lebesgue measurability of functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{reading}
+  Tao, \S 1.3.2
+\end{reading}
+
 Just as the Riemann integral was able to integrate functions that can be well approximated by pc functions, the Lebesgue integral will be able to integrate functions that can be well approximated by simple functions. At the time we did not dive any direct definition of the Riemann integrable functions. This time we will define in advance the class of functions for which the Lebesgue integral will make sense. As indicated, we begin with just the nonnegative real-valued functions.
 
 \begin{defn}
@@ -869,6 +873,10 @@ We note that the alternate approach of simply replacing nonnegative simple funct
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Lebesgue integral of nonnegative functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S 1.3.3
+\end{reading}
 
 Previously we defined the simple functions, showed that they can be integrated in an obvious way, and showed that integral satisfied basic desirable properties such as additivity. Next we will define the lower integral for an arbitrary nonnegative function using approximations by simple integrals. After establishing some basic properties of the lower integral, we will see that it behaves very well when applied to measurable functions, and in that case we will simply call it the Lebesgue integral.
 
@@ -954,6 +962,10 @@ Later we will show that the Lebesgue integral even satisfies countable additivit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Absolutely integrable functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S 1.3.4
+\end{reading}
 
 We have now defined and explored the Lebesgue integral for nonnegative functions. As previously explained, we will now proceed to extend this definition to signed and even complex-valued functions. Some care will of course be needed; to see this consider what would happen when trying to find the integral of $\sin(x)$ or of $1/x$ over the whole real line! In order to proceed, we will provide an assumption which guarantees that such issues will not occur.
 
@@ -1075,7 +1087,31 @@ But without these special hypotheses, such a convergence theorem can fail. So be
   Let $f_n=n\chi_{[1/n,2/n]}$ and $f=0$. That is, $f_n$ is a sequence of narrowing and tallening bumps. Then $f_n\to f$ pointwise (not uniformly), but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
 \end{example}
 
-Provided we can close off these situations where the mass of a region can escape to infinity, we can successfully find situations in which a convergence theorem is true. In our first such situation we impose the conditon that the sequence of functions $f_n$ be an increasing one.
+One should observe that in all three of our examples where a convergence theorem fails, mass was destroyed in the limit. In particular, we do not have an example where new mass is created in the limit. The next result states that mass can only be destroyed, and never created.
+
+\begin{thm}[Fatou's lemma]
+  Let $f_n$ be nonnegative measurable functions. Then $\int\liminf f_n\leq\liminf\int f_n$. In particular, if $f_n\to f$ then $\int f\leq\liminf\int f_n$.
+\end{thm}
+
+We will prove Fatou's lemma shortly. Meanwhile, it tells us that so long as we can close off the avenues through which the mass of a region can escape to infinity, we can find a convergence theorem. The next theorem gives a very general and elegant way to prevent mass from escaping in a limit, namely, to make sure all functions involved are uniformly dominated by an absolutely integrable function.
+
+\begin{thm}[Dominated convergence theorem]
+  Let $f_n$ be a sequence of measurable complex-valued functions and suppose that $f_n\to f$. Suppose that there exists a nonnegative function $G$ such that $\int|G|<\infty$ and for all $n$, we have $|f_n|\leq G$. Then $\int f_n\to \int f$.
+\end{thm}
+
+Intuitively speaking, the function $G$ acts as an umbrella under which the convergence $f_n\to f$ occurs. The assumption that the umbrella covers just a finite amount of area guarantees that mass cannot escape! The following proof will be carried out under the assumption that Fatou's lemma is true.
+
+\begin{proof}[Proof of the dominated convergence theorem]
+  By separating $f_n$ and $f$ into their real and imaginary parts, we may assume that they are all real-valued. Thus our hypothesis says that $-G\leq f_n\leq G$. Since $f_n\to f$ we also have that $-G\leq f\leq G$. Now $f_n+G$ is nonnegative, so we can use Fatou's lemma to obtain:
+  \[\int f+G\leq\liminf\int f_n+G
+  \]
+  Similarly $G-f_n$ is nonnegative so we can again use Fatou's lemma to obtain:
+  \[\int G-f\leq\liminf\int G-f_n
+  \]
+  Putting the two equations together, we conclude that $\int f\leq\liminf\int f_n$ and $\int f\geq\limsup\int f_n$, and hence $\int f=\lim\int f_n$.
+\end{proof}
+
+It now remains to establish Fatou's lemma. As a first approximation, we will examine what happens in the special case that the functions $f_n$ are nonnegative and the sequence of $f_n$'s is monotone increasing in $n$.
 
 \begin{thm}[Monotone convergence theorem]
   Let $f_n$ be a sequence of nonnegative measurable functions, and suppose that $f_n\leq f_{n+1}$ for all $n$. Let $f=\sup f_n$, so that we automatically have $f_n\to f$. Then $\int f_n\to\int f$.
@@ -1103,10 +1139,10 @@ Provided we can close off these situations where the mass of a region can escape
   Taking $\epsilon\to0$ we therefore conclude that $\lim\int f_n\geq\int g$, as desired.  
 \end{proof}
 
-It is worth remarking that the monotone convergence theorem can fail for signed functions $f_n$. As a silly example, if $f_n=-1/n$ then $f_n\to0$, $\int f_n=-\infty$ but $\int f=0$.
+It is worth remarking that the monotone convergence theorem can fail for signed functions $f_n$. As a silly example, if $f_n=-1/n$ then $f_n\to0$, $\int f_n=-\infty$ but $\int f=0$. The monotone convergence theorem has the following easy but important consequence that the nonnegative Lebesgue integral is \emph{countably} linear, not just finitely linear!
 
 \begin{cor}[Tonelli's theorem]
-  If $f_n$ is a sequence of nonnegative measurable functions, then $\int\sum f_n=\sum\int f_n$. In other words, the nonnegative Lebesgue integral is countably linear.
+  If $f_n$ is a sequence of nonnegative measurable functions, then $\int\sum f_n=\sum\int f_n$.
 \end{cor}
 
 \begin{proof}
@@ -1120,13 +1156,9 @@ It is worth remarking that the monotone convergence theorem can fail for signed 
   as desired.
 \end{proof}
 
-Next we consider what can be shown without any assumption of monotonicity. To begin observe that in all three of our examples of failure, mass was destroyed in the limit and never created in the limit. The following general result confirms that mass can never be created in the limit..
+Next we use the very special monotone convergence theorem to establish Fatou's lemma, which we needed in the proof of the dominated convergence theorem.
 
-\begin{thm}[Fatou's lemma]
-  Let $f_n$ be nonnegative measurable functions. Then $\int\liminf f_n\leq\liminf\int f_n$.
-\end{thm}
-
-\begin{proof}
+\begin{proof}[Proof of Fatou's lemma]
   We will need the general fact that $\int\inf g_n\leq\inf\int g_n$. This holds simply because $\int\inf g_n\leq\int g_n$ for any particular $n$, and then one can take the $\inf_n$ over both sides.
 
   Now recall that $\liminf f_n=\lim_N\inf_{n\geq N}f_n$. The functions $\inf_{n\geq N}f_n$ are increasing in $N$, so using the monotone convergence theorem together with the above we have
@@ -1137,22 +1169,6 @@ Next we consider what can be shown without any assumption of monotonicity. To be
                     &=\liminf\int f_n
   \end{align*}
   as desired.
-\end{proof}
-
-The next theorem gives a very general and elegant way to prevent mass from escaping in a limit, namely, to make sure all functions involved are uniformly dominated by an absolutely integrable function.
-
-\begin{thm}[Dominated convergence theorem]
-  Let $f_n$ be a sequence of measurable complex-valued functions and suppose that $f_n\to f$. Suppose that there exists a nonnegative function $G$ such that $\int|G|<\infty$ and for all $n$, we have $|f_n|\leq G$. Then $\int f_n\to \int f$.
-\end{thm}
-
-\begin{proof}
-  By separating $f_n$ and $f$ into their real and imaginary parts, we may assume that they are all real-valued. Thus our hypothesis says that $-G\leq f_n\leq G$. Since $f_n\to f$ we also have that $-G\leq f\leq G$. Now $f_n+G$ is nonnegative, so we can use Fatou's lemma to obtain:
-  \[\int f+G\leq\liminf\int f_n+G
-  \]
-  Similarly $G-f_n$ is nonnegative so we can again use Fatou's lemma to obtain:
-  \[\int G-f\leq\liminf\int G-f_n
-  \]
-  Putting the two equations together, we conclude that $\int f\leq\liminf\int f_n$ and $\int f\geq\limsup\int f_n$, and hence $\int f=\lim\int f_n$.
 \end{proof}
 
 We conclude with the following amusing application: the dominated convergence theorem implies that the harmonic series $\sum\frac1n$ diverges. To see this, suppose towards a contradiction that $\sum\frac1n<\infty$. Now the sequence of functions $f_n=\frac1n\chi_{[0,n]}$ described in the ``Escape to width infinity'' is dominated by the single function $G=\sum 1/n\chi_{[n-1,n)}$. Assuming $\sum\frac1n<\infty$ we would have that $G$ is absolutely integrable. Thus the dominated convergence theorem implies $\int f_n\to 0$, which contradicts that $\int f_n=1$!
@@ -1166,7 +1182,19 @@ We conclude with the following amusing application: the dominated convergence th
   Tao, \S 1.4.1--1.4.3
 \end{reading}
 
+The Lebesgue measure and integration theory that we have developed can be regarded as a model for an abstract concept of a measure and integral. The situation is very similar to other areas of mathematics. Consider the following examples of a concrete and abstract concept:
+\begin{itemize}
+\item the space $\RR^d$ with its distance measurement $\|x-y\|$ is a model for the definition of metric space;
+\item the space $\RR^d$ with its family of open sets is a model for the definition of topological space;
+\item the space $\RR$ with its addition and multiplication operations is a model for the definition of field;
+\item the space $\RR^d$ with its $\RR$-linear combinations is a model for the definiton of vector space.
+\end{itemize}
 
+An abstract measure space will consist of a set $X$ together with a measure function $\mu$ which satisfies just the most fundamental of the nice properties we have worked to establish for Lebesgue measure. Of course the Lebesgue measure $m$ can only be applied to some of the subsets of $\RR^d$, so an abstract measure $\mu$ the can only be expected to be applied to some of the subsets of $X$.
+
+\begin{defn}
+  A \emph{Boolean algebra}
+\end{defn}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract integration theory}
