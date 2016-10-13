@@ -1193,8 +1193,75 @@ The Lebesgue measure and integration theory that we have developed can be regard
 An abstract measure space will consist of a set $X$ together with a measure function $\mu$ which satisfies just the most fundamental of the nice properties we have worked to establish for Lebesgue measure. Of course the Lebesgue measure $m$ can only be applied to some of the subsets of $\RR^d$, so an abstract measure $\mu$ the can only be expected to be applied to some of the subsets of $X$. In the next sequence of definitions, we lay the setting for describing collections of measurable sets.
 
 \begin{defn}
-  A \emph{Boolean algebra} on $X$ is a collection of subsets
+  A \emph{Boolean algebra} on $X$ is a collection of subsets of $X$ which contains the sets $\emptyset$, and $X$, and is closed under pairwise intersections, pairwise unions, and complements.
 \end{defn}
+
+We have essentially seen several key examples of Boolean algebras on $\RR^d$: the collection of elementary sets together with their complements, and the collection of Jordan measurable sets together with their complements. If $X$ is any set we can always discuss the trivial Boolean algebra $\{\emptyset,X\}$ and the maximal Boolean algebra $\mathcal P(X)$.
+
+\begin{defn}
+  Suppose $X$ is a set and $\mathcal A$ is a Boolean algebra on $X$. A function $\mu\colon\mathcal A\to[0,\infty]$ is said to be a \emph{finitely additive measure} if it satisfies
+  \begin{enumerate}
+  \item (empty set) $\mu(\emptyset)=0$; and
+  \item (finite additivity) for all disjoint sets $A,B\in\mathcal A$, we have $\mu(A\cup B)=\mu(A)+\mu(B)$.
+  \end{enumerate}
+\end{defn}
+
+The elementary measure is an example of a finitely additive measure, provided we take its value to be $\infty$ on any set which is the complement of an elementary set. A similar statement holds for the Jordan measure. But there are many other examples of finitely additive measures. For a simple example let $X$ be any set, and $\mathcal A$ the Boolean algebra of all finite or cofinite subsets of $X$. Then we can define a finitely additive measure by $\mu(A)=|A|$, the cardinality of $A$.
+
+The two simple axioms above imply several further properties.
+
+\begin{prop}
+  Suppose that $\mathcal A$ is a Boolean algebra on $X$, and $\mu$ is a finitely additive measure on $\mathcal A$. Then if $A,B\in\mathcal A$ we have:
+  \begin{itemize}
+  \item (monotonicity) if $A\subset B$ then $\mu(A)\leq\mu(B)$;
+  \item (finite subadditivity) $\mu(A\cup B)\leq\mu(A)+\mu(B)$; and
+  \item (inclusion--exclusion) $\mu(A\cup B)+\mu(A\cap B)=\mu(A)+\mu(B)$.
+  \end{itemize}
+\end{prop}
+
+Of course, the collection of Lebesgue measurable sets is also a Boolean algebra, and the Lebesgue measure is a finitely additive measure on it. But as we have seen, these two possess much stronger properties.
+
+\begin{defn}
+  A \emph{$\sigma$-algebra} on $X$ is a collection of subsets of $X$ which contains the sets $\emptyset$ and $X$, and is closed under countable intersections, countable unions, and complements.
+\end{defn}
+
+Again, we have seen several key examples of $\sigma$-algebras on $\RR^d$: the collection of all Lebesgue measurable sets, and the collection of all Lebesgue null or conull sets. If $X$ is any set then the collection of all countable or co-countable subsets of $X$ forms a $\sigma$-algebra. If $X$ is any topological space then the collection of Borel subsets of $X$ forms a $\sigma$-algebra, where a set is said to be Borel if it is constructible from the open sets using countable intersections, countable unions, and complements.
+
+\begin{defn}
+  Suppose $X$ is a set and $\mathcal B$ is a $\sigma$-algebra on $X$. A function $\mu\colon\mathcal B\to[0,\infty]$ is said to be a \emph{measure} if it satisfies
+  \begin{enumerate}
+  \item (empty set) $\mu(\emptyset)=0$; and
+  \item (countable additivity) for every sequence of pairwise disjoint sets $A_i\in\mathcal B$, we have $\mu(\bigcup A_i)=\sum(\mu(A_i))$.
+  \end{enumerate}
+\end{defn}
+
+The only example of a measure that we have seen so far is the Lebesgue measure on $\RR^d$. One further example is the cardinality measure $\mu(A)=|A|$ on any set. Another very simple example is the Dirac measure: if $x\in X$ we can define $\mu_x(A)=1$ if $x\in A$ and $=0$ if $x\notin A$. It is also worth noting that given several measures $\mu_i$ on a common $\sigma$-algebra, we can form new measures using linear combinations. That is, the measure $\mu=\sum c_i\mu_i$ is defined by $\mu(A)=\sum c_i\mu_i(A)$.
+
+A measure enjoys all the properties of a finitely additive measure, as well as many more. Each of the following can be established using our proofs in the case of Lebesgue measure.
+
+\begin{prop}
+  Suppose that $\mathcal B$ is a $\sigma$-algebra on $X$, and $\mu$ is a measure on $\mathcal B$. Then if $A_i\in\mathcal B$, we have:
+  \begin{itemize}
+  \item (countable subadditivity) $\mu(\bigcup A_i)\leq\sum\mu(A_i)$;
+  \item (upwards monotone convergence) if $A_i\subset A_{i+1}$ then $\mu(\bigcup A_i)=\lim\mu(A_i)$; and
+  \item (downwards monotone convergence) if $A_i\subset A_{i+1}$ and $\mu(A_1)<\infty$ then $\mu(\bigcap A_i)=\lim\mu(A_i)$.
+  \end{itemize}
+\end{prop}
+
+One further property which the Lebesgue measure had by definition is that subsets of null sets were null. This property does not follow directly from the axioms of a measure, and instead must be made into an additional axiom. We say that a $\sigma$-algebra $\mathcal B$ is \emph{complete} if whenever $A\in\mathcal B$ and $A'\subset A$ then $A'\subset\mathcal B$. We also say that measure $\mu$ is \emph{complete} if it is defined on a complete $\sigma$-algebra. It is an exercise to check that if $\mu$ is a measure, then it can always be extended to a complete measure.
+
+At this point we have only given very trivial examples of measure, besides the Lebesgue measure. Given the effort we invested into finding the right construction of the Lebesgue measure, it may not surprise you to know that it is difficult to construct interesting examples of measures. In fact there is a very general and powerful method for constructing measures. The basic idea behind it is that it is easy to construct finitely additive measures first. Unfortunately not all finitely additive measures give rise to true measures, necessitating the following definition.
+
+\begin{defn}
+  Let $X$ be any set, $\mathcal A$ a boolean algebra on $X$, and $\mu_0$ a finitely additive measure on $\mathcal A$. Then $\mu_0$ is said to be a \emph{premeasure} if for every sequence of pairwise disjoint sets $A_i\in\mathcal A$, if $\bigcup A_i\in\mathcal A$ too, then $\mu_0(\bigcup A_i)=\sum\mu(A_i)$.
+\end{defn}
+
+The condition does not quite say that $\mu_0$ is countably additive, but rather that it has the potential to be. This is confirmed by the following keystone result of the subject.
+
+\begin{thm}
+  Let $X$ be a set, $\mathcal A$ an algebra on $X$, and $\mu_0$ a premeasure on $\mathcal A$. Let $\mathcal B$ be the $\sigma$-algebra generated by $\mathcal A$. Then $\mu_0$ extends to a measure $\mu$ on $\mathcal B$.
+\end{thm}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract integration theory}
