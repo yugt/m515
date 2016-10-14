@@ -1,5 +1,13 @@
 ## Math 515 homework
 
+### Homework 7, due Thursday, October 20
+
+* Tao, ex. 1.4.44 (for R^d, not abstract)
+* Tao, ex. 1.4.45(ii) (for R^d, not abstract)
+* Tao, ex. 1.4.49 (for R^d, not abstract)
+* Show that if mu is an abstract measure then mu satisfies countable subadditivity
+* Tao, ex. 1.4.24
+
 ### Homework 6, due Thursday, October 13
 
 * Tao, ex. 1.3.13
