@@ -462,7 +462,7 @@ In the next sections we will work to address under what circumstances the Lebesg
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{More on Lebesgue outer measure}
+\section{Lebesgue outer measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -555,7 +555,7 @@ In the next section we will use these partial results to conclude that the Lebes
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{More on Lebesgue measurability}
+\section{Lebesgue measurability}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -644,7 +644,7 @@ We have now established many useful properties of the outer measure $m^*$ and sh
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{More on Lebesgue measure}
+\section{Lebesgue measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -871,7 +871,7 @@ We note that the alternate approach of simply replacing nonnegative simple funct
 \end{lem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Lebesgue integral of nonnegative functions}
+\section{Lebesgue integration of nonnegative functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -960,7 +960,7 @@ Later we will show that the Lebesgue integral even satisfies countable additivit
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Absolutely integrable functions}
+\section{Lebesgue integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -1190,7 +1190,13 @@ The Lebesgue measure and integration theory that we have developed can be regard
 \item the space $\RR^d$ with its $\RR$-linear combinations is a model for the definiton of vector space.
 \end{itemize}
 
-An abstract measure space will consist of a set $X$ together with a measure function $\mu$ which satisfies just the most fundamental of the nice properties we have worked to establish for Lebesgue measure. Of course the Lebesgue measure $m$ can only be applied to some of the subsets of $\RR^d$, so an abstract measure $\mu$ the can only be expected to be applied to some of the subsets of $X$. In the next sequence of definitions, we lay the setting for describing collections of measurable sets.
+An abstract measure function $\mu$ on a space $X$ will be one which satisfies the most fundamental properties that we have worked to prove for the Lebesgue measure. Of course the Lebesgue measure $m$ can only be applied to some of the subsets of $\RR^d$, so an abstract measure $\mu$ the can only be expected to be applied to some of the subsets of $X$. Thus we make the following definition of an abstract space replacing the role of $\RR^d$.
+
+\begin{defn}
+  A \emph{measurable space} is a pair $(X,\mathcal B)$ where $X$ is any set and $\mathcal B$ is a \emph{$\sigma$-algebra} on $X$: a collection of subsets of $X$ which contains the sets $\emptyset$ and $X$, and is closed under countable intersections, countable unions, and complements.
+\end{defn}
+
+Before getting further into the details of abstract measurable spaces and abstract measures, we recapitulate our development of the elementary, Jordan, and Lebesgue measures in an abstract setting.
 
 \begin{defn}
   A \emph{Boolean algebra} on $X$ is a collection of subsets of $X$ which contains the sets $\emptyset$, and $X$, and is closed under pairwise intersections, pairwise unions, and complements.
@@ -1219,13 +1225,9 @@ The two simple axioms above imply several further properties.
   \end{itemize}
 \end{prop}
 
-Of course, the collection of Lebesgue measurable sets is also a Boolean algebra, and the Lebesgue measure is a finitely additive measure on it. But as we have seen, these two possess much stronger properties.
+Of course, the collection of Lebesgue measurable sets is also a Boolean algebra, and the Lebesgue measure is a finitely additive measure on it. But as we have seen, the Lebesgue measurable sets actually form a $\sigma$-algebra and thus $\RR^d$ with the Lebesgue measurable sets is a measurable space. 
 
-\begin{defn}
-  A \emph{$\sigma$-algebra} on $X$ is a collection of subsets of $X$ which contains the sets $\emptyset$ and $X$, and is closed under countable intersections, countable unions, and complements.
-\end{defn}
-
-Again, we have seen several key examples of $\sigma$-algebras on $\RR^d$: the collection of all Lebesgue measurable sets, and the collection of all Lebesgue null or conull sets. If $X$ is any set then the collection of all countable or co-countable subsets of $X$ forms a $\sigma$-algebra. If $X$ is any topological space then the collection of Borel subsets of $X$ forms a $\sigma$-algebra, where a set is said to be Borel if it is constructible from the open sets using countable intersections, countable unions, and complements.
+For a more abstract example of a measurable set, let $X$ be any set and let $\mathcal F$ be the collection of all countable or co-countable subsets of $X$. Next if $X$ is any topological space then it can be viewed as a measurable space by taking its $\sigma$-algebra to be the collection of Borel subsets of $X$: A set is said to be Borel if it is constructible from the open sets using countable intersections, countable unions, and complements.
 
 \begin{defn}
   Suppose $X$ is a set and $\mathcal B$ is a $\sigma$-algebra on $X$. A function $\mu\colon\mathcal B\to[0,\infty]$ is said to be a \emph{measure} if it satisfies
@@ -1300,6 +1302,8 @@ Recall that after we constructed Lebesgue outer measure $m^*$ we defined the col
 \begin{reading}
   Tao, \S 1.7
 \end{reading}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
