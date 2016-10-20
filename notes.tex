@@ -1412,6 +1412,66 @@ If $F(x)=x$, then the above construction simply gives $\mu_F=$ the Lebesgue meas
   Tao, \S 1.4.4
 \end{reading}
 
+In the past several sections we have explained in detail how the theory of the Lebesgue measure on $\RR^d$ can be abstracted to yield a theory of abstract measures on abstract measurable spaces. In this section we give a brief tour of how the theory can also be used to describe abstract measurable functions, and to carry out integration with respect to arbitrary measures.
+
+Although the definition of measurable functions has many equivalent formulations, our official definition will be the following ``pre-image'' version.
+
+\begin{defn}
+  Suppose that $(X,\mathcal B)$ is a measurable space. A function $f$ which maps $X$ to $[0,\infty]$, $\RR$, or $CC$ is called \emph{measurable} if the pre-image of any open set is in $\mathcal B$, that is, for every open subset $U$ of the codomain, $f^{-1}(U)\in\mathcal B$.
+\end{defn}
+
+\begin{prop}
+  The measurable functions on $(X,\mathcal B)$ are closed under sums, products, continuous compositions, and pointwise limits.
+\end{prop}
+
+In order to define integration with respect t
+
+\begin{defn}
+  Let $(X,\mathcal B)$ be a measurable space. A measurable function $f\colon X\to[0,\infty]$ is said to be \emph{simple} if it takes finitely many values, that is, if $f=\sum_1^kc_i\chi_{E_i}$ where $E_i\in\mathcal B$.
+
+  If $f$ is a simple function and $\mu$ is a measure on $(X,\mathcal B)$, then we define the \emph{simple integral} of $f$ with respect to $\mu$ by
+  \[\sint f\,d\mu=\sum_1^kc_i\mu(A_i)
+  \]
+\end{defn}
+
+It is possible to check, as we have done in the case of Lebesgue integration, that the simple integral is well-defined, linear, and has numerous other familiar properties.
+
+\begin{defn}
+  Suppose $(X,\mathcal B)$ is a measurable space, and $\mu$ is a measure on it. If $f\colon X\to[0,\infty]$ is measurable, then we define the \emph{integral of $f$ with respect to $\mu$} by
+  \[\int f\,d\mu=\sup\left\{\left.\sint g\,d\mu\;\right|\;g\leq f\text{, $g$ simple}\right\}
+  \]
+\end{defn}
+
+\begin{prop}
+  The integral of nonnegative measurable functions satisfies the following properties
+  \begin{itemize}
+  \item (equivalence) if $f=g$ almost everywhere then $\int f\,d\mu=\int g\,d\mu$;
+  \item (monotonicity) if $f\leq g$ almost everywhere then $\int f\,d\mu\leq\int g\,d\mu$;
+  \item (range truncation) if $f^N=\min(f,N)$ then $\int f^N\,d\mu\to\int f\,d\mu$; and
+  \item (domain truncation) if $E_n$ is a sequence of measurable sets such that $E_n\subset E_{n+1}$ and $\bigcup E_n=X$, then $\int f\chi_{E_n}\,d\mu\to\int f\,d\mu$.
+  \item (Markov's inequality)
+  \item (additivity) $\int(f+g)\,d\mu=\int f\,d\mu+\int g\,d\mu$;
+  \end{itemize}
+\end{prop}
+
+\begin{proof}
+  All of the properties (a)--(d) can be proved in a fashion similar to the case of the Lebesgue integral.
+
+  The same is true of property (e), but we neglected to include it earlier so let us provide the proof now.
+
+  The proof of additivity is similar to the Lebesgue case, but
+\end{proof}
+
+Now that the integral of nonnegative functions has been defined, we may again define the absolutely convergent Lebesgue integral for complex-valued functions.
+
+\begin{defn}
+  Suppose that $(X,\mathcal B)$ is a measurable space and $\mu$ is a measure on it. If $f\colon X\to\CC$ is measurable and defined $\mu$-almost everywhere, we say that $f$ is \emph{absolutely integrable with respect to $\mu$} if $\int|f|\,d\mu<\infty$.
+
+  In this case, we define $\int f\,d\mu=\int\Re f\,d\mu+i\int\Im f\,d\mu$, where for real-valued functions $f$ we define $\int f\,d\mu=\int f^+\,d\mu-\int f^-\,d\mu$.
+\end{defn}
+
+Once again, if $(X,\mathcal B)$ is a measurable space and $\mu$ is a measure on it, we can define $L^1(\mu)$ to be the space of measurable complex-valued functions on $X$, where two such functions are identified if they agree $\mu$-almost everywhere.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
