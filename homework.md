@@ -1,5 +1,18 @@
 ## Math 515 homework
 
+### Review for exam 2, October 27 (not to be turned in)
+
+* ... (coming soon)
+* Tao, ex. 1.7.3
+* Tao, ex. 1.7.9(ii),(iii)
+* ...
+
+### Homework 8, due Tuesday, October 25
+
+* Tao, ex. 1.7.9(i)
+* Tao, ex. 1.4.29(i),(vii)
+* Tao, ex. 1.4.36(x)
+
 ### Homework 7, due Thursday, October 20
 
 * Tao, ex. 1.4.44 (for R^d, not abstract)
