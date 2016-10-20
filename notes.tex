@@ -1424,7 +1424,9 @@ Although the definition of measurable functions has many equivalent formulations
   The measurable functions on $(X,\mathcal B)$ are closed under sums, products, continuous compositions, and pointwise limits.
 \end{prop}
 
-In order to define integration with respect t
+We next turn to the task of defining integration with respect to an abstract measure $\mu$. Intuitively $\mu$ is a distribution or density on the space $X$, and $\int f\,d\mu$ is a weighted, continuous sum. For example if $\mu$ is a probability on a probability space, and $f$ is a random variable, then $\int f\,d\mu$ denotes the expectation of $f$.
+
+In order to define the integral with respect to $\mu$, we mimic our original strategy and begin with simple functions.
 
 \begin{defn}
   Let $(X,\mathcal B)$ be a measurable space. A measurable function $f\colon X\to[0,\infty]$ is said to be \emph{simple} if it takes finitely many values, that is, if $f=\sum_1^kc_i\chi_{E_i}$ where $E_i\in\mathcal B$.
@@ -1442,6 +1444,8 @@ It is possible to check, as we have done in the case of Lebesgue integration, th
   \]
 \end{defn}
 
+It is not difficult to establish most of the basic properties of measurable functions previously stated in the Lebesgue case.
+
 \begin{prop}
   The integral of nonnegative measurable functions satisfies the following properties
   \begin{itemize}
@@ -1449,7 +1453,7 @@ It is possible to check, as we have done in the case of Lebesgue integration, th
   \item (monotonicity) if $f\leq g$ almost everywhere then $\int f\,d\mu\leq\int g\,d\mu$;
   \item (range truncation) if $f^N=\min(f,N)$ then $\int f^N\,d\mu\to\int f\,d\mu$; and
   \item (domain truncation) if $E_n$ is a sequence of measurable sets such that $E_n\subset E_{n+1}$ and $\bigcup E_n=X$, then $\int f\chi_{E_n}\,d\mu\to\int f\,d\mu$.
-  \item (Markov's inequality)
+  \item (Markov's inequality) if $f$ is measurable, then $\mu(\{x\mid f(x)\geq\lambda\})\leq\frac1\lambda\int f\,d\mu$;
   \item (additivity) $\int(f+g)\,d\mu=\int f\,d\mu+\int g\,d\mu$;
   \end{itemize}
 \end{prop}
@@ -1457,9 +1461,9 @@ It is possible to check, as we have done in the case of Lebesgue integration, th
 \begin{proof}
   All of the properties (a)--(d) can be proved in a fashion similar to the case of the Lebesgue integral.
 
-  The same is true of property (e), but we neglected to include it earlier so let us provide the proof now.
+  The same is true of property (e), but we neglected to state it earlier so let us provide the proof now. Let $g=\lambda\chi_{\{x\mid f(x)\geq\lambda\}}$. Then clearly $g$ is a simple function and $g\leq f$. It follows that the simple integral of $g$ is a lower bound for the integral of $f$, so $\lambda\mu(\{x\mid f(x)\geq\lambda\})\leq\int f\,d\mu$, as desired.
 
-  The proof of additivity is similar to the Lebesgue case, but
+  The proof of additivity is similar to the Lebesgue case, with one wrinkle. Recall that in the Lebesgue proof we applied the truncation lemma to the sets $B(0,r)$ to assume without loss of generality that $f,g$ have finite measure support. One cannot assume that $X$ is a union of countably many sets of finite measure. Instead we let $E_n=\{x\mid f(x)>\frac1n\text{ or }g(x)>\frac1n\}$. This family of sets is increasing and the union contains the supports of $f$ and $g$. By Markov's inequality, the sets $E_n$ have finite measure, and the proof can proceed by truncating to these sets.
 \end{proof}
 
 Now that the integral of nonnegative functions has been defined, we may again define the absolutely convergent Lebesgue integral for complex-valued functions.
@@ -1470,19 +1474,28 @@ Now that the integral of nonnegative functions has been defined, we may again de
   In this case, we define $\int f\,d\mu=\int\Re f\,d\mu+i\int\Im f\,d\mu$, where for real-valued functions $f$ we define $\int f\,d\mu=\int f^+\,d\mu-\int f^-\,d\mu$.
 \end{defn}
 
-Once again, if $(X,\mathcal B)$ is a measurable space and $\mu$ is a measure on it, we can define $L^1(\mu)$ to be the space of measurable complex-valued functions on $X$, where two such functions are identified if they agree $\mu$-almost everywhere.
+Once again, if $(X,\mathcal B)$ is a measurable space and $\mu$ is a measure on it, we can define $L^1(\mu)$ to be the space of measurable complex-valued functions on $X$, where two such functions are identified if they agree $\mu$-almost everywhere. We can also define a norm on the space $L^1(\mu)$ by $\|f\|=\int|f|\,d\mu$. The following result follows using the same proof as before.
+
+\begin{prop}
+  The space $L^1(\mu)$ together with the norm $\|\cdot\|$ is a normed vector space.
+\end{prop}
+
+Finally we remark that our major convergence theorems all hold true for integration with respect to an abstract measure $\mu$. These include the monotone convergence theorem, Tonelli's theorem, Fatou's lemma, and the dominated convergence theorem.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{Functional analysis}
+\chapter{Functional analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Banach space}
+\section{Banach space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{reading}
+  BBT \S 12.1
+\end{reading}
 
 \end{document}
 
