@@ -2,10 +2,14 @@
 
 ### Review for exam 2, October 27 (not to be turned in)
 
-* ... (coming soon)
+* Tao, ex. 1.3.10(v)(vii)
+* Tao, ex. 1.3.22
+* Tao, ex. 1.4.12
+* Tao, ex. 1.4.29(i)(vi)
+* Tao, ex. 1.4.36(iv)
+* Tao, ex. 1.4.47
 * Tao, ex. 1.7.3
 * Tao, ex. 1.7.9(ii),(iii)
-* ...
 
 ### Homework 8, due Tuesday, October 25
 
