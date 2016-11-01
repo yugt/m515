@@ -1490,11 +1490,11 @@ Finally we remark that our major convergence theorems all hold true for integrat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Banach space}
+\section{Normed vector spaces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
-  BBT \S 12.1
+  BBT \S 12.1, \S 12.3
 \end{reading}
 
 In our study of integration theory, we studied several classes of real and complex-valued functions. For example we studied the class of measurable functions, and given $\mu$ the class of absolutely integrable functions. Across analysis there are many other important classes of functions, including the continuous functions, uniformly continuous functions, differentiable functions, and so on.
@@ -1502,15 +1502,20 @@ In our study of integration theory, we studied several classes of real and compl
 Such function spaces have a lot of structure. For example one can usually add and scale such functions, making them into a vector space. One can also often measure the distance between two functions, giving the vector space a geometry. In the best cases, this distance makes the function space into a normed vector space.
 
 \begin{defn}
-  Let $X$ be a vector space (real or complex). A \emph{norm} on $X$ is a mapping $\|\cdot\|\colon X\to[0,\infty)$ satisfying:
+  A \emph{normed vector space} consists of a (real or complex) vector space $X$ together with a mapping $\|\cdot\|\colon X\to[0,\infty)$ satisfying:
   \begin{itemize}
   \item (homogeneity) $\|ax\|=|a|\cdot\|x\|$;
   \item (triangle inequality) $\|x+y\|\leq\|x\|+\|y\|$; and
   \item (non-vanishing) $\|x\|=0$ implies $x=0$.
   \end{itemize}
+  The mapping $\|\cdot\|$ is called a \emph{norm} on $X$.
 \end{defn}
 
 The norm gives rise to a metric on $X$ defined by $d(x,y)=\|x-y\|$. The metric has several special properties not true in a general metric space. For example, it is uniform throughout the space in the sense that it is translation invariant: $d(x+z,y+z)=d(x,y)$.
+
+\begin{defn}
+  A vector space $X$ equipped with a norm $\|\cdot\|$ is called a \emph{Banach space} if the associated metric is complete.
+\end{defn}
 
 Recall that a metric $d$ is \emph{complete} if whenever $x_n$ is Cauchy:
 \[(\forall\epsilon>0)(\exists N)(\forall n,m\geq N)\;d(x_n,x_m)<\epsilon
@@ -1518,13 +1523,9 @@ Recall that a metric $d$ is \emph{complete} if whenever $x_n$ is Cauchy:
 then there exists $x\in X$ such that $x_n$ converges to $x$:
 \[(\forall\epsilon>0)(\exists N)(\forall n\geq N)\;d(x_n,x)<\epsilon
 \]
-The property means that there are no holes in the space---any point which can be approximated actually exists.
+The property means that there are no holes in the space---any point which can be approximated actually exists. We will see the value of the completeness assumption in later sections.
 
-\begin{defn}
-  A vector space $X$ equipped with a norm $\|\cdot\|$ is called a \emph{Banach space} if the associated metric is complete.
-\end{defn}
-
-We now describe several familiar examples of Banach spaces.
+We now describe several familiar examples of normed vector spaces (in fact most of them will be Banach spaces).
 
 \begin{example}
   The ordinary finite-dimensional vector space $\RR^d$ is a Banach space together with its usual Euclidean norm $\|x\|=\left(\sum_1^dx_i^2\right)^{1/2}$. It is a classical annoying exercise to establish the triangle inequality. One can also verify that the completeness property holds, using the classical fact/construction that it is true for $\RR$.
@@ -1538,19 +1539,53 @@ We now describe several familiar examples of Banach spaces.
 \end{example}
 
 \begin{example}
-  Function spaces
+  As we have mentioned, spaces of integrable functions may also form Banach spaces. Let $(X,\mathcal B)$ be a measurable space and $\mu$ a measure on $\mathcal B$. We have already described the space $L^1(\mu)$ of all absolutely integrable functions on $X$. It is also possible to use other powers, for example, let
+  \[L^2(\mu)=\set{f\colon X\to\CC\mid \int|f|^2\,d\mu<\infty}
+  \]
+  We may then define a norm on $L^2$ be $\|f\|_2=\left(\int|f|^2\right)^{1/2}$. The spaces $L^1(\mu)$ and $L^2(\mu)$ are not quite Banach spaces, but only because they fail to satisfy the non-vanishing property. This can easily be remedied by identifying two functions if they agree almost everywhere.
 \end{example}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Operators}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}
+  As a final series of examples, if $[a,b]$ is any closed, bounded interval then let $M[a,b]$ be the space of all bounded functions $f\colon[a,b]\to\RR$ together with the supremum norm $\|f\|=\sup\set{f(x)\mid x\in[a,b]}$. This is a Banach space which contains many other spaces of independent interest. For example it contains the space $C[a,b]$ of continuous functions on $[a,b]$, the space $D[a,b]$ of all differentiable functions on $[a,b]$, and the space $P[a,b]$ of all polynomial functions on $[a,b]$. The last two turn out to be incomplete.
+\end{example}
 
-\begin{reading}
-  BBT \S 1.3
-\end{reading}
+Having given the definition and basic examples of Banach spaces, we now briefly study mappings between them. For ordinary vector spaces, the most natural mappings are the \emph{operators}, or linear mappings. For Banach spaces we primarily study operators which are also continuous.
+
+The motivating examples are the operators from $\CC^n$ to $\CC^m$, which are simply the familiar matrix transformations studied in linear algebra. However these examples are somewhat misleading as it turns out they are always continuous, no matter what norm is chosen for $\CC^n$ or $\CC^m$.
+
+Another example of a linear operator is the mapping $L^1(\mu)\to\CC$ given by $f\mapsto\int f\,d\mu$. We have of course seen that the mapping is linear, and it turns out to be continuous as well.
+
+As a final example, the mapping from $D[a,b]$ to $M[a,b]$ which takes a differentiable function to its derivative is also linear. However it fails to be continuous with respect to the supremum norm. Two functions can be very close together but also have very different slopes!
+
+In the next two results, we show that the continuity of operators is very special when compared with arbitrary continuous functions.
+
+\begin{lem}
+  Let $X,Y$ be normed vector spaces and let $T\colon X\to Y$ be an operator. If $T$ is continuous at one point $x\in X$, then $T$ is uniformly continuous.
+\end{lem}
+
+\begin{proof}
+  Using the translation-invariance property, we can assume that $x=0$. By definition this means that for all $\epsilon>0$ there exists $\delta>0$ such that for all $x\in X$ we have $\|x\|<\delta\implies\|Tx\|<\epsilon$. Given two points $x,x'$ we can apply the latter property to $x-x'$ and use the linearity of $T$ to conclude that $\|x-x'\|<\delta\implies\|Tx-Tx'\|<\epsilon$. In other words, $T$ is uniformly continuous.
+\end{proof}
+
+In the following lemma, an operator $T\colon X\to Y$ is said to be \emph{bounded} if there exists a real number $M$ such that $\|Tx\|\leq M\|x\|$ for all $x\in X$. Note the abuse of terminology! A bounded operator is not bounded in the traditional sense that it takes values inside a bounded ball. Rather a bounded operator is one which \emph{maps bounded sets to bounded sets}.
+
+\begin{lem}
+  Let $X,Y$ be normed vector spaces and let $T\colon X\to Y$ be an operator. Then $T$ is continuous if and only if $T$ is bounded.
+\end{lem}
+
+\begin{proof}
+  First suppose that $T$ is continous. Apply the continuity with $\epsilon=1$ to obtain $\delta>0$ such that $\|x\|<\delta\implies\|Tx\|<1$. The for any $x\neq0$ we have
+  \[\|Tx\|=\left\|T\left(\frac{x}{\|x\|}\delta\right)\right\|\frac{\|x\|}{\delta}\leq 1\frac{\|x\|}{\delta}
+  \]
+
+  Conversely suppose that $T$ is bounded, and let $M$ be such that $\|Tx\|\leq M\|x\|$ for $x\in X$. Given any $\epsilon>0$ we let $\delta=\epsilon/M$. Then we have
+  \[\|x\|<\delta\implies\|Tx\|\leq M\|x\|<M\left(\frac{\epsilon}{M}\right)=\epsilon
+  \]
+  This shows that $T$ is continuous at the point $0$, and hence by the previous lemma $T$ is continuous.
+\end{proof}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{The Hahn--Banach theorem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1558,6 +1593,10 @@ We now describe several familiar examples of Banach spaces.
   BBT \S 1.5
 \end{reading}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Spaces of operators and the dual space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \end{document}
