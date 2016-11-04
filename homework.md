@@ -1,5 +1,12 @@
 ## Math 515 homework
 
+### Homework 9, due Thursday, November 10
+
+* BBT, ex. 12:1.2 (ignore the part about the metric linear space)
+* Suppose T:X&rarr;Y is a bounded operator. Let &alpha; be the infemum over all M such that for all x, ||Tx||&le;||x||. Let &beta; be the supremum over all ||Tx|| such that ||x||&le;1. Show that &alpha;=&beta;.
+* BBT, ex. 12:3.1.
+* (Similar to 12.5.1) Let f be a bounded real-valued function on [0,1], and let U(f) denote the Upper Lebesgue integral of f. Show that U is a sublinear functional. What can you conclude from the Hahn Banach theorem?
+
 ### Review for exam 2, October 27 (not to be turned in)
 
 * Tao, ex. 1.3.10(v)(vii)
