@@ -1601,7 +1601,9 @@ In this section we continue our study of operators on a space $X$. However we co
 
 Let us briefly recall the situation for $X=\RR^d$ with any of its norms. Here a linear functional $\phi$ is determined by its values on a basis, and it follows that $\phi$ is of the form $\mathbf{x}\mapsto\mathbf{y}^T\mathbf{x}$, that is, the dot product with a row vector or ``dual vector''. It should not be surprising that these mappings are always bounded, regardless of the norm on $\RR^d$.
 
-When $X$ is an infinite-dimensional normed vector space, it is not true that all linear functionals on $X$ are bounded. In fact it is not immediately obvious that there are any bounded linear functionals on an arbitrary space $X$. In the rest of this section we present the fundamental result that every normed vector space $X$ has plenty of bounded linear functionals.
+When $X$ is an infinite-dimensional normed vector space, it is not true that all linear functionals on $X$ are bounded. In fact it is not immediately obvious that there are any bounded linear functionals on an arbitrary space $X$. In the rest of this section we present the Hahn--Banach theorem, which implies that every normed vector space $X$ has plenty of bounded linear functionals.
+
+In order to state the Hahn--Banach theorem in its most powerful form, we need the following generalization of a norm on a vector space.
 
 \begin{defn}
   Let $X$ be a vector space. A \emph{sublinear functional} on $X$ is a function $p\colon X\to\RR$ that satisfies:
@@ -1611,33 +1613,32 @@ When $X$ is an infinite-dimensional normed vector space, it is not true that all
   \end{enumerate}
 \end{defn}
 
-For example, every norm is a sublinear functional, and so is ever seminorm (that is, norm without the non-vanishing property). Another example is the upper Riemann integral, defined on the space of bounded functions on $[a,b]$.
+Norms and seminorms are both examples of sublinear functionals. Another example is the upper Riemann integral, defined on the space $M[a,b]$ of bounded functions on $[a,b]$.
 
 \begin{thm}[Hahn--Banach]
   \label{thm:hb}
-  Let $X$ be a vector space, $Y\leq X$ a subspace of $X$, and $p$ a sublinear functional on $X$. Then any linear functional $\phi$ on $Y$ such that $\phi\leq p$ extends to a linear functional $\hat\phi$ on $X$ such that $\hat\phi\leq p$.
+  Let $X$ be a vector space, $Y\leq X$ a subspace of $X$, and $p$ a sublinear functional on $X$. Then any linear functional $\phi_0$ on $Y$ such that $\phi\leq p$ extends to a linear functional $\phi$ on $X$ such that $\phi\leq p$.
 \end{thm}
 
-Before proving the Hahn--Banach theorem, we present the following set of corollaries which help confirm our claim that every normed vector space $X$ has ``plenty'' of bounded linear functionals.
+Before proving the above abstract form of the Hahn--Banach theorem, we present several key consequences regarding the construction of bounded linear functionals.
 
 \begin{cor}
   Let $X$ be a normed vector space, $Y\leq X$ a subspace of $X$.
   \begin{enumerate}
-  \item Any bounded linear functional on $Y$ extends to a bounded linear functional on $X$.
-  \item If $Y$ is closed and $z\notin Y$, then there exists a bounded linear functional on $X$ such that $\phi(Y)=0$ and $\phi(z)\neq0$.
+  \item Any bounded linear functional $\phi_0$ on $Y$ extends to a bounded linear functional $\phi$ on $X$.
+  \item If $Y$ is closed and $z\notin Y$, then there exists a bounded linear functional $\phi$ on $X$ such that $\phi(Y)=0$ and $\phi(z)\neq0$.
   \item The bounded linear functionals separate points: for all $x,x'\in X$, if $x\neq x'$ then there is a bounded linear functional $\phi$ on $X$ such that $\phi(x)\neq\phi(x')$.
   \end{enumerate}
 \end{cor}
 
 \begin{proof}
-  (a) Since $\phi$ is a bounded linear functional, there exists some $M$ such that $\phi(x)\leq M\|x\|$ for all $x\in X$. We may therefore apply the Hahn--Banach theorem with the sublinear functional $p(x)=M\|x\|$. Thus $\phi$ extends to a linear functional $\hat\phi$ on $X$ such that $\hat\phi(x)\leq M\|x\|$. In particular, $\hat\phi$ is bounded too.
+  (a) Since $\phi_0$ is a bounded linear functional on $Y$, there exists some $M$ such that $\phi(y)\leq M\|y\|$ for all $y\in Y$. We may therefore apply the Hahn--Banach theorem with the sublinear functional $p(x)=M\|x\|$. Thus $\phi_0$ extends to a linear functional $\phi$ on $X$ such that $\phi(x)\leq M\|x\|$. In particular, $\phi$ is bounded too.
 
-  (b) Since $Y$ is closed, the value $\delta=\inf\set{\|y-z\|\mid y\in Y}$ is nonzero. Hence if we define $\phi$ on the space $Y+\RR z$ by $\phi(y+cz)=c\delta$, we have that $\phi(Y)=0$ and $\phi(z)\neq0$. Moreover $\phi$ is bounded because
-  \[|\phi(y+cz)|=|c|\delta\;\leq|c|\cdot\|-y/c-z\|=\|y+cz\|
-  \]
-  Thus we can use (a) to extend $\phi$ and obtain the desired bounded linear functional on $X$.
+  (b) We first define a function $\phi_0$ on the space $Y+\RR z$ which is bounded by $p=$ the norm. For this we will let $\phi_0(y+cz)=c\phi_0(z)$ where $\phi_0(z)$ remains to be determined. In order to satisfy $\phi_0(y+cz)\leq\|y+cz\|$ we require that $c\phi_0(z)\leq\|y+cz\|$ for all $y\in Y$.
 
-  (c) If $x\neq x'$ then $x-x'\neq0$. Applying (b) with $Y=\{0\}$ we can find a bounded linear functional $\phi$ such that $\phi(x-x')\neq0$. It follows that $\phi(x)\neq\phi(x')$.
+  Substituting $y$ with $cy$, we see that we must choose $\phi_0(z)\leq\|y+z\|$ for all $y\in Y$. Since $Y$ is closed and $\{0\}$ is compact, we have that $\inf_{y\in Y}\|y+z\|\neq0$. It follows that we can choose a nonzero value of $\phi_0(z)$, and we may then use part (a) to extend $\phi_0$ to a bounded linear functional $\phi$ on $X$ that meets our requirements.
+
+  (c) If $x\neq x'$ then $x-x'\neq0$. Applying part (b) with $Y=\{0\}$ we can find a bounded linear functional $\phi$ such that $\phi(x-x')\neq0$. It follows that $\phi(x)\neq\phi(x')$.
 \end{proof}
 
 We now return to the proof of the Hahn--Banach theorem.
