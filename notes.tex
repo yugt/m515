@@ -1623,6 +1623,7 @@ Norms and seminorms are both examples of sublinear functionals. Another example 
 Before proving the above abstract form of the Hahn--Banach theorem, we present several key consequences regarding the construction of bounded linear functionals.
 
 \begin{cor}
+  \label{cor:hb}
   Let $X$ be a normed vector space, $Y\leq X$ a subspace of $X$.
   \begin{enumerate}
   \item Any bounded linear functional $\phi_0$ on $Y$ extends to a bounded linear functional $\phi$ on $X$.
@@ -1701,14 +1702,24 @@ In other words, the operator norm of a bounded operator $T$ is the least value o
 \end{prop}
 
 \begin{proof}
-  (a) 
+  (a) We first show that the operator norm is indeed a norm. The homogeneity and non-vanishing properties are easy to check. For the triangle inequality let $T,T'\in B(X,Y)$, and calculate $\|(T+T')(x)\|=\|Tx+T'x\|\leq\|Tx\|+\|T'x\|\leq\|T\|\|x\|+\|T'\|\|x\|$. It follows that $\|T+T'\|\leq\|T\|+\|T'\|$, as desired.
 
-  Given $T,T'\in B(X,Y)$, we must show that the pointwise sum $T+T'$ lies in $B(X,Y)$ too.
+  It also follows from homogeneity and the triangle inequality that $B(X,Y)$ is closed under scalar multiplication and addition. Thus $B(X,Y)$ is a normed vector space.
   
-  (b) It remains only to show that $B(X,Y)$ is complete.
+  (b) It remains only to show that $B(X,Y)$ is complete. For this let $T_n$ be a sequence of elements of $B(X,Y)$ and assume that it is Cauchy in the operator norm. This means that for all $\epsilon>0$, there exists $N$ such that for all $m,n\geq N$ we have $\|T_m-T_n\|<\epsilon$.
 
-  \ldots
+  Now for any fixed $x\in X$, it follows from the last equation that $\|T_mx-T_nx\|<\epsilon\|x\|$. In particular, the sequence $T_nx$ is a Cauchy sequence in the space $Y$. Since we are assuming that $Y$ is complete, the sequence $T_nx$ converges and we define $Tx=\lim T_nx$.
+
+  At this point $T$ is a well-defined function from $X$ to $Y$, and that $T$ is the pointwise limit of the sequence $T_n$. We need to check that $T\in B(X,Y)$ and moreover that $T_n\to T$ in the operator norm.
+
+  To see that $T\in B(X,Y)$, first note that it is easy to check $T$ is a linear map. For example, it is additive because the limit of a sum of two sequences is the sum of the limits. To see that $T$ is bounded, we first claim that the sequence of operator norms $\|T_n\|$ is itself bounded. For this claim, recall from the reverse triangle inequality that $|\|T_n\|-\|T_m\||\leq\|T_n-T_m\|$. Thus the fact that $T_n$ is Cauchy implies that $\|T_n\|$ is Cauchy in $\RR$, and any Cauchy sequence in $\RR$ is bounded. This completes the claim.
+  
+  Now let $M$ be a bound for the sequence $\|T_n\|$. Then given $x\in X$, for all $n$ we have $\|T_nx\|\leq M\|x\|$. Taking the limit of both sides, we conclude that $\|Tx\|\leq M\|x\|$, and this means that $T$ is a bounded operator. Thus we have shown that $T\in B(X,Y)$.
+
+  Last we establish that $T_n\to T$ in operator norm. For this, given $\epsilon>0$ we have already argued that we can find $N$ such that $m,n\geq N$ implies $\|T_mx-T_nx\|<\epsilon\|x\|$ for all $x\in X$. Now let $n\geq N$ be fixed and take the limit as $m\to\infty$. This gives us $\|Tx-T_nx\|\leq\epsilon\|x\|$ for all $x$. We thus have that $\|T-T_n\|\leq\epsilon$, which means that $T_n\to T$ in operator norm.
 \end{proof}
+
+The argument for part~(b) is our first instance of a standard argument template. To show that a given function space is complete, given a Cauchy sequence $f_n$ one first constructs a proposed limit function $f$, often the pointwise limit. One then checks that $f$ actually lies in the desired space, and that $f_n\to f$ in the desired norm.
 
 In the previous section we investigated the special case of operators valued in the scalar field $\RR$. Thus it is natural to focus on the space $B(X,\RR)$ of bounded linear functionals on a space $X$. We have previously hinted that the bounded linear functionals play the role of dual vectors (or row vectors) in infinite-dimensional spaces. We are now ready to make this a formal definition.
 
@@ -1716,11 +1727,24 @@ In the previous section we investigated the special case of operators valued in 
   If $X$ is a normed (real) vector space then the \emph{dual} of $X$ is $X^*=B(X,\RR)$.
 \end{defn}
 
-To further the analogy with row vectors and inner products, some authors write $\langle\phi,x\rangle$ to denote $\phi(x)$.
+By the results of this section, the dual space $X^*$ is always a Banach space with the operator norm. By the Corollary to the Hahn--Banach theorem, the elements of the dual space are plentiful in the sense that they separate the points of $X$. In fact, now that we have introduced the operator norm, we can strengthen two of the statements in Corollary~\ref{cor:hb}.
 
-By the results of this section, the dual space $X^*$ is always a Banach space with the operator norm. By the results of the previous section, the elements of the dual space are plentiful in the sense that they separate the points of $X$.
+\begin{cor}
+  \label{cor:hb2}
+    Let $X$ be a normed vector space, $Y\leq X$ a subspace of $X$.
+  \begin{enumerate}
+  \item Any $\phi_0\in Y^*$ extends to an element $\phi\in X^*$ such that $\|\phi\|=\|\phi_0\|$.
+  \item If $Y$ is closed and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\|\phi\|=1$.
+  \end{enumerate}
+\end{cor}
 
-In fact in the statement of Hahn--Banach\ldots
+\begin{proof}
+  (a) Since $\phi$ is an extension of $\phi_0$, we always have $\|\phi\|\geq\|\phi_0\|$. And in the proof Corollary~\ref{cor:hb}(a), it is apparent that $\|\phi\|\leq\|\phi_0\|$.
+
+  (b) In the proof of Corollary~\ref{cor:hb}(b), it is clear that $\|\phi_0\|\leq 1$. And since the value of $\inf_{y\in Y}\|y+z\|$ is attained, it is not difficult to argue that $\|\phi_0\|=1$. Therefore by part~(a) we have $\|\phi\|\leq1$.
+\end{proof}
+
+We close this section with the following result about the double dual of a space.
 
 \begin{prop}
   Let $X$ be a normed vector space. Then there is a norm-preserving vector space embedding from $X$ into its double dual $X^{**}$.
@@ -1730,12 +1754,12 @@ In fact in the statement of Hahn--Banach\ldots
   The embedding $X\to X^{**}$ is defined by mapping an element $x\in X$ to an element $\hat x\in X^{**}$ where
   \[\hat x(\phi)=\phi(x)
   \]
-  In the inner product notation introduced previously, this simply says $\langle\hat x,\phi\rangle=\langle\phi,x\rangle$. Clearly $\hat x$ is a function $X^*\to\RR$. Moreover $\hat x$ is a bounded operator because $|\hat x(\phi)|=|\phi(x)|\leq\|\phi\|\cdot\|x\|$. This calculation in fact shows that $\|\hat x\|\leq\|x\|$.
+  In the inner product notation introduced previously, this simply says $\langle\hat x,\phi\rangle=\langle\phi,x\rangle$. Clearly $\hat x$ is a function $X^*\to\RR$. Moreover $\hat x$ is a bounded operator because $|\hat x(\phi)|=|\phi(x)|\leq\|\phi\|\cdot\|x\|$.
 
-  Thus we have shown that the mapping $x\mapsto\hat x$ carries $X$ to $\hat X$. It is easy to see that it is a linear mapping and that it is one-to-one. To show that it preserves the norm, it remains only to show that $\|\hat x\|\geq\|x\|$.
+  Thus we have shown that the mapping $x\mapsto\hat x$ carries $X$ to $\hat X$. It is easy to see that it is a linear mapping and that it is one-to-one. To show that it preserves the norm, note that the calculation in the previous paragraph shows that $\|\hat x\|\leq\|x\|$. To show that $\|\hat x\|\geq\|x\|$, we use Corollary~\ref{cor:hb2}(b) to obtain $\phi\in X^*$ such that $\phi(x)=\|x\|$ and $\|\phi\|=1$. It follows by definition that $\hat x(\phi)=\|x\|\|\phi\|$, which witnesses that $\|\hat x\|\geq\|x\|$.
 \end{proof}
 
-The above proposition may seem esoteric, but it has many uses. For example if we combine it with the fact that every dual space is complete, we can construct the completion of any normed vector space $X$ by embedding it inside $X^{**}$ and taking its closure.
+The above proposition may seem esoteric, but it has many uses. For example if we combine it with the fact that every dual space is complete, we can construct the completion of any normed vector space $X$ by embedding $X$ inside $X^{**}$ and taking its closure. It can happen that the map $x\mapsto\hat x$ is surjective, and this special property will be investigated in future sections.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
