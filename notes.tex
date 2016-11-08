@@ -1678,6 +1678,74 @@ We now return to the proof of the Hahn--Banach theorem.
 \section{Spaces of operators and the dual space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{reading}
+  BBT \S 12.3, 12.7
+\end{reading}
+
+In the past two sections we have introduced and discussed the continuous operators $T\colon X\to Y$ between two normed vector spaces. In this section we study the collection of all such operators as a space in its own right.
+
+\begin{defn}
+  Let $X,Y$ be normed vector spaces. Then $B(X,Y)$ denotes the space of bounded linear operators $T\colon X\to Y$.
+\end{defn}
+
+We equip $B(X,Y)$ with the operations of \emph{pointwise addition} and \emph{pointwise scaling}. In other words, if $T,T'\in B(X,Y)$ then $T+T'$ is defined to be the operator $(T+T')(x)=T(x)+T'(x)$ and $cT$ is defined to be the operator $(cT)(x)=cT(x)$. We also equip $B(X,Y)$ with the \emph{operator norm}:
+\[\|T\|=\inf\set{M\mid(\forall x)\;\|Tx\|\leq M\|x\|}
+\]
+In other words, the operator norm of a bounded operator $T$ is the least value of $M$ which witnesses that $T$ is bounded. Naturally we must show that the operations and norm satisfy the properties of a normed vector space.
+
+\begin{prop}
+  \begin{enumerate}
+  \item $B(X,Y)$ is a normed vector space with the operations of pointwise addition and scaling, and with the operator norm.
+  \item If $Y$ is a Banach space then so is $B(X,Y)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (a) 
+
+  Given $T,T'\in B(X,Y)$, we must show that the pointwise sum $T+T'$ lies in $B(X,Y)$ too.
+  
+  (b) It remains only to show that $B(X,Y)$ is complete.
+
+  \ldots
+\end{proof}
+
+In the previous section we investigated the special case of operators valued in the scalar field $\RR$. Thus it is natural to focus on the space $B(X,\RR)$ of bounded linear functionals on a space $X$. We have previously hinted that the bounded linear functionals play the role of dual vectors (or row vectors) in infinite-dimensional spaces. We are now ready to make this a formal definition.
+
+\begin{defn}
+  If $X$ is a normed (real) vector space then the \emph{dual} of $X$ is $X^*=B(X,\RR)$.
+\end{defn}
+
+To further the analogy with row vectors and inner products, some authors write $\langle\phi,x\rangle$ to denote $\phi(x)$.
+
+By the results of this section, the dual space $X^*$ is always a Banach space with the operator norm. By the results of the previous section, the elements of the dual space are plentiful in the sense that they separate the points of $X$.
+
+In fact in the statement of Hahn--Banach\ldots
+
+\begin{prop}
+  Let $X$ be a normed vector space. Then there is a norm-preserving vector space embedding from $X$ into its double dual $X^{**}$.
+\end{prop}
+
+\begin{proof}
+  The embedding $X\to X^{**}$ is defined by mapping an element $x\in X$ to an element $\hat x\in X^{**}$ where
+  \[\hat x(\phi)=\phi(x)
+  \]
+  In the inner product notation introduced previously, this simply says $\langle\hat x,\phi\rangle=\langle\phi,x\rangle$. Clearly $\hat x$ is a function $X^*\to\RR$. Moreover $\hat x$ is a bounded operator because $|\hat x(\phi)|=|\phi(x)|\leq\|\phi\|\cdot\|x\|$. This calculation in fact shows that $\|\hat x\|\leq\|x\|$.
+
+  Thus we have shown that the mapping $x\mapsto\hat x$ carries $X$ to $\hat X$. It is easy to see that it is a linear mapping and that it is one-to-one. To show that it preserves the norm, it remains only to show that $\|\hat x\|\geq\|x\|$.
+\end{proof}
+
+The above proposition may seem esoteric, but it has many uses. For example if we combine it with the fact that every dual space is complete, we can construct the completion of any normed vector space $X$ by embedding it inside $X^{**}$ and taking its closure.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Three results on Banach spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{$L^p$ spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \end{document}
 
