@@ -1,5 +1,11 @@
 ## Math 515 homework
 
+### Homework 10, due Thursday, November 17
+
+(under construction)
+* Give an example of function from R to R which is continuous and surjective but not open. Give an example of a function from R to R which has a closed graph but is not continuous.
+* 
+
 ### Homework 9, due Thursday, November 10
 
 * BBT, ex. 12:1.2 (ignore the part about the metric linear space)

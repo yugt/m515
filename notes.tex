@@ -31,6 +31,7 @@
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\rng}{rng}
+\DeclareMathOperator{\id}{id}
 \newcommand{\sint}{\text{s}\kern-3pt\int}
 \newcommand{\lint}{\underline\int}
 \newcommand{\ovint}{\overline\int}
@@ -1645,34 +1646,34 @@ Before proving the above abstract form of the Hahn--Banach theorem, we present s
 We now return to the proof of the Hahn--Banach theorem.
 
 \begin{proof}[Proof of Theorem \ref{thm:hb}]
-  We begin by showing that we can find a proper extension of $\phi$. That is, for any $z\in X\setminus Y$ we can extend $\phi$ to a linear functional $\phi'$ on $Y\oplus\RR z$ satisfying $\phi'\leq p$. For this we will define
-  \[\phi'(y+cz)=\phi(y)+c\phi'(z)
+  We begin by showing that we can find a proper extension of $\phi_0$. Specifically, given any $z\in X\setminus Y$ we will find an extension of $\phi_0$ to a linear functional $\phi_1$ on $Y\oplus\RR z$ satisfying $\phi_1\leq p$. For this we will define
+  \[\phi_1(y+cz)=\phi_0(y)+c\phi_1(z)
   \]
-  where $\phi'(z)$ will be determined in a moment. We require that for all $x$ and all $c\in\RR$ we have
-  \[\phi(y)+c\phi'(z)\leq p(y+cz)
+  where $\phi_1(z)$ will be determined in a moment. We require that for all $x$ and all $c\in\RR$ we have
+  \[\phi(y)+c\phi_1(z)\leq p(y+cz)
   \]
-  To isolate $\phi'(z)$ we must consider the cases of negative and positive values of $c$ separately:
+  To isolate $\phi_1(z)$ we must consider the cases of negative and positive values of the coefficient $c$ separately. Thus assume $c>0$ and split the last equation into two conditions:
   \begin{align*}
-    \phi(y)+c\phi'(z)&\leq p(y+cz)\\
-    \phi(y)-c\phi'(z)&\leq p(y-cz)
+    \phi_0(y)+c\phi_1(z)&\leq p(y+cz)\\
+    \phi_0(y)-c\phi_1(z)&\leq p(y-cz)
   \end{align*}
-  Solving each for $\phi'(z)$ and substituting $y$ with $y/c$ in each one gives us two constraints:
+  Solving each for $\phi'(z)$ and substituting $y$ with $y/c$ in each gives us the two new conditions:
   \begin{align*}
-    (\forall y)\;\phi'(z)&\leq p(y+z)-\phi(y)\\
-    (\forall y)\;\phi'(z)&\geq-p(y-z)+\phi(y)
+    (\forall y)\;\phi_1(z)&\leq p(y+z)-\phi_0(y)\\
+    (\forall y)\;\phi_1(z)&\geq-p(y-z)+\phi_0(y)
   \end{align*}
-  In order for the constraints to be satisfiable, it is sufficient to have for all $y_1,y_2\in Y$ that $-p(y_1-z)+\phi(y_1)\leq p(y_2+z)-\phi(y_2)$. And this is indeed the case, since
+  In order for the constraints to be satisfiable, it is sufficient to have for all $y,y'\in Y$ that $-p(y-z)+\phi_0(y)\leq p(y'+z)-\phi_0(y')$. And this is indeed the case, since
   \begin{align*}
-    \phi(y_1)+\phi(y_2)&=\phi(y_1+y_2)\\
-                       &\leq p(y_1+y_2)\\
-                       &=p(y_1-z+y_2+z)\\
-                       &\leq p(y_1-z)+p(y_2+z)
+    \phi_0(y_1)+\phi_0(y_2)&=\phi_0(y+y')\\
+                       &\leq p(y+y')\\
+                       &=p(y-z+y'+z)\\
+                       &\leq p(y-z)+p(y'+z)
   \end{align*}
-  Thus we can find a suitable value for $\phi'(z)$ and successfully extend $\phi$ to $\phi'$ as required. To complete the proof we wish to apply this step repeatedly. Since the number of steps will be uncountable in general, it is necessary to phrase our construction using the standard \emph{Zorn's lemma}: if $P$ is a partially ordered set and every chain of $P$ has an upper bound, then $P$ has a maximal element.
+  Thus we can find a suitable value for $\phi_1(z)$ and successfully extend $\phi$ to $\phi'$ as required. To complete the proof we wish to apply this step repeatedly. Since the number of steps will be uncountable in general, it is necessary to phrase our construction using the standard \emph{Zorn's lemma}: if $P$ is a partially ordered set and every chain of $P$ has an upper bound, then $P$ has a maximal element.
 
-  Now let $P$ be the collection of linear functionals that extend $\phi$ and are $\leq p$. Then $P$ is linearly ordered by function extension. A chain $\mathcal C$ of functions always has an upper bound, namely the set-theoretic union $\bigcup\mathcal C$ of the members of the chain. Moreover the union will be $\leq p$ because each member of the chain is $\leq p$.
+  Now let $P$ be the collection of linear functionals $\phi$ such that $\phi$ extends $\phi_0$ and $\phi\leq p$. We partially order $P$ by function extension. A chain $\mathcal C$ in $P$ always has an upper bound, namely the set-theoretic union $\bigcup\mathcal C$ of the members of the chain. Moreover the union will be $\leq p$ because each member of the chain is $\leq p$.
 
-  Therefore we can apply Zorn's lemma to find an element $\hat\phi$ of $P$ which is maximal with respect to function extension. We claim moreover that the domain of $\hat\phi$ must be all of $X$. Indeed, if it were not then by our argument above we would be able to properly extend the domain of $\hat\phi$ to find a larger element $\phi'$ of $P$. This contradicts the maximality of $\hat\phi$, and completes the proof.
+  Therefore we can apply Zorn's lemma to find an element $\phi$ of $P$ which is maximal with respect to function extension. We claim moreover that the domain of $\phi$ must be all of $X$. Indeed, otherwise we can use the argument above to properly extend the domain of $\phi$ to find a larger element $\phi'$ of $P$. This contradicts the maximality of $\phi$, and completes the proof.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -1765,6 +1766,66 @@ The above proposition may seem esoteric, but it has many uses. For example if we
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Three results on Banach spaces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 12.11, 12.13, 12.14
+\end{reading}
+
+In our introduction to normed vector spaces, we singled out the special case when the space is complete and called it a Banach space. However in our investigation we have said  very little that is special to Banach spaces. In this section we present several key results that are essentially unique to Banach spaces because they rely on the completeness property.
+
+The three key results we will present are called the uniform boundedness principle, the open mapping theorem, and the closed graph theorem. In ecah case, rather than proved a proof we will state the result and give a sample application.
+
+\begin{thm}[Uniform boundedness principle]
+  Let $X,Y$ be Banach spaces and $\mathcal F$ a family of bounded operators from $X$ to $Y$. Suppose that for all $x$ there exists a constant $M_x$ such that for all $T\in\mathcal F$ we have $\|Tx\|\leq M_x$. Then there exists a constant $M$ such that for all $T\in\mathcal F$ we have $\|T\|\leq M$.
+\end{thm}
+
+It is often remarked that the uniform boundedness principle sounds too good to be true---it has a pointwise hypothesis and a uniform conclusion. Regardless, it is true and has a short proof from the Baire category theorem for complete metric spaces. Because of its power the uniform boundedness principle is used quite frequently. We present just one simple consequence concerning pointwise convergence of operators.
+
+\begin{cor}
+  Let $X,Y$ be Banach spaces and let $T_n\colon X\to Y$ be a sequence of bounded operators. If $T_n\to T$ pointwise, then $T$ is a bounded operator too.
+\end{cor}
+
+\begin{proof}
+  We have already observed that a pointwise limit of operators is an operator. Hence it remains only to check that $T$ is bounded. Now given any $x\in X$, since $\{T_nx\}$ is a convergent sequence of $Y$, it is necessarily a bounded sequence of $Y$. In other words, the sequence $\{\|T_nx\|\}$ is bounded. By the uniform boundedness principle, there exists a constant $M$ such that $\|T_n\|\leq M$ for all $n$. Thus for any $x\in X$ we have
+  \begin{align*}
+    \|Tx\|&=\|\lim T_nx\|\\
+          &=\lim\|T_nx\|\\
+          &\leq\limsup\|T_n\|\|x\|\\
+          &\leq M\|x\|
+  \end{align*}
+  In particular, $T$ is bounded and $\|T\|\leq M$.
+\end{proof}
+
+For our next result, recall that a function is continuous if the preimage of any open set is open. A somewhat less used but still very important property is the reverse. A function is called \emph{open} if the image of any open set is open. In the case that a function has an inverse, the open property simply means that the inverse is continuous. However it is still a valuable property even for functions which are not bijections.
+
+\begin{thm}[Open mapping theorem]
+  Let $X,Y$ be Banach spaces and $T\colon X\to Y$ be a bounded operator. If $T$ is onto, then $T$ is open.
+\end{thm}
+
+We present just one simple consequence here concerning equivalence of norms. If $X$ is a normed vector space with two norms, $\|\cdot\|_a$ and $\|\cdot\|_b$, we say that $a,b$ are \emph{equivalent} if there exist constants $c,d$ such that for all $x\in X$ we have $\|x\|_a\leq c\|x\|_b$ and $\|x\|_b\leq d\|x\|_a$.
+
+In other words, norms are equivalent if their unit balls can be rescaled to fit inside one another. For example, the space $\RR^2$ can be equipped with the usual Euclidean norm $\|(x,y)\|_2=\sqrt{x^2+y^2}$, and also with the taxicab norm $\|(x,y)\|=|x|+|y|$. The Euclidean norm has a circular unit ball, and the taxicab norm has a diamond shaped unit ball. The diamond fits inside the circle, and the circle can be scaled down by $\sqrt2$ to fit inside the diamond. Thus the two norms are equivalent.
+
+\begin{cor}
+  Suppose $X$ is a Banach space with two complete norms $\|\cdot\|_a$ and $\|\cdot\|_b$. Then if there is a constant $c$ such that $\|x\|_a\leq c\|x\|_b$ for all $x\in X$, then $\|\cdot\|_a$ and $\|\cdot\|_b$ are equivalent.
+\end{cor}
+
+\begin{proof}
+  Let $\id\colon X\to X$ denote the identity mapping. If we consider $\id$ as an operator from $(X,\|\cdot\|_b)$ to $(X,\|\cdot\|_a)$, then the hypothesis implies that $\id$ is bounded and hence continuous. It follows from the open mapping theorem that $\id$ is open, that is, it maps open sets to open sets. Since $\id$ is a bijection, this simply means that $\id^{-1}$ is continuous and hence bounded. Thus we conclude that there exists a constant $d$ suh that $\|x\|_b\leq d\|x\|_d$ for all $x\in X$.
+\end{proof}
+
+Before stating our final result, recall from topology that if $f\colon X\to Y$ is a continuous function then $f$ has a \emph{closed graph}, that is, the set of pairs $\{(x,y)\in X\times Y\mid f(x)=y\}$ is closed in $X\times Y$. The next theorem states that the converse holds for bounded operators on Banach spaces.
+
+\begin{thm}[Closed graph theorem]
+  Let $X,Y$ be Banach spaces and $T\colon X\to Y$ be an operator. If the graph of $T$ is a closed subset of $X\times Y$, then $T$ is bounded.
+\end{thm}
+
+Observe that $T$ has a closed graph if and only if $x_n\to x$ and $Tx_n\to y$ implies $y=Tx$. On the other hand, recall that $T$ is continuous if and only if $x_n\to x$ implies $Tx_n\to Tx$.  So it is easier to check that $T$ has a closed graph than to check that $T$ is continuous, because when checking the former one can assume for free that $T_nx$ converges to \emph{something}.
+
+Rather than give a consequence of the closed graph theorem, we will give an important example. Let $C[a,b]$ be the Banach space of continious functions on $[a,b]$ with the supremum norm, and let $C^1[a,b]$ be the subspace of all functions with continuous derivative. Let $D\colon C^1[a,b]\to C[a,b]$ be the derivative operator. To check $D$ has a closed graph, we suppose that $f_n\to f$ and $Df_n\to g$ in supremum norm and verify that $Df=g$. For this we integrate both sides of $Df_n\to g$ and use the fundamental theorem of calculus to conclude that $f_n\to G$, where $G$ is the antiderivative of $g$. Since $f_n$ converges to $f$, we have $f=G$. Now differentiating both sides we conclude that $Df=g$, as desired.
+
+While have just checked that $D$ has a closed graph, it is also easy to check that $D$ is not bounded. Thus the contrapositive of the closed graph theorem implies that $D[a,b]$ is not a Banach space! This is an admittedly somewhat silly way to see this fact, since it is also possible to argue directly that $D[a,b]$ is not complete.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{$L^p$ spaces}
