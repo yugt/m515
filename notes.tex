@@ -1748,19 +1748,23 @@ By the results of this section, the dual space $X^*$ is always a Banach space wi
 We close this section with the following result about the double dual of a space.
 
 \begin{prop}
-  Let $X$ be a normed vector space. Then there is a norm-preserving vector space embedding from $X$ into its double dual $X^{**}$.
+  Let $X$ be a normed vector space. Then there is a norm-preserving operator from $X$ into its double dual $X^{**}$.
 \end{prop}
 
 \begin{proof}
-  The embedding $X\to X^{**}$ is defined by mapping an element $x\in X$ to an element $\hat x\in X^{**}$ where
+  We define an embedding $x\mapsto\hat x$ from $X$ to $X^{**}$ as follows. Given an element $x\in X$, we define the corresponding element $\hat x\in X^{**}$ by the formula:
   \[\hat x(\phi)=\phi(x)
   \]
-  In the inner product notation introduced previously, this simply says $\langle\hat x,\phi\rangle=\langle\phi,x\rangle$. Clearly $\hat x$ is a function $X^*\to\RR$. Moreover $\hat x$ is a bounded operator because $|\hat x(\phi)|=|\phi(x)|\leq\|\phi\|\cdot\|x\|$.
+  So $\hat x$ is a function from $X^*$ to $\RR$. And $\hat x$ is linear because $\hat x(\phi_1+\phi_2)=(\phi_1+\phi_2)(x)=\phi_1(x)+\phi_2(x)=\hat x(\phi_1)+\hat x(\phi_2)$. Next $\hat x$ is bounded because $|\hat x(\phi)|=|\phi(x)|\leq\|\phi\|\cdot\|x\|$. Thus we have verified that $\hat x\in X^{**}$.
 
-  Thus we have shown that the mapping $x\mapsto\hat x$ carries $X$ to $\hat X$. It is easy to see that it is a linear mapping and that it is one-to-one. To show that it preserves the norm, note that the calculation in the previous paragraph shows that $\|\hat x\|\leq\|x\|$. To show that $\|\hat x\|\geq\|x\|$, we use Corollary~\ref{cor:hb2}(b) to obtain $\phi\in X^*$ such that $\phi(x)=\|x\|$ and $\|\phi\|=1$. It follows by definition that $\hat x(\phi)=\|x\|\|\phi\|$, which witnesses that $\|\hat x\|\geq\|x\|$.
+  Now we verify that the map $x\mapsto\hat x$ is itself linear. Indeed, we have $\widehat{x_1+x_2}(\phi)=\phi(x_1+x_2)=\phi(x_1)+\phi(x_2)=\hat x_1(\phi)+\hat x_2(\phi)$. And similarly for scalar multiplication.
+
+  Finally to show that $x\mapsto\hat x$ is norm-preserving, note that the calculation in the first paragraph shows that $\|\hat x\|\leq\|x\|$. To show that $\|\hat x\|\geq\|x\|$, we use Corollary~\ref{cor:hb2}(b) to obtain $\phi\in X^*$ such that $\phi(x)=\|x\|$ and $\|\phi\|=1$. Thus we have that $\hat x(\phi)=\phi(x)=\|x\|=\|x\|\|\phi\|$, which witnesses that $\|\hat x\|\geq\|x\|$.
 \end{proof}
 
-The above proposition may seem esoteric, but it has many uses. For example if we combine it with the fact that every dual space is complete, we can construct the completion of any normed vector space $X$ by embedding $X$ inside $X^{**}$ and taking its closure. It can happen that the map $x\mapsto\hat x$ is surjective, and this special property will be investigated in future sections.
+The above proposition may seem esoteric, but it has many uses. For example, if $X$ is incomplete then we can use it to give a concrete construction of the Banach space completion of $X$. For this, observe that since $x\mapsto\hat x$ is norm-preserving, we have that $X$ is isomorphic to its image $\hat X$ in $X^{**}$. Since we have shown above that every dual is complete, we know that $X^{**}$ is complete. It follows that the completion of $X$ is isomorphic to the closure of $\hat X$ in $X^{**}$.
+
+It can even happen that the map $x\mapsto\hat x$ is surjective onto $X^{**}$. This special property will be investigated in future sections.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
