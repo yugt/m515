@@ -1835,6 +1835,99 @@ While have just checked that $D$ has a closed graph, it is also easy to check th
 \section{$L^p$ spaces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{reading}
+  BBT \S 13.1, 13.2
+\end{reading}
+
+As we have seen, many of the most important Banach spaces are function spaces arising in other areas of analysis. We have already seen the Banach space $L^1$ of absolutely integrable functions, and we have seen that there are several other norms derived from summation and integration. In this section we further investigate the $L_p$-spaces, which generalize many of these important examples.
+
+\begin{defn}
+  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be a measure on it. For any measurable $f$ defined on $X$ we let
+  \[\|f\|_p=\left(\int|f|^p\;d\mu\right)^{1/p}
+  \]
+  We then define the space
+  \[L_p(\mu)=\set{f\mid\text{$f$ is a measurable function on $X$ and } \|f\|_p<\infty}
+  \]
+\end{defn}
+
+Thus the spaces $L^1(X)$ and $L^2(X)$ are each examples of $L^p$-spaces, but so are a variety of others. When $X$ is the finite set $\{1,\ldots,n\}$ with the counting measure, the resulting space is just $\RR^d$ with its $p$-norm. When $X=\NN$ with the counting measure, the resulting space is the sequence space with its $p$-norm, and is often given the special notation $\ell^p$.
+
+The rest of this section is devoted to verifying that whenever $p\geq1$, $L^p$ really is a Banach space with respect to the norm $\|\cdot\|_p$. Before we can prove this result, it is necessary to establish the following fundamental inequality.
+
+\begin{thm}[H\"older's inequality]
+  Let $p,q\geq1$ be real numbers such that $1/p+1/q=1$. If $f\in L^p(\mu)$ and $g\in L^q(\mu)$, then $fg$ is absolutely integrable and
+  \[\int|fg|\;d\mu\leq\|f\|_p\|g\|_q
+  \]
+\end{thm}
+
+\begin{proof}
+  First, given $f,g$ as in the theorem statement, we can rescale to assume that $\|f\|_p=\|g\|_q=1$. Indeed, observe that both $\|\cdot\|_p$ and $\|\cdot\|_q$ satisfy the homogeneity property. Now our objective is to show that $\int|fg|\,d\mu\leq1$.
+
+  For this we will invoke the following simple inequality about nonnegative real numbers, which will be left to the reader: $ab\leq a^p/p+b^q/q$. Plugging in $a=|f(x)|$ and $b=|g(x)|$ we obtain that
+  \[|f(x)g(x)|\leq\frac1p|f(x)|^p+\frac1q|g(x)|^q
+  \]
+  Taking the integral of both sides we obtain
+  \[\int|fg|\,d\mu\leq\frac1p(\|f\|_p)^p+\frac1q(\|g\|_q)^q
+    =\frac1p+\frac1q=1
+  \]
+  as desired.
+\end{proof}
+
+The next result establishes that the norms $\|\cdot\|_p$ satisfy the triangle inequality.
+
+\begin{thm}[Minkowski's inequality]
+  Suppose that $p\geq1$. If $f,g\in L^p(\mu)$, then $\|f+g\|_p\leq\|f\|_p+\|g\|_p$.
+\end{thm}
+
+\begin{proof}
+  We can assume without loss of generality that $f,g$ never take the value $\infty$. We begin by writing
+  \begin{align*}
+    |f(x)+g(x)|^p&=|f(x)+g(x)|\cdot|f(x)+g(x)|^{p-1}\\
+                 &\leq|f(x)|\cdot|f(x)+g(x)|^{p-1}
+                   +|g(x)|\cdot|f(x)+g(x)|^{p-1}
+  \end{align*}
+  We now integrating both sides of this inequality, and then apply H\"older's inequality to each of the resulting terms. In the following calculation, we also note that our hypothesis implies that the value $q$ used in H\"older's inequality is equal to $p/(p-1)$. Here is the computation:
+  \begin{align*}
+    (\|f+g\|_p)^p&\leq\int|f|\cdot|f+g|^{p-1}\,d\mu
+                   +\int|g|\cdot|f+g|^{p-1}\,d\mu\\
+                 &\leq\|f\|_p\cdot\|(f+g)^{p-1}\|_q
+                   +\|g\|_p\cdot(\|(f+g)^{p-1}\|_q\\
+                 &=\|f\|_p\cdot\|(f+g)^{p-1}\|_{p/(p-1)}
+                   +\|g\|_p\cdot(\|(f+g)^{p-1}\|_{p/(p-1)}\\
+                 &=\|f\|_p\cdot(\|f+g\|_p)^{p-1}
+                   +\|g\|_p\cdot(\|f+g\|_p)^{p-1}\\
+                 &\leq\|f\|_p\cdot(\|f+g\|_p)^{p-1}
+                   +\|g\|_p(\|f+g\|_p)^{p-1}\\
+                 &=(\|f\|_p+\|g\|_p)(\|f+g\|_p)^{p-1}
+  \end{align*}
+  We may now divide both sides by $(\|f+g\|_p)^{p-1}$ to obtain the desired conclusion.
+\end{proof}
+
+We are now ready to prove that the $L^p$ spaces are in fact Banach spaces.
+
+\begin{thm}
+  The space $L^p(\mu)$ with the norm $\|\cdot\|_p$ is a Banach space.
+\end{thm}
+
+\begin{proof}
+  It is clear that the norm is homogeneous and non-vanishing, and we have just shown it satisfies the triangle inequality. This also implies that $L^p(\mu)$ is closed under linear combinations and therefore it is a vector space. It therefore remains only to show that the norm $\|\cdot\|_p$ is complete.
+
+  For this let $f_n$ be a sequence of elements of $L^p(\mu)$ which is Cauchy in the $\|\cdot\|_p$ norm. Passing to a subsequence if necessary, we can suppose without loss of generality that for all $n$ we have $\|f_{n+1}-f_n\|_p<1/2^n$. We first wish to show that this implies $f_n$ has a pointwise limit $f$.
+
+  Let $g_k=\sum_1^k|f_{n+1}-f_n|$ and $g=\sum_1^\infty|f_{n+1}-f_n|$. Thus $g$ is the limit of the $g_k$, and unfortunately $g$ may take the value $+\infty$. However this cannot happen too often. By Minkowski's inequality we have
+  \[\|g_k\|_p\leq\sum_{n=1}^k\|f_{n+1}-f_n\|_p\leq\sum1/2^n=1
+  \]
+  and by Fatou's Lemma, $\int|g|^p\leq\liminf\int|g_k|^p\leq1$. Thus we can conclude that $g$ is finite $\mu$-almost everywhere. Now telescoping we have:
+  \[\lim_{n\to\infty} f_n(x)=\lim_{k\to\infty}\left[f_1(x)
+      +\sum_{n=1}^k(f_n(x)-f_n(x))\right]
+  \]
+  The latter sum is absolutely convergent and hence convergent for $\mu$-almost every $x$. Thus the expression is well-defined and we can define $f(x)=\lim f_n(x)$.
+
+  It remains only to show that $f$ lies in $L^p$ and that $f_n\to f$ in the norm $\|\cdot\|_p$. For this, let $\epsilon$ be given and choose $N$ large enough that $n,m\geq N$ implies $\|f_m-f_n\|_p<\epsilon$. Fixing $n$ and applying Fatou's Lemma to the resulting $m$-sequence we obtain
+  \[\int|f-f_n|^p\leq\liminf_n\int|f_m-f_n|^p\leq\epsilon
+  \]
+  This shows that $\|f-f_n\|_p\to0$, or in other words that $f_m\to f$ in $L^p$. Finally if $n\geq N$ then we have $\|f\|_p\leq\|f-f_n\|_p+\|f_n\|_p<\infty$, so $f\in L^p$ too.
+\end{proof}
 
 \end{document}
 
