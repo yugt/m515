@@ -1929,5 +1929,26 @@ We are now ready to prove that the $L^p$ spaces are in fact Banach spaces.
   This shows that $\|f-f_n\|_p\to0$, or in other words that $f_m\to f$ in $L^p$. Finally if $n\geq N$ then we have $\|f\|_p\leq\|f-f_n\|_p+\|f_n\|_p<\infty$, so $f\in L^p$ too.
 \end{proof}
 
+While the results above apply to values of $p$ such that $1\leq p<\infty$, there is also a version of $L^p$ space for $p=\infty$.
+
+\begin{defn}
+  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be a measure on it. For any measurable $f$ defined on $X$ we let
+  \[\|f\|_\infty=\inf\set{M\mid |f(x))|\leq M\text{ for $\mu$-almost all $x$}}
+  \]
+  We then define the space
+  \[L^\infty(\mu)=\set{f\mid\text{$f$ is a measurable function on $X$ and } \|f\|_\infty<\infty}
+  \]
+\end{defn}
+
+The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the members of $\L^\infty$ are said to be \emph{essentially bounded}. We will state without proof the following generalizations of our results for $L^p$ to the case $p=\infty$.
+
+\begin{thm}
+  Let $(X,\mathcal B)$ be a measurable space and $\mu$ a measure on it.
+  \begin{itemize}
+  \item If $f\in L^1(\mu)$ and $g\in L^\infty(\mu)$ then $fg$ is absolutely integrable and H\"older's inequality is true: $\int|fg|\,d\mu\leq\|f\|_1\cdot\|g\|_\infty$.
+  \item The space $L^\infty(\mu)$ is a Banach space with the norm $\|\cdot\|_\infty$.
+  \end{itemize}
+\end{thm}
+
 \end{document}
 
