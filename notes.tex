@@ -1950,5 +1950,26 @@ The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the 
   \end{itemize}
 \end{thm}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{The dual of $L^p$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Recall that if $X$ is a normed vector space, then its dual $X^*$ consists of all bounded linear functionals on $X$. Although it is somewhat rare to be able to describe the space $X^*$ completely, in this section we will do so for $L^p$.
+
+To get started looking for bounded linear functionals on $L^p$, a good place to start is in $L^q$ where $q$ is the conjugate exponent to $p$ (that is, $1/p+1/q=1$). To see why, let $g\in L^q$ and consider the mapping
+\[f\mapsto \int fg\,d\mu
+\]
+This is clearly linear on $L^p$, and H\"older's inequality implies that $\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q$, or in other words, that this mapping is a bounded linear functional on $L^p$! The main result is that \emph{every} bounded linear functional arises this way.
+
+\begin{thm}
+  Let $(X,\mathcal B)$ be a measure space and $\mu$ a measure on it. Assume that $\mu$ is $\sigma$-finite, that is, $X=\bigcup A_n$ where $\mu(A_n)<\infty$. Let $1\leq p<\infty$ and let $q$ be the conjugate exponent, that is, $1/p+1/q=1$. Then for every $\phi\in L^p(\mu)^*$ there exists a unique $g\in L^q(\mu)$ such that
+  \[\phi(f)=\int fg\,d\mu
+  \]
+  Moreover $\|\phi\|=\|g\|_q$, and $L^p(\mu)^*\cong L^q(\mu)$.
+\end{thm}
+
+To prove this result, it will be necessary to introduce a generalization of measures called signed measures.
+
 \end{document}
 
