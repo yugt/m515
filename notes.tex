@@ -1955,6 +1955,10 @@ The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the 
 \section{The dual of $L^p$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{reading}
+  BBT \S 13.6, Tao ``an $\epsilon$ of room" \S 1.2
+\end{reading}
+
 Recall that if $X$ is a normed vector space, then its dual $X^*$ consists of all bounded linear functionals on $X$. Although it is somewhat rare to be able to describe the space $X^*$ completely, in this section we will do so for $L^p$.
 
 To get started looking for bounded linear functionals on $L^p$, a good place to start is in $L^q$ where $q$ is the conjugate exponent to $p$ (that is, $1/p+1/q=1$). To see why, let $g\in L^q$ and consider the mapping
@@ -1963,13 +1967,101 @@ To get started looking for bounded linear functionals on $L^p$, a good place to 
 This is clearly linear on $L^p$, and H\"older's inequality implies that $\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q$, or in other words, that this mapping is a bounded linear functional on $L^p$! The main result is that \emph{every} bounded linear functional arises this way.
 
 \begin{thm}
+  \label{thm:lpdual}
   Let $(X,\mathcal B)$ be a measure space and $\mu$ a measure on it. Assume that $\mu$ is $\sigma$-finite, that is, $X=\bigcup A_n$ where $\mu(A_n)<\infty$. Let $1\leq p<\infty$ and let $q$ be the conjugate exponent, that is, $1/p+1/q=1$. Then for every $\phi\in L^p(\mu)^*$ there exists a unique $g\in L^q(\mu)$ such that
   \[\phi(f)=\int fg\,d\mu
   \]
   Moreover $\|\phi\|=\|g\|_q$, and $L^p(\mu)^*\cong L^q(\mu)$.
 \end{thm}
 
-To prove this result, it will be necessary to introduce a generalization of measures called signed measures.
+To prove this result, it will be necessary to introduce a generalization of measures called signed measures. To motivate this from the study of functionals on $L^p$-space, observe that a functional $\phi$ on induces something like a finitely additive measure by defining $\nu(E)=\phi(\chi_E)$. Indeed, if $E,F$ are disjoint sets then
+\[\nu(E\cup F)=\phi(\chi_{E\cup F})=\phi(\chi_E+\chi_F)
+  =\phi(\chi_E+\chi_F)=\nu(E)+\nu(F)
+\]
+However we of course see that $\nu$ may take negative values, and so it is not a measure in our original sense.
+
+\begin{defn}
+  Let $(X,\mathcal B$) be a measurable space. A \emph{signed measure} on $(X,\mathcal B)$ is a function $\mu\colon\mathcal B\to[-infty,\infty]$ with the properties:
+  \begin{itemize}
+  \item $\mu(\emptyset)=0$;
+  \item $\mu$ does not take both the value $\infty$ and $-\infty$; and
+  \item If $E_n$ are disjoint then $\sum\mu(E_n)$ converges to $\mu(\bigcup E_n)$.
+  \end{itemize}
+\end{defn}
+
+We have seen above how functionals $\phi$ give rise to something like a finitely additive signed measure. For another example of signed measures, recall from Tonelli's theorem that if $\mu$ is a measure on $(X,\mathcal B)$ and $g\geq0$, then we can form a new measure by defining
+\[\mu_g(E)=\int\chi_Eg\,d\mu
+\]
+From this definition, it is clear that if $\mu(E)=0$ then $\mu_g(E)=0$ too. The next result states that this condition is sufficient to guarantee that a signed measure is of the form $\mu_g$.
+
+\begin{thm}[Radon--Nikodym]
+  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be an unsigned measure and $\nu$ be a signed measure on it. Assume that $\mu,\nu$ are $\sigma$-finite. Then if $\mu(E)=0\implies\nu(E)=0$, then there exists $g\in L^1(\mu)$ such that $\nu=\mu_g$.
+\end{thm}
+
+We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$. Indeed, using a the simple construction $\nu(E)=\phi(\chi_E)$ we will be able to establish a correspondence between functionals and signed measures. Then the Radon--Nikodym theorem gives us a function $g$ such that $\nu(E)=\int\chi_Eg\,d\mu$. Putting these together, we see that $\phi(\chi_E)=\int\chi_Eg\,d\mu$, or in other words that $\phi$ is as claimed at least for the characteristic functions. We are therefore left to check that this property can be extended to arbitrary functions $f\in L^p$, as well as the other claims.
+
+\begin{proof}[Sketch of proof of Theorem~\ref{thm:lpdual}]
+  In this proof, we will sketch only the case when $1<p<\infty$ and $\mu(X)=0$. It is not essentially more difficult to complete the proof from this simplified version.
+
+  Given a functional $\phi\in L^p(\mu)^*$, we first define the mapping $\nu(E)=\phi(\chi_E)$. We have already checked that $\nu$ is finitely additive. We claim that in fact $\nu$ is a signed measure. Indeed, if $E_n$ is a given sequence of pairwise disjoint sets, then using the finiteness of $\mu$ and the dominated convergence theorem we have:
+  \[\int|\chi_{\bigcup E_n}-\chi_{\bigcup_1^kE_n}|^p\,d\mu
+    =\int|\chi_{\bigcup_{k+1}^\infty E_n}|^p\,d\mu
+    \to0
+  \]
+  In other words, we have that $\chi_{\bigcup_1^kE_n}\to\chi_{\bigcup E_n}$ in the $L^p$-norm. Using the fact that $\phi$ is a continuous function on $L^p$, it follows that
+  \begin{align*}
+    \nu(\bigcup E_n)&=\phi(\chi_{\bigcup E_n})\\
+                    &=\lim_k\phi(\chi_{\bigcup_1^kE_n})\\
+                    &=\lim_k\nu(\bigcup_1^kE_n)\\
+                    &=\lim_k\sum_1^k\nu(E_n)\\
+                    &=\sum\nu(E_n)
+  \end{align*}
+  and so $\nu$ is countably additive.
+
+  Now by the Radon--Nikodym theorem, there exists a function $g\in L^1(\mu)$ such that $\phi(\chi_E)=\int\chi_Eg\,d\mu$ for all sets $E$. It therefore follows from linearity that $\phi(f)=\int fg\,d\mu$ for all simple functions $f$.
+
+  We next claim that $\phi(f)=\int fg\,d\mu$ for all functions $f$ in $L^\infty(\mu)$. For this recall that any bounded measurable function is a \emph{uniform} limit of simple functions. So given $f\in L^\infty(\mu)$ let $f_n$ be a sequence of simple functions such that $f_n\to f$ uniformly. Using the uniform convergence on a finite measure space, we can easily argue that $\int f_ng\,d\mu\to\int fg\,d\mu$. For the same reason, we can also argue that $f_n\to f$ in $L^p$. Since $\phi$ is continuous on $L^p$ we therefore have that:
+  \begin{align*}
+    \phi(f)&=\lim_n\phi(f_n)\\
+           &=\lim_n\int f_ng\,d\mu\\
+           &=\int fg\,d\mu
+  \end{align*}
+  as desired.
+
+  While our next goal is of course to show that $\phi(f)=\int fg\,d\mu$ for all functions $f\in L^p$, we first take a break and show that $g$ lies in $L^q$. In fact we will show that $\|g\|_q\leq\|\phi\|$. First we can use the truncation lemma to suppose that $g$ is bounded. Then $|g|^q/g$ is bounded too, and so by our work for functions in $L^\infty$ we can calculate:
+  \begin{align*}
+    \int|g|^q\,d\mu&=\int(|g|^q/g)g\,d\mu\\
+                   &=\phi(|g|^q/g)\\
+                   &\leq\|\phi\|\cdot\|g^{q-1}\|_p\\
+                   &=\|\phi\|\cdot\left(\int|g|^q\,d\mu\right)^{1/p}
+  \end{align*}
+  This inequality implies that $\|g\|_q\leq\|\phi\|$, as desired. We remark that this implies the functional $f\mapsto\int fg\,d\mu$ is continuous, since H\"older's inequality states that $\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q$.
+
+  We now claim that we have $\phi(f)=\int fg\,d\mu$ for any $f\in L^p(\mu)$. For this, recall that we have previously shown that the simple functions are \emph{dense} in $L^1(\mu)$, that is any $L^1(\mu)$ function is an $L^1(\mu)$-limit of simple functions. The same argument can be used to show that the simple functions are dense in $L^p(\mu)$. We have shown above that the two functionals, $f\mapsto\phi(f)$ and $f\mapsto\int fg\,d\mu$, agree on the simple functions. Our hypothesis states that $\phi$ continuous, and the previous paragraph implies that $f\mapsto\int fg\,d\mu$ continuous too. Since two continuous functions that agree on a dense set must agree on their domain, we can conclude that $\phi(f)=\int fg\,d\mu$ for all $f\in L^p(\mu)$.
+
+  Finally we claim that $\|g\|_q=\|\phi\|$. Indeed we now know that $|\phi(f)|=\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q$, and hence that $\|\phi\|\leq\|g\|_q$. We have also shown two paragraphs previously that $\|g\|_q\leq\|\phi\|$. This concludes the proof.
+\end{proof}
+
+\begin{notes}
+  The Radon--Nikodym theorem has a generalization called the Lebesgue--Radon--Nykodym theorem which states that given $\mu$, any signed measure $\nu$ can be decomposed $\nu=\mu_g+\delta$ where $\mu,\delta$ have disjoint supports.
+
+  We have stated that the dual of $L^1$ is equal to $L^\infty$ when $\mu$ is $\sigma$-finite. However the reverse is usually not true. Instead the dual of $L^\infty(\mu)$ is the space of all finitely additive signed measures $\nu$ such that $\mu(E)=0\implies\nu(E)=0$.
+\end{notes}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Hilbert space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 14.1
+\end{reading}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Bases in Hilbert space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \end{document}
 
