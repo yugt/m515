@@ -2,7 +2,10 @@
 
 ### Homework 11, due Thursday, December 1
 
-(coming soon)
+* BBT, ex. 9:1.1 (this completes our proof of Holder's inequality)
+* BBT, ex. 13:1.2
+* BBT, ex. 13:6.1
+* BBT, ex. 13.6.3
 
 ### Homework 10, due Thursday, November 17
 
