@@ -1297,7 +1297,7 @@ Recall that after we constructed Lebesgue outer measure $m^*$ we defined the col
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Construction of measures}
+\section{Construction of abstract measures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -1832,7 +1832,7 @@ While have just checked that $D$ has a closed graph, it is also easy to check th
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{$L^p$ spaces}
+\section{The Banach space $L^p$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -1952,7 +1952,7 @@ The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{The dual of $L^p$}
+\section{The dual space of $L^p$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
@@ -2054,13 +2054,106 @@ We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
-  BBT \S 14.1
+  BBT \S 13.5, 14.1, 14.3
 \end{reading}
 
+Up until this point in our study of $L^p$ spaces, we have not been concerned with the value of $p$ so long as $1<p<\infty$. However it should not be surprising that there is something special about the case $p=2$. In this section we will uncover some of the special properties of $L^2$, as well as use these properties to define a new type of space called a Hilbert space.
+
+Informally, $L^2$ is the $L^p$ space which is most closely analogous to classical Euclidean space. This is because the norm $\|\cdot\|_2$ is a generalization of the Euclidean norm $\|x\|=\sqrt{x_1^2+\cdots+x_n^2}$. Intuitively, this means that the geometry of $L^2$ has the ``round circle'' geometry of finite-dimensional Euclidean space.
+
+More formally, $L^2$ shares several key properties with classical Euclidean space that are not shared by any other $L^p$. First, since the conjugate exponent of $2$ is $2$ itself, the previous section shows that $L^2$ is \emph{self-dual}, that is, $(L^2)^*\cong L^2$. In detail, this means that the bounded linear functionals on $L^2$ are all of the form $f\mapsto\int fg$ where $g\in L^2$ itself. This recalls the case of Euclidean space $\RR^d$ where the functionals are all given by an inner product $x\mapsto y^Tx$.
+
+The key idea of this section is that the pairing $\int fg$ may be regarded as an inner product too, and this leads to the following definition. For for greatest generality, we will now return to vector spaces with complex scalars.
+
+\begin{defn}
+  Let $X$ be a complex vector space. A function $\langle\cdot,\cdot\rangle\colon X\times X\to\CC$ is called an \emph{inner product} if it satisfies
+  \begin{enumerate}
+  \item (positivity/nonvanishing) for $x\in X$ we have $\langle x,x\rangle\geq0$, and $\langle x,x\rangle=0$ iff $x=0$;
+  \item (conjugate symmetry) for $x,y\in X$ we have $\langle x,y\rangle=\overline{\langle y,x\rangle}$; and
+  \item (linearity in the first coordinate) $\langle c_1x_1+c_2x_2,y\rangle=c_1\langle x_1,y\rangle+c_2\langle x_2,y\rangle$
+  \end{enumerate}
+  If $X$ admits an inner product then it automatically admits a norm $\|x\|=\sqrt{\langle x,x\rangle}$, and $X$ is called a \emph{Hilbert space} if this norm is complete.
+\end{defn}
+
+We will prove shortly that the operation $\|\cdot\|$ defined above is really a norm. We remark that (b) and (c) together imply that $\langle\cdot,\cdot\rangle$ is \emph{conjugate linear} in the second coordinate (we leave it to the reader to state and verify this formally).
+
+Thus the Banach space $X=L^2(\mu)$ (with the complex scalars) is a Hilbert space with respect to the inner product
+\[\langle f,g\rangle=\int f\bar g\,d\mu
+\]
+Similarly, the sequence space $\ell^2=\set{x\in\CC^\NN\mid\sum |x_i|^2<\infty}$ is a Hilbert space with respet to the inner product
+\[\langle x,y\rangle=y^*x=\sum x_i\bar{y}_i
+\]
+Of course $\ell^2$ is not really a separate example, since $\ell^2$ is equal to $L^2(\mu)$ where $\mu$ is the counting measure on $\NN$.
+
+While a Hilbert space may seem like just a small ``upgrade'' from a Banach space, it is quite significant. For example, we will see in the next section that $L^2$ and $\ell^2$ are essentially the only examples of Hilbert spaces.
+
+We now lay out some of the most basic facts about Hilbert space. Our first result is the following analog of H\"older's inequality.
+
+\begin{thm}[Schwarz inequality]
+  Let $X$ be an inner product space. Then $|\langle x,y\rangle|\leq\|x\|\cdot\|y\|$.
+\end{thm}
+
+\begin{proof}
+  The proof is a simpler version of the proof of H\"older's inequality. First, by multiplying $x$ by a scalar of the form $e^{i\theta}$, we may assume that $\langle x,y\rangle$ is real. Next given $x,y$ we define a real function $p(\alpha)=\langle\alpha x+y,\alpha x+y\rangle$. Then by axiom (a) we have that $p(\alpha)\geq0$. And by axiom (c) we have
+  \[p(\alpha)=\alpha^2\|x\|^2+2\alpha\langle x,y\rangle+\|y\|^2
+  \]
+  Thus $p$ is a quadratic and $p\geq0$, which implies $p$ has at most one real root. This means that the discriminant is non-positive, that is, $4|\langle x,y\rangle|^2-4\|x\|^2\cdot\|y\|^2\leq0$. This equation easily implies the desired result.
+\end{proof}
+
+We are now ready to prove the fact that every inner product space automatically has a norm.
+
+\begin{prop}
+  Let $X$ be an inner product space. Then $\|x\|=\sqrt{\langle x,x\rangle}$ makes $X$ into a normed vector space.
+\end{prop}
+
+\begin{proof}
+  Since the nonvanishing and homogeneity properties are automatic from the axioms, it remains only to verify the triangle inequality. For this we simply calculate:
+  \begin{align*}
+    \|x+y\|^2&=\langle x+y,x+y\rangle\\
+             &=\langle x,x\rangle+\langle x,y\rangle+\langle y,x\rangle+\langle y,y\rangle\\
+             &\leq \langle x,x\rangle+2|\langle x,y\rangle|+\langle y,y\rangle\\
+             &\leq\|x\|^2+2\|x\|\cdot\|y\|+\|y\|^2\\
+             &=(\|x\|+\|y\|)^2
+  \end{align*}
+  Here, the first inequality uses axiom (b) and the ordinary triangle inequality, and the second inequality uses the Schwarz inequality. Taking the square root of both sides, we achieve the desired result.
+\end{proof}
+
+Perhaps the most important feature of Hilbert spaces that is not present in an ordinary Banach space is that of orthogonality.
+
+\begin{defn}
+  Let $X$ be a Hilbert space. We say that vectors $x,y\in X$ are \emph{orthogonal} if $\langle x,y\rangle=0$. Given a vector subspace $Y\subset X$ we define its \emph{orthogonal complement} $Y^\perp=\set{x\in X\mid(\forall y\in Y)\;\langle x,y\rangle=0}$.
+\end{defn}
+
+The orthogonal complement does not always behave as one would expect from classical Euclidean space. For example, if $Y$ is a dense subspace of $X$ then $Y^\perp=0$. However if $Y$ is a closed subspace, then the familiar properties hold. We omit the proof.
+
+\begin{prop}
+  Let $X$ be a Hilbert space and let $Y\leq X$ be a closed subspace. Then $X=Y\oplus Y^\perp$ in the sense that every $x\in X$ can be uniqely expressed as $x=y+y'$ where $y\in Y$ and $Y'\in Y^\perp$.
+\end{prop}
+
+This basic fact has many consequences, beginning with the following. First recall that our motivation for defining Hilbert spaces was the fact that $L^2$ is sel-dual, and thus the action of $(L^2)^*$ on $L^2$ behaves like an inner product. Our final result of this section states that the converse holds, that is, if $X$ admits an inner product then it is self-dual.
+
+\begin{thm}
+  If $X$ is a Hilbert space, then $X$ is self-dual. That is, for any $\phi\in X^*$ there exists $y\in X$ such that $\phi(x)=\langle x,y\rangle$. Moreover the correspondence $\phi\mapsto y$ is a conjugate-linear isomorphism $X^*\cong X$.
+\end{thm}
+
+\begin{proof}
+  Given $\phi$, we let $Y=\set{x\in X\mid\phi(x)=0}$. Assuming $Y\neq X$, we may choose $z\in Y^\perp$ such that $\|z\|=1$. We then let $y=\overline{\phi(z)}z$. Then we have
+  \begin{align*}
+    \phi(x)-\langle x,y\rangle&=\phi(x)-\phi(z)\langle x,z\rangle\\
+                              &=\phi(x)\langle z,z\rangle-\phi(z)\langle x,z\rangle\\
+                              &=\langle\phi(x)z-\phi(z)x,z\rangle\\
+                              &=0
+  \end{align*}
+  Here the last equality follows from the fact that $\phi(x)z-\phi(z)x$ lies in $Y$.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{Bases in Hilbert space}
+\section{Bases for Hilbert space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT, \S 14.4
+\end{reading}
 
 
 \end{document}
