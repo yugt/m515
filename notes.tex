@@ -14,9 +14,10 @@
 \makeatletter\@removefromreset{section}{chapter}\makeatother
 \usepackage{etoolbox}
 \makeatletter
-\pretocmd{\@seccntformat}{\S}{}{}
-\patchcmd{\tocsection}{#2.}{\S#2.}{}{}
-\apptocmd{\tocsection}{\dotfill}{}{}
+\pretocmd{\@seccntformat}{\S}{}{}      % mark sec numbers
+\patchcmd{\tocsection}{#2.}{\S#2.}{}{} % mark sec numbers in toc
+\apptocmd{\tocsection}{\dotfill}{}{}   % dots in toc
+\patchcmd{\@maketitle}{\newpage}{}{}{} % no blank page after title
 \makeatother
 \usepackage[linktoc=all]{hyperref}
 
@@ -2124,11 +2125,13 @@ Perhaps the most important feature of Hilbert spaces that is not present in an o
   Let $X$ be a Hilbert space. We say that vectors $x,y\in X$ are \emph{orthogonal} if $\langle x,y\rangle=0$. Given a vector subspace $Y\subset X$ we define its \emph{orthogonal complement} $Y^\perp=\set{x\in X\mid(\forall y\in Y)\;\langle x,y\rangle=0}$.
 \end{defn}
 
-The orthogonal complement does not always behave as one would expect from classical Euclidean space. For example, if $Y$ is a dense subspace of $X$ then $Y^\perp=0$. However if $Y$ is a closed subspace, then the familiar properties hold. We omit the proof.
+The orthogonal complement does not always behave as one would expect from classical Euclidean space. For example, if $Y$ is a dense subspace of $X$ then $Y^\perp=0$. However if $Y$ is a closed subspace, then the familiar properties hold.
 
 \begin{prop}
   Let $X$ be a Hilbert space and let $Y\leq X$ be a closed subspace. Then $X=Y\oplus Y^\perp$ in the sense that every $x\in X$ can be uniqely expressed as $x=y+y'$ where $y\in Y$ and $Y'\in Y^\perp$.
 \end{prop}
+
+The idea behind the proof is as follows. Given $x$, let $y\in Y$ be the unique point in $Y$ which is closest to $x$. Such a point $y$ exists and is unique thanks to the familiar geometry of Hilbert space.
 
 This basic fact has many consequences, beginning with the following. First recall that our motivation for defining Hilbert spaces was the fact that $L^2$ is sel-dual, and thus the action of $(L^2)^*$ on $L^2$ behaves like an inner product. Our final result of this section states that the converse holds, that is, if $X$ admits an inner product then it is self-dual.
 
