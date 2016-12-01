@@ -1,5 +1,13 @@
 ## Math 515 homework
 
+### Homework 12, due Thursday, December 8
+
+(under construction)
+* BBT, ex. 14:1.7
+* BBT, ex. 14:3.2
+* BBT, ex. 14:4.3
+* Check that the fourier functions exp(2&pi;inx) are an orthonormal basis for L<sup>2</sup>[0,1]. You may look up and use the Stone&ndash;Weierstra&szlig; theorem.
+
 ### Homework 11, due Thursday, December 1
 
 * BBT, ex. 9:1.1 (this completes our proof of Holder's inequality)

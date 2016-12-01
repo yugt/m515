@@ -2165,32 +2165,77 @@ Although bases are essential to the study of classical linear algebra, they have
 \begin{defn}
   Let $X$ be a Hilbert space. A subset $\{e_\alpha\}_{\alpha\in A}$ of $X$ is called an \emph{orthonormal basis} if it satisfies the following properties:
   \begin{enumerate}
-  \item (normality) )for all $\alpha$, $\|e_\alpha\|=1$;
+  \item (normality) for all $\alpha$, $\|e_\alpha\|=1$;
   \item (orthogonality) for all $\alpha\neq\beta$, $\langle e_\alpha,e_\beta\rangle=0$; and
   \item (maximality) for any $x\in X$, if $\langle x,e_\alpha\rangle=0$ for all $\alpha\in A$, then $x=0$.
   \end{enumerate}
 \end{defn}
 
-It is important to note that for an infinite-dimensional Hilbert space, an orthonormal basis in the above definition is not a vector space basis in the true sense.
+It is important to note that for an infinite-dimensional Hilbert space, the concept of orthonormal basis is very different than the concept of ``basis'' in a classical vector space. It is true that the Hilbert space orthonormal basis is an independent set. However, it is not true that the Hilbert space orthonormal basis is a maximal independent set. The maximality property above states only that it is maximal with respect to being orthonormal.
+
+Just as every vector space has a basis, every Hilbert space has an orthonormal basis. Indeed, this follows from an elementary application of Zorn's lemma. However, for our concrete examples of Hilbert spaces, it is not difficult to identify a simple concrete basis.
 
 For example, regard $X=\ell^2$ as the space of complex vectors with countably many coordinates such that the coordinates are square-summable. We let $e_i$ be the vector with a $1$ in the $i$th coordinate and a $0$ in every other coordinate. Then it is easy to see that $\{e_i\}$ is an orthonormal basis for $\ell^2$.
 
-For another example, let $X=L^2[0,1]$. 
+For another example, let $X=L^2[0,1]$. Let $e_n=e^{2\pi i nx}$, where $n$ ranges over the integers $\ZZ$. Then an easy calculation shows that $e_n$ have unit norm and are pairwise orthogonal. Maximality is somewhat harder to check; it follows from the Stone--Weierstra\ss\ theorem, which we omit but easily implies that the $e_n$ are dense in $L^2$.
 
+Note that in the case of real $L^2$ space, one instead uses the basis consisting of functions $\sin(2\pi nx)$ and $\cos(2\pi nx)$ for $n\in\NN$. This is the foundation of Fourier analysis. As we will see in the next result, the fact that this is a Hilbert space basis means that any $L^2$ function can be expressed uniquely as a countable linear combination of waves of different periods!
 
-\begin{thm}[Parseval's identity]
-  Let $X$ be a Hilbert space and $\{e_\alpha\}_{\alpha\in A}$ an orthonormal basis for $X$. Then for any $x\in X$, we have $\|x\|^2=\sum_{\alpha\in A}|\langle x,e_\alpha\rangle|^2$.
+Recall that in the study of classical vector spaces, every element can be written uniqely as a finite linear combination of basis elements. The following result shows that a Hilbert space basis has an analogous property: every element can be written uniqely as an \emph{infinite} linear combination of Hilbert space basis elements.
+
+\begin{thm}
+  Let $X$ be a Hilbert space and $\{e_\alpha\}_{\alpha\in A}$ an orthonormal basis for $X$. Then for any $x\in X$, we have $x=\sum\langle x,e_\alpha\rangle e_\alpha$, with the convergence being in norm. Moreover, we have Parseval's identity, which states that $\|x\|^2=\sum_{\alpha\in A}|\langle x,e_\alpha\rangle|^2$.
 \end{thm}
 
 \begin{proof}
-  
+  In the proof, we will need the \emph{Pythagorean theorem}, which states that if $e_1,\ldots,e_n$ are orthognal, then $\|e_1+\cdots+e_n\|^2=\|e_1\|^2+\cdots+\|e_n\|^2$. The calculation is the same as the classical version, and is obtained by distributing out the expression $\langle e_1+\cdots+e_n,e_1+\cdots+e_n\rangle$.
+
+  We first show one half of Parseval's identity, namely that if  $\sum|\langle x,e_\alpha\rangle|^2\leq\|x\|^2$. (This is called Bessel's inequality.) For this we let $A_0\subset A$ be a finite subset. Then an elementary calculation together with the Pythagorean theorem gives
+  \begin{equation}
+    \label{eq:bessel}
+    \left\|\,x-\sum_{\alpha\in A_0}\langle x,e_\alpha\rangle e_\alpha\,\right\|^2
+    =\|x\|-\sum_{\alpha\in A_0}|\langle x,e_\alpha\rangle|^2
+  \end{equation}
+  Since the left-hand side is nonnegative, this completes the claim.
+
+  Now we know that $\sum|\langle x,e_\alpha\rangle|^2$ converges. It follows that there are just countably many nonzero terms, let us enumerate them $|\langle x,e_n\rangle|^2$. Then the sequence of partial sums of $\sum|\langle x,e_n\rangle|^2$ is Cauchy. By the Pythagorean theorem,
+  \[\left\|\,\sum_m^l\langle x,e_n\rangle e_n\,\right\|^2
+    =\sum_m^l|\langle x,e_n\rangle|^2
+  \]
+  Thus the sequence of partial sums of $\sum\langle x,e_n\rangle e_n$ is Cauchy too. Since $X$ is complete, we conclude that there exists an element $y\in X$ defined by $y=\sum\langle x,e_\alpha\rangle e_\alpha$.
+
+  Next we claim that in fact $x=y$. Indeed, it is easy to see that $\langle x-y,e_\alpha\rangle=0$ for all $\alpha$, so completeness implies that $x-y=0$.
+
+  Finally, we conclude the proof of Parseval's identity by returning to Equation~\eqref{eq:bessel}. Since we now know that the left-hand side converges to $0$ as $A_0\to A$, it follows that the right-hand side does as well.
 \end{proof}
 
-One can interpret this result as saying that any Hilbert space $X$ looks remarkably like $\ell^2$. That is, each element $x\in X$ is determined by its vector of coefficients $\langle x,e_\alpha\rangle$.
+One can interpret this result as saying that any Hilbert space $X$ looks remarkably like $\ell^2$. That is, each element $x\in X$ is determined by its vector of coefficients $\langle x,e_\alpha\rangle$. Indeed, our last result will show that this is a formal theorem. In order to state it, we need to define a generalization of the sequence space $\ell^2$.
+
+\begin{defn}
+  For any index set $A$, we let
+  \[\ell^2(A)=\set{f\colon A\to\CC\;\left|\;\sum_{\alpha\in A}|f(\alpha)|^2<\infty\right.}
+  \]
+\end{defn}
+
+In other words, $\ell^2(A)$ is like a sequence space where the sequences may be indexed by an arbitrary set other than $\NN$. Another way to say it is that $\ell^2(A)$ is equal to $L^2(\mu)$, where $\mu$ is the counting measure on $A$.
+
+The space $\ell^2(A)$ is determined up to isomorphism by the cardinality of $A$. The cardinality of $A$ is called the \emph{dimension} of $\ell^2(A)$. This is because like $\ell^2$, the space $\ell^2(A)$ has the obvious basis consisting of $\{e_\alpha\}_{\alpha\in A}$, where $e_\alpha(\alpha)=1$ and $e_\alpha(\beta)=0$ whenever $\beta\neq\alpha$.
 
 \begin{thm}
-  
+  Let $X$ be a Hilbert space. Then $X$ is isomorphic to $\ell^2(A)$ for some $A$ by a linear bijection that preserves inner products.
 \end{thm}
+
+\begin{proof}
+  Let $\{e_\alpha\}_{\alpha\in A}$ be an orthonormal basis for $X$. The index set $A$ will be the same set we use to form $\ell^2(A)$. We define a function $\phi\colon X\to\ell^2(A)$ by $\phi(x)(\alpha)=\langle x,e_\alpha\rangle$.
+
+  It is easy to see that $\phi$ is linear, and Parseval's identity implies that $\phi$ preserves the norm. In particular $\phi$ is injective. To see that $\phi$ preserves the inner product, it suffices to note that the inner product can be recovered from the norm by the \emph{polarization identity}
+  \[4\langle x,y\rangle=\|x+y\|^2+\|x-y\|^2+i\|x+iy\|^2-i\|x-iy\|^2
+  \]
+
+  Finally to see that $\phi$ is surjective, let $f\in\ell^2(A)$ be given. Since $\sum_{\alpha\in A}|f(\alpha)|^2<\infty$, the series has just countably many nonzero terms and its partial sums are Cauchy. By the Pythagorean theorem, the partial sums of $\sum_{\alpha\in A}f(\alpha)e_\alpha$ are Cauchy too. It follows that there exists an element $x\in X$ defined by $x=\sum_{\alpha\in A}f(\alpha)e_\alpha$. Clearly $\phi(x)=f$, as desired.
+\end{proof}
+
+Thus the result implies that there is exactly one Hilbert space in each dimension. Note that both $\ell^2$ and $L^2[0,1]$ are Hilbert spaces of countable dimension, because we have seen above that each has a countable basis. The unique countable dimensional Hilbert space, often denoted $\mathcal H$, is by far the most widely used in applications where an operator acts on infinitely many coordinates. Hilbert space appears in the study of differential equations, fourier analysis, quantum physics, and more.
 
 \end{document}
 
