@@ -2158,6 +2158,39 @@ This basic fact has many consequences, beginning with the following. First recal
   BBT, \S 14.4
 \end{reading}
 
+In the previous section we have seen that Hilbert spaces possess many properties which are familiar from $\RR^n$ and $L^2$. The special properties are made possible by the inner product and its corresponding notion of orthogonality. In this section we make further use of orthogonality, in particular introducing orthonormal bases.
+
+Although bases are essential to the study of classical linear algebra, they have been absent so far in our study of Banach spaces.
+
+\begin{defn}
+  Let $X$ be a Hilbert space. A subset $\{e_\alpha\}_{\alpha\in A}$ of $X$ is called an \emph{orthonormal basis} if it satisfies the following properties:
+  \begin{enumerate}
+  \item (normality) )for all $\alpha$, $\|e_\alpha\|=1$;
+  \item (orthogonality) for all $\alpha\neq\beta$, $\langle e_\alpha,e_\beta\rangle=0$; and
+  \item (maximality) for any $x\in X$, if $\langle x,e_\alpha\rangle=0$ for all $\alpha\in A$, then $x=0$.
+  \end{enumerate}
+\end{defn}
+
+It is important to note that for an infinite-dimensional Hilbert space, an orthonormal basis in the above definition is not a vector space basis in the true sense.
+
+For example, regard $X=\ell^2$ as the space of complex vectors with countably many coordinates such that the coordinates are square-summable. We let $e_i$ be the vector with a $1$ in the $i$th coordinate and a $0$ in every other coordinate. Then it is easy to see that $\{e_i\}$ is an orthonormal basis for $\ell^2$.
+
+For another example, let $X=L^2[0,1]$. 
+
+
+\begin{thm}[Parseval's identity]
+  Let $X$ be a Hilbert space and $\{e_\alpha\}_{\alpha\in A}$ an orthonormal basis for $X$. Then for any $x\in X$, we have $\|x\|^2=\sum_{\alpha\in A}|\langle x,e_\alpha\rangle|^2$.
+\end{thm}
+
+\begin{proof}
+  
+\end{proof}
+
+One can interpret this result as saying that any Hilbert space $X$ looks remarkably like $\ell^2$. That is, each element $x\in X$ is determined by its vector of coefficients $\langle x,e_\alpha\rangle$.
+
+\begin{thm}
+  
+\end{thm}
 
 \end{document}
 
