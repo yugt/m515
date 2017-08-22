@@ -81,21 +81,23 @@
 
 The problem of finding a measure thus sounds geometric. But given our models of space, in which coordinate axes are indexed by infinitesimal points drawn from the real number system, the problem really turns out to be analytic. (In particular, this means lots of $\epsilon$'s will show up!)
 
-The classical problem of finding a measure can be made into a formal mathematical question as follows: Does there exist a measure function $m$ which assigns to each subset $A\subset\RR$ a value $m(A)\in[0,\infty]$ satisfying:
+For simple sets, it is easy to decide what the measure should be. For example, the measure of the interval $[4,7]$ should be $3$ because that is its length. But for more complicated sets, the decision may not be so easy. If you have seen the construction of the Cantor set, think about how you would measure the length of that!
+
+Thus we arrive at the ``Measure Problem,'' which asks whether it is possible to even find a function which adequately measures subsets of $\RR$. Of course it is necessary to decide what ``adequately'' means. The classical version of the Measure Problem proposed the three properties below. Formally it asked: Does there exist a measure function $m$ which assigns to each subset $A\subset\RR$ a value $m(A)\in[0,\infty]$ satisfying:
 \begin{enumerate}
 \item (normality) $m(I)=$ the length of $I$ for every interval $I$;
 \item (translation-invariance) $m(x+A)=m(A)$ for every $A$; and
 \item (countable additivity) $m(\bigcup A_n)=\sum m(A_n)$ for every seqence of pairwise disjoint sets $A_n$.
 \end{enumerate}
 
-Perhaps surprisingly, no such measure function exists! The three very natural properties (a)--(c) actually turn out to be mutually inconsistent.
+Perhaps surprisingly, no such measure function $m$ exists! While properties~(a)--(c) seem very natural, the three items actually turn out to be mutually inconsistent.
 
 \begin{thm}[Vitali]
   There exists a set $A\subset\RR$ such that no measure can be assigned to $A$ consistently with (a)--(c).
 \end{thm}
 
 \begin{proof}
-  We will consider just the unit interval $[0,1)$ with addition modulo $1$. If there is a measure $m$ on all subsets of $\RR$, then by conditions (b) and (c), $m$ restricts to a measure on subsets of $[0,1)$ which satisfies (b) with respect to addition modulo $1$.
+  Rather than work on $\RR$, we will work on the half-open unit interval $[0,1)$ with the addition operation taken modulo $1$. This is ok, since if there is a measure $m$ on all subsets of $\RR$, then by properties~(b) and~(c), $m$ restricts to a measure on subsets of $[0,1)$ which satisfies property~(b) with respect to addition modulo $1$.
 
   Now let $\QQ_1$ denote the rationals of $[0,1)$, that is, $\QQ_1=\QQ\cap[0,1)$, and consider the collection of additive cosets of $\QQ_1$ inside $[0,1)$. The cosets are of the form $a+\QQ_1$ where again addition is interpreted modulo $1$. We now let $A\subset[0,1)$ denote a system of coset representatives for this collection.
 
@@ -110,18 +112,27 @@ Perhaps surprisingly, no such measure function exists! The three very natural pr
 
 We remark that it is possible to modify the argument to apply directly to a measure on $\RR$ rather than going via the unit interval with addition modulo $1$. See Tao for this version.
 
-The lesson is that we must weaken our demands on a measure $m$. Dropping condition (a) can lead to trivial measures. Dropping conditon (b) leads to several interesting problems in set theory. Weakening condition (c) to finite additivity leads to interesting solutions, but only in dimensions $\leq2$. (In dimensions $\geq3$ the Banach--Tarski paradox again gives a contradiction.)
+The lesson is that we must weaken our demands on a measure $m$. Dropping condition (a) can lead to trivial measures. Dropping condition (b) takes away the geometric aspects of the measure, and leads to interesting set-theoretic questions and constructions. Weakening condition (c) to finite additivity leads to interesting solutions, but only in dimensions $\leq2$. (In dimensions $\geq3$ the Banach--Tarski paradox again gives a contradiction.)
 
-Yet the simplest path forward (and the one that we take) is to drop the condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most commin analytical applications (see the notes below). We will simply drop the requirement that $A$ and other sets like it be in the domain of $m$. In the end, our measure function have a domain which is a proper subset of $\mathcal P(\RR)$ but still contains a rich class of sets. And it will satisy properties (a)--(c) for all the sets in its domain.
+Yet the simplest path forward (and the one that we take) is to drop the tacit condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most common analytical applications (see the notes below). We want to be excused from the burden of deciding the measure of the set $A$. This means we need to figure out what sets we will measure, and what sets we will not measure. In the end, our measure function $m$ will have a domain which is a proper subset of $\mathcal P(\RR)$, but which still contains a rich collection of sets. And the measure will satisy properties (a)--(c) as long as they are applied to the sets in the domain of $m$.
 
 Of course we are also interested in the measure problem for subsets $\RR^n$. It can be formulated in just the same way, with condition (a) replaced by the condition that the measure of a box is equal to its volume. And a Vitali-type result can also easily be established for this version of the measure problem.
 
 In the next section, we will begin this process by taking a step backwards and build measures with much smaller domains, and satisfying just fragments of (a)--(c).
 
 \begin{notes}
-  The proof of Vitali's theorem requires the Axiom of Choice. Specifically, it is needed to find a system of coset representatives for an uncountable collection. Solovay showed that the use of AC is essential, and that it is consistent with $\neg$AC that every set is measurable.
+  The proof of Vitali's theorem requires the Axiom of Choice. Specifically, it is needed to find a system of coset representatives for an uncountable collection. Solovay showed that the use of AC is essential, and that it is consistent with $\neg$AC that there is a measure function $m$ on all subsets of $\RR$.
 \end{notes}
 
+\begin{exerc}[Tao Ex 1.1.1]
+  Show that the class of elementary sets is closed under the operations: union, intersection, set difference, symmetric difference, and translation.
+\end{exerc}
+
+\begin{exerc}[Tao Ex 1.1.4]
+  Show that if $A$ is an elementary subset of $\RR^m$ and $B$ is an elementary subset of $\RR^n$ then $A\times B$ is an elementary subset of $\RR^{m+n}$. Furthermore show that $m_e(A\times B)=m_e(A)m_e(B)$.
+\end{exerc}
+
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Elementary measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,7 +202,7 @@ The above three core properties imply further useful properties as well.
 
 These results give an essentially complete solution to the measure problem for elementary sets. It wasn't too difficult to achieve, but perhaps not as easy as one would have thought! Even so, what about measuring other simple sets such as circles, triangles, blobs, Cantor sets, and so on? In the next section we will continue on the road to doing this.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Jordan measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -299,7 +310,7 @@ A simple example of a set which is not Jordan measurable is the set $\QQ_1=\QQ\c
 
 We can conclude from these examples that Jordan measure works very well for classical geometric objects, but not very well even for simple analytic objects such as countable dense sets, the Cantor set, and so forth. To handle such sets, we will soon work to describe the Lebesgue measure, which  satisfies \emph{countable} additivity. Before going to such generality, however, we explore the connection between Jordan measure and the Riemann integral.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Riemann integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -390,7 +401,7 @@ With these pieces in hand, we can define the Riemann sums and the Riemann integr
 
 It is an exercise in both notation and partition management to check that $f$ is Riemann integrable in the Darboux sense described earlier in this section if and only if $f$ is Riemann integrable in the classical Riemann sense just defined.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction to Lebesgue measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -462,7 +473,7 @@ The bookkeeping used in the above proof is called an ``$\epsilon/2^n$ argument''
 
 In the next sections we will work to address under what circumstances the Lebesgue outer measure satisfies additivity or otherwise behaves well.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue outer measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -555,7 +566,7 @@ The above result gives a very direct method of calculating the Lebesgue outer me
 
 In the next section we will use these partial results to conclude that the Lebesgue (outer) measure always behaves well on the measurable sets.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue measurability}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -644,7 +655,7 @@ Perhaps even more surprising, the Lebesgue measurable sets of finite measure can
 
 We have now established many useful properties of the outer measure $m^*$ and shown that it has a broad collection of measurable sets. In the next section we will confirm as promised that $m^*$ behaves very well when restricted to the collection of measurable sets.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -789,7 +800,7 @@ In order to state this property and others cleanly, we introduce the terminology
 
 Throwing away null sets is common in analysis, and thanks to our understanding of the Lebesgue measure it carries with it a lot of power. When studying sets and functions in the measure context, it will even be useful to modify our logic. We will use the quantifiers $\forall^*x$ and $\exists^*x$ to mean ``the statement holds for all but a null set of $x$'' and ``there exists a non-null set of $x$ such that the statement holds''.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue measurability of functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -872,6 +883,7 @@ We note that the alternate approach of simply replacing nonnegative simple funct
   If $f$ is a comlex-valued function on $\RR^n$ then $f$ is measurable if and only if it is a pointwise limit of complex-valued simple functions.
 \end{lem}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue integration of nonnegative functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -960,7 +972,7 @@ We are now ready to show that the Lebesgue integral behaves well when applied to
 
 Later we will show that the Lebesgue integral even satisfies countable additivity for nonnegative measurable functions.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1062,7 +1074,7 @@ While the vector space of absolutely integrable functions is infinite dimensiona
 
 We will see later that this density result fits in with several results which loosely state that integrable functions are ``almost continuous.''
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Convergence theorems}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1175,7 +1187,7 @@ Next we use the very special monotone convergence theorem to establish Fatou's l
 
 We conclude with the following amusing application: the dominated convergence theorem implies that the harmonic series $\sum\frac1n$ diverges. To see this, suppose towards a contradiction that $\sum\frac1n<\infty$. Now the sequence of functions $f_n=\frac1n\chi_{[0,n]}$ described in the ``Escape to width infinity'' is dominated by the single function $G=\sum 1/n\chi_{[n-1,n)}$. Assuming $\sum\frac1n<\infty$ we would have that $G$ is absolutely integrable. Thus the dominated convergence theorem implies $\int f_n\to 0$, which contradicts that $\int f_n=1$!
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract measure theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1296,7 +1308,7 @@ If $\mathcal A$ is an algebra on $X$, and $\mu_0$ is any function on $\mathcal A
 
 Recall that after we constructed Lebesgue outer measure $m^*$ we defined the collection of $m^*$-measurable sets as those which could be approximated well by open sets. If $X$ is just a set with an algebra or $\sigma$-algebra, we can't refer to the open sets. Thus to prove Carath\'eodory's extension theorem, it remains to show how to identify the collection of $\mu^*$-measurable sets. We will investigate this in the next section, as well as some applications of the extension theorem.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Construction of abstract measures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1405,7 +1417,7 @@ It is easy to see that $\mathcal H$ consists of finite disjoint unions of half-o
 
 If $F(x)=x$, then the above construction simply gives $\mu_F=$ the Lebesgue measure $m$. And in general, $F$ acts as the cumulative density of the measure $\mu_F$. Measures of this form are called \emph{Lebesgue-Stieltjes measures}.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract integration theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1586,7 +1598,7 @@ In the following lemma, an operator $T\colon X\to Y$ is said to be \emph{bounded
   This shows that $T$ is continuous at the point $0$, and hence by the previous lemma $T$ is continuous.
 \end{proof}
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{The Hahn--Banach theorem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1677,6 +1689,7 @@ We now return to the proof of the Hahn--Banach theorem.
   Therefore we can apply Zorn's lemma to find an element $\phi$ of $P$ which is maximal with respect to function extension. We claim moreover that the domain of $\phi$ must be all of $X$. Indeed, otherwise we can use the argument above to properly extend the domain of $\phi$ to find a larger element $\phi'$ of $P$. This contradicts the maximality of $\phi$, and completes the proof.
 \end{proof}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Spaces of operators and the dual space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1767,7 +1780,7 @@ The above proposition may seem esoteric, but it has many uses. For example, if $
 
 It can even happen that the map $x\mapsto\hat x$ is surjective onto $X^{**}$. This special property will be investigated in future sections.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Three results on Banach spaces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1831,7 +1844,7 @@ Rather than give a consequence of the closed graph theorem, we will give an impo
 
 While have just checked that $D$ has a closed graph, it is also easy to check that $D$ is not bounded. Thus the contrapositive of the closed graph theorem implies that $D[a,b]$ is not a Banach space! This is an admittedly somewhat silly way to see this fact, since it is also possible to argue directly that $D[a,b]$ is not complete.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{The Banach space $L^p$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1951,7 +1964,7 @@ The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the 
   \end{itemize}
 \end{thm}
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{The dual space of $L^p$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2049,7 +2062,7 @@ We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$
   We have stated that the dual of $L^1$ is equal to $L^\infty$ when $\mu$ is $\sigma$-finite. However the reverse is usually not true. Instead the dual of $L^\infty(\mu)$ is the space of all finitely additive signed measures $\nu$ such that $\mu(E)=0\implies\nu(E)=0$.
 \end{notes}
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Hilbert space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2152,6 +2165,7 @@ This basic fact has many consequences, beginning with the following. First recal
   Here the last equality follows from the fact that $\phi(x)z-\phi(z)x$ lies in $Y$.
 \end{proof}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Bases for Hilbert space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
