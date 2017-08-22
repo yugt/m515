@@ -31,4 +31,4 @@ Functional analysis: This is another area of analysis that is important in a wid
 
 ## Homework
 
-Homework assignments will be given for each week, finalized on the following Tuesday, and due on the following Thursday. All work will be evaluated for completeness, and certain problems will be evaluated for correcteness and mathematical style. You are encouraged to collaborate with your peers, you are welcome to use online resources when you are stuck. But please keep in mind that you must always fully understand your solutions and most importantly *write them in your own words*.
+Homework assignments will be given for each week, finalized on the following Wednesday, and due on the following Friday. All work will be evaluated for completeness, and certain problems will be evaluated for correcteness and mathematical style. You are encouraged to collaborate with your peers, you are welcome to use online resources when you are stuck. But please keep in mind that you must always fully understand your solutions and most importantly *write them in your own words*.
