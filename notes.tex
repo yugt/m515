@@ -77,20 +77,20 @@
   Tao, \S1.1 introduction, and \S1.2.3.
 \end{reading}
 
-The term measure has many English meanings. In this area of mathematics, ``measure'' is a number assigned to a set which represents its size. Of course the term ``size'' also has many meanings English meanings. Our concept of measure can accommodate many different types of sizes, for examples: length, area, volume, mass, and even probability. On the other hand, some other types of size are not usually associated with the mathematical concept of measure, for examples: cardinality, diameter, and density.
+Before discussing the measure problem, let's talk intuitively about what we mean by ``measure.'' In this area of mathematics, measure is a number assigned to a set which represents its size. Of course the term ``size'' also has many meanings. Our concept of measure can accommodate many different types of sizes, such as: length, area, volume, mass, and even probability. On the other hand, some other types of size are not usually associated with the mathematical concept of measure, such as: cardinality, diameter, and density.
 
 The mathematical concept of a measure is thus beginning to seem geometric. But considering our models of sets and spaces, in which coordinate axes are indexed by the infinitesimal points of the real number line, measure really turns out to be an analytic concept. (In particular, this means lots of $\epsilon$'s will show up in our studies!)
 
-For simple sets, it is easy to decide what the measure should be. For example, the measure of the interval $[4,7]$ should be $3$ because that is its length. But for more complicated sets, the decision may not be so easy. If you have seen the construction of the Cantor set, think about how you would measure the length of that!
+For a simple set, it may be easy to decide what its measure should be. For example, if we use the term measure to mean length, then the measure of the interval $[4,7]$ should be $3$. But for a more complicated set, the decision may not be so easy. If you have seen the construction of the Cantor set, think about how you would measure the length of that!
 
-Thus we arrive at the ``Measure Problem,'' which asks whether it is possible to even find a function which adequately measures subsets of $\RR$. Of course it is necessary to decide what ``adequately'' means. The classical version of the Measure Problem proposed the three properties below. Formally it asked: Does there exist a measure function $m$ which assigns to each subset $A\subset\RR$ a value $m(A)\in[0,\infty]$ satisfying:
+Thus we arrive at the ``measure problem,'' which asks whether it is even possible to find a function which adequately measures subsets of the real line $\RR$. Of course it is necessary to say what is considered adequate. The classical version of the measure problem proposed the three properties below. Formally, the measure problem asks: Does there exist a measure function $m$ which assigns to each subset $A\subset\RR$ a value $m(A)\in[0,\infty]$ satisfying:
 \begin{enumerate}
 \item (normality) $m(I)=$ the length of $I$ for every interval $I$;
 \item (translation-invariance) $m(x+A)=m(A)$ for every $A$; and
 \item (countable additivity) $m(\bigcup A_n)=\sum m(A_n)$ for every seqence of pairwise disjoint sets $A_n$.
 \end{enumerate}
 
-Perhaps surprisingly, no such measure function $m$ exists! While properties~(a)--(c) seem very natural, the three items actually turn out to be mutually inconsistent.
+Perhaps surprisingly, no such measure function $m$ exists! While properties~(a)--(c) seem very natural, the three items unfortunately turn out to be mutually inconsistent.
 
 \begin{thm}[Vitali]
   There exists a set $A\subset\RR$ such that no measure can be assigned to $A$ consistently with (a)--(c).
