@@ -124,6 +124,18 @@ In the next section, we will begin this process by taking a step backwards and b
   The proof of Vitali's theorem requires the Axiom of Choice. Specifically, it is needed to find a system of coset representatives for an uncountable collection. Solovay showed that the use of AC is essential, and that it is consistent with $\neg$AC that there is a measure function $m$ on all subsets of $\RR$.
 \end{notes}
 
+\begin{exerc}
+  Show that the properties (a)--(c) imply finite addivitity: If $A$ and $B$ are disjoint then $m(A\cup B)=m(A)+m(B)$.
+\end{exerc}
+
+\begin{exerc}
+  Show that the properties (a)--(c) imply the inclusion--exclusion principle: For any sets $A,B$ we have $m(A\cup B)+m(A\cap B)=m(A)+m(B)$.
+\end{exerc}
+
+\begin{exerc}
+  Complete the details of the proof that if there is a measure on $\RR$ satisfying properties (a)--(c), then there is a measure on $[0,1)$ (with additional modulo $1$) satisfying properties (a)--(c).
+\end{exerc}
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Elementary measure}
@@ -198,12 +210,12 @@ These results give an essentially complete solution to the measure problem for e
   Show that the class of elementary sets is closed under the operations: union, intersection, set difference, symmetric difference, and translation.
 \end{exerc}
 
-\begin{exerc}[Tao Ex 1.1.4]
-  Show that if $A$ is an elementary subset of $\RR^m$ and $B$ is an elementary subset of $\RR^n$ then $A\times B$ is an elementary subset of $\RR^{m+n}$. Furthermore show that $m_e(A\times B)=m_e(A)m_e(B)$.
-\end{exerc}
-
 \begin{exerc}
  Show that elementary measure satisfies the monotonicity and finite subadditivity properties. 
+\end{exerc}
+
+\begin{exerc}[Tao Ex 1.1.4]
+  Show that if $A$ is an elementary subset of $\RR^m$ and $B$ is an elementary subset of $\RR^n$ then $A\times B$ is an elementary subset of $\RR^{m+n}$. Furthermore show that $m_e(A\times B)=m_e(A)m_e(B)$.
 \end{exerc}
 
 \newpage
