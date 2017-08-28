@@ -8,7 +8,7 @@ Textbook: Tao, *Measure theory* ([link](http://terrytao.files.wordpress.com/2012
 Web site: `github.com/scoskey/m515`  
 My email: `scoskey@boisestate.edu`  
 My office: MB 237-A  
-Office hours: TBA
+Office hours: Mondays 11-12, Thursdays 2-3, and by appointment!
 
 ## Course topics
 
