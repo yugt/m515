@@ -449,6 +449,7 @@ As was the case with the elementary measure, one must check that the value of th
 \end{defn}
 
 \begin{prop}
+  \label{prop:riemann-properties}
   The Riemann integral satisfies the three properties:
   \begin{itemize}
   \item (normality) If $E$ is a Jordan measurable subset of $[a,b]$, then $\chi_E$ is Riemann integrable over $[a,b]$ and $\int\chi_E=m(E)$.
@@ -468,7 +469,7 @@ As was the case with the elementary measure, one must check that the value of th
   we may conclude that $\int\chi_E$ is equal to $m(E)$.
 \end{proof}
 
-If one re-examines the definition and properties of the Jordan measure, it should be that there is a close parallel between the Riemann integral and Jordan measure. The normality property above begins to make this connection formal. The next result further strenghens the two-way connection between the two notions.
+If one re-examines the definition and properties of the Jordan measure, it should be clear that there is a close parallel between the Riemann integral and Jordan measure. The normality property above begins to make this connection formal. The next result further strenghens the two-way connection between the two notions.
 
 \begin{thm}
   If $f$ is a nonnegative, bounded function on $[a,b]$, then $f$ is Riemann integrable if and only if the region $E=\set{(x,y)\mid0\leq y\leq f(x)}$ is Jordan measurable. Moreover, in this case we have $\int f=m(E)$.
@@ -504,6 +505,18 @@ With these pieces in hand, we can define the Riemann sums and the Riemann integr
 \end{defn}
 
 It is an exercise in both notation and partition management to check that $f$ is Riemann integrable in the Darboux sense described earlier in this section if and only if $f$ is Riemann integrable in the classical Riemann sense just defined.
+
+\begin{exerc}[See Tao, Ex 1.1.21]
+  Show that the pc integral is well-defined, and satisfies the normality, linearity, and monotonicity properties.
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.1.23]
+  Let $f\colon[a,b]\to\RR$. Show that if $f$ is continuous, then $f$ is Riemann integrable. Show that if $f$ is bounded and piecewise continuous, then $f$ is Riemann integrable.
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.1.24]
+  Complete the proof of Proposition~\ref{prop:riemann-properties}: Show that the Riemann integral satisfies the linearity and monotonicity properties.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
