@@ -366,6 +366,8 @@ While you probably have a clear idea of what the elementary sets look like, it i
 
 To make this argument we need to know that Jordan measure is invariant under $180^\circ$ rotation, which is clear because it is true for boxes. Moreover since the two copies of $T$ overlap in a line segment, we also need to know that the Jordan measure of a line segment is $0$. This fact follows from the more general result below.
 
+% A preferred motivation for the following lemma would be: Trying to show that an axis-parallel triangle is Jordan measurable essentially amounts to showing that a straight line has Jordan measure zero. In fact we can do this for arbitrary continuous curves.
+
 \begin{lem}
   \label{lem:jordan-graph}
   Let $f$ be a continuous function defined on a closed, bounded interval. Then the graph of $f$, considered as a subset of $\RR^2$, has Jordan measure $0$.
@@ -434,7 +436,7 @@ Just as we defined the elementary measure before we defined the Jordan measure, 
 In other words, $f$ is piecewise constant if $f$ is of the form $\sum_1^k c_j\chi_{I_j}$, where $I_j$ are intervals. Here $\chi_{I_j}$ denotes the \emph{characteristic function} of $I_j$, that is, $\chi_{I_j}(x)=1$ if $x\in I_j$ and $\chi_{I_j}(x)=0$ otherwise.
 
 \begin{defn}
-  If $f=\sum_1^kc_j\chi_{I_j}$ then the \emph{pc integral} of $f$ is defined to be $\sum_1^kc_j\len I_j$.
+  If $f=\sum_1^kc_j\chi_{I_j}$ then the \emph{pc integral} of $f$ is defined to be $\sum_1^kc_j\len(I_j)$.
 \end{defn}
 
 As was the case with the elementary measure, one must check that the value of the pc integral is well-defined. That is, if $f$ is expressed in two different ways as a pc function, say $\sum c_j\chi_{I_j}=\sum d_k\chi_{J_k}$, then one must check that the two values $\sum c_j\len(I_j)$ and $\sum d_k\len(J_k)$ agree.
@@ -516,6 +518,10 @@ It is an exercise in both notation and partition management to check that $f$ is
 
 \begin{exerc}[Tao, Ex 1.1.24]
   Complete the proof of Proposition~\ref{prop:riemann-properties}: Show that the Riemann integral satisfies the linearity and monotonicity properties.
+\end{exerc}
+
+\begin{exerc}
+  Show that the Darboux version of the Riemann integral is equivalent to the Riemann version of the Riemann integral.
 \end{exerc}
 
 \newpage
