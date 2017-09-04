@@ -24,6 +24,7 @@
 
 \newcommand{\set}[1]{\left\{\,#1\,\right\}}
 \renewcommand{\setminus}{\smallsetminus}
+\renewcommand{\triangle}{\bigtriangleup}
 \newcommand{\NN}{{\mathbb N}}
 \newcommand{\ZZ}{{\mathbb Z}}
 \newcommand{\QQ}{{\mathbb Q}}
@@ -311,7 +312,7 @@ Before we begin these results, it will be useful to establish the following char
   \begin{itemize}
   \item For all $\epsilon>0$ there are elementary sets $A,B$ such that $A\subset E\subset B$ such that $m(B\setminus A)<\epsilon$.
     % Note: for homework students should show the difference of elementary sets is elementary
-  \item For all $\epsilon>0$ there is an elementary set $A$ such that $m(E\Delta A)<\epsilon$.
+  \item For all $\epsilon>0$ there is an elementary set $A$ such that $m(E\triangle A)<\epsilon$.
   \end{itemize}
 \end{lem}
 
@@ -393,7 +394,7 @@ Intuitively, the Jordan measure works very well for classical geometric figures,
 \end{exerc}
 
 \begin{exerc}[See Tao, Ex 1.1.5]
-  Complete the proof of Lemma~\ref{lem:jordan-equiv}: $E$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $A$ such that $m(E\triangle A)=0$.
+  Complete the proof of Lemma~\ref{lem:jordan-equiv}: $E$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $A$ such that $m(E\triangle A)<\epsilon$.
 \end{exerc}
 
 \begin{exerc}[Tao, Ex 1.1.6(1)]
