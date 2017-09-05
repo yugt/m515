@@ -274,7 +274,7 @@ These results give an essentially complete solution to the measure problem for e
 \end{exerc}
 
 \begin{exerc}[Tao Ex 1.1.4]
-  Show that if $A$ is an elementary subset of $\RR^m$ and $B$ is an elementary subset of $\RR^n$ then $A\times B$ is an elementary subset of $\RR^{m+n}$. Furthermore show that $m_e(A\times B)=m_e(A)m_e(B)$.
+  Show that if $E$ is an elementary subset of $\RR^m$ and $F$ is an elementary subset of $\RR^n$ then $E\times F$ is an elementary subset of $\RR^{m+n}$. Furthermore show that $m_e(E\times F)=m_e(E)m_e(F)$.
 \end{exerc}
 
 \newpage
@@ -291,12 +291,12 @@ In the previous section we showed that the intuitive definition of area is sensi
 Instead we will measure the circle the way it has always been done, by using \emph{approximation}. It is not hard to visualize a circle being approximated by elementary sets, using smaller and smaller boxes near the boundary. The approximation technique will help us measure most traditional geometric figures, and even many blobby thingies.
 
 \begin{defn}
-  Let $E$ be a bounded subset of $\RR^n$. First define the \emph{inner} and \emph{outer Jordan} measures (sometimes called lower and upper):
+  Let $A$ be a bounded subset of $\RR^n$. First define the \emph{inner} and \emph{outer Jordan} measures (sometimes called lower and upper):
   \begin{align*}
-    m_{*j}(E)&=\sup\set{m(A):A\subset E,\, A\text{ elementary}}\\
-    m^{*j}(E)&=\inf\set{m(B):E\subset B,\, B\text{ elementary}}
+    m_{*j}(A)&=\sup\set{m(E):E\subset A,\, E\text{ elementary}}\\
+    m^{*j}(A)&=\inf\set{m(F):A\subset F,\, F\text{ elementary}}
   \end{align*}
-  If $m_{*j}(E)=m^{*j}(E)$ we say that $E$ is \emph{Jordan measurable}, we call the common quantity the \emph{Jordan measure} of $E$, and we denote it by $m(E)$.
+  If $m_{*j}(A)=m^{*j}(A)$ we say that $A$ is \emph{Jordan measurable}, we call the common quantity the \emph{Jordan measure}f of $A$, and we denote it by $m(A)$.
 \end{defn}
 
 It is immediate from the definition that Jordan measure extends elementary measure in the sense that they agree on the elementary sets. This means we are justified in using ``$m$'' both for the elementary and Jordan measures. Moreover, we will show that the Jordan measure inherits many of the properties of the elementary measure: normality, translation-invariance, finite additivity, monotonicity, and finite subadditivity.
@@ -307,11 +307,10 @@ Before we begin these results, it will be useful to establish the following char
 
 \begin{lem}
   \label{lem:jordan-equiv}
-  The set $E$ is Jordan measurable if and only if either of the following holds:
+  The set $A$ is Jordan measurable if and only if either of the following holds:
   \begin{itemize}
-  \item For all $\epsilon>0$ there are elementary sets $A,B$ such that $A\subset E\subset B$ such that $m(B\setminus A)<\epsilon$.
-    % Note: for homework students should show the difference of elementary sets is elementary
-  \item For all $\epsilon>0$ there is an elementary set $A$ such that $m(E\triangle A)=0$.
+  \item For all $\epsilon>0$ there are elementary sets $E,F$ such that $E\subset A\subset F$ such that $m(F\setminus E)<\epsilon$.
+  \item For all $\epsilon>0$ there is an elementary set $E$ such that $m(E\triangle A)<\epsilon$.
   \end{itemize}
 \end{lem}
 
@@ -522,7 +521,7 @@ It is an exercise in both notation and partition management to check that $f$ is
   Complete the proof of Proposition~\ref{prop:riemann-properties}: Show that the Riemann integral satisfies the linearity and monotonicity properties. (Hint: first establish these properties for the pc integral.)
 \end{exerc}
 
-\begin{exerc}
+\begin{exerc}[Tao, Ex 1.1.22]
   Show that the Darboux version of the Riemann integral is equivalent to the Riemann version of the Riemann integral.
 \end{exerc}
 
@@ -535,7 +534,7 @@ It is an exercise in both notation and partition management to check that $f$ is
   Tao, \S1.2, first few pages
 \end{reading}
 
-The Jordan measure that we have constructed works very well for the sets that it measures. And the Riemann integral works very well for the functions that it integrates. But there are several shortcomings that we have not discussed, and several more too.
+The Jordan measure that we have constructed works very well for the sets that it measures. And the Riemann integral works very well for the functions that it integrates. But there are several shortcomings that we have discussed, and several more too.
 \begin{itemize}
 \item Unbounded sets are not Jordan measurable, and unbounded functions are not Riemann integrable
 \item There are examples of bounded sets which are open or closed, but still not Jordan measurable
@@ -543,10 +542,12 @@ The Jordan measure that we have constructed works very well for the sets that it
 \item A pointwise limit of Riemann integrable functions need not be Riemann integrable, even if it is again bounded
 \end{itemize}
 
-In this section we will tweak the definiton of Jordan measure. The resulting measure will be stronger, though it will be harder to establish that it has the properties we desire of a measure. Recalling the definition of Jordan outer measure, it is clear that we can write it as follows.
+In this section we will strenghten the definiton of Jordan measure to obtain the Lebesgue measure. The Lebesgue measure possesses stronger properties than the Jordan measure, including the ability to measure a wider class of sets. The price for this is that it will be harder to establish these properties.
+
+To begin, recall from an exercise in the Jordan measure section that we can rewrite the definition of outer Jordan measure as follows.
 \[m^{*j}(A)=\inf\set{\left.\sum_1^k \vol(B_i)\;\right|\;\text{$B_i$ are boxes and }A\subset\bigcup_1^kB_i}
 \]
-The idea of the Lebesgue measure is simply to replace the finite union and summation with a countable one.
+The idea of the Lebesgue measure is simply to replace the finite union and summation with a countable union and summation.
 
 \begin{defn}
   Let $A$ be any subset of $\RR^n$. The \emph{Lebesgue outer measure} of $A$ is
@@ -556,9 +557,9 @@ The idea of the Lebesgue measure is simply to replace the finite union and summa
 
 Notice that we have dropped the assumption that $A$ is bounded. There are many examples of unbounded sets with Lebesgue outer measure zero. In fact, every countable set has lebesgue outer measure zero.
 
-We also remark that we will not define an ``inner'' version of Lebesgue measure analogous to the Jordan inner measure. The reason is that we do not wish to assume that positive measure sets will contain any positive volume boxes. For example, the set $[0,1]\setminus\QQ$ should have a measure of $1$ but has lower Jordan measure $0$. In fact, if one replaces the finite summation from Jordan inner measure with a countable summation, then the resulting value does not change!
+We also remark that we will not define an ``inner'' version of Lebesgue measure analogous to the Jordan inner measure. The reason is that we do not wish to assume that positive measure sets will contain any positive volume boxes. For example, the set $[0,1]\setminus\QQ$ should have a measure of $1$ but has lower Jordan measure $0$. In fact, even if we replace the finite summation from Jordan inner measure with a countable summation, the resulting inner measure would still be $0$!
 
-Without an inner measure, we cannot define Lebesgue measurability simply by requiring outer measure equals inner measure. In order to find another way to define Lebesgue measurability, we recall that Jordan measurability could equivalently be stated: $A$ is Jordan measurable if and only if for all $\epsilon>0$ there exists an elementary set $E$ such that $A\subset E$ and $m^{*j}(E\setminus A)<\epsilon$.
+Without an inner measure, we cannot define Lebesgue measurability simply by requiring the outer and inner measures to agree. In order to find another way to define Lebesgue measurability, we recall from Lemma~\ref{lem:jordan-equiv} that $A$ is Jordan measurable if and only if for all $\epsilon>0$ there exists an elementary set $E$ such that $A\subset E$ and $m^{*j}(E\setminus A)<\epsilon$. This leads to the following definition.
 
 \begin{defn}
   Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists an open set $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
@@ -566,17 +567,17 @@ Without an inner measure, we cannot define Lebesgue measurability simply by requ
 
 The definition can also be written with a countable union of boxes in place of the open set $O$; this is less elegant but allows greater symmetry with our definition of Lebesgue outer measure.
 
-We will see in the rest of this section and the next that the Lebesgue measure agrees with the Jordan measure on the Jordan measurable sets, and moreover is capable of measuring significantly more sets. In fact the Lebesgue measurable sets encompass almost everything seen in real analysis and its applications, with exceptions including just certain set constructions from AC.  The Lebesgue measure also satisfies all the measure axioms that we have mentioned so far, including their countable versions.
+We will see in the rest of this section and the next that the Lebesgue measure agrees with the Jordan measure on the Jordan measurable sets, and moreover is capable of measuring significantly more sets. In fact the Lebesgue measurable sets encompass almost everything seen in real analysis and its applications, with exceptions essentially boiling down to certain Axiom of Choice constructions. The Lebesgue measure also satisfies all the measure axioms that we have mentioned so far, including their countable versions.
 
 Likewise, later on we will introduce the corresponding Lebesgue integral. This integral agrees with the Riemann integral, and is capable of integrating significantly more functions. It also has significantly stronger properties than the Riemann integral, including a countable version of linearity.
 
-Before we begin working to establish all these claims, we study the Lebesgue outer measure further. Before continuing, it is useful to lay out what properties are expected of an outer measure. The following will be referred to as the \emph{outer measure axioms}.
+Before we begin working to establish all these claims, we study the Lebesgue outer measure further. In order to proceed, it is useful to lay out what properties are expected of an outer measure. The following will be referred to as the \emph{outer measure axioms}.
 \begin{enumerate}
 \item (empty set) $m^*(\emptyset)=0$
 \item (monotonicity) If $E\subset F$ then $m^*(E)\leq m^*(F)$
 \item (countable subadditivity) $m^*(\bigcup E_n)\leq\sum m^*(E_n)$
 \end{enumerate}
-Since the outer measure applies to all sets, and we have seen there exist non-measurable sets, we do not expect it to satisfy additivity in general. Still axiom (c) is quite strong: the Jordan outer measure satisfies finite additivity but not countable subadditivity.
+Since the outer measure applies to all sets, and we have seen there exist non-measurable sets, we do not expect outer measure to satisfy countable additivity in general. Still axiom (c) is quite strong: the Jordan outer measure does not satisfy countable subadditivity.
 
 \begin{prop}
   The Lebesgue outer measure satisfies the outer measure axioms (a)--(c).
@@ -597,6 +598,10 @@ Since the outer measure applies to all sets, and we have seen there exist non-me
 The bookkeeping used in the above proof is called an ``$\epsilon/2^n$ argument'', and is used frequently in countable approximations.
 
 In the next sections we will work to address under what circumstances the Lebesgue outer measure satisfies additivity or otherwise behaves well.
+
+\begin{exerc}
+  Show that Jordan outer measure does not satisfy countable subadditivity.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
