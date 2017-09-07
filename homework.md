@@ -2,9 +2,9 @@
 
 ### Homework 2. Due Friday, September 8
 
-* Ex 3.2 ~ Tao ex 1.1.5. Show that $E$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $A$ such that $m(E\Delta A)<\epsilon$.
-* Ex 3.4 = Tao ex 1.1.12. Say that $E$ is \emph{Jordan null} if $E$ is Jordan measurable and $m(E)=0$. Show that any subset of a Jordan null set is a Jordan null set.
-* Ex 3.5. Show that the outer Jordan measure $m^{*j}(E)$ is equal to: inf{\vol(B\_1)+\cdots+\vol(B\_k) : B\_1,\ldots,B\_k are boxes and E\subset B\_1\cup\cdots\cup B\_k}.
+* Ex 3.2 ~ Tao ex 1.1.5. Show that $A$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $E$ such that $m^{*j}(E\triangle A)<\epsilon$.
+* Ex 3.4 = Tao ex 1.1.12. Say that $A$ is \emph{Jordan null} if $A$ is Jordan measurable and $m(A)=0$. Show that any subset of a Jordan null set is a Jordan null set.
+* Ex 3.5. Show that the outer Jordan measure $m^{*j}(A)$ is equal to: inf{\vol(B\_1)+\cdots+\vol(B\_k) : B\_1,\ldots,B\_k are boxes and A\subset B\_1\cup\cdots\cup B\_k}.
 * Ex 4.2 = Tao ex 1.1.23. Let $f\colon[a,b]\to\RR$. Show that if $f$ is continuous, then $f$ is Riemann integrable. Show that if $f$ is bounded and piecewise continuous, then $f$ is Riemann integrable.
 * Ex 4.3 = Tao ex 1.1.24. Show that the Riemann integral satisfies the linearity and monotonicity properties. (Hint: first establish these properties for the pc integral.)
 
