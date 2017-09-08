@@ -681,7 +681,7 @@ Up to this point, we have not yet shown that $m^*$ ever takes a nonzero value! I
   In order to assume that $E$ is closed, first write it as a finite union of disjoint boxes $C_1,\ldots,C_k$. Shrinking each $C_i$ slightly, we can find a closed box $C'_i\subset C_i$ such that $m_e(C_i\setminus C'_i)<\epsilon/k$. Replacing $E$ with $\bigcup C'_i$ we obtain a closed set as desired.
 \end{proof}
 
-As a consequence of the theorem, we now know that finite additivity holds for $m^*$ for finite unions of disjoint boxes (after all it is true for the elementary measure). In fact it also holds for finite unions of almost disjoint boxes: here two boxes are said to be \emph{almost disjoint} if they have disjoint interiors. The next result extends this from finite to countable unions.
+As a consequence of the theorem, we now know that finite additivity holds for $m^*$ for finite unions of disjoint boxes (after all it is true for the elementary measure). In fact it also holds for finite unions of almost disjoint boxes: here two boxes are said to be \emph{almost disjoint} if they have disjoint interiors. This is because the elementary measure of the boundary of a box is always zero. The next result extends this from finite to countable unions.
 
 \begin{thm}
   Suppose $B_i$ is a sequence of pairwise almost disjoint boxes. Then $m^*(\bigcup B_i)=\sum\vol(B_i)$.
@@ -718,7 +718,7 @@ The above result gives a very direct method of calculating the Lebesgue outer me
 \end{lem}
 
 \begin{proof}
-  It is clear from monotonicity of $m^*$ that $\leq$ holds. Thus it remains only to show $\geq$. Applying the definition of $m^*(A)$ we can find boxes $B_i$ such that $A\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(E)<\epsilon$. Arguing as in an earlier proof, we can enlarge the $B_i$ slightly to assume without loss of generality that they are open. Then
+  It is clear from monotonicity of $m^*$ that $\leq$ holds. Thus it remains only to show $\geq$. Applying the definition of $m^*(A)$ we can find boxes $B_i$ such that $A\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(A)<\epsilon$. Arguing as in an earlier proof, we can enlarge the $B_i$ slightly to assume without loss of generality that they are open. Then
   \begin{align*}
     m^*(A)&\geq\sum\vol(B_i)-\epsilon\\
           &\geq m^*(\bigcup B_i)\\
