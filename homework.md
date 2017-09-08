@@ -1,8 +1,16 @@
 ## Math 515 homework
 
+### Homework 3. Due Friday, September 15
+
+* Ex 5.1 = Tao ex 1.2.1. Show that the countable union of Jordan measurable sets need not be Jordan measurable, even when bounded. Show that the countable intersection of Jordan measurable sets need not be Jordan measurable.
+* Ex 5.2 = Tao ex 1.2.2. Give an example of a sequence of uniformly bounded, Riemann integrable functions on $[0,1]$ which converges pointwise to a function that is not Riemann integrable. Is it possible to give an example which converges uniformly?
+* Ex 5.3. Show that $m^\*(A)\\leq m^{\*j}(A)$. Give an example of a set $A$ such that $m^\*(A)&lt;m^{\*j}(A)$.
+* Ex 5.4. Show that Jordan outer measure does not satisfy countable subadditivity.
+* Ex 6.1 = Tao ex 1.2.5. Suppose $A$ is expressible as a countable union of pairwise almost disjoint boxes. Show that $m^\*(A)=m_{\*j}(A)$.
+
 ### Homework 2. Due Friday, September 8
 
-* Ex 3.2 ~ Tao ex 1.1.5. Show that $A$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $E$ such that $m^{*j}(E\triangle A)<\epsilon$.
+* Ex 3.2 ~ Tao ex 1.1.5. Show that $A$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $E$ such that $m^{\*j}(E\triangle A)&lt;\epsilon$.
 * Ex 3.4 = Tao ex 1.1.12. Say that $A$ is \emph{Jordan null} if $A$ is Jordan measurable and $m(A)=0$. Show that any subset of a Jordan null set is a Jordan null set.
 * Ex 3.5. Show that the outer Jordan measure $m^{*j}(A)$ is equal to: inf{\vol(B\_1)+\cdots+\vol(B\_k) : B\_1,\ldots,B\_k are boxes and A\subset B\_1\cup\cdots\cup B\_k}.
 * Ex 4.2 = Tao ex 1.1.23. Let $f\colon[a,b]\to\RR$. Show that if $f$ is continuous, then $f$ is Riemann integrable. Show that if $f$ is bounded and piecewise continuous, then $f$ is Riemann integrable.

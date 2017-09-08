@@ -528,16 +528,16 @@ It is an exercise in both notation and partition management to check that $f$ is
   Show that the pc integral is well-defined, and satisfies the normality, linearity, and monotonicity properties.
 \end{exerc}
 
+\begin{exerc}[Tao, Ex 1.1.22]
+  Let $f$ be a bounded function on the interval $[a,b]$. Then $f$ is integrable in the Darboux sense if and only if $f$ is integrable in the classical Riemann sense, and in this case the two values agree.
+\end{exerc}
+
 \begin{exerc}[Tao, Ex 1.1.23]
   Let $f\colon[a,b]\to\RR$. Show that if $f$ is continuous, then $f$ is Riemann integrable. Show that if $f$ is bounded and piecewise continuous, then $f$ is Riemann integrable.
 \end{exerc}
 
 \begin{exerc}[Tao, Ex 1.1.24]
   Complete the proof of Proposition~\ref{prop:riemann-properties}: Show that the Riemann integral satisfies the linearity and monotonicity properties. (Hint: first establish these properties for the pc integral.)
-\end{exerc}
-
-\begin{exerc}[Tao, Ex 1.1.22]
-  Let $f$ be a bounded function on the interval $[a,b]$. Then $f$ is integrable in the Darboux sense if and only if $f$ is integrable in the classical Riemann sense, and in this case the two values agree.
 \end{exerc}
 
 \newpage
@@ -614,9 +614,23 @@ The bookkeeping used in the above proof is called an ``$\epsilon/2^n$ argument''
 
 In the next sections we will work to address under what circumstances the Lebesgue outer measure satisfies additivity or otherwise behaves well.
 
+\begin{exerc}[Tao, Ex 1.2.1]
+  Show that the countable union of Jordan measurable sets need not be Jordan measurable, even when bounded. Show that the countable intersection of Jordan measurable sets need not be Jordan measurable.
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.2.2]
+  Give an example of a sequence of uniformly bounded, Riemann integrable functions on $[0,1]$ which converges pointwise to a function that is not Riemann integrable. Is it possible to give an example which converges uniformly?
+\end{exerc}
+
+\begin{exerc}
+  Show that $m^*(A)\leq m^{*j}(A)$. Give an example of a set $A$ such that $m^*(A)<m^{*j}(A)$.
+\end{exerc}
+
 \begin{exerc}
   Show that Jordan outer measure does not satisfy countable subadditivity.
 \end{exerc}
+
+% Show that the Jordan inner measure is the same if you use infinitely many sets.
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -629,7 +643,9 @@ In the next sections we will work to address under what circumstances the Lebesg
 
 We have shown that the Lebesgue outer measure satisfies countable subadditivity. We are really interested in additivity, but we know that even the finite additivity axiom cannot hold for all sets. In the end, we will prove that countable additivity is true for measurable sets. For the moment, we will be satisfied with the following version of additivity which holds in special cases.
 
-%% But when is this used??
+% But when is this used??
+% Ans: this is used way down in showing closed sets are Lebesgue measurable.
+% Not sure where to place it.
 
 \begin{lem}
   Suppose that $A,B$ are separated, that is, that $d(A,B)=\inf\set{d(x,y)\mid x\in A, y\in B}>0$. Then $m^*(A\cup B)=m^*(A)+m^*(B)$.
@@ -649,20 +665,20 @@ We have shown that the Lebesgue outer measure satisfies countable subadditivity.
   In the general case, we can reduce to the easy one by partitioning each $B_i$ into smaller boxes, each with diameter smaller than $d(A,B)$. Once this is done, each new box meets at most one of $A,B$ and we may proceed as above.
 \end{proof}
 
-Up to this point, we have not yet shown that $m^*$ ever takes a nonzero value! In fact $m^*$ satisfies a normality axiom that the outer measure of an elementary is equal to its elementary measure. When we proved this property for Jordan measure, we started by showing that one cannot partition an interval into finitely many subintervals whose lengths somehow add up to less than the original. For countable partitions this is intuitively still true, but much harder to show!
+Up to this point, we have not yet shown that $m^*$ ever takes a nonzero value! In fact $m^*$ satisfies a strong normality axiom, which states that the outer measure of an elementary set is equal to its elementary measure. When we proved this property for Jordan measure, we started by showing that one cannot partition an interval into finitely many subintervals whose lengths somehow add up to less than the original. For countable partitions this is intuitively still true, but much harder to show!
 
 \begin{thm}
-  If $A$ is an elementary subset of $\RR^n$, then $m^*(A)$ agrees with the elementary measure $m_e(A)$.
+  If $E$ is an elementary subset of $\RR^n$, then $m^*(E)$ agrees with the elementary measure $m_e(E)$.
 \end{thm}
 
 \begin{proof}
-  It is clear that $m^*(A)\leq m_e(A)$, since $A$ is itself a union of boxes whose volumes sum to $m(A)$. Thus it remains only to show $m^*(A)\geq m_e(A)$. Appealing to the definition of $m^*(A)$, given any $\epsilon>0$ we can find boxes $B_i$ such that $A\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(A)<\epsilon$. Rearranging, this says $m^*(A)>\sum\vol(B_i)-\epsilon$. Now we would like to say that $\sum\vol(B_i)\geq m_e(A)$, but unfortunately the elementary measure is only \emph{finitely} subadditive.
+  It is clear that $m^*(E)\leq m_e(E)$, since $A$ is itself a union of boxes whose volumes sum to $m(E)$. Thus it remains only to show $m^*(E)\geq m_e(E)$. Appealing to the definition of $m^*(E)$, given any $\epsilon>0$ we can find boxes $B_i$ such that $E\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(E)<\epsilon$. Rearranging, this says $m^*(E)>\sum\vol(B_i)-\epsilon$. Now we would like to say that $\sum\vol(B_i)\geq m_e(E)$, but unfortunately the elementary measure is only \emph{finitely} subadditive.
 
-  In order to proceed, let us temporarily assume that $A$ is closed and the $B_i$ are open. Then by the compactness of $A$, just finitely many of the $B_i$ are needed to cover $A$. Thus the argument of the previous paragraph works in this case!
+  In order to proceed, let us temporarily assume that $E$ is closed and the $B_i$ are open. We recall that any closed and bounded set is \emph{compact}, and that any covering of a compact set by open sets has a finite subcovering. Thus under these assumptions, we have that just finitely many of the $B_i$ are needed to cover $E$. Thus the argument of the previous paragraph works in this case!
 
-  In order to assume that the $B_i$ are open, we can enlarge each slightly and find an open box $B'_i$ such that $B_i\subset B'_i$ and $\vol(B'_i)-\vol(B_i)<\epsilon/2^n$.
+  In order to assume that the $B_i$ are open, we can enlarge each slightly and find an open box $B'_i$ such that $B_i\subset B'_i$ and $\vol(B'_i)-\vol(B_i)<\epsilon/2^i$.
 
-  In order to assume that $A$ is closed, first write it as a finite union of disjoint boxes $C_1,\ldots C_k$. Shrinking each $C_i$ slightly, we can find a closed box $C'_i\subset C_i$ such that $m_e(C_i\setminus C'_i)<\epsilon/k$. Replacing $A$ with $\bigcup C'_i$ we obtain a closed set as desired.
+  In order to assume that $E$ is closed, first write it as a finite union of disjoint boxes $C_1,\ldots,C_k$. Shrinking each $C_i$ slightly, we can find a closed box $C'_i\subset C_i$ such that $m_e(C_i\setminus C'_i)<\epsilon/k$. Replacing $E$ with $\bigcup C'_i$ we obtain a closed set as desired.
 \end{proof}
 
 As a consequence of the theorem, we now know that finite additivity holds for $m^*$ for finite unions of disjoint boxes (after all it is true for the elementary measure). In fact it also holds for finite unions of almost disjoint boxes: here two boxes are said to be \emph{almost disjoint} if they have disjoint interiors. The next result extends this from finite to countable unions.
@@ -688,12 +704,14 @@ We are finally making some progress: for unions of almost disjoint sequences of 
 \end{prop}
 
 \begin{proof}
-  Consider the family $\mathcal Q$ of \emph{dyadic cubes}, that is, cubes with each side of the form $[m/2^n,(m+1)/2^n]$ where $m\leq 2^n$. The family $\mathcal Q$ has the nesting property, that is, any two such cubes are almost disjoint or else one is contained in the other.
+  Consider the family $\mathcal Q$ of \emph{dyadic cubes}, that is, cubes with each side of the form $[m/2^n,(m+1)/2^n]$ where $n\geq0$. The family $\mathcal Q$ has a \emph{nesting property}: for any two cubes in $\mathcal Q$, either one is contained in the other or else the two cubes are almost disjoint.
 
-  It is not difficult to observe that $\mathcal Q$ is a basis for the topology of $\RR^n$. In particular, for any $x\in O$ there exists a cube $B_x\in\mathcal Q$ such that $x\in B_x\subset O$. Thu union of all $B_x$ for $x\in O$ is a covering of $O$ by dyadic cubes. Now eliminate duplicates from this covering, that is, remove any cube in the covering that is contained in some other cube of the covering. Since we have bounded the sizes of the cubes, there will still be maximal cubes left over. The result is a covering of $O$ by pairwise almost disjoint dyadic cubes.
+  It is not difficult to observe that $\mathcal Q$ is a basis for the topology of $\RR^n$. In particular, for any $x\in O$ there exists a cube $B_x\in\mathcal Q$ such that $x\in B_x\subset O$. Thu union of all $B_x$ for $x\in O$ is a covering of $O$ by dyadic cubes. Now we eliminate duplicates from this covering, that is, remove any cube in the covering that is contained in some other cube of the covering. Since any nested chain of cubes has a maximal element, the cubes which remain will still cover $O$. And by the nesting property, the cubes which remain will also be almost disjoint.
 \end{proof}
 
 The above result gives a very direct method of calculating the Lebesgue outer measure (and hence the Lebesgue measure) of any open set! We close this section with the following so-called ``outer regularity lemma'', which shows that the Lebesgue outer measure is determined by its values on the open sets. When combined with the previous result, this gives a kind of general formula for the outer measure.
+
+% And where is this one used? Consider moving it.
 
 \begin{lem}
   Let $A$ be any subset of $\RR^n$. Then $m^*(A)=\inf\set{m^*(O)\mid\text{$O$ is open and }A\subset O}$.
@@ -710,6 +728,16 @@ The above result gives a very direct method of calculating the Lebesgue outer me
 \end{proof}
 
 In the next section we will use these partial results to conclude that the Lebesgue (outer) measure always behaves well on the measurable sets.
+
+\begin{exerc}[Tao, Ex 1.2.5]
+  Suppose $A$ is expressible as a countable union of pairwise almost disjoint boxes. Show that $m^*(A)=m_{*j}(A)$.
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.2.6]
+  Show that it is not true in general that
+  \[m^*(A)=\sup\set{m^*(O)\mid\text{$O$ is open and }O\subset A}
+  \]
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
