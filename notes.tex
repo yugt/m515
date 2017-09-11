@@ -643,11 +643,10 @@ In the next sections we will work to address under what circumstances the Lebesg
 
 We have shown that the Lebesgue outer measure satisfies countable subadditivity. We are really interested in additivity, but we know that even the finite additivity axiom cannot hold for all sets. In the end, we will prove that countable additivity is true for measurable sets. For the moment, we will be satisfied with the following version of additivity which holds in special cases.
 
-% But when is this used??
-% Ans: this is used way down in showing closed sets are Lebesgue measurable.
-% Not sure where to place it.
+% This is not used this section. It's actually in 7 in showing closed sets are Lebesgue measurable. And again in 8 to show additivity I think. Not sure where to sequence it... Maybe later this section.
 
 \begin{lem}
+  \label{lem:separated}
   Suppose that $A,B$ are separated, that is, that $d(A,B)=\inf\set{d(x,y)\mid x\in A, y\in B}>0$. Then $m^*(A\cup B)=m^*(A)+m^*(B)$.
 \end{lem}
 
@@ -748,7 +747,7 @@ In the next section we will use these partial results to conclude that the Lebes
   Tao, \S 1.2.2.
 \end{reading}
 
-Recall that a set $E$ is called Lebesgue measurable if it can be well-approximated from the outside by open sets. That is, if for all $\epsilon>0$ there is an open set $O$ such that $m^*(O\setminus E)<\epsilon$. In the last section we saw that open sets can be written as unions of boxes, and it turns out one may replace $O$ with a union of boxes in the definition.
+Recall that a set $A$ is called Lebesgue measurable if it can be well-approximated from the outside by open sets. That is, if for all $\epsilon>0$ there is an open set $O$ such that $m^*(O\setminus A)<\epsilon$. In the last section we saw that open sets can be written as unions of boxes, and it turns out one may replace $O$ with a union of boxes in the definition.
 
 It is tautological from the definition of measurability that open sets are Lebesgue measurable. In the next result we work to establish that many, many other sets are Lebesgue measurable too.
 
@@ -759,26 +758,26 @@ It is tautological from the definition of measurability that open sets are Lebes
 \begin{proof}
   We have already established that open sets are Lebesgue measurable.
 
-  For countable unions, suppose that $E_n$ are Lebesgue measurable. Given $\epsilon>0$, find open sets $O_n$ such that $E_n\subset O_n$ and $m^*(O_n\setminus E_n)<\epsilon/2^n$. Then we have
+  For countable unions, suppose that $A_n$ are Lebesgue measurable. Given $\epsilon>0$, find open sets $O_n$ such that $A_n\subset O_n$ and $m^*(O_n\setminus A_n)<\epsilon/2^n$. Then we have
   \begin{align*}
-    m^*(\bigcup O_n\smallsetminus\bigcup E_n)
-    &\leq m^*(\bigcup O_n\setminus E_n)\\
-    &\leq \sum m^*(O_n\setminus E_n)\\
+    m^*(\bigcup O_n\smallsetminus\bigcup A_n)
+    &\leq m^*(\bigcup O_n\setminus A_n)\\
+    &\leq \sum m^*(O_n\setminus A_n)\\
     &\leq \sum \epsilon/2^n=2\epsilon
   \end{align*}
-  This shows that $\bigcup E_n$ is measurable.
+  This shows that $\bigcup A_n$ is measurable.
 
-  For closed sets, assume first that $E$ is closed and bounded, and thus compact. Using the outer regularity lemma we can find an open set $O$ such that $E\subset O$ and $m^*(O)-m^*(E)<\epsilon$. We wish to show that $m^*(O\setminus E)<\epsilon$ too. Since $O\setminus E$ is open, we can write it as an almost disjoint union of closed dyadic cubes $C_n$. Then $\bigcup_1^N C_n$ is compact and thus separated from the compact set $E$. We proved that additivity holds for separated sets, so we have:
+  For closed sets, assume first that $A$ is closed and bounded, and thus compact. Using the outer regularity lemma we can find an open set $O$ such that $A\subset O$ and $m^*(O)-m^*(A)<\epsilon$. We wish to show that $m^*(O\setminus A)<\epsilon$ too. Since $O\setminus A$ is open, we can write it as an almost disjoint union of closed dyadic cubes $C_n$. Then $\bigcup_1^N C_n$ is compact and thus separated from the compact set $E$. By Lemma~\ref{lem:separated}, additivity holds for separated sets, so we have:
   \begin{align*}
-    m^*(E)+m^*(\bigcup_1^NC_i)&=m^*(E\cup\bigcup_1^NC_i)\\
+    m^*(A)+m^*(\bigcup_1^N C_i)&=m^*(A\cup\bigcup_1^N C_i)\\
                               &\leq m^*(O)\\
-                              &<m^*(E)+\epsilon
+                              &<m^*(A)+\epsilon
   \end{align*}
-  It follows that $\sum_1^N\vol(C_i)=m^*(\bigcup_1^NC_i)<\epsilon$, and taking $N\to\infty$ we have $\sum\vol(C_i)\leq\epsilon$. This shows that $m^*(O\setminus E)\leq\epsilon$, as desired.
+  It follows that $\sum_1^N\vol(C_i)=m^*(\bigcup_1^NC_i)<\epsilon$, and taking $N\to\infty$ we have $\sum\vol(C_i)\leq\epsilon$. This shows that $m^*(O\setminus A)\leq\epsilon$, as desired.
 
   In general a closed set can be written as a countable union of compact sets, and we have already handled the case of countable unions.
 
-  For complements, let $E$ be measurable and for each $n$ find an open set $O_n$ such that $E\subset O_n$ and $m^*(O_n\setminus E)<1/n$. Then we have $m^*(\bigcap O_n\setminus E)=0$. Meanwhile taking complements we have $\bigcup O_n^c\subset E^c$ and $m^*(E^c\setminus\bigcup O_n^c)=0$. In particular $E^c$ can be expressed as a union of the two measurable sets $\bigcup O_n^c$ and $E^c\setminus\bigcup O_n^c$. Thus $E^c$ is measurable too.
+  For complements, let $A$ be measurable and for each $n$ find an open set $O_n$ such that $A\subset O_n$ and $m^*(O_n\setminus A)<1/n$. Then we have $m^*(\bigcap O_n\setminus A)=0$. Meanwhile taking complements we have $\bigcup O_n^c\subset A^c$ and $m^*(A^c\setminus\bigcup O_n^c)=0$. In particular $A^c$ can be expressed as a union of the two measurable sets $\bigcup O_n^c$ and $A^c\setminus\bigcup O_n^c$. Thus $A^c$ is measurable too.
 
   For countable intersections, we can simply apply Demorgan's laws to reduce it to complements and countable unions. Whew!
 \end{proof}
@@ -801,23 +800,23 @@ We now know that Borel sets are Lebesgue measurable, null sets are Lebesgue meas
 We conclude this section with some useful equivalents of Lebesgue measurability, similar to the ones we developed for Jordan measurability. The following result implies that the Lebesgue measurable sets can be characterized as those which are ``almost open.''
 
 \begin{lem}
-  A set $E$ is Lebesgue measurable if and only if for all $\epsilon>0$ there exists an open set $O$ such that $m^*(O\triangle E)<\epsilon$.
+  A set $A$ is Lebesgue measurable if and only if for all $\epsilon>0$ there exists an open set $O$ such that $m^*(O\triangle A)<\epsilon$.
 \end{lem}
 
 \begin{proof}
-  Our original definition of Lebesgue measurability automatically gives an open set $O$ such that $m^*(O\triangle E)<\epsilon$. Conversely, let $E$ be any set and suppose the condition holds. Then for any $\epsilon$ we can find an open set $O_\epsilon$ such that $m^*(O_\epsilon\triangle E)<\epsilon$. Let $U_\epsilon=\bigcup O_{\epsilon/2^k}$. Then it is not difficult to check that $m^*(U_\epsilon\setminus E)\leq\epsilon$, and $m^*(E\setminus U_\epsilon)=0$. Finally letting $F=\bigcap_nU_{1/n}$ we have that $F$ is a measurable set and both $m^*(E\setminus F)=0$ and $m^*(F\smallsetminus E)=0$. We have thus shown that $E$ differs from a measurable set by a null set, and we leave it as an exercise to check that this implies $E$ is measurable too.
+  Our original definition of Lebesgue measurability automatically gives an open set $O$ such that $m^*(O\triangle A)<\epsilon$. Conversely, let $A$ be any set and suppose the condition holds. Then for any $\epsilon$ we can find an open set $O_\epsilon$ such that $m^*(O_\epsilon\triangle E)<\epsilon$. Let $U_\epsilon=\bigcup O_{\epsilon/2^k}$. Then it is not difficult to check that $m^*(U_\epsilon\setminus A)\leq\epsilon$, and $m^*(A\setminus U_\epsilon)=0$. Finally letting $B=\bigcap_nU_{1/n}$ we have that $B$ is a measurable set and both $m^*(A\setminus B)=0$ and $m^*(B\smallsetminus A)=0$. We have thus shown that $A$ differs from a measurable set by a null set, and we leave it as an exercise to check that this implies $A$ is measurable too.
 \end{proof}
 
 Perhaps even more surprising, the Lebesgue measurable sets of finite measure can be characterized as those which are ``almost elementary''.
 
 \begin{lem}
-  A set $E$ is Lebesgue measurable with finite Lebesgue measure if and only if for all $\epsilon>0$ there exists an elementary set $A$ such that $m^*(A\triangle E)<\epsilon$.
+  A set $A$ is Lebesgue measurable with finite Lebesgue measure if and only if for all $\epsilon>0$ there exists an elementary set $E$ such that $m^*(E\triangle A)<\epsilon$.
 \end{lem}
 
 \begin{proof}
-  Suppose that $E$ is Lebesgue measurable and let $\epsilon>0$ be given. Let $O$ be an open set such that $E\subset O$ and $m^*(O\setminus E)<\epsilon$. Then $O$ can be written as a union of almost disjoint boxes $O=\bigcup B_i$, and we know that $m(O)=\sum\vol(B_i)$.
+  Suppose that $A$ is Lebesgue measurable and let $\epsilon>0$ be given. Let $O$ be an open set such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. Then $O$ can be written as a union of almost disjoint boxes $O=\bigcup B_i$, and we know that $m(O)=\sum\vol(B_i)$.
 
-  Now $m(O)<m(E)+\epsilon$ and the right-hand side is finite, so the sum $\sum\vol(B_i)$ converges. Thus there exists some $N$ such that $\sum_{N+1}^\infty\vol(B_i)<\epsilon$. Letting $A=\bigcup_1^NB_i$, we have that $A$ is elementary and $m(O\setminus A)<\epsilon$. Thus we have
+  Now $m(O)<m(A)+\epsilon$ and the right-hand side is finite, so the sum $\sum\vol(B_i)$ converges. Thus there exists some $N$ such that $\sum_{N+1}^\infty\vol(B_i)<\epsilon$. Letting $E=\bigcup_1^N B_i$, we have that $E$ is elementary and $m(O\setminus E)<\epsilon$. Thus we have
   \begin{align*}
     m^*(E\triangle A)&=m^*(E\setminus A)+m^*(A\setminus E)\\
                      &\leq m^*(O\setminus A)+m^*(O\setminus E)\\
@@ -837,35 +836,35 @@ We have now established many useful properties of the outer measure $m^*$ and sh
   Tao, \S 1.2.2
 \end{reading}
 
-In the previous section we established that many sets are Lebesgue measurable. When $E$ is Lebesgue measurable we simply write $m(E)$ for $m^*(E)$, and we call $m$ the \emph{Lebesgue measure}. We are finally ready to prove that the Lebesgue measure satisfies the requirements of a measure that we laid out in the first section, at least with respect to the Lebesgue measurable sets.
+In the previous section we established that many sets are Lebesgue measurable. When $A$ is Lebesgue measurable we simply write $m(A)$ for $m^*(A)$, and we call $m$ the \emph{Lebesgue measure}. We are finally ready to prove that the Lebesgue measure satisfies the requirements of a measure that we laid out in the first section, at least when they are applied to Lebesgue measurable sets.
 
 \begin{thm}
   The Lebesge measure satisfies the axioms
   \begin{enumerate}
-  \item (normality) if $B$ is a box then $m(B)=\vol(B)$
-  \item (translation-invariance) $m(E+x)=m(E)$ for every measurable set $E$
-  \item (countable additivity) $m(\bigcup E_n)=\sum m(E_n)$ for every sequence of pairwise disjoint measurable sets $E_n$
+  \item (normality) if $B$ is a box then $m(B)=\vol(B)$;
+  \item (translation-invariance) $m(x+A)=m(A)$ for every $x\in\RR^n$ and measurable set $A$;
+  \item (countable additivity) $m(\bigcup A_n)=\sum m(A_n)$ for every sequence of pairwise disjoint measurable sets $A_n$.
   \end{enumerate}
 \end{thm}
 
 \begin{proof}
-  We have already established normality for $m=m^*$, and translation-invariance is clear from the definitions.
+  We have already established normality for $m^*$ and hence for $m$. Translation-invariance of $m^*$ is clear from the definition since it is clear for boxes.
 
-  For countable additivity, first recall that we always have subadditivity so we need only show $m(\bigcup E_n)\geq\sum m(E_n)$. Suppose first that the $E_n$ are compact. Then they are pairwise separated, so by induction we can establish that $m(\bigcup_1^NE_n)=\sum_1^Nm(E_n)$. It follows that $m(\bigcup E_n)\geq\sum_1^Nm(E_n)$. Taking $N\to\infty$ we have $m(\bigcup E_n)\geq\sum m(E_n)$ as desired.
+  For countable additivity, first recall that we always have subadditivity so we need only show $m(\bigcup A_n)\geq\sum m(A_n)$. Suppose first that the $A_n$ are compact. Then they are pairwise separated, so using Lemma~\ref{lem:separated} inductively we can establish that $m(\bigcup_1^N A_n)=\sum_1^N m(A_n)$. It follows that $m(\bigcup A_n)\geq\sum_1^Nm(A_n)$. Taking $N\to\infty$ we have $m(\bigcup A_n)\geq\sum m(A_n)$ as desired.
 
-  Next assume that the $E_n$ are bounded but not necessarily closed. By the measurability of $E_n^c$ we can find open sets $O_n$ such that $E_n^c\subset O_n$ and $m^*(O_n\setminus E_n^c)<\epsilon/2^n$. Taking complements we thus have compact sets $K_n\subset E_n$ such that $m^*(E_n\setminus K_n)<\epsilon/2^n$. Now using the additivity for compact sets,
+  Next assume that the $A_n$ are bounded but not necessarily closed. By the measurability of $A_n^c$ we can find open sets $O_n$ such that $A_n^c\subset O_n$ and $m^*(O_n\setminus A_n^c)<\epsilon/2^n$. Taking complements we thus have compact sets $K_n\subset E_n$ such that $m^*(A_n\setminus K_n)<\epsilon/2^n$. Now using the additivity for compact sets,
   \begin{align*}
-    m(\bigcup E_n)&\geq m(\bigcup K_n)\\
+    m(\bigcup A_n)&\geq m(\bigcup K_n)\\
                   &=\sum m(K_n)\\
-                  &\geq\sum(m(E_n)-\epsilon/2^n)\\
-                  &=\sum m(E_n)-\epsilon
+                  &\geq\sum(m(A_n)-\epsilon/2^n)\\
+                  &=\sum m(A_n)-\epsilon
   \end{align*}
   Taking $\epsilon\to0$, we are finished in this case.
 
-  Finally for general $E_n$, decompose $\RR^d$ into disjoint bounded cells $A_m$. Then $E_n=\bigcup_mE_n\cap A_m$.
+  Finally for general $E_n$, decompose $\RR^d$ into disjoint bounded cells $C_m$. Then $A_n=\bigcup_m A_n\cap C_m$. Now the sets $A_n\cap C_n$ are bounded, so applying the result for bounded sets twice we have:
   \begin{align*}
-    m(\bigcup E_n)&=\sum_n\sum_mm(E_n\cap A_m)\\
-                  &=\sum m(E_n)
+    m(\bigcup A_n)&=\sum_n\sum_m m(A_n\cap C_m)\\
+                  &=\sum_n m(A_n)
   \end{align*}
   and the proof is complete.
 \end{proof}
@@ -873,30 +872,32 @@ In the previous section we established that many sets are Lebesgue measurable. W
 We have now established the existence and all of the promised axioms of the Lebesgue measure. Additional useful properties can be derived from the axioms, such as the following result concerning continuity of the measure function.
 
 \begin{thm}
+  \label{thm:mct}
   \begin{itemize}
-  \item (upwards monotone convergence theorem) If $E_n$ are measurable and $E_n\subset E_{n+1}$ then $m(\bigcup E_n)=\lim m(E_n)$.
-  \item (downwards monotone convergence theorem) If $E_n$ are measurable and $E_{n+1}\subset E_n$ then $m(\bigcap E_n)=\lim m(E_n)$, provided some $E_n$ has finite measure.
+  \item (upwards monotone convergence theorem) If $A_n$ are measurable and $A_n\subset A_{n+1}$ then $m(\bigcup A_n)=\lim m(A_n)$.
+  \item (downwards monotone convergence theorem) If $A_n$ are measurable and $A_{n+1}\subset A_n$ then $m(\bigcap A_n)=\lim m(A_n)$, provided some $A_n$ has finite measure.
   \end{itemize}
 \end{thm}
 
 \begin{proof}
-  For the upwards MCT, let $E'_n=E_n\setminus E_{n-1}$ and note that the $E'_n$ are disjoint and have the same union $\bigcup E'_n=\bigcup E_n$. As a base case we let $E_0=\emptyset$. Applying countable additivity, we now have
+  For the upwards MCT, let $A'_n=A_n\setminus A_{n-1}$ and note that the $A'_n$ are disjoint and have the same union as before: $\bigcup A'_n=\bigcup A_n$. Note that we implicitly set the value $A_0=\emptyset$. Applying countable additivity, we now have
   \begin{align*}
-    m(\bigcup E_n)&=m(\bigcup E'_n)\\
-                  &=\sum m(E'_n)\\
-                  &=\sum m(E_n)-m(E_{n-1})\\
-                  &=\lim_N\sum_1^N m(E_n)-m(E_{n-1})\\
-                  &=\lim_N m(E_N)
+    m(\bigcup A_n)&=m(\bigcup A'_n)\\
+                  &=\sum m(A'_n)\\
+                  &=\sum m(A_n)-m(A_{n-1})\\
+                  &=\lim_N \sum_1^N m(A_n)-m(A_{n-1})\\
+                  &=\lim_N m(A_N)
   \end{align*}
-  The last equality holds simply by telescoping cancellation, and gives us the desired result.
+  The last equality holds simply by telescoping cancellation.
 
-  For the downwards MCT, we can suppose without loss of generality that $E_1$ has finite measure. We thus take complements inside $E_1$ to obtain the sequence $F_n=E_1\setminus E_n$. Then the $F_n$ form an increasing sequence and $\bigcup F_n=E_1\setminus\bigcap E_n$. Using the upwards MCT, we now have
+  For the downwards MCT, we can suppose without loss of generality that $A_1$ has finite measure. We thus take complements inside $A_1$ to obtain the sequence $B_n=A_1\setminus A_n$. Then the $B_n$ form an increasing sequence and $\bigcup B_n=A_1\setminus\bigcap A_n$. Using this and the upwards MCT, we now have
   \begin{align*}
-    m(E_1)&=m(\bigcap E_n)+m(\bigcup F_n)\\
-          &=m(\bigcap E_n)+\lim m(F_n)\\
-          &=m(\bigcap E_n)+m(E_1)-\lim m(E_n)
+    m(A_1)&=m(\bigcap A_n)+m(\bigcup B_n)\\
+          &=m(\bigcap A_n)+\lim m(B_n)\\
+          &=m(\bigcap A_n)+\lim (m(A_1)-m(A_n))\\
+          &=m(\bigcap A_n)+m(A_1)-\lim m(A_n)
   \end{align*}
-  Cancelling the $m(E_1)$ from the first and last expression, we obtain that $0=m(\bigcap E_n)-\lim m(E_n)$, which implies the desired result.
+  Cancelling the $m(A_1)$ from the first and last expression, we obtain that $0=m(\bigcap A_n)-\lim m(A_n)$, which implies the desired result.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
