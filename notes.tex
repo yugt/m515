@@ -577,10 +577,10 @@ We also remark that we will not define an ``inner'' version of Lebesgue measure 
 Without an inner measure, we cannot define Lebesgue measurability simply by requiring the outer and inner measures to agree. In order to find another way to define Lebesgue measurability, we recall from an earlier exercise that $A$ is Jordan measurable if and only if for all $\epsilon>0$ there exists an elementary set $E$ such that $A\subset E$ and $m^{*j}(E\setminus A)<\epsilon$. This leads to the following definition.
 
 \begin{defn}
-  Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists an open set $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
+  Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists a sequence of boxes $B_i$ such that $A\subset\bigcup B_i$ and $m^*(\bigcup B_i\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
 \end{defn}
 
-The definition can also be written with a countable union of boxes in place of the open set $O$; this is less elegant but allows greater symmetry with our definition of Lebesgue outer measure.
+Most sources actually define $A$ to be Lebesgue measurable if for every $\epsilon>0$ there exists an \emph{open set} $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. While this definition using open sets is more elegant, our official definition using unions of boxes agrees more closely with our definition of Lebesgue outer measure. Our work of the next few sections will reveal how to show that these two definitions are equivalent.
 
 We will see in the rest of this section and the next that the Lebesgue measure agrees with the Jordan measure on the Jordan measurable sets, and moreover is capable of measuring significantly more sets. In fact the Lebesgue measurable sets encompass almost everything seen in real analysis and its applications, with exceptions essentially boiling down to certain Axiom of Choice constructions. The Lebesgue measure also satisfies all the measure axioms that we have mentioned so far, including their countable versions.
 
@@ -699,6 +699,7 @@ As a consequence of the theorem, we now know that finite additivity holds for $m
 We are finally making some progress: for unions of almost disjoint sequences of boxes, the additivity property holds and the measure of the union is equal to the expected quantity. This leads one to ask what kinds of sets can be written as unions of almost disjoint sequences of boxes, and the following result shows this at least includes the open sets.
 
 \begin{prop}
+  \label{prop:open-decomp}
   Any open set $O$ can be written as a union of a sequence of pairwise almost disjoint boxes.
 \end{prop}
 
@@ -748,16 +749,14 @@ In the next section we will use these partial results to conclude that the Lebes
   Tao, \S 1.2.2.
 \end{reading}
 
-Recall that a set $A$ is called Lebesgue measurable if it can be well-approximated from the outside by open sets. That is, if for all $\epsilon>0$ there is an open set $O$ such that $m^*(O\setminus A)<\epsilon$. In the last section we saw that open sets can be written as unions of boxes, and it turns out one may replace $O$ with a union of boxes in the definition.
-
-It is tautological from the definition of measurability that open sets are Lebesgue measurable. In the next result we work to establish that many, many other sets are Lebesgue measurable too.
+Recall that a set $A$ is called Lebesgue measurable if it can be well-approximated from the outside by a countable union of boxes: for all $\epsilon>0$ there is a sequence of boxes $B_i$ such that $A\subset\bigcup B_i$ and $m^*(\bigcup B_i\setminus A)<\epsilon$. In particular, this implies tautologically that countable unions of boxes are Lebesgue measurable. In the next result we work to establish that many, many other sets are Lebesgue measurable too.
 
 \begin{thm}
   Open and closed sets are Lebesgue measurable. Complements, countable unions, and countable intersections of measurable sets are measurable.
 \end{thm}
 
 \begin{proof}
-  We have already established that open sets are Lebesgue measurable.
+  Since the boxes form a base for the topology of $\RR^n$, any open set can be written as a union of boxes. (Or see Proposition~\ref{prop:open-decomp}.) Thus by the remark above, open sets are Lebesgue measurable.
 
   For countable unions, suppose that $A_n$ are Lebesgue measurable. Given $\epsilon>0$, find open sets $O_n$ such that $A_n\subset O_n$ and $m^*(O_n\setminus A_n)<\epsilon/2^n$. Then we have
   \begin{align*}
@@ -768,7 +767,7 @@ It is tautological from the definition of measurability that open sets are Lebes
   \end{align*}
   This shows that $\bigcup A_n$ is measurable.
 
-  For closed sets, assume first that $A$ is closed and bounded, and thus compact. Using the outer regularity lemma we can find an open set $O$ such that $A\subset O$ and $m^*(O)-m^*(A)<\epsilon$. We wish to show that $m^*(O\setminus A)<\epsilon$ too. Since $O\setminus A$ is open, we can write it as an almost disjoint union of closed dyadic cubes $C_n$. Then $\bigcup_1^N C_n$ is compact and thus separated from the compact set $E$. By Lemma~\ref{lem:separated}, additivity holds for separated sets, so we have:
+  For closed sets, assume first that $A$ is closed and bounded, and thus compact. Using the outer regularity lemma we can find an open set $O$ such that $A\subset O$ and $m^*(O)-m^*(A)<\epsilon$. We wish to show that $m^*(O\setminus A)<\epsilon$ too. Since $O\setminus A$ is open, we can use Proposition~\ref{prop:open-decomp} to write $O\setminus A$ as an almost disjoint union of closed dyadic cubes $C_n$. Then $\bigcup_1^N C_n$ is compact and thus separated from the compact set $A$. By Lemma~\ref{lem:separated}, additivity holds for separated sets, so we have:
   \begin{align*}
     m^*(A)+m^*(\bigcup_1^N C_i)&=m^*(A\cup\bigcup_1^N C_i)\\
                               &\leq m^*(O)\\
