@@ -630,6 +630,10 @@ In the next sections we will work to address under what circumstances the Lebesg
   Show that Jordan outer measure does not satisfy countable subadditivity.
 \end{exerc}
 
+\begin{exerc}
+  Show that if $A$ is Lebesgue null, that is, $m^*(A)=0$, then $A$ is Lebesgue measurable.
+\end{exerc}
+
 % Show that the Jordan inner measure is the same if you use infinitely many sets.
 
 \newpage
@@ -777,7 +781,7 @@ Recall that a set $A$ is called Lebesgue measurable if it can be well-approximat
 
   In general a closed set can be written as a countable union of compact sets, and we have already handled the case of countable unions.
 
-  For complements, let $A$ be measurable and for each $n$ find an open set $O_n$ such that $A\subset O_n$ and $m^*(O_n\setminus A)<1/n$. Then we have $m^*(\bigcap O_n\setminus A)=0$. Meanwhile taking complements we have $\bigcup O_n^c\subset A^c$ and $m^*(A^c\setminus\bigcup O_n^c)=0$. In particular $A^c$ can be expressed as a union of the two measurable sets $\bigcup O_n^c$ and $A^c\setminus\bigcup O_n^c$. Thus $A^c$ is measurable too.
+  For complements, let $A$ be measurable and for each $n$ find a union of boxes $U_n$ such that $A\subset U_n$ and $m^*(U_n\setminus A)<1/n$. We can enlarge the constituent boxes of each $U_n$ slightly to find an open set $O_n$ such that $U_n\subset O_n$ and $m^*(U_n\setminus O_n)<1/n$. (Here we are using normality and subadditivity to achieve this estimate.) Taking the intersection of the $O_n$ we now have $A\subset\cap O_n$ and $m^*(\bigcap O_n\setminus A)=0$. Writing these two expressions in complement, they become $\bigcup O_n^c\subset A^c$ and $m^*(A^c\setminus\bigcup O_n^c)=0$. Now $A^c$ can be expressed as a union of two sets: $\bigcup O_n^c$ and $A^c\setminus\bigcup O_n^c$. The first is Lebesgue measurable because it is a countable union of closed sets. The second is Lebesgue measurable because it is null (see an earlier exercise). Appealing again to the closure under unions, we conclude that $A^c$ is measurable too.
 
   For countable intersections, we can simply apply Demorgan's laws to reduce it to complements and countable unions. Whew!
 \end{proof}
