@@ -758,11 +758,11 @@ Recall that a set $A$ is called Lebesgue measurable if it can be well-approximat
 \begin{proof}
   Since the boxes form a base for the topology of $\RR^n$, any open set can be written as a union of boxes. (Or see Proposition~\ref{prop:open-decomp}.) Thus by the remark above, open sets are Lebesgue measurable.
 
-  For countable unions, suppose that $A_n$ are Lebesgue measurable. Given $\epsilon>0$, find open sets $O_n$ such that $A_n\subset O_n$ and $m^*(O_n\setminus A_n)<\epsilon/2^n$. Then we have
+  For countable unions, suppose that $A_n$ are Lebesgue measurable. Given $\epsilon>0$, find for each $n$ a countable union of boxes $U_n$ such that $A_n\subset U_n$ and $m^*(U_n\setminus A_n)<\epsilon/2^n$. Then we have
   \begin{align*}
-    m^*(\bigcup O_n\smallsetminus\bigcup A_n)
-    &\leq m^*(\bigcup O_n\setminus A_n)\\
-    &\leq \sum m^*(O_n\setminus A_n)\\
+    m^*(\bigcup U_n\smallsetminus\bigcup A_n)
+    &\leq m^*(\bigcup U_n\setminus A_n)\\
+    &\leq \sum m^*(U_n\setminus A_n)\\
     &\leq \sum \epsilon/2^n=2\epsilon
   \end{align*}
   This shows that $\bigcup A_n$ is measurable.
