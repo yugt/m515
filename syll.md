@@ -25,8 +25,8 @@ Functional analysis: This is another area of analysis that is important in a wid
 
 ## Tentative exam dates
 
-* Exam 1: Friday, September 22
-* Exam 2: Friday, October 27
+* Exam 1: Wednesday, September 27
+* Exam 2: Wednesday, November 1
 * Exam 3: Wednesday, December 13 from 10am to 12pm
 
 ## Homework
