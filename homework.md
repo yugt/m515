@@ -1,5 +1,13 @@
 ## Math 515 homework
 
+### Homework 4. Due Friday, September 29
+
+* Ex 7.1 ~ Tao Ex 1.2.7. (a) Show that $A$ is measurable iff for all $\epsilon>0$ there exists a closed set $F\subset A$ such that $m^\*(A\setminus F)&lt;\epsilon$. (b) Show that $A$ is measurable iff for all $\epsilon>0$ there exists a measurable set $B$ such that $m^\*(A\triangle B)<\epsilon$.
+* Ex 7.2 = Tao Ex 1.2.14. Show that any set $A$ is contained in a Lebesgue measurable set $B$ such that $m(B)=m^\*(A)$.
+* Ex 7.3 = Tao Ex 1.2.15. Show the \emph{inner regularity} property: If $A$ is Lebesgue measurable, then m(A)=\sup\set{m(K)\mid K\subset A,\text{ $K$ compact}}
+* Ex 8.1 = Tao Ex 1.2.11(iii). Give a counterexample showing that the hypothesis that some $A_n$ has finite measure is necessary for the downwards MCT.
+* Ex 8.2 = Tao Ex 1.2.12. Suppose you know that $m$ satisfies $m(\emptyset)=0$ and the countable additivity property. Show that $m$ satisfies the monotonicity property and the countable subadditivity property (for measurable sets).
+
 ### Homework 3. Due Friday, September 15
 
 * Ex 5.1 = Tao ex 1.2.1. Show that the countable union of Jordan measurable sets need not be Jordan measurable, even when bounded. Show that the countable intersection of Jordan measurable sets need not be Jordan measurable.
