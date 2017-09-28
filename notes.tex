@@ -945,43 +945,37 @@ We have now established the existence and all of the promised axioms of the Lebe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Simple integration}
+\section{Preview of integration, simple integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
   Tao, \S 1.3 introduction
 \end{reading}
 
-In this chapter we investigate integration of real and complex-valued functions. Just as the Jordan measure corresponded tightly with the Riemann integral, the Lebesgue measure can be associated with the so-called Lebesgue integral. The integral will serve most of the purposes needed in calculus, and will also help set the stage for our investigations in functional analysis.
+In this chapter of the course, we investigate integration of real and complex-valued functions. Just as the Jordan measure corresponded tightly with the Darboux/Riemann integral, the Lebesgue measure can be associated with the so-called Lebesgue integral. The integral will serve most of the purposes needed in calculus, and will also help set the stage for the next chapter when we will introduce functional analysis.
 
-Just like the situation with the two measures, the Lebsegue integral will generalize and extend the Riemann integral while still ensuring that many of the key properties hold. In addition many new stronger properties will hold as well, such as infinite versions of additivity and stability under limits.
+Just as the Lebesgue measure generalized and extended the Jordan measure, the Lebesgue integral will generalize and extend the Darboux/Riemann integral while still ensuring that many of its key properties hold. In addition many new stronger properties will hold as well, such as infinite versions of additivity and stability under limits.
 
-% The following preview will actually be applied two sections from now. One may consider moving it there.
-
-We will define integration in stages, beginning with the nonnegative real-valued functions $f$. To see why this is a good start, it is useful to recall the development of infinite series. Recall that if $a_n\geq0$ we can define $\sum a_n$ as simpl $\sup_N\sum_1^Na_n$. Next if $a_n$ are arbitrary real numbers we say that the terms are \emph{absolutely summable} if $\sum|a_n|<\infty$. In that case we divide the terms into the negative terms $a_{n_i}$ and nonnegative terms $a_{p_i}$, and write $\sum a_n=\sum a_{p_i}-\sum|a_{n_i}|$. Note that the assumption that $a_n$ is absolutely summable guarantees that the latter expression is not indeterminate. Finally if $a_n$ are complex numbers then we again assume that $\sum|a_n|<\infty$, that is, the terms is complex absolutely summable. In that case we can divide each term into its real part $\Re a_n$ and imaginary part $\Im a_n$, and define $\sum a_n=\sum\Re a_n+i\sum\Im a_n$.
-
-Recall that the Riemann integral was defined first for piecewise constant functions, that is, functions which take constant values on each of finitely many intervals. The Lebesgue integral will be defined in terms of the more powerful ``simple'' functions.
+Recall that the Darboux/Riemann integral was defined first for piecewise constant functions, that is, functions which take constant values on each of finitely many intervals. It was then extended using approximations or limits. Similarly, the Lebesgue integral will be defined first for the so-called ``simple'' functions, and later extended using approximations or limits.
 
 \begin{defn}
-  A function $f\colon\RR^n\to\CC$ is called \emph{simple} if ther exists a partition of $\RR^n$ into finitely many Lebesgue measurable subsets $E_1,\ldots,E_k$ such that $f$ takes a constant value $c_i$ on each $E_i$.
+  A function $f\colon\RR^d\to\CC$ is called \emph{simple} if there exists a partition of $\RR^d$ into finitely many Lebesgue measurable subsets $E_1,\ldots,E_k$ such that $f$ takes a constant value $c_i$ on each $E_i$.
 \end{defn}
 
-In other words, $f$ is piecewise constant if $f$ is of the form $\sum_1^kc_i\chi_{E_i}$ where $E_i$ are Lebesgue measurable subsets.
+Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_i\chi_{E_i}$ where $E_i$ are Lebesgue measurable sets.
 
 \begin{defn}
   If $f=\sum_1^kc_i\chi_{E_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sint f=\sum_1^kc_im(E_i)$.
 \end{defn}
 
-Note that we assume $f\geq0$ to ensure that the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
-
-% Why did we not do this check in the case of the pc integral?
+Note that we assume $f\geq0$ to ensure that the value of the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
 
 \begin{lem}
   If $f=\sum_1^lc_i\chi_{E_i}$ and $f=\sum_1^md_j\chi_{F_j}$ then we have $\sum_1^lc_im(E_i)=\sum_1^md_j\chi_{F_j}$.
 \end{lem}
 
 \begin{proof}
-  We use the common refinement approach. By considering intersections of all $k+l$ sets, we can find a sequence of nonempty disjoint sets $A_1,\ldots,A_n$ such that each of the $E_i$ and $F_j$ can be written as a union of some of the $A_k$'s. Note that since the $E_i$ and $F_j$ are measurable, the $A_k$ are measurable too. Now let $x_k$ be an arbitrary point in $A_k$. We can calculate
+  We use a common refinement approach. By considering intersections of all $k+l$ sets, we can find a sequence of nonempty disjoint sets $A_1,\ldots,A_n$ such that each of the $E_i$ and $F_j$ can be written as a union of some of the $A_k$'s. Note that since the $E_i$ and $F_j$ are measurable, the $A_k$ are measurable too. Now let $x_k$ be an arbitrary point in $A_k$. We can calculate
   \begin{align*}
     \sum_{i=1}^lc_im(E_i)
     &=\sum_{i=1}^lc_i\sum_{A_k\subset E_i}m(A_k)\\
@@ -1011,6 +1005,16 @@ In order to state this property and others cleanly, we introduce the terminology
 \end{proof}
 
 Throwing away null sets is common in analysis, and thanks to our understanding of the Lebesgue measure it carries with it a lot of power. When studying sets and functions in the measure context, it will even be useful to modify our logic. We will use the quantifiers $\forall^*x$ and $\exists^*x$ to mean ``the statement holds for all but a null set of $x$'' and ``there exists a non-null set of $x$ such that the statement holds''.
+
+We close this section with a preview of how the definition of the Lebesgue integral will proceed in several stages. In the next section, we will use a familiar approximation or limit idea to extend the simple integral to a much wider class of nonnegative functions. In two sections, we will show how to extend the integral from nonnegative function to complex-valued functions.
+
+To imagine how this latter part will go, it is useful to recall the development of infinite series. Recall that if $a_n\geq0$ we can define $\sum a_n$ as simply $\sup_N\sum_1^Na_n$. Next if $a_n$ are arbitrary real numbers we say that the terms are \emph{absolutely summable} if $\sum|a_n|<\infty$. In that case we split each term into its positive part $a_n^+=\max(a_n,0)$ and its negative part $a_n^-=\max(-a_n,0)$. In this way we have for each term $a_n=a_n^+-a_n^-$ and we may define $\sum a_n=\sum a_n^+-\sum a_n^-$. Note that the assumption that $a_n$ is absolutely summable guarantees that the latter expression is not indeterminate. Finally if $a_n$ are complex numbers then we again assume that $\sum|a_n|<\infty$, that is, the terms are absolutely summable in the complex sense. In that case we can divide each term into its real part $\Re a_n$ and imaginary part $\Im a_n$, and define $\sum a_n=\sum\Re a_n+i\sum\Im a_n$.
+
+% Could consider moving the above paragraph to the corresponding section
+
+\begin{exerc}
+  Show that a function $f$ is simple if and only if it can be expressed as $f=\sum_1^kc_i\chi_{E_i}$, where $E_i$ are (not necessarily disjoint) Lebesgue measurable sets.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
