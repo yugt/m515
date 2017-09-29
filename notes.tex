@@ -164,7 +164,7 @@ Recall that a \emph{bounded interval} is any subset of $\RR$ of the form $(a,b)$
   A subset $E\subset\RR^n$ is \emph{elementary} if it can be expressed as a union of finitely many boxes.
 \end{defn}
 
-For any elementary set $E$, we wish to define its \emph{elementary measure}, or simply \emph{measure}, $m(E)$. The measure of any interval will be defined to be its length, and the measure of any box will be defined to be its volume. Thus if $I=(a,b)$ or $[a,b)$ or $(a,b]$ or $[a,b]$, then we let $m(I)=\len(I)=b-a$ (in all four cases). And if $B=\prod I_n$ is a box, then we define $m(B)=\vol(B)=\prod\len(I_n)$. So far, so good.
+For any elementary set $E$, we wish to define its \emph{elementary measure}, or simply \emph{measure}, $m(E)$. The measure of any interval will be defined to be its length, and the measure of any box will be defined to be its volume. Thus if $I=(a,b)$ or $[a,b)$ or $(a,b]$ or $[a,b]$, then we let $m(I)=\len(I)=b-a$ (in all four cases). And if $B=\prod I_n$ is a box, then we define $m(B)=\vol(B)=\prod\len(I_n)$. Since we allow only bounded boxes, this product can never be indeterminate ($0\cdot\infty$). So far, so good.
 
 We now wish to define the measure of an elementary set to be the sum of the finitely many boxes it is composed of. However there are two issues with this statement: first the constituent boxes need not be disjoint, and second there is in general more than one way to express an elementary set as a union of boxes. The following two lemmas address these two issues.
 
@@ -959,30 +959,30 @@ Just as the Lebesgue measure generalized and extended the Jordan measure, the Le
 Recall that the Darboux/Riemann integral was defined first for piecewise constant functions, that is, functions which take constant values on each of finitely many intervals. It was then extended using approximations or limits. Similarly, the Lebesgue integral will be defined first for the so-called ``simple'' functions, and later extended using approximations or limits.
 
 \begin{defn}
-  A function $f\colon\RR^d\to\CC$ is called \emph{simple} if there exists a partition of $\RR^d$ into finitely many Lebesgue measurable subsets $E_1,\ldots,E_k$ such that $f$ takes a constant value $c_i$ on each $E_i$.
+  A function $f$ with domain $\RR^d$ and codomain the extended real numbers (or $\CC$) is called \emph{simple} if there exists a partition of $\RR^d$ into finitely many Lebesgue measurable subsets $A_1,\ldots,A_k$ such that $f$ takes a constant value $c_i$ on each $A_i$.
 \end{defn}
 
-Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_i\chi_{E_i}$ where $E_i$ are Lebesgue measurable sets.
+Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_i\chi_{A_i}$ where $A_i$ are Lebesgue measurable sets.
 
 \begin{defn}
-  If $f=\sum_1^kc_i\chi_{E_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sint f=\sum_1^kc_im(E_i)$.
+  If $f=\sum_1^kc_i\chi_{A_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sint f=\sum_1^kc_im(A_i)$.
 \end{defn}
 
 Note that we assume $f\geq0$ to ensure that the value of the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
 
 \begin{lem}
-  If $f=\sum_1^lc_i\chi_{E_i}$ and $f=\sum_1^md_j\chi_{F_j}$ then we have $\sum_1^lc_im(E_i)=\sum_1^md_j\chi_{F_j}$.
+  If $f=\sum_1^lc_i\chi_{A_i}$ and $f=\sum_1^md_j\chi_{B_j}$ then we have $\sum_1^l c_i m(A_i)=\sum_1^m d_j m(B_j)$.
 \end{lem}
 
 \begin{proof}
-  We use a common refinement approach. By considering intersections of all $k+l$ sets, we can find a sequence of nonempty disjoint sets $A_1,\ldots,A_n$ such that each of the $E_i$ and $F_j$ can be written as a union of some of the $A_k$'s. Note that since the $E_i$ and $F_j$ are measurable, the $A_k$ are measurable too. Now let $x_k$ be an arbitrary point in $A_k$. We can calculate
+  We use a common refinement approach. By considering intersections of all $k+l$ sets, we can find a sequence of nonempty disjoint sets $C_1,\ldots,C_n$ such that each of the $A_i$ and $B_j$ can be written as a union of some of the $C_k$'s. Note that since the $A_i$ and $B_j$ are measurable, the $C_k$ are measurable too. Now let $x_k$ be an arbitrary point in $A_k$. We can calculate
   \begin{align*}
-    \sum_{i=1}^lc_im(E_i)
-    &=\sum_{i=1}^lc_i\sum_{A_k\subset E_i}m(A_k)\\
-    &=\sum_{k=1}^n\sum_{E_i\supset A_k}c_im(A_k)\\
-    &=\sum_{k=1}^nf(x_k)m(A_k)\\
-    &=\sum_{k=1}^n\sum_{F_j\supset A_k}d_jm(A_k)\\
-    &=\sum_{k=1}^n\sum_{F_j\supset A_k}d_jm(A_k)=\sum_{j=1}^md_jm(F_j)
+    \sum_{i=1}^lc_im(A_i)
+    &=\sum_{i=1}^lc_i\sum_{k:A_i\supset C_k}m(C_k)\\
+    &=\sum_{k=1}^n\sum_{i:A_i\supset C_k}c_im(C_k)\\
+    &=\sum_{k=1}^nf(x_k)m(C_k)\\
+    &=\sum_{k=1}^n\sum_{j:B_j\supset C_k}d_jm(C_k)\\
+    &=\sum_{j=1}^md_j\sum_{k:B_j\supset C_k}m(C_k)=\sum_{j=1}^md_jm(B_j)
   \end{align*}
   This is what we desired.
 \end{proof}
@@ -1001,7 +1001,7 @@ In order to state this property and others cleanly, we introduce the terminology
 \end{prop}
 
 \begin{proof}
-  We prove the first property (i), since after that properties (ii) and (iii) are very similar to the analogous properties of the Riemann integral. Given simple functions $f$ and $g$, we can refine their expressions to find measurable sets $E_1,\ldots,E_n$ and a null set $N$ such that $f=\sum c_i\chi_{E_i}+d\chi_n$ and $g=\sum c_i\chi_{E_i}+e\chi_N$. Then clearly the simple integral of both $f$ and $g$ evaluates to $\sum c_im(E_i)+0$.
+  We prove the first property (i), since after that properties (ii) and (iii) are very similar to the analogous properties of the Riemann integral. Given simple functions $f$ and $g$, we can refine their expressions to find measurable sets $A_1,\ldots,A_n$ and a null set $N$ such that $f(x)=\sum c_i\chi_{A_i}(x)$ for all $x\notin N$ and $g(x)=\sum c_i\chi_{A_i}(x)$ for all $x\notin N$. Then clearly the simple integral of both $f$ and $g$ evaluates to $\sum c_im(A_i)+0$.
 \end{proof}
 
 Throwing away null sets is common in analysis, and thanks to our understanding of the Lebesgue measure it carries with it a lot of power. When studying sets and functions in the measure context, it will even be useful to modify our logic. We will use the quantifiers $\forall^*x$ and $\exists^*x$ to mean ``the statement holds for all but a null set of $x$'' and ``there exists a non-null set of $x$ such that the statement holds''.
@@ -1013,7 +1013,7 @@ To imagine how this latter part will go, it is useful to recall the development 
 % Could consider moving the above paragraph to the corresponding section
 
 \begin{exerc}
-  Show that a function $f$ is simple if and only if it can be expressed as $f=\sum_1^kc_i\chi_{E_i}$, where $E_i$ are (not necessarily disjoint) Lebesgue measurable sets.
+  Show that a function $f$ is simple if and only if it can be expressed as $f=\sum_1^kc_i\chi_{A_i}$, where $A_i$ are (not necessarily disjoint) Lebesgue measurable sets.
 \end{exerc}
 
 \newpage
