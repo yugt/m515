@@ -1,5 +1,16 @@
 ## Math 515 homework
 
+### Homework 5. Due Wednesday, October 11
+
+* Ex 9.1 Show that a function $f$ is simple if and only if it can be expressed as $f=\sum\_1^kc_i\chi\_{A\_i}$, where $A\_i$ are (not necessarily disjoint) Lebesgue measurable sets.
+* Ex 9.2 ~ Tao Ex 1.3.1. Show that the simple integral satisfies the properties:
+  * (finiteness) $\sint f\<\infty$ if and only if $f$ is finite almost everywhere and supported on a set of finite measure
+  * (vanishing) $\sint f=0$ if and only if $f=0$ almost everywhere
+  * (normality) $\sint\chi_A=m(A)$ for any Lebesgue measurable set $A$
+* Ex 10.1. Show that $\lim x\_n=x$ if and only if $\liminf x\_n=x=\limsup x\_n$.
+* Ex 10.3 = Tao Ex 1.3.4. Show that if $f$ is a bounded, nonnegative measurable function on $\RR^d$, then there is a sequence of bounded simple functions $f_n$ which converges uniformly to $f$ (not just pointwise).
+* Ex 10.4 = Tao Ex 1.3.5. Let $f$ be a nonnegative function on $\RR^d$. Show that $f$ is simple if and only if $f$ is measurable and takes on at most finitely many values.
+
 ### Homework 4. Due Friday, September 29
 
 * Ex 7.1 ~ Tao Ex 1.2.7. (a) Show that $A$ is measurable iff for all $\epsilon>0$ there exists a closed set $F\subset A$ such that $m^\*(A\setminus F)&lt;\epsilon$. (b) Show that $A$ is measurable iff for all $\epsilon>0$ there exists a measurable set $B$ such that $m^\*(A\triangle B)<\epsilon$.
