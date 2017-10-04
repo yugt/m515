@@ -959,7 +959,7 @@ Just as the Lebesgue measure generalized and extended the Jordan measure, the Le
 Recall that the Darboux/Riemann integral was defined first for piecewise constant functions, that is, functions which take constant values on each of finitely many intervals. It was then extended using approximations or limits. Similarly, the Lebesgue integral will be defined first for the so-called ``simple'' functions, and later extended using approximations or limits.
 
 \begin{defn}
-  A function $f$ with domain $\RR^d$ and codomain the extended real numbers (or $\CC$) is called \emph{simple} if there exists a partition of $\RR^d$ into finitely many Lebesgue measurable subsets $A_1,\ldots,A_k$ such that $f$ takes a constant value $c_i$ on each $A_i$.
+  A function $f$ mapping $\RR^d$ into the extended real numbers $[0,\infty]$ (or sometimes into $\CC$) is called \emph{simple} if there exists a partition of $\RR^d$ into finitely many Lebesgue measurable subsets $A_1,\ldots,A_k$ such that $f$ takes a constant value $c_i$ on each $A_i$.
 \end{defn}
 
 Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_i\chi_{A_i}$ where $A_i$ are Lebesgue measurable sets.
@@ -1016,6 +1016,15 @@ To imagine how this latter part will go, it is useful to recall the development 
   Show that a function $f$ is simple if and only if it can be expressed as $f=\sum_1^kc_i\chi_{A_i}$, where $A_i$ are (not necessarily disjoint) Lebesgue measurable sets.
 \end{exerc}
 
+\begin{exerc}[see Tao, Ex 1.3.1]
+  Show that the simple integral satisfies the properties:
+  \begin{enumerate}
+    \item (finiteness) $\sint f<\infty$ if and only if $f$ is finite almost everywhere and supported on a set of finite measure
+    \item (vanishing) $\sint f=0$ if and only if $f=0$ almost everywhere
+    \item (normality) $\sint\chi_A=m(A)$ for any Lebesgue measurable set $A$
+  \end{enumerate}
+\end{exerc}
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue measurability of functions}
@@ -1025,7 +1034,7 @@ To imagine how this latter part will go, it is useful to recall the development 
   Tao, \S 1.3.2
 \end{reading}
 
-Just as the Riemann integral was able to integrate functions that can be well approximated by pc functions, the Lebesgue integral will be able to integrate functions that can be well approximated by simple functions. At the time we did not dive any direct definition of the Riemann integrable functions. This time we will define in advance the class of functions for which the Lebesgue integral will make sense. As indicated, we begin with just the nonnegative real-valued functions.
+Just as the Riemann integral was able to integrate functions that can be well approximated by pc functions, the Lebesgue integral will be able to integrate functions that can be well approximated by simple functions. At the time we did not give a direct definition of the Riemann integrable functions. This time we will define in advance the class of functions for which the Lebesgue integral will make sense. As indicated, we begin with just the nonnegative real-valued functions.
 
 \begin{defn}
   A nonnegative function $f$ on $\RR^n$ is said to be a \emph{measurable function} if $f$ is the pointwise limit of nonnegative simple functions.
@@ -1042,17 +1051,17 @@ As was the case with Lebsegue measurable sets, the Lebesgue measurable functions
   \end{enumerate}
 \end{thm}
 
-Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf_N\sup_{n\geq N}x_n$ and $\liminf x_n=\sup_N\inf_{n\geq N}x_n$. The $\limsup$ is the largest limit point of $x_n$ and the $\liminf$ is the smallest limit point of $x_n$. The limit $\lim x_n$ exists if and only if $\limsup x_n=\liminf x_n$, and $\lim x_n$ equals this common value.
+Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf_N\sup_{n\geq N}x_n$ and $\liminf x_n=\sup_N\inf_{n\geq N}x_n$. The $\limsup$ is the largest limit point of $x_n$, that is, the largest number that is the limit of a subsequence of $x_n$. Similarly, the $\liminf$ is the smallest limit point of $x_n$. The limit $\lim x_n$ exists if and only if $\limsup x_n=\liminf x_n$, and $\lim x_n$ equals this common value.
 
 \begin{proof}
-  We first show that if $f$ is measurable, then (b) holds. So let $f_n$ be simple functions such that $f=\lim f_n$ pointwise. Note that by the above discussion, we have that $f=\limsup f_n$ pointwise. Now suppose that $S=(\lambda,\infty)$ be an open infinite ray. Then we want to say that
+  We first show that if $f$ is measurable, then (b) holds. So let $f_n$ be simple functions such that $f=\lim f_n$ pointwise. Note that by the above discussion, we have that $f=\limsup f_n$ pointwise. Now suppose that $S=(\lambda,\infty)$ is an open ray. Then we want to say that
   \begin{align*}
     x\in f^{-1}(S)&\iff f(x)>\lambda\\
           &\iff \inf_N\sup_{n\geq N}f_n(x)>\lambda\\
           &\iff (\forall N)(\exists n\geq N)f_n(x)>\lambda\\
           &\iff x\in\bigcap_N\bigcup_{n\geq N}f_n^{-1}(\lambda,\infty]
   \end{align*}
-  Since the $f_n$ are simple, it is clear that the set in the last line is measurable and therefore $f^{-1}(S)$ would be measurable. However the argument isn't right since for example it isn't quite true that $\inf_Nx_N\geq\lambda$ is equivalent to $(\forall N)x_N\geq\lambda$. The correct calculation introduces a couple additional steps but ultimately accomplishes the same thing:
+  Since the $f_n$ are simple, it is clear that the set in the last line is measurable and therefore $f^{-1}(S)$ would be measurable. However the argument isn't right, since for instance it isn't quite true that $(\forall n)z_n>\lambda$ implies $\inf_n z_n>\lambda$. The correct calculation introduces a couple additional steps but ultimately accomplishes the same thing:
   \begin{align*}
     x\in f^{-1}(S)&\iff f(x)>\lambda\\
           &\iff (\exists\epsilon)f(x)\geq \lambda+\epsilon\\
@@ -1061,7 +1070,7 @@ Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf
           &\iff (\exists\epsilon)(\forall N)(\forall\eta)(\exists n\geq N)f_n(x)>\lambda+\epsilon-\eta\\
           &\iff x\in\bigcup_i\bigcap_N\bigcap_j\bigcup_{n\geq N}f_n^{-1}\left(\lambda+\frac1i-\frac1j,\infty\right]
   \end{align*}
-  Once again, this establishes that $f^{-1}(S)$ is measurable. Now an analogous argument will allow us to handle the case when $S$ is a closed ray. Since any interval can be written in terms of rays using intersections and complements, and any open set can be written as a countable union of intervals, we can therefore conclude that if $S$ is any open set then $f^{-1}(S)$ is measurable. This establishes (b).
+  Once again, this establishes that $f^{-1}(S)$ is measurable. Now an analogous argument will allow us to handle the case when $S=(-\infty,\mu)$. Since any open interval is an intersection of two open rays, and any open set is a countable union of intervals, we can conclude that for any open $S$ the set $f^{-1}(S)$ is measurable. This establishes (b).
 
   Next we argue that (b) implies (a). Suppose that $f$ satisfies condition (b). Given any $n$, we will define a nonnegative simple function $f_n\leq f$ as follows:
   \[f_n(x)=
@@ -1070,7 +1079,7 @@ Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf
       0&\text{otherwise}
     \end{cases}
   \]
-  The definition clearly ensures that $f_n$ has a bounded support, that $f_n$ is bounded, that $f_n\leq f$, that $f_n\leq f_{n+1}$, and that $f_n\to f$. It remains only to show that $f_n$ is simple, and since $f_n$ clearly takes just finitely many values we only have to check that each of these values has measurable preimage. But for instance we have $f_n(x)=\frac{i}{2^n}$ if and only if $f(x)$ lies in the interval $[\frac{i}{2^n},\frac{i+1}{2^n})$. It follows from property (b) that $f_n^{-1}(\frac{i}{2^n})$ is a measurable set, and therefore we have that $f_n$ is simple and $f$ satisfies property (a).
+  The definition clearly ensures that $f_n$ has a bounded support, that $f_n$ is bounded, that $f_n\leq f$, that $f_n\leq f_{n+1}$, and that $f_n\to f$. It remains only to show that $f_n$ is simple, and since $f_n$ clearly takes just finitely many values we only have to check that each of these values has measurable preimage. For this, for example we have $f_n(x)=\frac{i}{2^n}$ if and only if $f(x)$ lies in the interval $[\frac{i}{2^n},\frac{i+1}{2^n})$. It follows from property (b) that $f_n^{-1}(\frac{i}{2^n})$ is a measurable set, and therefore we have that $f_n$ is simple and $f$ satisfies property (a).
 
   Finally it is trivial that (a) implies $f$ is measurable, so we have completed the proof.
 \end{proof}
@@ -1093,11 +1102,23 @@ We then have that $f^+$ and $f^-$ are nonnegative functions with $f=f^+-f^-$.
   If $f$ is an almost-everywhere defined complex-valued function on $\RR^n$ then $f$ is a \emph{measurable function} if and only if the positive and negative parts of its real and imaginary parts are measurable functions.
 \end{defn}
 
-We note that the alternate approach of simply replacing nonnegative simple functions with complex-valued simple functions in the definition of measurable function yields an equivalent definition.
+We note that the above defintion is equivalent to the alternate approach of simply replacing nonnegative simple functions with complex-valued simple functions in the definition of measurable function.
 
 \begin{lem}
-  If $f$ is a comlex-valued function on $\RR^n$ then $f$ is measurable if and only if it is a pointwise limit of complex-valued simple functions.
+  If $f$ is a complex-valued function on $\RR^d$ then $f$ is measurable if and only if $f$ is a pointwise limit of complex-valued simple functions.
 \end{lem}
+
+\begin{exerc}
+  Show that $\lim x_n=x$ if and only if $\liminf x_n=x=\limsup x_n$.
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.3.4]
+  Show that if $f$ is a bounded, nonnegative measurable function on $\RR^d$, then there is a sequence of bounded simple functions $f_n$ which converges uniformly to $f$ (not just pointwise).
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.3.5]
+  Let $f$ be a nonnegative function on $\RR^d$. Show that $f$ is simple if and only if $f$ is measurable and takes on at most finitely many values.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
