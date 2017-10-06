@@ -1145,7 +1145,7 @@ Previously we defined the simple functions, showed that they can be integrated i
 
 Before investigating the Lebesgue integral itself, we will describe several properties of the lower Lebesgue integral. While it is also possible to define the upper Lebesgue integral, it is of more limited use than in the Riemann case. Later we will define the upper Lebesgue integral just for bounded functions with bounded support. In general there are functions which are measurable and should have finite integral, that do have the correct lower Lebesgue integral, but do not have a finite upper Lebesgue integral.
 
-It is clear that the lower Lebesgue integral agrees with the simple integral on the simple functions. It also inherits the equivalence and monotonicity properties from the simple integral, but it does not quite inherit the additivity property in general.
+It is clear that the lower Lebesgue integral agrees with the simple integral on the simple functions. It also inherits the equivalence and monotonicity properties from the simple integral, but not linearity. Recall that $m^*$ was merely subadditive; this is essentially because it was defined as an infumum. On the other hand the lower Lebesgue integral will be superadditive; this is essentially because it is defined as a supremum.
 
 \begin{prop}
   The lower Lebesgue integral satisfies the properties:
@@ -1168,16 +1168,18 @@ It is clear that the lower Lebesgue integral agrees with the simple integral on 
 
 The following fundamental pair of results establish that arbitrary functions can be approximated well by bounded functions with bounded support. This will be very useful since the Lebesgue integral is much easier to work with in this case.
 
+% The essence of the truncation lemmas: for simple functions, range truncation is trivial, and support truncation just boils down to the upwards MCT. In both cases we then pass to sups in a straightforward way.
+
 \begin{lem}
   Let $f$ be a nonnegative function on $\RR^d$. The lower Lebesgue integral satisfies the following identities.
   \begin{enumerate}
   \item (range truncation) If $f^N=\min(f,N)$ then $\lint f^N\to\lint f$.
-  \item (domain trunctation) If $f_N=f\chi_{[-N,N]^d}$ then $\lint f_N\to\lint f$.
+  \item (support trunctation) If $f_N=f\chi_{[-N,N]^d}$ then $\lint f_N\to\lint f$.
   \end{enumerate}
 \end{lem}
 
 \begin{proof}
-  For range truncation, let us first assume that $\lint f<\infty$. Given $\epsilon>0$ we can find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. By our assumption $g$ must be bounded almost everywhere, which implies that for $N$ large enough we have $g\leq f^N$ too. Now by monotonicity $\lint f-\lint f^N\leq \lint f-\sint g<\epsilon$, which shows the desired result. The argument is similar in the case $\lint f=\infty$.
+  (a) Let us first assume that $\lint f<\infty$. Given $\epsilon>0$ we can find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. By our assumption $g$ must be bounded almost everywhere, which implies that for $N$ large enough we have $g\leq f^N$ too. Now by monotonicity $\lint f-\lint f^N\leq \lint f-\sint g<\epsilon$, which shows the desired result. The argument is similar in the case $\lint f=\infty$.
 
   (b) Again let $\epsilon$ be given and find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. Write $g=\sum_1^kc_i\chi_{E_i}$. Now we look at the simple integral of $g_N$:
   \begin{align*}
@@ -1198,6 +1200,8 @@ We are now ready to show that the Lebesgue integral behaves well when applied to
   \[\ovint f=\inf\left\{\left.\sint h\;\right|\;f\leq h\text{, $h$ simple}\right\}
   \]
   We claim that under our hypotheses, we in fact have $\lint f=\ovint f$ (and similarly for $g$ and $f+g$).
+  
+  % The essence of the following paragraph: For simple functions it is immediate that the lower and upper integrals agree; they are both equal to the simple integral. For bounded/bounded support functions, we can use a uniform limit to achieve it for them too.
 
   To see this recall that since $f$ is measurable, we can find simple functions $f_n$ such that $f_n\leq f_{n+1}$ and $f_n\to f$. Note also that since $f$ is bounded, the construction of the $f_n$ from Theorem~\ref{thm:measurable-equiv} in fact showed that the $f_n$ converge \emph{uniformly} to $f$. (Indeed once $n$ surpasses the bound for $f$, then $f_n$ always lie within $1/n$ of $f$.) Thus given $\epsilon>0$ we can find $n$ such that
   \[f\geq f_n\geq f-\epsilon\chi_S
