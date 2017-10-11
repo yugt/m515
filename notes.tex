@@ -1076,11 +1076,11 @@ Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf
   Next we argue that (b) implies (a). Suppose that $f$ satisfies condition (b). Given any $n$, we will define a nonnegative simple function $f_n\leq f$ as follows:
   \[f_n(x)=
     \begin{cases}
-      \max\set{\frac{i}{2^n}\mid \frac{i}{2^n}\leq f(x),n}&x\in[-n,n]\\
+      \max\set{\frac{i}{2^n}\mid \frac{i}{2^n}\leq f(x)\text{ and } \frac{i}{2^n}\leq n}&x\in[-n,n]^d\\
       0&\text{otherwise}
     \end{cases}
   \]
-  The definition clearly ensures that $f_n$ has a bounded support, that $f_n$ is bounded, that $f_n\leq f$, that $f_n\leq f_{n+1}$, and that $f_n\to f$. It remains only to show that $f_n$ is simple, and since $f_n$ clearly takes just finitely many values we only have to check that each of these values has measurable preimage. For this, for example we have $f_n(x)=\frac{i}{2^n}$ if and only if $f(x)$ lies in the interval $[\frac{i}{2^n},\frac{i+1}{2^n})$. It follows from property (b) that $f_n^{-1}(\frac{i}{2^n})$ is a measurable set, and therefore we have that $f_n$ is simple and $f$ satisfies property (a).
+  The above prescription clearly ensures that $f_n\leq f$, that $f_n$ is bounded above by $n$, and that $f_n$ has bounded support $[-n,n]^d$. Moreover it is not difficult to check that $f_n\leq f_{n+1}$ and that $f_n\to f$. It remains only to show that $f_n$ is simple, and since $f_n$ clearly takes just finitely many values we really only have to check that it takes each of its values on a measurable set. For this, for example we have $f_n(x)=\frac{i}{2^n}$ if and only if $f(x)$ lies in the interval $[\frac{i}{2^n},\frac{i+1}{2^n})$. It follows from property (b) that $f_n^{-1}(\frac{i}{2^n})$ is a measurable set, and therefore we have that $f_n$ is simple and $f$ satisfies property (a).
 
   Finally it is trivial that (a) implies $f$ is measurable, so we have completed the proof.
 \end{proof}
