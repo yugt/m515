@@ -1269,7 +1269,9 @@ Next, the absolutely convergent Lebsegue integral of course inherits many of the
 \end{prop}
 
 \begin{proof}
-  The linearity properties are easily proved using the analogous property for the nonnegative integral. For example, if $f,g$ are real-valued and $h=f+g$, then $h^+-h^-=f^+-f^-+g^+-g^-$. Rearranging terms we have $f^-+g^-+h^+=f^++g^++h^-$. From the nonnegative linearity we know $\int f^-+\int g^-+\int h^+=\int f^++\int g^++\int h^-$. Rearranging back, we obtain $\int h=\int f+\int g$.
+  We should first check that if $f,g$ are absolutely integrable, then $f+g$ and $cf$ are absolutely integrable. For the first we can simply use the classical triangle inequality $|f+g|\leq|f|+|g|$. Then monotonicity implies that $\int|f+g|\leq\int|f|+\int|g|$ is finite. For the second, simply note that $\int|cf|=\int|c||f|=|c|\int|f|$ is again finite.
+
+  Now linearity is easily proved using the analogous property for the nonnegative integral. For example, if $f,g$ are real-valued and $h=f+g$, then $h^+-h^-=f^+-f^-+g^+-g^-$. Rearranging terms we have $f^-+g^-+h^+=f^++g^++h^-$. From the nonnegative linearity we know $\int f^-+\int g^-+\int h^+=\int f^++\int g^++\int h^-$. Rearranging back, we obtain $\int h=\int f+\int g$.
 
   For the triangle inequality for integrals, first assume that $f$ is real-valued. Then we can write $f=f^+-f^-$ and $|f|=f^++f^-$. Thus using linearity together with the triangle inequality, we have
   \begin{align*}
@@ -1294,7 +1296,7 @@ One of the most appreciable aspects of the theory of integration is that the cla
 \end{prop}
 
 \begin{proof}
-  By the linearity shown above, the absolutely integrable functions are closed under linear combinations. To see that $\|\cdot\|$ is a seminorm, first note that the triangle inequality implies that $|f+g|\leq|f|+|g|$, and so monotonicity implies the first axiom. Last we have $|cf|=|c||f|$ and linearity implies the second axiom.
+  We argued in the previous proof that $\int|f+g|\leq\int|f|+\int|g|$ and also that $\int|cf|=|c|\int|f|$. These two identities imply that the space of absolutely integrable functions is closed under linear combinations and moreover that the two properties of the seminorm hold.
 \end{proof}
 
 A seminorm is called a \emph{norm} if it additionally satisfies $\|v\|=0\implies v=0$. If one is willing to \emph{identify} functions $f,g$ which agree almost everywhere as being equal, then the norm $\|f\|=\int|f|$ becomes a true norm. Indeed, it is an exercise to check that if $\int|f|=0$ then $f=0$ almost everywhere, and thus in this sense $f=0$.
