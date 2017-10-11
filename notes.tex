@@ -1181,10 +1181,10 @@ The following fundamental pair of results establish that arbitrary functions can
 \begin{proof}
   (a) Let us first assume that $\lint f<\infty$. Given $\epsilon>0$ we can find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. By our assumption $g$ must be bounded almost everywhere, which implies that for $N$ large enough we have $g\leq f^N$ too. Now by monotonicity $\lint f-\lint f^N\leq \lint f-\sint g<\epsilon$, which shows the desired result. The argument is similar in the case $\lint f=\infty$.
 
-  (b) Again let $\epsilon$ be given and find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. Write $g=\sum_1^kc_i\chi_{E_i}$. Now we look at the simple integral of $g_N$:
+  (b) Again let $\epsilon$ be given and find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. Write $g=\sum_1^kc_i\chi_{A_i}$. Now we look at the simple integral of $g_N$:
   \begin{align*}
-    \sint g_N&=\sum_1^kc_im(E_i\cap[-N,N]^d)\\
-                    &\to\sum_1^kc_im(E_i)=\sint g
+    \sint g_N&=\sum_1^kc_im(A_i\cap[-N,N]^d)\\
+                    &\to\sum_1^kc_im(A_i)=\sint g
   \end{align*}
   Where here $N\to\infty$ and we are applying the upwards monotone convergence theorem. Thus we can find $N$ large enough that $\sint g-\sint g_N<\epsilon$. Again using monotonicity we conclude that $\lint f-\lint f_N\leq\lint f-\sint g_N<2\epsilon$.
 \end{proof}
@@ -1263,7 +1263,7 @@ Next, the absolutely convergent Lebsegue integral of course inherits many of the
 
 \begin{prop}
   \begin{enumerate}
-  \item (linearity) $\int(f+g)=\int f+\int g$, $\int cf=c\int f$, and $\int\bar f=\overline{\int f}$;
+  \item (linearity and conjugation) $\int(f+g)=\int f+\int g$, $\int cf=c\int f$, and $\int\bar f=\overline{\int f}$;
   \item (triangle inequality for integrals) $\left|\int f\right|\leq\int|f|$.
   \end{enumerate}
 \end{prop}
@@ -1299,7 +1299,7 @@ One of the most appreciable aspects of the theory of integration is that the cla
 
 A seminorm is called a \emph{norm} if it additionally satisfies $\|v\|=0\implies v=0$. If one is willing to \emph{identify} functions $f,g$ which agree almost everywhere as being equal, then the norm $\|f\|=\int|f|$ becomes a true norm. Indeed, it is an exercise to check that if $\int|f|=0$ then $f=0$ almost everywhere, and thus in this sense $f=0$.
 
-While the vector space of absolutely integrable functions is infinite dimensional, the next result shows that it is not too unwieldy topologically. Recall that a subset $D$ of a (semi-)normed vector space $V$ is \emph{dense} if for every $v\in V$ and every $\epsilon$ there exists $d\in D$ such that $\|v-d\|<\epsilon$.
+While the vector space of absolutely integrable functions is infinite dimensional, the next result shows that it is not too unwieldy topologically. Recall that a subset $D$ of a (semi-)normed vector space $V$ is \emph{dense} if for every $v\in V$ and every $\epsilon$ there exists $d\in D$ such that $\|v-d\|<\epsilon$. In other words, $D$ is dense if every element of $V$ can be approximated by elements of $D$.
 
 \begin{thm}
   The following are all dense subsets of the space of absolutely integrable functions.
@@ -1311,14 +1311,18 @@ While the vector space of absolutely integrable functions is infinite dimensiona
 \end{thm}
 
 \begin{proof}
-  For part (a), first assume that $f$ is nonnegative. Then by the definition of the integral, we can find a simple function $g$ such that $g\leq f$ and $\int f-\int g<\epsilon$. It follows that $\int(f-g)<\epsilon$, and since $f-g$ is nonnegative, clearly $\int|f-g|<\epsilon$. It is easy to extend this argument to complex-valued functions using the standard technique.
+  (a) First assume that $f$ is nonnegative. Then by the definition of the integral, we can find a simple function $g$ such that $g\leq f$ and $\int f-\int g<\epsilon$. It follows that $\int(f-g)<\epsilon$, and since $f-g$ is nonnegative, clearly $\int|f-g|<\epsilon$. It is easy to extend this argument to complex-valued functions using the standard technique.
 
-  For part (b), we now know it is sufficient to approximate any simple function by a function of this type. Using linearity, it is enough to approximate a single term $\chi_E$, with $m(E)<\infty$, by a function of this type. We have already seen that for any such $E$ there exists an elementary set $A$ such that $m(E\triangle A)<\epsilon$. This means that $\int|\chi_E-\chi_A|<\epsilon$, so the result follows.
+  (b) We now know from (a) that it is sufficient to approximate any simple function by a function of this type. Using linearity, it is enough to approximate a single term $\chi_A$, with $m(A)<\infty$, by a function of this type. We have already seen that for any such $A$ there exists an elementary set $E$ such that $m(A\triangle E)<\epsilon$. This means that $\int|\chi_A-\chi_E|<\epsilon$, so the result follows.
 
-  For part (c), we now know it is sufficient to approximate any simple function $\chi_B$ by a function of this type. It is possible to do this explicity. For example in one dimension we have $B=I$ is an interval, and the step function $I$ can easily be approximated by a continuous function which looks like a trapezoid.
+  (c) We now know from (b) that it is sufficient to approximate any $\chi_B$, $B$ a box, by a function of this type. It is possible to do this explicity. For example in one dimension we have $B=I$ is an interval, and the step function $I$ can easily be approximated by a continuous function which looks like a trapezoid.
 \end{proof}
 
 We will see later that this density result fits in with several results which loosely state that integrable functions are ``almost continuous.''
+
+\begin{exerc}
+  Show that if $\int|f|=0$ then $f=0$ almost everywhere.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
