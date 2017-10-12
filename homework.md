@@ -1,5 +1,14 @@
 ## Math 515 homework
 
+### Homework 6. Due Wednesday, October 18
+* Ex 10.1 = Tao ex 1.3.13. Let $f$ be a nonnegative measurable function on $\RR$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region ${(x,y)\mid 0\leq f(x)\leq y}$
+* Ex 10.2 = Tao ex 1.3.18. Let $f$ be an nonnegative measurable function on $\RR^d$.
+  * Show that if $\int f&lt;\infty$ then $f$ is finite almost everywhere. Give a counterexample to show that the converse is false.
+  * Show that $\int f=0$ if and only if $f=0$ almost everywhere.
+* Ex 10.3. Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
+* Ex 11.1 = Tao ex 1.3.25(i). Let $f$ be absolutely integrable. Show that for any $\epsilon&gt;0$ there exists a bounded measurable set $A$ such that $\int |f|\chi\_{A^c}&lt;\epsilon$.
+* Ex 11.2 = Tao ex 1.3.25(ii).Let $f$ be a measurable set with finite measure support. Show that for any $\epsilon&gt;0$, there exists a measurable set $A$ such that $m(A)&lt;\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $f(x)\leq M$.
+
 ### Homework 5. Due Wednesday, October 11
 
 * Ex 9.1 Show that a function $f$ is simple if and only if it can be expressed as $f=\sum\_1^kc_i\chi\_{A\_i}$, where $A\_i$ are (not necessarily disjoint) Lebesgue measurable sets.

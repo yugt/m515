@@ -1125,6 +1125,10 @@ We note that the above defintion is equivalent to the alternate approach of simp
   Let $f$ be a nonnegative function on $\RR^d$. Show that $f$ is simple if and only if $f$ is measurable and takes on at most finitely many values.
 \end{exerc}
 
+\begin{exerc}[Tao, Ex 1.3.6]
+  If $f$ is a nonnegative measurable function, show that the region under $f$ is a measurable set.
+\end{exerc}
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue integration of nonnegative functions}
@@ -1203,7 +1207,7 @@ We are now ready to show that the Lebesgue integral behaves well when applied to
   
   % The essence of the following paragraph: For simple functions it is immediate that the lower and upper integrals agree; they are both equal to the simple integral. For bounded/bounded support functions, we can use a uniform limit to achieve it for them too.
 
-  To see this recall that since $f$ is measurable, we can find simple functions $f_n$ such that $f_n\leq f_{n+1}$ and $f_n\to f$. Note also that since $f$ is bounded, the construction of the $f_n$ from Theorem~\ref{thm:measurable-equiv} in fact showed that the $f_n$ converge \emph{uniformly} to $f$. (Indeed once $n$ surpasses the bound for $f$, then $f_n$ always lie within $1/n$ of $f$.) Thus given $\epsilon>0$ we can find $n$ such that
+  To see this recall that since $f$ is measurable, we can find simple functions $f_n$ such that $f_n\leq f_{n+1}$ and $f_n\to f$. Note also that since $f$ is bounded, the construction of the $f_n$ from Theorem~\ref{thm:measurable-equiv} in fact showed that the $f_n$ converge \emph{uniformly} to $f$. Thus given $\epsilon>0$ we can find $n$ such that
   \[f\geq f_n\geq f-\epsilon\chi_S
   \]
   where $S$ is a support for $f$. Taking $\lint$ of the first inequality and $\ovint$ of the second, we obtain
@@ -1211,12 +1215,30 @@ We are now ready to show that the Lebesgue integral behaves well when applied to
   \]
   Letting $\epsilon\to0$ we obtain the desired result.
 
-  Now we have already shown that $\lint$ satisfies the superadditivity property. Using a parallel argumentn, it is easy to show that $\ovint$ satisies the analogous \emph{subadditivity} property. And since $\lint=\ovint$ on the functions $f$, $g$, and $f+g$, we can put the two together to conclude the additivity property!
+  Now we have already shown that $\lint$ satisfies the superadditivity property. Using a parallel argument, it is easy to show that $\ovint$ satisfies the analogous \emph{subadditivity} property. And since $\lint=\ovint$ on the functions $f$, $g$, and $f+g$, we can put the two together to conclude the additivity property!
 
   Finally for general measurable functions $f$ and $g$, we can always apply the truncation lemmas to replace $f$ and $g$ with bounded functions with bounded supports. Each truncation costs us an $\epsilon$ in the additivity property, but afterwards we can let $\epsilon\to0$ and obtain the desired result.
 \end{proof}
 
 Later we will show that the Lebesgue integral even satisfies countable additivity for nonnegative measurable functions.
+
+\begin{exerc}[Tao, ex 1.3.13]
+  Let $f$ be a nonnegative measurable function on $\RR$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region
+  \[\set{(x,y)\mid 0\leq f(x)\leq y}
+  \]
+\end{exerc}
+
+\begin{exerc}[Tao, ex 1.3.18]
+  Let $f$ be an nonnegative measurable function on $\RR^d$.
+  \begin{enumerate}
+    \item Show that if $\int f<\infty$ then $f$ is finite almost everywhere. Give a counterexample to show that the converse is false.
+    \item Show that $\int f=0$ if and only if $f=0$ almost everywhere.
+  \end{enumerate}
+\end{exerc}
+
+\begin{exerc}
+  Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1236,7 +1258,7 @@ We have now defined and explored the Lebesgue integral for nonnegative functions
 We can now define the Lebesgue integral for absolutely integrable functions $f$, by using the real, imaginary, positive, and negative parts.
 
 \begin{defn}
-  If $f$ is absolutely integrable and real-valued, let $\int f=\int f^+-\int f^-$. If $f$ is absoulutely integrable and complex-valued, let $\int f=\int\Re f+i\int\Im f$.
+  If $f$ is absolutely integrable and real-valued, let $\int f=\int f^+-\int f^-$. If $f$ is absolutely integrable and complex-valued, let $\int f=\int\Re f+i\int\Im f$.
 \end{defn}
 
 Since $f^+,f^-\leq|f|$, the hypothesis of absolute integrability means that $\int f$ will not be an indeterminate expression. The definition of $\int f$ agrees with the nonnegative integral when both are defined.
@@ -1322,8 +1344,12 @@ While the vector space of absolutely integrable functions is infinite dimensiona
 
 We will see later that this density result fits in with several results which loosely state that integrable functions are ``almost continuous.''
 
-\begin{exerc}
-  Show that if $\int|f|=0$ then $f=0$ almost everywhere.
+\begin{exerc}[Tao, ex 1.3.25(i)]
+  Let $f$ be absolutely integrable. Show that for any $\epsilon>0$ there exists a bounded measurable set $A$ such that $\int |f|\chi_{A^c}<\epsilon$.
+\end{exerc}
+
+\begin{exerc}[Tao, ex 1.3.25(ii)]
+  Let $f$ be a measurable set with finite measure support. Show that for any $\epsilon>0$, there exists a measurable set $A$ such that $m(A)<\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $f(x)\leq M$.
 \end{exerc}
 
 \newpage
