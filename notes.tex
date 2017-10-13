@@ -1371,7 +1371,7 @@ But without these special hypotheses, such a convergence theorem can fail. So be
   Let $f_n=\chi_{[n,n+1]}$ and $f=0$. That is, $f_n$ is a sequence of moving unit bumps. Then $f_n\to f$ pointwise (not uniformly), but we have $\int f_n=1$ for all $n$, and $\int f=0$.
 \end{example}
 
-\begin{example}[Domain width escape to infinity]
+\begin{example}[Support escape to infinity]
   Let $f_n=\frac1n\chi_{[0,n]}$ and $f=0$. That is, $f_n$ is a sequence of widening and shortening bumps. Then $f_n\to f$ uniformly, but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
 \end{example}
 
@@ -1382,10 +1382,13 @@ But without these special hypotheses, such a convergence theorem can fail. So be
 One should observe that in all three of our examples where a convergence theorem fails, mass was destroyed in the limit. In particular, we do not have an example where new mass is created in the limit. The next result states that mass can only be destroyed, and never created.
 
 \begin{thm}[Fatou's lemma]
-  Let $f_n$ be nonnegative measurable functions. Then $\int\liminf f_n\leq\liminf\int f_n$. In particular, if $f_n\to f$ then $\int f\leq\liminf\int f_n$.
+  Let $f_n$ be nonnegative measurable functions. Then
+  \[\int\liminf f_n\leq\liminf\int f_n
+  \]
+  In particular, if $f_n\to f$ then we have $\int f\leq\liminf\int f_n$.
 \end{thm}
 
-We will prove Fatou's lemma shortly. Meanwhile, it tells us that so long as we can close off the avenues through which the mass of a region can escape to infinity, we can find a convergence theorem. The next theorem gives a very general and elegant way to prevent mass from escaping in a limit, namely, to make sure all functions involved are uniformly dominated by an absolutely integrable function.
+We will prove Fatou's lemma shortly, but first we will use it to prove the dominated convergence theorem. The dominated convergence theorem essentially states that so long as we can close off the avenues through which the mass of a region can escape to infinity, then we will have a convergence theorem.
 
 \begin{thm}[Dominated convergence theorem]
   Let $f_n$ be a sequence of measurable complex-valued functions and suppose that $f_n\to f$. Suppose that there exists a nonnegative function $G$ such that $\int|G|<\infty$ and for all $n$, we have $|f_n|\leq G$. Then $\int f_n\to \int f$.
@@ -1400,10 +1403,13 @@ Intuitively speaking, the function $G$ acts as an umbrella under which the conve
   Similarly $G-f_n$ is nonnegative so we can again use Fatou's lemma to obtain:
   \[\int G-f\leq\liminf\int G-f_n
   \]
-  Putting the two equations together, we conclude that $\int f\leq\liminf\int f_n$ and $\int f\geq\limsup\int f_n$, and hence $\int f=\lim\int f_n$.
+  Putting the two equations together, we conclude that
+  \[\limsup\int f_n\leq\int f\leq\liminf\int f_n
+  \]
+  It follows that $\int f=\lim\int f_n$.
 \end{proof}
 
-It now remains to establish Fatou's lemma. As a first approximation, we will examine what happens in the special case that the functions $f_n$ are nonnegative and the sequence of $f_n$'s is monotone increasing in $n$.
+We still have to give a proof of Fatou's lemma. As a first approximation, we will examine what happens in the special case that the functions $f_n$ are nonnegative and the sequence of $f_n$'s is monotone increasing in $n$.
 
 \begin{thm}[Monotone convergence theorem]
   Let $f_n$ be a sequence of nonnegative measurable functions, and suppose that $f_n\leq f_{n+1}$ for all $n$. Let $f=\sup f_n$, so that we automatically have $f_n\to f$. Then $\int f_n\to\int f$.
@@ -1412,20 +1418,20 @@ It now remains to establish Fatou's lemma. As a first approximation, we will exa
 \begin{proof}
   We first observe that if the $f_n$ were all characteristic functions, then this theorem would follow directly from the upwards monotone convergence theorem for Lebesgue measurable sets. Thus our strategy is to reduce to a situation in which we can apply the upwards monotone convergence theorem.
 
-  First, since $f_n\leq f_{n+1}$, by the montonicity of the integral we know that $\int f_n\leq\int f_{n+1}$. Siminarly since $f_n\leq f$ we know that $\int f_n\leq\int f$. It follows that the values $\int f_n$ converge and that $\lim\int f_n\leq\int f$.
+  First, since $f_n\leq f_{n+1}$, by the montonicity of the integral we know that $\int f_n\leq\int f_{n+1}$. Similarly since $f_n\leq f$ we know that $\int f_n\leq\int f$. It follows that the values $\int f_n$ converge and that $\lim\int f_n\leq\int f$.
 
-  To show that $\int f\leq\lim\int f_n$, it is sufficient to show that $\int g\leq \lim\int f_n$ for any simple function $g$ such that $g\leq f$. Given such a $g$, we can express it as $g=\sum c_i\chi_{E_i}$ where the $E_i$ are disjoint measurable sets. Using the range truncation lemma, we can suppose that $c_i\neq\infty$ for all $i$.
+  To show that $\int f\leq\lim\int f_n$, it is sufficient to show that $\int g\leq \lim\int f_n$ for any simple function $g$ such that $g\leq f$. Given such a $g$, we can express it as $g=\sum c_i\chi_{A_i}$ where the $A_i$ are disjoint measurable sets. Using the range truncation lemma, we can suppose that $c_i\neq\infty$ for all $i$.
 
-  Now fix just one of the sets $E_i$ and let $\epsilon>0$ be given. We define the sets
-  \[A_n^i=\{x\in E_i\mid f_n(x)>(1-\epsilon)c_i\}
+  Now fix just one of the sets $A_i$ and let $\epsilon>0$ be given. We define the sets
+  \[A_{i,n}=\{x\in A_i\mid f_n(x)>(1-\epsilon)c_i\}
   \]
-  so that we have $f_n>\sum(1-\epsilon)c_i\chi_{A_n^i}$. Now since $\lim f_n\geq g$, for all $x\in E_i$ for $n$ large enough we have that $f_n(x)>(1-\epsilon)c_i$. In other words, as $n\to\infty$ the $A_n^i$ increase to $E_i$. Now the upwards monotone convergence theorem for sets implies that as $n\to\infty$ we have $m(A_n^i)\to m(E_i)$.
+  About this defintion, we first note that it immediately implies $f_n>\sum(1-\epsilon)c_i\chi_{A_{i,n}}$. We second note that for all $x\in A_i$, for $n$ large enough, we have $f_n(x)\geq(1-\epsilon)g(x)=(1-\epsilon)c_i$. This means that $A_i$ is the union of the $A_{i,n}$. Thus the upwards monotone convergence theorem for sets implies that $m(A_{i,n})\to m(A_i)$ as $n\to\infty$.
 
   Putting this all together, we have
   \begin{align*}
-    \lim\int f_n&\geq\lim\int\sum(1-\epsilon)c_i\chi_{A_n^i}\\
-                &=\lim\sum (1-\epsilon)c_im(A_n^i)\\
-                &=\sum (1-\epsilon)c_im(E_i)\\
+    \lim\int f_n&\geq\lim\int\sum(1-\epsilon)c_i\chi_{A_{i,n}}\\
+                &=\lim\sum (1-\epsilon)c_im(A_{i,n})\\
+                &=\sum (1-\epsilon)c_im(A_i)\\
                 &=(1-\epsilon)\int g
   \end{align*}
   Taking $\epsilon\to0$ we therefore conclude that $\lim\int f_n\geq\int g$, as desired.  
