@@ -651,7 +651,7 @@ We have shown that the Lebesgue outer measure satisfies countable subadditivity.
 
 \begin{lem}
   \label{lem:separated}
-  Suppose that $A,B$ are separated, that is, that $d(A,B)=\inf\set{d(x,y)\mid x\in A, y\in B}>0$. Then $m^*(A\cup B)=m^*(A)+m^*(B)$.
+  Suppose that $A,B$ are positively separated, that is, that $d(A,B)=\inf\set{d(x,y)\mid x\in A, y\in B}>0$. Then $m^*(A\cup B)=m^*(A)+m^*(B)$.
 \end{lem}
 
 \begin{proof}
@@ -771,7 +771,7 @@ Recall that a set $A$ is called Lebesgue measurable if it can be well-approximat
   \end{align*}
   This shows that $\bigcup A_n$ is measurable.
 
-  For closed sets, assume first that $A$ is closed and bounded, and thus compact. Using the outer regularity lemma we can find an open set $O$ such that $A\subset O$ and $m^*(O)-m^*(A)<\epsilon$. We wish to show that $m^*(O\setminus A)<\epsilon$ too. Since $O\setminus A$ is open, we can use Proposition~\ref{prop:open-decomp} to write $O\setminus A$ as an almost disjoint union of closed dyadic cubes $C_n$. Then $\bigcup_1^N C_n$ is compact and thus separated from the compact set $A$. By Lemma~\ref{lem:separated}, additivity holds for separated sets, so we have:
+  For closed sets, assume first that $A$ is closed and bounded, and thus compact. Using the outer regularity lemma we can find an open set $O$ such that $A\subset O$ and $m^*(O)-m^*(A)<\epsilon$. We wish to show that $m^*(O\setminus A)<\epsilon$ too. Since $O\setminus A$ is open, we can use Proposition~\ref{prop:open-decomp} to write $O\setminus A$ as an almost disjoint union of closed dyadic cubes $C_n$. Then $\bigcup_1^N C_n$ is compact and thus positively separated from the compact set $A$. By Lemma~\ref{lem:separated}, additivity holds for positively separated sets, so we have:
   \begin{align*}
     m^*(A)+m^*(\bigcup_1^N C_i)&=m^*(A\cup\bigcup_1^N C_i)\\
                               &\leq m^*(O)\\
@@ -872,7 +872,7 @@ In the previous section we established that many sets are Lebesgue measurable. W
 \begin{proof}
   We have already established normality for $m^*$ and hence for $m$. Translation-invariance of $m^*$ is clear from the definition since it is clear for boxes.
 
-  For countable additivity, first recall that we always have subadditivity so we need only show $m(\bigcup A_n)\geq\sum m(A_n)$. Suppose first that the $A_n$ are compact. Then they are pairwise separated, so using Lemma~\ref{lem:separated} inductively we can establish that $m(\bigcup_1^N A_n)=\sum_1^N m(A_n)$. It follows that $m(\bigcup A_n)\geq\sum_1^Nm(A_n)$. Taking $N\to\infty$ we have $m(\bigcup A_n)\geq\sum m(A_n)$ as desired.
+  For countable additivity, first recall that we always have subadditivity so we need only show $m(\bigcup A_n)\geq\sum m(A_n)$. Suppose first that the $A_n$ are compact. Then they are pairwise positively separated, so using Lemma~\ref{lem:separated} inductively we can establish that $m(\bigcup_1^N A_n)=\sum_1^N m(A_n)$. It follows that $m(\bigcup A_n)\geq\sum_1^Nm(A_n)$. Taking $N\to\infty$ we have $m(\bigcup A_n)\geq\sum m(A_n)$ as desired.
 
   Next assume that the $A_n$ are bounded but not necessarily closed. By the measurability of $A_n^c$ we can find open sets $O_n$ such that $A_n^c\subset O_n$ and $m^*(O_n\setminus A_n^c)<\epsilon/2^n$. Taking complements we thus have compact sets $K_n\subset E_n$ such that $m^*(A_n\setminus K_n)<\epsilon/2^n$. Now using the additivity for compact sets,
   \begin{align*}
