@@ -1473,6 +1473,13 @@ Next we use the very special monotone convergence theorem to establish Fatou's l
   as desired.
 \end{proof}
 
+\begin{exerc}[Tao, ex 1.44, 1.45]
+  \begin{enumerate}
+    \item Let $A_n$ be measurable sets and assume that $\sum m(A_n)<\infty$. Show that almost every $x\in\RR^d$ is contained in at most finitely many of the $A_n$. [Hint: Use Tonelli's theorem on the functions $\chi_{A_n}$.] This is the Borel--Cantelli lemma.
+    \item Give a counterexample to the above conclusion, showing that the hypothesis $\sum m(A_n)<\infty$ cannot be replaced by the weaker condition $\lim m(A_n)=0$.
+  \end{enumerate}
+\end{exerc}
+
 \begin{exerc}
   Use the dominated convergence theorem to show that the harmonic series $\sum\frac1n$ diverges. [Hint: Let $f_n=\frac1n\chi_{[0,n]}$, show that $\sum\frac1n<\infty$ plus the dominated convergence theorem implies $\int f_n\to 0$, and obtain a contradiction from this.]
 \end{exerc}
@@ -1592,6 +1599,22 @@ If $\mathcal A$ is an algebra on $X$, and $\mu_0$ is any function on $\mathcal A
 \end{proof}
 
 Recall that after we constructed Lebesgue outer measure $m^*$ we defined the collection of $m^*$-measurable sets as those which could be approximated well by open sets. If $X$ is just a set with an algebra or $\sigma$-algebra, we can't refer to the open sets. Thus to prove Carath\'eodory's extension theorem, it remains to show how to identify the collection of $\mu^*$-measurable sets. We will investigate this in the next section, as well as some applications of the extension theorem.
+
+\begin{exerc}[Tao, ex 1.4.26]
+  Let $\mu$ be a measure on $(X,\mathcal B)$. Show that $\mathcal B$ can be extended to $\sigma$-algebra $\hat{\mathcal B}$ and $\mu$ to a measure $\hat\mu$ on $(X,\hat{\mathcal B})$ in such a way that $\hat\mu$ is complete.
+\end{exerc}
+
+\begin{exerc}[Tao, ex 1.4.49]
+  Let $f$ be a nonnegative Lebesgue measurable function. Show that $\mu(A)=\int f\chi_A$ is a measure.
+\end{exerc}
+
+% Tao 1.7.4
+
+\begin{exerc}[Tao, ex 1.7.6]
+  Give an example of a finitely additive measure that is not a premeasure. [Hint: work on the measurable space $(\NN,\mathcal P(\NN))$ and define $\mu_0$ separately for finite and infinite sets.]
+\end{exerc}
+
+
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
