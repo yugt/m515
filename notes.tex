@@ -1494,13 +1494,44 @@ The Lebesgue measure and integration theory that we have developed can be regard
 \item the space $\RR^d$ with its $\RR$-linear combinations is a model for the definiton of vector space.
 \end{itemize}
 
-An abstract measure function $\mu$ on a space $X$ will be one which satisfies the most fundamental properties that we have worked to prove for the Lebesgue measure. Of course the Lebesgue measure $m$ can only be applied to some of the subsets of $\RR^d$, so an abstract measure $\mu$ the can only be expected to be applied to some of the subsets of $X$. Thus we make the following definition of an abstract space replacing the role of $\RR^d$.
+An abstract measure function $\mu$ on a space $X$ will be one which satisfies the most fundamental properties that we have worked to prove for the Lebesgue measure. Of course the Lebesgue measure $m$ can only be applied to the measurable subsets of $\RR^d$, so we should only expect to be able to apply an abstract measure $\mu$ to a subcollection of the subsets of $X$. Thus we make the following definition of an abstract space to take the place of $\RR^d$ and its measurable sets.
 
 \begin{defn}
-  A \emph{measurable space} is a pair $(X,\mathcal B)$ where $X$ is any set and $\mathcal B$ is a \emph{$\sigma$-algebra} on $X$: a collection of subsets of $X$ which contains the sets $\emptyset$ and $X$, and is closed under countable intersections, countable unions, and complements.
+  A \emph{measurable space} is a pair $(X,\mathcal B)$ where $X$ is any set and $\mathcal B$ is a Boolean \emph{$\sigma$-algebra} on $X$: a collection of subsets of $X$ which contains the sets $\emptyset$ and $X$, and is closed under countable intersections, countable unions, and complements.
 \end{defn}
 
-Before getting further into the details of abstract measurable spaces and abstract measures, we recapitulate our development of the elementary, Jordan, and Lebesgue measures in an abstract setting.
+Thus if we let $\mathcal L$ denote the Lebesgue measurable subsets of $\RR^d$, we have that $(\RR^d,\mathcal L)$ is a measurable space. For another example, if $X$ is any set then we can always let $\mathcal F$ be the collection of all countable or co-countable subsets of $X$. Finally if $X$ is any topological space then it can be viewed as a measurable space by taking its $\sigma$-algebra to be the collection of Borel subsets of $X$: A set is said to be Borel if it is constructible from the open sets using countable intersections, countable unions, and complements.
+
+\begin{defn}
+  Suppose $X$ is a set and $\mathcal B$ is a $\sigma$-algebra on $X$. A function $\mu\colon\mathcal B\to[0,\infty]$ is said to be a \emph{measure} if it satisfies
+  \begin{enumerate}
+  \item (empty set) $\mu(\emptyset)=0$; and
+  \item (countable additivity) for every sequence of pairwise disjoint sets $A_i\in\mathcal B$, we have $\mu(\bigcup A_i)=\sum(\mu(A_i))$.
+  \end{enumerate}
+\end{defn}
+
+Thus the Lebesgue measure $m$ on $(\RR^d,\mathcal L)$ is an example of a measure. For another example, the cardinality measure $\mu(A)=|A|$ is a measure on the measurable space $(X,\mathcal P(X))$. Another very simple example is a Dirac measure on $(X,\mathcal P(X))$: if $x\in X$ we can define $\mu_x(A)=1$ if $x\in A$ and $=0$ if $x\notin A$. Finally it is worth noting that given several measures $\mu_i$ on the same measurable space $(X,\mathcal B)$, we can form new measures using linear combinations. That is, the measure $\mu=\sum c_i\mu_i$ is defined by $\mu(A)=\sum c_i\mu_i(A)$.
+
+Many of the properties of Lebesgue measure that we have established can be proved solely using the axioms of a measure.
+
+\begin{prop}
+  Suppose that $\mathcal B$ is a $\sigma$-algebra on $X$, and $\mu$ is a measure on $\mathcal B$. Let $A,B$, and $A_i$ denote elements of $\mathcal B$. Then we have:
+  \begin{itemize}
+    \item (monotonicity) if $A\subset B$ then $\mu(A)\leq\mu(B)$;
+    \item (inclusion--exclusion) $\mu(A\cup B)+\mu(A\cap B)=\mu(A)+\mu(B)$.
+    \item (countable subadditivity) $\mu(\bigcup A_i)\leq\sum\mu(A_i)$;
+    \item (upwards monotone convergence) if $A_i\subset A_{i+1}$ then $\mu(\bigcup A_i)=\lim\mu(A_i)$; and
+    \item (downwards monotone convergence) if $A_i\subset A_{i+1}$ and $\mu(A_1)<\infty$ then $\mu(\bigcap A_i)=\lim\mu(A_i)$.
+  \end{itemize}
+\end{prop}
+
+Each of these items may be proved in exactly the same way as we have done for Lebesgue measure. Of course some properties of Lebesgue measure don't even make sense to state for a general measure. For instance the normality and translation-invariance properties don't make sense in general, since we may not have the notions of boxes or translations on a general space $X$.
+
+One further property of the Lebesgue measure which does not appear in the above list is that subsets of null sets should be null. This property does not follow directly from the axioms of a measure, and instead must be made into an additional axiom. We say that a $\sigma$-algebra $\mathcal B$ is \emph{complete} if whenever $A\in\mathcal B$ and $A'\subset A$ then $A'\subset\mathcal B$. We also say that measure $\mu$ is \emph{complete} if it is defined on a complete $\sigma$-algebra. It is an exercise to check that if $\mu$ is a measure, then it can always be extended to a complete measure.
+
+At this point we have only given very trivial examples of measure, besides the Lebesgue measure. Given the effort we invested to find the right construction of the Lebesgue measure, it may not surprise you to know that it is difficult to construct interesting examples of measures. In fact there is a very general and powerful method for constructing measures. The basic idea behind it is that it is easy to construct measures which are just finitely additive first. This mirrors the construction of Lebesgue measure, where we first constructed the elementary and Jordan measures.
+
+In order to define finitely additive measures, we have to modify the definition of measurable space.
 
 \begin{defn}
   A \emph{Boolean algebra} on $X$ is a collection of subsets of $X$ which contains the sets $\emptyset$, and $X$, and is closed under pairwise intersections, pairwise unions, and complements.
@@ -1518,45 +1549,9 @@ We have essentially seen several key examples of Boolean algebras on $\RR^d$: th
 
 The elementary measure is an example of a finitely additive measure, provided we take its value to be $\infty$ on any set which is the complement of an elementary set. A similar statement holds for the Jordan measure. But there are many other examples of finitely additive measures. For a simple example let $X$ be any set, and $\mathcal A$ the Boolean algebra of all finite or cofinite subsets of $X$. Then we can define a finitely additive measure by $\mu(A)=|A|$, the cardinality of $A$.
 
-The two simple axioms above imply several further properties.
+Similar to the case with measures, the two simple axioms of a finitely additive measure further imply the monotonicity, inclusion--exclusion, and finite subadditivity properties.
 
-\begin{prop}
-  Suppose that $\mathcal A$ is a Boolean algebra on $X$, and $\mu$ is a finitely additive measure on $\mathcal A$. Then if $A,B\in\mathcal A$ we have:
-  \begin{itemize}
-  \item (monotonicity) if $A\subset B$ then $\mu(A)\leq\mu(B)$;
-  \item (finite subadditivity) $\mu(A\cup B)\leq\mu(A)+\mu(B)$; and
-  \item (inclusion--exclusion) $\mu(A\cup B)+\mu(A\cap B)=\mu(A)+\mu(B)$.
-  \end{itemize}
-\end{prop}
-
-We now move on to the stronger properties enjoyed by Lebesgue measurable sets and Lebesgue measure. As we have already said, the Lebesgue measurable sets are not just a Boolean algebra but a $\sigma$-algebra. This makes $\RR^d$ together with the Lebesgue measurable sets into a measurable space. 
-
-For more examples of a measurable space, if $X$ is any set then we can always let $\mathcal F$ be the collection of all countable or co-countable subsets of $X$. Next if $X$ is any topological space then it can be viewed as a measurable space by taking its $\sigma$-algebra to be the collection of Borel subsets of $X$: A set is said to be Borel if it is constructible from the open sets using countable intersections, countable unions, and complements.
-
-\begin{defn}
-  Suppose $X$ is a set and $\mathcal B$ is a $\sigma$-algebra on $X$. A function $\mu\colon\mathcal B\to[0,\infty]$ is said to be a \emph{measure} if it satisfies
-  \begin{enumerate}
-  \item (empty set) $\mu(\emptyset)=0$; and
-  \item (countable additivity) for every sequence of pairwise disjoint sets $A_i\in\mathcal B$, we have $\mu(\bigcup A_i)=\sum(\mu(A_i))$.
-  \end{enumerate}
-\end{defn}
-
-The only example of a measure that we have seen so far is the Lebesgue measure on $\RR^d$. One further example is the cardinality measure $\mu(A)=|A|$ on any set. Another very simple example is the Dirac measure: if $x\in X$ we can define $\mu_x(A)=1$ if $x\in A$ and $=0$ if $x\notin A$. It is also worth noting that given several measures $\mu_i$ on a common $\sigma$-algebra, we can form new measures using linear combinations. That is, the measure $\mu=\sum c_i\mu_i$ is defined by $\mu(A)=\sum c_i\mu_i(A)$.
-
-A measure enjoys all the properties of a finitely additive measure, as well as many more. Each of the following can be established using our proofs in the case of Lebesgue measure.
-
-\begin{prop}
-  Suppose that $\mathcal B$ is a $\sigma$-algebra on $X$, and $\mu$ is a measure on $\mathcal B$. Then if $A_i\in\mathcal B$, we have:
-  \begin{itemize}
-  \item (countable subadditivity) $\mu(\bigcup A_i)\leq\sum\mu(A_i)$;
-  \item (upwards monotone convergence) if $A_i\subset A_{i+1}$ then $\mu(\bigcup A_i)=\lim\mu(A_i)$; and
-  \item (downwards monotone convergence) if $A_i\subset A_{i+1}$ and $\mu(A_1)<\infty$ then $\mu(\bigcap A_i)=\lim\mu(A_i)$.
-  \end{itemize}
-\end{prop}
-
-One further property which the Lebesgue measure had by definition is that subsets of null sets were null. This property does not follow directly from the axioms of a measure, and instead must be made into an additional axiom. We say that a $\sigma$-algebra $\mathcal B$ is \emph{complete} if whenever $A\in\mathcal B$ and $A'\subset A$ then $A'\subset\mathcal B$. We also say that measure $\mu$ is \emph{complete} if it is defined on a complete $\sigma$-algebra. It is an exercise to check that if $\mu$ is a measure, then it can always be extended to a complete measure.
-
-At this point we have only given very trivial examples of measure, besides the Lebesgue measure. Given the effort we invested into finding the right construction of the Lebesgue measure, it may not surprise you to know that it is difficult to construct interesting examples of measures. In fact there is a very general and powerful method for constructing measures. The basic idea behind it is that it is easy to construct finitely additive measures first. Unfortunately not all finitely additive measures give rise to true measures, necessitating the following definition.
+Unfortunately not all finitely additive measures give rise to true measures, necessitating the following definition.
 
 \begin{defn}
   Let $X$ be any set, $\mathcal A$ a boolean algebra on $X$, and $\mu_0$ a finitely additive measure on $\mathcal A$. Then $\mu_0$ is said to be a \emph{premeasure} if it satisfies the additional axiom:
@@ -1597,14 +1592,6 @@ If $\mathcal A$ is an algebra on $X$, and $\mu_0$ is any function on $\mathcal A
 \end{proof}
 
 Recall that after we constructed Lebesgue outer measure $m^*$ we defined the collection of $m^*$-measurable sets as those which could be approximated well by open sets. If $X$ is just a set with an algebra or $\sigma$-algebra, we can't refer to the open sets. Thus to prove Carath\'eodory's extension theorem, it remains to show how to identify the collection of $\mu^*$-measurable sets. We will investigate this in the next section, as well as some applications of the extension theorem.
-
-\begin{exerc}
-  Show that a countable linear combination of measures is a measure.
-\end{exerc}
-
-\begin{exerc}
-  Caratheodory property for Lebesgue measurable sets.
-\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
