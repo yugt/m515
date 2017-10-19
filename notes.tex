@@ -292,6 +292,8 @@ These results give an essentially complete solution to the measure problem for e
 \section{Jordan measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Move to appendix?
+
 \begin{reading}
   Tao, \S1.1.2.
 \end{reading}
@@ -434,6 +436,8 @@ Intuitively, the Jordan measure works very well for classical geometric figures,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Riemann integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Move to appendix?
 
 \begin{reading}
   Tao, \S1.1.3.
@@ -949,6 +953,8 @@ We have now established the existence and all of the promised axioms of the Lebe
 \section{Preview of integration, simple integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Start with bounded, bounded support, simple functions and simple integrals, and then bounded, bounded support measurable functions and their integrals? Or maybe this only makes sense when Darboux has been covered (and not moved to appendix).
+
 \begin{reading}
   Tao, \S 1.3 introduction
 \end{reading}
@@ -963,7 +969,7 @@ Recall that the Darboux/Riemann integral was defined first for piecewise constan
   A function $f$ mapping $\RR^d$ into the extended real numbers $[0,\infty]$ (or sometimes into $\CC$) is called \emph{simple} if there exists a partition of $\RR^d$ into finitely many Lebesgue measurable subsets $A_1,\ldots,A_k$ such that $f$ takes a constant value $c_i$ on each $A_i$.
 \end{defn}
 
-Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_i\chi_{A_i}$ where $A_i$ are Lebesgue measurable sets.
+Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_n\chi_{A_i}$ where $A_i$ are Lebesgue measurable sets.
 
 \begin{defn}
   If $f=\sum_1^kc_i\chi_{A_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sint f=\sum_1^kc_im(A_i)$.
@@ -1513,7 +1519,7 @@ Thus if we let $\mathcal L$ denote the Lebesgue measurable subsets of $\RR^d$, w
   Suppose $X$ is a set and $\mathcal B$ is a $\sigma$-algebra on $X$. A function $\mu\colon\mathcal B\to[0,\infty]$ is said to be a \emph{measure} if it satisfies
   \begin{enumerate}
   \item (empty set) $\mu(\emptyset)=0$; and
-  \item (countable additivity) for every sequence of pairwise disjoint sets $A_i\in\mathcal B$, we have $\mu(\bigcup A_i)=\sum(\mu(A_i))$.
+  \item (countable additivity) for every sequence of pairwise disjoint sets $A_n\in\mathcal B$, we have $\mu(\bigcup A_n)=\sum(\mu(A_n))$.
   \end{enumerate}
 \end{defn}
 
@@ -1522,13 +1528,13 @@ Thus the Lebesgue measure $m$ on $(\RR^d,\mathcal L)$ is an example of a measure
 Many of the properties of Lebesgue measure that we have established can be proved solely using the axioms of a measure.
 
 \begin{prop}
-  Suppose that $\mathcal B$ is a $\sigma$-algebra on $X$, and $\mu$ is a measure on $\mathcal B$. Let $A,B$, and $A_i$ denote elements of $\mathcal B$. Then we have:
+  Suppose that $\mathcal B$ is a $\sigma$-algebra on $X$, and $\mu$ is a measure on $\mathcal B$. Let $A,B$, and $A_n$ denote elements of $\mathcal B$. Then we have:
   \begin{itemize}
     \item (monotonicity) if $A\subset B$ then $\mu(A)\leq\mu(B)$;
     \item (inclusion--exclusion) $\mu(A\cup B)+\mu(A\cap B)=\mu(A)+\mu(B)$.
-    \item (countable subadditivity) $\mu(\bigcup A_i)\leq\sum\mu(A_i)$;
-    \item (upwards monotone convergence) if $A_i\subset A_{i+1}$ then $\mu(\bigcup A_i)=\lim\mu(A_i)$; and
-    \item (downwards monotone convergence) if $A_i\subset A_{i+1}$ and $\mu(A_1)<\infty$ then $\mu(\bigcap A_i)=\lim\mu(A_i)$.
+    \item (countable subadditivity) $\mu(\bigcup A_n)\leq\sum\mu(A_n)$;
+    \item (upwards monotone convergence) if $A_n\subset A_{n+1}$ then $\mu(\bigcup A_n)=\lim\mu(A_n)$; and
+    \item (downwards monotone convergence) if $A_n\subset A_{n+1}$ and $\mu(A_1)<\infty$ then $\mu(\bigcap A_n)=\lim\mu(A_n)$.
   \end{itemize}
 \end{prop}
 
@@ -1563,7 +1569,7 @@ Unfortunately not all finitely additive measures give rise to true measures, nec
 \begin{defn}
   Let $X$ be any set, $\mathcal A$ a boolean algebra on $X$, and $\mu_0$ a finitely additive measure on $\mathcal A$. Then $\mu_0$ is said to be a \emph{premeasure} if it satisfies the additional axiom:
   \begin{itemize}
-  \item for every sequence of pairwise disjoint sets $A_i\in\mathcal A$, if $\bigcup A_i\in\mathcal A$, then $\mu_0(\bigcup A_i)=\sum\mu(A_i)$.
+  \item for every sequence of pairwise disjoint sets $A_n\in\mathcal A$, if $\bigcup A_n\in\mathcal A$, then $\mu_0(\bigcup A_n)=\sum\mu(A_n)$.
   \end{itemize}
 \end{defn}
 
@@ -1579,8 +1585,8 @@ The idea behind the proof is to use an analog of our construction of the Lebesgu
   Let $X$ be any set and $\mu^*$ a function on all subsets of $X$. Then $\mu^*$ is said to be a \emph{outer measure} if it satisfies
   \begin{enumerate}
   \item (empty set) $\mu^*(\emptyset)=0$;
-  \item (monotonicity) if $E\subset F$ then $\mu^*(E)\leq\mu^*(F)$; and
-  \item (countable subadditivity) $\mu^*(\bigcup E_i)\leq\sum\mu^*(E_i)$.
+  \item (monotonicity) if $A\subset B$ then $\mu^*(A)\leq\mu^*(B)$; and
+  \item (countable subadditivity) $\mu^*(\bigcup A_n)\leq\sum\mu^*(A_n)$.
   \end{enumerate}
 \end{defn}
 
@@ -1614,8 +1620,6 @@ Recall that after we constructed Lebesgue outer measure $m^*$ we defined the col
   Give an example of a finitely additive measure that is not a premeasure. [Hint: work on the measurable space $(\NN,\mathcal P(\NN))$ and define $\mu_0$ separately for finite and infinite sets.]
 \end{exerc}
 
-
-
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Construction of abstract measures}
@@ -1625,11 +1629,11 @@ Recall that after we constructed Lebesgue outer measure $m^*$ we defined the col
   Tao, \S 1.7
 \end{reading}
 
-In the previous section, we showed how to abstract the properties of the elementary measure to a finitely additive measure, and how to abstract the properties of the Lebesgue outer measure too. What we lacked was a definition of measurability, which in the Lebesgue case relied on the open sets of $\RR^d$. For a general measure space, we use the following much more subtle definition.
+In the previous section, we showed how to abstract the properties of the elementary measure to a finitely additive measure, and how to abstract the properties of the Lebesgue outer measure too. What we lacked was a definition of measurability, which in the Lebesgue case relied on the boxes or open subsets of $\RR^d$. For a general space $X$, we use the following much more subtle definition.
 
 \begin{defn}
-  Suppose that $X$ is any set and $\mu^*$ is an outer measure on $X$. Then a subset $E\subset X$ is said to be \emph{$\mu^*$-measurable} if for every subset $S\subset X$ we have
-  \[\mu^*(S)=\mu^*(S\cap E)+\mu^*(S\setminus E)
+  Suppose that $X$ is any set and $\mu^*$ is an outer measure on $X$. Then a subset $A\subset X$ is said to be \emph{$\mu^*$-measurable} if for every subset $S\subset X$ we have
+  \[\mu^*(S)=\mu^*(S\cap A)+\mu^*(S\setminus A)
   \]
 \end{defn}
 
@@ -1642,63 +1646,63 @@ The next result shows that the $\mu^*$-measurable sets are a good choice, in the
 \end{thm}
 
 \begin{proof}
-  We first show that the collection of $\mu^*$-measurable sets is an algebra. It is clear that a set $E$ is $\mu^*$-measurable if and only if $E^c$ is $\mu^*$-measurable.
+  The first part of the proof will be to show that the collection of $\mu^*$-measurable sets is a Boolean algebra and $\mu^*$ is finitely additive on the $\mu^*$-measurable sets. To begin, it is clear that a set $A$ is $\mu^*$-measurable if and only if $A^c$ is $\mu^*$-measurable.
 
-  We next show that the $\mu^*$-measurable sets are closed under pairwise unions. Suppose that $E,F$ are $\mu^*$-measurable. Since we have already proved $\mu^*$ is subadditive for arbitrary sets, it suffices to prove that for any set $S$ we have
-  \[\mu^*(S)\geq\mu^*(S\cap(E\cup F))+\mu^*(S\setminus(E\cup F))
+  We now show that the $\mu^*$-measurable sets are closed under pairwise unions. Suppose that $A,B$ are $\mu^*$-measurable. Since we have already proved $\mu^*$ is subadditive for arbitrary sets, it suffices to prove that for any set $S$ we have
+  \[\mu^*(S)\geq\mu^*(S\cap(A\cup B))+\mu^*(S\setminus(A\cup B))
   \]
-  To achieve this, we expand the right-hand side and then apply the measurability of $F$ followed by the measurability of $E$:
+  To achieve this, we expand the right-hand side and then apply the measurability of $B$ followed by the measurability of $A$:
   \begin{align*}
-    &\mu^*(S\cap(E\cup F))+\mu^*(S\cap(E\cup F)^c)\\
-    &\leq \mu^*(S\cap E\cap F^c)+\mu^*(S\cap E\cap F)+\mu^*(S\cap E^c\cap F)+\mu^*(S\cap E^c\cap F^c)\\
-    &=\mu^*(S\cap E)+\mu^*(S\cap E^c)\\
+    &\mu^*(S\cap(A\cup B))+\mu^*(S\cap(A\cup B)^c)\\
+    &\leq \mu^*(S\cap A\cap B^c)+\mu^*(S\cap A\cap B)+\mu^*(S\cap A^c\cap B)+\mu^*(S\cap A^c\cap B^c)\\
+    &=\mu^*(S\cap A)+\mu^*(S\cap A^c)\\
     &=\mu(S)
   \end{align*}
   
-  Third we show that $\mu^*$ is finitely additive on the $\mu^*$-measurable sets. Suppose that $E,F$ are disjoint and $\mu^*$-measurable. Then using the measurability of $E$, we have
+  Next we show that $\mu^*$ is finitely additive on the $\mu^*$-measurable sets. Suppose that $A,B$ are disjoint and $\mu^*$-measurable. Then using the measurability of $A$, we have
   \begin{align*}
-    \mu^*(E\cup F)&=\mu^*((E\cup F)\cap E)+\mu^*((E\cup F)\setminus E)\\
-                  &=\mu^*(E)+\mu^*(F)
+    \mu^*(A\cup B)&=\mu^*((A\cup B)\cap A)+\mu^*((A\cup B)\setminus A)\\
+                  &=\mu^*(A)+\mu^*(B)
   \end{align*}
 
-  Finally we show that the $\mu^*$-measurable sets form a $\sigma$-algebra and that $\mu^*$ is countably additive on the $\mu^*$-measurable sets. Let $E_i$ be a sequence of $\mu^*$-measurable sets. Since the $\mu^*$-measurable sets form an algebra, we can assume without loss of generality that the $E_i$ are pairwise disjoint. Then using the argument of the previous paragraph, for any set $S$ we have $\mu^*(S\cap\bigcup_1^nE_i)=\sum_1^n\mu^*(S\cap E_i)$. It follows that
+  The second part of the proof is to show that the $\mu^*$-measurable sets form a $\sigma$-algebra and that $\mu^*$ is countably additive on the $\mu^*$-measurable sets. Let $A_n$ be a sequence of $\mu^*$-measurable sets. Since the $\mu^*$-measurable sets form an algebra, we can assume without loss of generality that the $A_n$ are pairwise disjoint. Then using the argument of the previous paragraph, with $S\cap$ inserted and then induction, for any set $S$ we have $\mu^*(S\cap\bigcup_1^N A_n)=\sum_1^N\mu^*(S\cap A_n)$. It follows that
   \begin{align*}
-    \mu^*(S)&=\mu^*(S\cap\bigcup_1^nE_i)+\mu^*(S\setminus\bigcup_1^nE_i)\\
-            &\geq\sum_1^n\mu^*(S\cap E_i)+\mu^*(S\setminus\bigcup E_i)
+    \mu^*(S)&=\mu^*(S\cap\bigcup_1^N A_n)+\mu^*(S\setminus\bigcup_1^N A_n)\\
+            &=\sum_1^N\mu^*(S\cap A_n)+\mu^*(S\setminus\bigcup A_n)
   \end{align*}
-  Taking $n\to\infty$, we obtain
+  Taking $N\to\infty$, we obtain
   \begin{align*}
-    \mu^*(S)&\geq\sum\mu^*(S\cap E_i)+\mu^*(S\setminus\bigcup E_i)\\
-            &\geq\mu^*(\bigcup S\cap E_i)+\mu^*(S\setminus\bigcup E_i)\\
-            &=\mu^*(S\cap\bigcup E_i)+\mu^*(S\setminus\bigcup E_i)
+    \mu^*(S)&=\sum\mu^*(S\cap A_n)+\mu^*(S\setminus\bigcup A_n)\\
+            &\geq\mu^*(\bigcup (S\cap A_n))+\mu^*(S\setminus\bigcup A_n)\\
+            &=\mu^*(S\cap\bigcup A_n)+\mu^*(S\setminus\bigcup A_n)
   \end{align*}
-  Thus we have shown that $\bigcup E_i$ is $\mu^*$-measurable.
+  Thus we have shown that $\bigcup A_n$ is $\mu^*$-measurable.
 
-  Moreover if we take $S=\bigcup E_i$ in the above, we obtain that $\mu^*(\bigcup E_i)\geq\sum(\mu^*(E_i))$, which shows that $\mu^*$ is countably additive as desired.
+  Finally if we take $S=\bigcup A_n$ in the above, we obtain that $\mu^*(\bigcup A_n)\geq\sum\mu^*(A_n)$, which shows that $\mu^*$ is countably additive as desired.
 \end{proof}
 
 Now we return to the motivational context where the outer measure $\mu^*$ is constructed from a finitely additive measure $\mu_0$, as was done for Lebesgue measure. In this case, provided the finitely additive measure $\mu_0$ was in fact a premeasure, $\mu^*$ will be the desired Carath\'eodory extension of $\mu_0$.
 
 \begin{thm}
-  Let $\mathcal B_0$ is a Boolean algebra on $X$, and $\mu_0$ a premeasure on $\mathcal B_0$. Let $\mu^*$ be the outer measure induced by $\mu_0$ according to Equation~\eqref{eq:outer} and $\mathcal B$ the $\sigma$-algebra of $\mu^*$-measurable sets. Then $\mathcal B$ is an extension of $\mathcal B_0$, and $\mu^*$ is an extension of $\mu_0$.
+  Let $\mathcal A$ be a Boolean algebra on $X$, and $\mu_0$ a premeasure on $\mathcal A$. Let $\mu^*$ be the outer measure induced by $\mu_0$ according to Equation~\eqref{eq:outer} and $\mathcal B$ the $\sigma$-algebra of $\mu^*$-measurable sets. Then $\mathcal B$ is an extension of $\mathcal A$, and $\mu^*$ is an extension of $\mu_0$.
 \end{thm}
 
 \begin{proof}
-  We first show that if  $E$ lies in $\mathcal B_0$ then $E$ is $\mu^*$-measurable. For this, let $S$ be an arbitrary set and find sets $A_i\in\mathcal B_0$ such that $S\subset\bigcup A_i$ and $\mu^*(S)-\sum\mu_0(A_i)<\epsilon$. Then
+  We first show that if $A$ lies in $\mathcal A$ then $A$ is $\mu^*$-measurable. For this, let $S$ be an arbitrary set and find sets $B_n\in\mathcal A$ such that $S\subset\bigcup B_n$ and $\mu^*(S)-\sum\mu_0(B_n)<\epsilon$. Then
   \begin{align*}
-    \mu^*(S\cap E)+\mu^*(S\setminus E)&\leq\sum\mu_0(A_i\cap E)
-                                        +\sum\mu_0(A_i\setminus E)\\
-                                      &=\sum\mu_0(E_n)\\
+    \mu^*(S\cap A)+\mu^*(S\setminus A)&\leq\sum\mu_0(B_n\cap A)
+                                        +\sum\mu_0(B_n\setminus A)\\
+                                      &=\sum\mu_0(B_n)\\
                                       &<\mu^*(S)+\epsilon
   \end{align*}
-  Taking $\epsilon\to0$, we conclude that $E$ is $\mu^*$-measurable.
+  Taking $\epsilon\to0$, we conclude that $A$ is $\mu^*$-measurable.
 
-  Next we show that if $E$ lies in $\mathcal B_0$ then $\mu^*(E)=\mu_0(E)$. It is clear from the definition that $\mu^*(E)\leq\mu_0(E)$. To show that $\mu_0(E)\leq\mu^*(E)$, let $A_i\in\mathcal B_0$ be such that $E\subset\bigcup A_i$. We can assume without loss of generality that the $A_i$ are pairwise disjoint. Then using the axiom of a premeasure, we obtain
+  Next we show that if $A$ lies in $\mathcal A$ then $\mu^*(A)=\mu_0(A)$. It is clear from the definition that $\mu^*(A)\leq\mu_0(A)$. To show that $\mu_0(A)\leq\mu^*(A)$, let $B_n\in\mathcal B_0$ be such that $A\subset\bigcup B_n$. We can assume without loss of generality that the $B_n$ are pairwise disjoint. Then using the axiom of a premeasure, we obtain
   \begin{align*}
-    \mu_0(E)&=\sum\mu_0(E\cap A_i)\\
-            &\leq\sum\mu_0(A_i)
+    \mu_0(A)&=\sum\mu_0(A\cap B_n)\\
+            &\leq\sum\mu_0(B_n)
   \end{align*}
-  Taking the infemum over all such sequences $A_i$, we conclude that $\mu_0(E)\leq\mu^*(E)$, as desired.
+  Taking the infemum over all such sequences $B_n$, we conclude that $\mu_0(A)\leq\mu^*(A)$, as desired.
 \end{proof}
 
 This concludes our proof of Carath\'eodory's extension theorem. As an application, we will now show how to produce a family of interesting measures on the real line, beyond just the Lebesgue measures.
@@ -1716,11 +1720,11 @@ It is easy to see that $\mathcal H$ consists of finite disjoint unions of half-o
 \begin{proof}[Proof outline]
   It is not difficult to see that $\mu_F$ is well-defined on $\mathcal H$. Moreover $\mu_F$ is finitely additive by construction.
 
-  Thus it remains only to show that $\mu_F$ satisfies the axiom of a premeasure. Suppose that $E_i\in\mathcal H$ and that $\bigcup E_i\in\mathcal H$ too. We can assume without loss of generality that $E_I$ are each single half-open intervals, and that $\bigcup E_i$ is a single half-open interval $I$.
+  Thus it remains only to show that $\mu_F$ satisfies the axiom of a premeasure. Suppose that $A_n\in\mathcal H$ and that $\bigcup A_n\in\mathcal H$ too. We can assume without loss of generality that $A_n$ are each single half-open intervals, and that $\bigcup A_n$ is a single half-open interval $I$.
 
-  It is clear from monotonicity that $\mu_F(\bigcup E_i)\geq\sum\mu_F(E_i)$, so it suffices to show that $\mu_F(\bigcup E_i)\leq\sum\mu_F(E_i)$. In order to achieve this, let us define $\mu_F$ on open intervals by letting $\mu_F((a,b))=\lim_{x\to b^-}F(x)-F(a)$, and similarly for closed intervals. Then using the right-continuity of $F$, we can pay the $\epsilon$ price to replace each $E_i$ with an open $U_i$ with $E_i\subset U_i$ and replace $I$ with a compact $K$ with $K\subset I$.
+  It is clear from monotonicity that $\mu_F(\bigcup A_n)\geq\sum\mu_F(A_n)$, so it suffices to show that $\mu_F(\bigcup A_n)\leq\sum\mu_F(A_n)$. In order to achieve this, let us define $\mu_F$ on open intervals by letting $\mu_F((a,b))=\lim_{x\to b^-}F(x)-F(a)$, and similarly for closed intervals. Then using the right-continuity of $F$, we can pay the $\epsilon$ price to replace each $A_n$ with an open $U_n$ such that $A_n\subset A_n$ and replace the interval $I$ with a compact $K$ with $K\subset I$.
 
-  Then by the Heine--Borel theorem, just finitely many of the $U_i$ suffice to cover $K$, and hence $\mu_F(K)\leq\sum\mu_F(U_i)$. It follows that $\mu_F(\bigcup E_i)\leq\sum\mu_F(E_i)-\epsilon$, and the result follows by taking $\epsilon\to0$.
+  Then by the Heine--Borel theorem, just finitely many of the $U_n$ suffice to cover $K$, and hence $\mu_F(K)\leq\sum\mu_F(A_n)$. It follows that $\mu_F(\bigcup A_n)\leq\sum\mu_F(A_n)-\epsilon$, and the result follows by taking $\epsilon\to0$.
 \end{proof}
 
 If $F(x)=x$, then the above construction simply gives $\mu_F=$ the Lebesgue measure $m$. And in general, $F$ acts as the cumulative density of the measure $\mu_F$. Measures of this form are called \emph{Lebesgue-Stieltjes measures}.
@@ -2560,6 +2564,10 @@ The space $\ell^2(A)$ is determined up to isomorphism by the cardinality of $A$.
 \end{proof}
 
 Thus the result implies that there is exactly one Hilbert space in each dimension. Note that both $\ell^2$ and $L^2[0,1]$ are Hilbert spaces of countable dimension, because we have seen above that each has a countable basis. The unique countable dimensional Hilbert space, often denoted $\mathcal H$, is by far the most widely used in applications where an operator acts on infinitely many coordinates. Hilbert space appears in the study of differential equations, fourier analysis, quantum physics, and more.
+
+% Additional topic: Fourier analysis?
+
+% Additional topic: Haar measure?
 
 \end{document}
 
