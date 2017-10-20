@@ -1688,7 +1688,7 @@ Now we return to the motivational context where the outer measure $\mu^*$ is con
 \end{thm}
 
 \begin{proof}
-  We first show that if $A$ lies in $\mathcal A$ then $A$ is $\mu^*$-measurable. For this, let $S$ be an arbitrary set and find sets $B_n\in\mathcal A$ such that $S\subset\bigcup B_n$ and $\mu^*(S)-\sum\mu_0(B_n)<\epsilon$. Then
+  We first show that if $A$ lies in $\mathcal A$ then $A$ is $\mu^*$-measurable. For this, let $S$ be an arbitrary set and find sets $B_n\in\mathcal A$ such that $S\subset\bigcup B_n$ and $\sum\mu_0(B_n)-\mu^*(S)<\epsilon$. Then
   \begin{align*}
     \mu^*(S\cap A)+\mu^*(S\setminus A)&\leq\sum\mu_0(B_n\cap A)
                                         +\sum\mu_0(B_n\setminus A)\\
@@ -1697,7 +1697,7 @@ Now we return to the motivational context where the outer measure $\mu^*$ is con
   \end{align*}
   Taking $\epsilon\to0$, we conclude that $A$ is $\mu^*$-measurable.
 
-  Next we show that if $A$ lies in $\mathcal A$ then $\mu^*(A)=\mu_0(A)$. It is clear from the definition that $\mu^*(A)\leq\mu_0(A)$. To show that $\mu_0(A)\leq\mu^*(A)$, let $B_n\in\mathcal B_0$ be such that $A\subset\bigcup B_n$. We can assume without loss of generality that the $B_n$ are pairwise disjoint. Then using the axiom of a premeasure, we obtain
+  Next we show that if $A$ lies in $\mathcal A$ then $\mu^*(A)=\mu_0(A)$. It is clear from the definition that $\mu^*(A)\leq\mu_0(A)$. To show that $\mu_0(A)\leq\mu^*(A)$, let $B_n\in\mathcal A$ be such that $A\subset\bigcup B_n$. We can assume without loss of generality that the $B_n$ are pairwise disjoint. Then using the axiom of a premeasure, we obtain
   \begin{align*}
     \mu_0(A)&=\sum\mu_0(A\cap B_n)\\
             &\leq\sum\mu_0(B_n)
