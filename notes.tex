@@ -1639,7 +1639,7 @@ In the previous section, we showed how to abstract the properties of the element
 
 To put this definition in context, it is an exercise to show that this property holds for Lebesgue measurable sets. Moreover it is this property that can be used to prove that a bounded set is Lebesgue measurable if and only if its inner and outer measures agree.
 
-The next result shows that the $\mu^*$-measurable sets are a good choice, in the sense that they are plentiful and that $\mu^*$ behaves well on its measurable sets.
+The next result shows that the $\mu^*$-measurable sets are a good choice, in the sense that $\mu^*$ behaves well on the $\mu^*$-measurable sets (it is a measure).
 
 \begin{thm}
   If $\mu^*$ is an outer measure on $X$, then the $\mu^*$-measurable subsets of $X$ form a $\sigma$-algebra, and $\mu^*$ is a measure when restricted to the $\mu^*$-measurable sets.
@@ -1722,9 +1722,16 @@ It is easy to see that $\mathcal H$ consists of finite disjoint unions of half-o
 
   Thus it remains only to show that $\mu_F$ satisfies the axiom of a premeasure. Suppose that $A_n\in\mathcal H$ and that $\bigcup A_n\in\mathcal H$ too. We can assume without loss of generality that $A_n$ are each single half-open intervals, and that $\bigcup A_n$ is a single half-open interval $I$.
 
-  It is clear from monotonicity that $\mu_F(\bigcup A_n)\geq\sum\mu_F(A_n)$, so it suffices to show that $\mu_F(\bigcup A_n)\leq\sum\mu_F(A_n)$. In order to achieve this, let us define $\mu_F$ on open intervals by letting $\mu_F((a,b))=\lim_{x\to b^-}F(x)-F(a)$, and similarly for closed intervals. Then using the right-continuity of $F$, we can pay the $\epsilon$ price to replace each $A_n$ with an open $U_n$ such that $A_n\subset A_n$ and replace the interval $I$ with a compact $K$ with $K\subset I$.
+  It is clear from monotonicity that $\mu_F(\bigcup A_n)\geq\sum\mu_F(A_n)$, so it suffices to show that $\mu_F(\bigcup A_n)\leq\sum\mu_F(A_n)$. In order to achieve this, let us define $\mu_F$ on open intervals by letting $\mu_F((a,b))=\lim_{x\to b^-}F(x)-F(a)$, and similarly for closed intervals. Then using the right-continuity of $F$, we can pay $\epsilon$ to replace each $A_n$ with an open $U_n$ such that $A_n\subset U_n$. Similarly we can pay $\epsilon$ to replace $I$ with a closed (bounded) interval $K$ such that $K\subset I$.
 
-  Then by the Heine--Borel theorem, just finitely many of the $U_n$ suffice to cover $K$, and hence $\mu_F(K)\leq\sum\mu_F(A_n)$. It follows that $\mu_F(\bigcup A_n)\leq\sum\mu_F(A_n)-\epsilon$, and the result follows by taking $\epsilon\to0$.
+  Now by the Heine--Borel theorem, just finitely many of the $U_n$ suffice to cover $K$, and hence $\mu_F(K)\leq\sum\mu_F(U_n)$. It follows that
+  \begin{align*}
+    \mu_F(\bigcup A_n)
+    &\leq\mu_F(K)+\epsilon\\
+    &\leq\sum\mu_F(U_n)+\epsilon\\
+    &\leq\sum\mu_F(A_n)+2\epsilon
+  \end{align*}  
+  Thus the result follows by taking $\epsilon\to0$.
 \end{proof}
 
 If $F(x)=x$, then the above construction simply gives $\mu_F=$ the Lebesgue measure $m$. And in general, $F$ acts as the cumulative density of the measure $\mu_F$. Measures of this form are called \emph{Lebesgue-Stieltjes measures}.
