@@ -15,7 +15,7 @@
   * Show that $\int f=0$ if and only if $f=0$ almost everywhere.
 * Ex 11.3. Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
 * Ex 12.1 (Tao, ex 1.3.25(i)). Let $f$ be absolutely integrable. Show that for any $\epsilon&gt;0$ there exists a bounded measurable set $A$ such that $\int |f|\chi\_{A^c}&lt;\epsilon$.
-* Ex 12.2 (Tao ex 1.3.25(ii)). Let $f$ be a measurable function with values in [0,\infty), and asusme that $f$ has finite measure support. Show that for any $\epsilon&gt;0$, there exists a measurable set $A$ such that $m(A)&lt;\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $f(x)\leq M$.
+* Ex 12.2 (Tao ex 1.3.25(ii)). Let $f$ be a nonnegative measurable function with which is finite almost everywhere. (Note Tao has a typo hypo here.) Show that for any $\epsilon&gt;0$, there exists a measurable set $A$ such that $m(A)&lt;\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $f(x)\leq M$.
 
 ### Homework 5. Due Wednesday, October 11
 
