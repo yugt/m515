@@ -971,6 +971,8 @@ Recall that the Darboux/Riemann integral was defined first for piecewise constan
 
 Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_n\chi_{A_i}$ where $A_i$ are Lebesgue measurable sets.
 
+The simple functions are the source of the following commonly held intuition about Lebesgue integration: While Riemann integration relies on cutting into vertical strips, Lebesgue integration relies on cutting into horizontal strips. The idea is that the region below a simple function consists of finitely many horizontal strips with measurable cross-sections, and thus it is very simple to compute the integral of such a function, as is done in the next definition. We can then approximate many non-simple functions using simple functions, as is done in the next section.
+
 \begin{defn}
   If $f=\sum_1^kc_i\chi_{A_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sint f=\sum_1^kc_im(A_i)$.
 \end{defn}
@@ -1091,7 +1093,7 @@ Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf
   Finally it is trivial that (a) implies $f$ is measurable, so we have completed the proof.
 \end{proof}
 
-It is worth remarking that by property (b) of the Lemma, measurability can be viewed as a massive generalization of continuity. Recall that a function $f$ is continuous if and only if whenever $S$ is open we have $f^{-1}(S)$ open. In the property (b) we ask merely that $f^{-1}(S)$ be Lebesgue measurable, a much weaker demand.
+It is worth remarking that by property (b) of the Lemma, measurability can be viewed as a massive generalization of continuity. Recall that a function $f$ is continuous if and only if whenever $S$ is open we have $f^{-1}(S)$ open. In property (b), we ask merely that $f^{-1}(S)$ be Lebesgue measurable, a much weaker demand.
 
 Notice also that since preimages are stable under unions, intersections, and complements, property (b) implies that if $S$ is Borel then $f^{-1}(S)$ will be measurable too. But if $S$ is merely measurable, there is no guarantee that $f^{-1}(S)$ will be measurable! To see this consider a function $f$ which is a bijection between $[0,1]$ and a null set. For example one can map $[0,1]$ into the Cantor set $C$ injectively almost everywhere by operating on binary and ternary expansions as follows:
 \[0.b_1b_2b_3\cdots\text{ (base 2)}\quad\mapsto\quad 0.(2b_1)(2b_2)(2b_3)\cdots\text{ (base 3)}
