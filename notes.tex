@@ -1907,7 +1907,7 @@ We now describe several familiar examples of normed vector spaces (in fact most 
 \end{example}
 
 \begin{example}
-  As a final series of examples, if $[a,b]$ is any closed, bounded interval then let $B[a,b]$ be the space of all bounded functions $f\colon[a,b]\to\RR$ together with the supremum norm $\|f\|=\sup\set{f(x)\mid x\in[a,b]}$. This is a Banach space which contains many other spaces of independent interest. For example it contains the space $C[a,b]$ of continuous functions on $[a,b]$, the space $D[a,b]$ of all differentiable functions on $[a,b]$, and the space $P[a,b]$ of all polynomial functions on $[a,b]$. The last two turn out to be incomplete.
+  As a final series of examples, if $[a,b]$ is any closed, bounded interval then let $B[a,b]$ be the space of all bounded functions $f\colon[a,b]\to\RR$ together with the supremum norm $\|f\|=\sup\set{f(x)\mid x\in[a,b]}$. This is a Banach space which contains many other spaces of independent interest. For example it contains the space $C[a,b]$ of continuous functions on $[a,b]$, the space $D[a,b]$ of all differentiable functions on $[a,b]$ with continuous derivative, and the space $P[a,b]$ of all polynomial functions on $[a,b]$. The last two turn out to be incomplete.
 \end{example}
 
 Having given the definition and basic examples of Banach spaces, we now briefly study mappings between them. For ordinary vector spaces, the most natural mappings are the \emph{operators}, or linear mappings. For Banach spaces we primarily study operators which are also continuous.
@@ -1944,6 +1944,22 @@ In the following lemma, an operator $T\colon X\to Y$ is said to be \emph{bounded
   \]
   This shows that $T$ is continuous at the point $0$, and hence by the previous lemma $T$ is continuous.
 \end{proof}
+
+\begin{exerc}[BBT, ex 12:1.2]
+  Show that the addition and constant multiple operations are continuous on a normed vector space.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:1.3]
+   Show that the unit ball of a normed vector space is convex. That is, for $x,y$ in the ball and $\lambda\in(0,1)$ we have $\lambda x+(1-\lambda)y$ is also in the ball.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:3.1]
+  Consider the operators $D(f)=f'$, $(Sf)(x)=\int_a^x fd\mu$, and $I(f)=\int fd\mu$. What are appropriate domains and codomains of each operator? Show that $S$ and $I$ are continuous, and $D$ is not continuous.
+\end{exerc}
+
+\begin{exerc}
+  Let $D[0,1]$ denote the space of differentiable functions on $[0,1]$ with continuous derivative, equipped with the supremum norm of $B[0,1]$. Show that $D[a,b]$ is not complete.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -2035,6 +2051,17 @@ We now return to the proof of the Hahn--Banach theorem.
 
   Therefore we can apply Zorn's lemma to find an element $\phi$ of $P$ which is maximal with respect to function extension. We claim moreover that the domain of $\phi$ must be all of $X$. Indeed, otherwise we can use the argument above to properly extend the domain of $\phi$ to find a larger element $\phi'$ of $P$. This contradicts the maximality of $\phi$, and completes the proof.
 \end{proof}
+
+\begin{exerc}[BBT, ex 12:5.1]
+  Let $f$ be a bounded real-valued function on $[0,1]$, and let $U(f)$ denote the Upper Lebesgue integral of $f$. Show that $U$ is a sublinear functional. What can you conclude from the Hahn--Banach theorem?
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:5.2]
+  Let $\ell^\infty$ denote the space of bounded real sequences with the supremum norm, and let $c$ denote the subspace of convergent real sequences. Define $p$ on $\ell^\infty$ by
+  \[p(x)=\limsup_{n\to\infty}\frac{x_1+\cdots+x_n}{n}
+  \]
+  Verify that $p$ is a sublinear functional such that $\lim x\leq p(x)$. If we apply the Hahn--Banach theorem to obtain a bounded linear functional $L$ extending $\lim$, show that $\liminf x\leq L(x)\leq\limsup x$ and calculate the value of $L(0,1,0,1,\ldots)$.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
