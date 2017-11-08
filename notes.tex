@@ -1970,7 +1970,7 @@ In the following lemma, an operator $T\colon X\to Y$ is said to be \emph{bounded
   BBT \S 1.5
 \end{reading}
 
-In this section we continue our study of operators on a space $X$. However we confine our attention to the simplest operators, which are the one that take values in the scalar field $\RR$ or $\CC$. Such operators are so fundamental that we give them the special name ``functional''. In this section we consider only the case of real normed vector spaces, but the same results hold for complex spaces too.
+In this section we continue our study of operators on a space $X$. However we confine our attention to the simplest operators, which are the ones that take values in the scalar field $\RR$ or $\CC$. Such operators are so fundamental that we give them the special name ``functional''. In this section we consider only the case of real normed vector spaces, but the same results hold for complex spaces too.
 
 \begin{defn}
   If $X$ is a normed vector space, a \emph{linear functional} on $X$ is an operator $\phi\colon X\to\RR$. A \emph{bounded linear functional} on $X$ is a bounded, which is to say continuous, linear functional $X$.
@@ -1978,7 +1978,7 @@ In this section we continue our study of operators on a space $X$. However we co
 
 Let us briefly recall the situation for $X=\RR^d$ with any of its norms. Here a linear functional $\phi$ is determined by its values on a basis, and it follows that $\phi$ is of the form $\mathbf{x}\mapsto\mathbf{y}^T\mathbf{x}$, that is, the dot product with a row vector or ``dual vector''. It should not be surprising that these mappings are always bounded, regardless of the norm on $\RR^d$.
 
-When $X$ is an infinite-dimensional normed vector space, it is not true that all linear functionals on $X$ are bounded. In fact it is not immediately obvious that there are any bounded linear functionals on an arbitrary space $X$. In the rest of this section we present the Hahn--Banach theorem, which implies that every normed vector space $X$ has plenty of bounded linear functionals.
+When $X$ is an infinite-dimensional normed vector space, it is not true that all linear functionals on $X$ are bounded. In fact, given an infinite dimensional normed vector space $X$, it is not immediately obvious that there are any nonzero bounded linear functionals on $X$. In the rest of this section we present the Hahn--Banach theorem, which implies that on any normed vector space, there really are lots of bounded linear functionals.
 
 In order to state the Hahn--Banach theorem in its most powerful form, we need the following generalization of a norm on a vector space.
 
@@ -1986,7 +1986,7 @@ In order to state the Hahn--Banach theorem in its most powerful form, we need th
   Let $X$ be a vector space. A \emph{sublinear functional} on $X$ is a function $p\colon X\to\RR$ that satisfies:
   \begin{enumerate}
   \item (positive homogeneity) $p(cx)=cp(x)$ for all $c\geq0$; and
-  \item (subbativity) $p(x+y)\leq p(x)+p(y)$.
+  \item (subadditivity) $p(x+y)\leq p(x)+p(y)$.
   \end{enumerate}
 \end{defn}
 
@@ -1994,14 +1994,14 @@ Norms and seminorms are both examples of sublinear functionals. Another example 
 
 \begin{thm}[Hahn--Banach]
   \label{thm:hb}
-  Let $X$ be a vector space, $Y\leq X$ a subspace of $X$, and $p$ a sublinear functional on $X$. Then any linear functional $\phi_0$ on $Y$ such that $\phi\leq p$ extends to a linear functional $\phi$ on $X$ such that $\phi\leq p$.
+  Let $X$ be a vector space, $Y\leq X$ a subspace of $X$, and $p$ a sublinear functional on $X$. Then any linear functional $\phi_0$ on $Y$ such that $\phi_0\leq p$ extends to a linear functional $\phi$ on $X$ such that $\phi\leq p$.
 \end{thm}
 
 Before proving the above abstract form of the Hahn--Banach theorem, we present several key consequences regarding the construction of bounded linear functionals.
 
 \begin{cor}
   \label{cor:hb}
-  Let $X$ be a normed vector space, $Y\leq X$ a subspace of $X$.
+  Let $X$ be a normed vector space, and $Y\leq X$ a subspace of $X$.
   \begin{enumerate}
   \item Any bounded linear functional $\phi_0$ on $Y$ extends to a bounded linear functional $\phi$ on $X$.
   \item If $Y$ is closed and $z\notin Y$, then there exists a bounded linear functional $\phi$ on $X$ such that $\phi(Y)=0$ and $\phi(z)\neq0$.
@@ -2025,29 +2025,31 @@ We now return to the proof of the Hahn--Banach theorem.
   We begin by showing that we can find a proper extension of $\phi_0$. Specifically, given any $z\in X\setminus Y$ we will find an extension of $\phi_0$ to a linear functional $\phi_1$ on $Y\oplus\RR z$ satisfying $\phi_1\leq p$. For this we will define
   \[\phi_1(y+cz)=\phi_0(y)+c\phi_1(z)
   \]
-  where $\phi_1(z)$ will be determined in a moment. We require that for all $x$ and all $c\in\RR$ we have
-  \[\phi(y)+c\phi_1(z)\leq p(y+cz)
+  where $\phi_1(z)$ will be determined a little bit later. When we do choose $\phi_1(z)$, it will have to satisfy the requirement that for all $y\in Y$ and all $c\in\RR$:
+  \[\phi_0(y)+c\phi_1(z)\leq p(y+cz)
   \]
   To isolate $\phi_1(z)$ we must consider the cases of negative and positive values of the coefficient $c$ separately. Thus assume $c>0$ and split the last equation into two conditions:
   \begin{align*}
-    \phi_0(y)+c\phi_1(z)&\leq p(y+cz)\\
-    \phi_0(y)-c\phi_1(z)&\leq p(y-cz)
+    (\forall y)\;\phi_0(y)+c\phi_1(z)&\leq p(y+cz)\\
+    (\forall y)\;\phi_0(y)-c\phi_1(z)&\leq p(y-cz)
   \end{align*}
-  Solving each for $\phi'(z)$ and substituting $y$ with $y/c$ in each gives us the two new conditions:
+  Solving each for $\phi'(z)$ and substituting $y$ with $cy$ in each gives us the two new conditions:
   \begin{align*}
     (\forall y)\;\phi_1(z)&\leq p(y+z)-\phi_0(y)\\
     (\forall y)\;\phi_1(z)&\geq-p(y-z)+\phi_0(y)
   \end{align*}
   In order for the constraints to be satisfiable, it is sufficient to have for all $y,y'\in Y$ that $-p(y-z)+\phi_0(y)\leq p(y'+z)-\phi_0(y')$. And this is indeed the case, since
   \begin{align*}
-    \phi_0(y_1)+\phi_0(y_2)&=\phi_0(y+y')\\
+    \phi_0(y)+\phi_0(y')&=\phi_0(y+y')\\
                        &\leq p(y+y')\\
                        &=p(y-z+y'+z)\\
                        &\leq p(y-z)+p(y'+z)
   \end{align*}
-  Thus we can find a suitable value for $\phi_1(z)$ and successfully extend $\phi$ to $\phi'$ as required. To complete the proof we wish to apply this step repeatedly. Since the number of steps will be uncountable in general, it is necessary to phrase our construction using the standard \emph{Zorn's lemma}: if $P$ is a partially ordered set and every chain of $P$ has an upper bound, then $P$ has a maximal element.
+  Thus we can find a suitable value for $\phi_1(z)$ and successfully extend $\phi$ to $\phi'$ as required.
+  
+  To complete the proof we wish to apply the above step repeatedly. Since the number of steps will be uncountable in general, it is necessary to phrase our construction using the standard \emph{Zorn's lemma}: if $P$ is a partially ordered set and every chain of $P$ has an upper bound, then $P$ has a maximal element.
 
-  Now let $P$ be the collection of linear functionals $\phi$ such that $\phi$ extends $\phi_0$ and $\phi\leq p$. We partially order $P$ by function extension. A chain $\mathcal C$ in $P$ always has an upper bound, namely the set-theoretic union $\bigcup\mathcal C$ of the members of the chain. Moreover the union will be $\leq p$ because each member of the chain is $\leq p$.
+  Now let $P$ be the collection of all linear functionals $\phi$ such that the domain of $\phi$ is a subspace of $X$, $\phi$ extends $\phi_0$, and $\phi\leq p$. We partially order $P$ by function extension. A chain $\mathcal C$ in $P$ always has an upper bound, namely the set-theoretic union $\bigcup\mathcal C$ of the members of the chain. Moreover the union will be $\leq p$ because each member of the chain is $\leq p$.
 
   Therefore we can apply Zorn's lemma to find an element $\phi$ of $P$ which is maximal with respect to function extension. We claim moreover that the domain of $\phi$ must be all of $X$. Indeed, otherwise we can use the argument above to properly extend the domain of $\phi$ to find a larger element $\phi'$ of $P$. This contradicts the maximality of $\phi$, and completes the proof.
 \end{proof}
@@ -2061,6 +2063,10 @@ We now return to the proof of the Hahn--Banach theorem.
   \[p(x)=\limsup_{n\to\infty}\frac{x_1+\cdots+x_n}{n}
   \]
   Verify that $p$ is a sublinear functional such that $\lim x\leq p(x)$. If we apply the Hahn--Banach theorem to obtain a bounded linear functional $L$ extending $\lim$, show that $\liminf x\leq L(x)\leq\limsup x$ and calculate the value of $L(0,1,0,1,\ldots)$.
+\end{exerc}
+
+\begin{exerc}
+  Let $\RR^d$ be equipped with any norm that makes it into a normed vector space. Show that every linear functional on $\RR^d$ is continuous.
 \end{exerc}
 
 \newpage
