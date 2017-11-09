@@ -2014,7 +2014,7 @@ Before proving the above abstract form of the Hahn--Banach theorem, we present s
 
   (b) We first define a function $\phi_0$ on the space $Y+\RR z$ which is bounded by $p=$ the norm. For this we will let $\phi_0(y+cz)=c\phi_0(z)$ where $\phi_0(z)$ remains to be determined. In order to satisfy $\phi_0(y+cz)\leq\|y+cz\|$ we require that $c\phi_0(z)\leq\|y+cz\|$ for all $y\in Y$.
 
-  Substituting $y$ with $cy$, we see that we must choose $\phi_0(z)\leq\|y+z\|$ for all $y\in Y$. Since $Y$ is closed and $\{0\}$ is compact, we have that $\inf_{y\in Y}\|y+z\|\neq0$. It follows that we can choose a nonzero value of $\phi_0(z)$, and we may then use part (a) to extend $\phi_0$ to a bounded linear functional $\phi$ on $X$ that meets our requirements.
+  Substituting $y$ with $-cy$, we see that we must choose $\phi_0(z)\leq\|-y+z\|$ for all $y\in Y$. Since $Y$ is closed we must have $\inf_{y\in Y}\|y+z\|\neq0$ (otherwise $z$ would be a limit of elements of $Y$ and hence in $Y$). It follows that we can choose a nonzero value of $\phi_0(z)$, and we may then use part (a) to extend $\phi_0$ to a bounded linear functional $\phi$ on $X$ that meets our requirements.
 
   (c) If $x\neq x'$ then $x-x'\neq0$. Applying part (b) with $Y=\{0\}$ we can find a bounded linear functional $\phi$ such that $\phi(x-x')\neq0$. It follows that $\phi(x)\neq\phi(x')$.
 \end{proof}
