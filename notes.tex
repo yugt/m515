@@ -2105,9 +2105,9 @@ In other words, the operator norm of a bounded operator $T$ is the least value o
 
   Now for any fixed $x\in X$, it follows from the last equation that $\|T_mx-T_nx\|<\epsilon\|x\|$. In particular, the sequence $T_nx$ is a Cauchy sequence in the space $Y$. Since we are assuming that $Y$ is complete, the sequence $T_nx$ converges and we define $Tx=\lim T_nx$.
 
-  At this point $T$ is a well-defined function from $X$ to $Y$, and that $T$ is the pointwise limit of the sequence $T_n$. We need to check that $T\in B(X,Y)$ and moreover that $T_n\to T$ in the operator norm.
+  Now $T$ is a well-defined function from $X$ to $Y$, and by definition $T$ is the pointwise limit of the $T_n$. We need to check that $T\in B(X,Y)$ and moreover that $T_n\to T$ in the operator norm.
 
-  To see that $T\in B(X,Y)$, first note that it is easy to check $T$ is a linear map. For example, it is additive because the limit of a sum of two sequences is the sum of the limits. To see that $T$ is bounded, we first claim that the sequence of operator norms $\|T_n\|$ is itself bounded. For this claim, recall from the reverse triangle inequality that $|\|T_n\|-\|T_m\||\leq\|T_n-T_m\|$. Thus the fact that $T_n$ is Cauchy implies that $\|T_n\|$ is Cauchy in $\RR$, and any Cauchy sequence in $\RR$ is bounded. This completes the claim.
+  To see that $T\in B(X,Y)$, first note that it is easy to check $T$ is a linear map. For example, $T(x+y)=\lim T_n(x+y)=\lim T_n(x)+T_n(y)=T(x)+T(y)$. To see that $T$ is bounded, we first claim that the sequence of operator norms $\|T_n\|$ is itself bounded. For this claim, recall from the reverse triangle inequality that $|\|T_n\|-\|T_m\||\leq\|T_n-T_m\|$. Thus the fact that $T_n$ is Cauchy implies that $\|T_n\|$ is Cauchy in $\RR$, and any Cauchy sequence in $\RR$ is bounded. This completes the claim.
   
   Now let $M$ be a bound for the sequence $\|T_n\|$. Then given $x\in X$, for all $n$ we have $\|T_nx\|\leq M\|x\|$. Taking the limit of both sides, we conclude that $\|Tx\|\leq M\|x\|$, and this means that $T$ is a bounded operator. Thus we have shown that $T\in B(X,Y)$.
 
@@ -2136,7 +2136,7 @@ By the results of this section, the dual space $X^*$ is always a Banach space wi
 \begin{proof}
   (a) Since $\phi$ is an extension of $\phi_0$, we always have $\|\phi\|\geq\|\phi_0\|$. And in the proof Corollary~\ref{cor:hb}(a), it is apparent that $\|\phi\|\leq\|\phi_0\|$.
 
-  (b) In the proof of Corollary~\ref{cor:hb}(b), it is clear that $\|\phi_0\|\leq 1$. And since the value of $\inf_{y\in Y}\|y+z\|$ is attained, it is not difficult to argue that $\|\phi_0\|=1$. Therefore by part~(a) we have $\|\phi\|\leq1$.
+  (b) Recall that in the proof of Corollary~\ref{cor:hb}(b), we defined $\phi_0$ on $Y+\RR z$. It is not too difficult to argue that $\|\phi_0\|=1$. Therefore by part~(a) we can extend $\phi_0$ to $\phi$ with $\|\phi\|=1$ as desired.
 \end{proof}
 
 We close this section with the following result about the double dual of a space.
@@ -2153,12 +2153,20 @@ We close this section with the following result about the double dual of a space
 
   Now we verify that the map $x\mapsto\hat x$ is itself linear. Indeed, we have $\widehat{x_1+x_2}(\phi)=\phi(x_1+x_2)=\phi(x_1)+\phi(x_2)=\hat x_1(\phi)+\hat x_2(\phi)$. And similarly for scalar multiplication.
 
-  Finally to show that $x\mapsto\hat x$ is norm-preserving, note that the calculation in the first paragraph shows that $\|\hat x\|\leq\|x\|$. To show that $\|\hat x\|\geq\|x\|$, we use Corollary~\ref{cor:hb2}(b) to obtain $\phi\in X^*$ such that $\phi(x)=\|x\|$ and $\|\phi\|=1$. Thus we have that $\hat x(\phi)=\phi(x)=\|x\|=\|x\|\|\phi\|$, which witnesses that $\|\hat x\|\geq\|x\|$.
+  Finally to show that $x\mapsto\hat x$ is norm-preserving, note that the calculation in the first paragraph shows that $\|\hat x\|\leq\|x\|$. To show that $\|\hat x\|\geq\|x\|$, we use Corollary~\ref{cor:hb2}(a) to obtain $\phi\in X^*$ such that $\phi(x)=\|x\|$ and $\|\phi\|=1$. Thus we have that $\hat x(\phi)=\phi(x)=\|x\|=\|x\|\|\phi\|$, which witnesses that $\|\hat x\|\geq\|x\|$.
 \end{proof}
 
 The above proposition may seem esoteric, but it has many uses. For example, if $X$ is incomplete then we can use it to give a concrete construction of the Banach space completion of $X$. For this, observe that since $x\mapsto\hat x$ is norm-preserving, we have that $X$ is isomorphic to its image $\hat X$ in $X^{**}$. Since we have shown above that every dual is complete, we know that $X^{**}$ is complete. It follows that the completion of $X$ is isomorphic to the closure of $\hat X$ in $X^{**}$.
 
 It can even happen that the map $x\mapsto\hat x$ is surjective onto $X^{**}$. This special property will be investigated in future sections.
+
+\begin{exerc}
+  Check that the operator norm is the sup over the unit ball.
+\end{exerc}
+
+\begin{exerc}
+  Check the assertions of Corollary~\ref{cor:hb2}(b).
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
