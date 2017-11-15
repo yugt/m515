@@ -2067,6 +2067,7 @@ We now return to the proof of the Hahn--Banach theorem.
 
 \begin{exerc}
   Let $\RR^d$ be equipped with any norm that makes it into a normed vector space. Show that every linear functional on $\RR^d$ is continuous.
+  % Maybe this would be better in Sec 20 when we talk about equivalence of norms
 \end{exerc}
 
 \newpage
@@ -2228,7 +2229,7 @@ Before stating our final result, recall from topology that if $f\colon X\to Y$ i
 
 Observe that $T$ has a closed graph if and only if $x_n\to x$ and $Tx_n\to y$ implies $y=Tx$. On the other hand, recall that $T$ is continuous if and only if $x_n\to x$ implies $Tx_n\to Tx$.  So it is easier to check that $T$ has a closed graph than to check that $T$ is continuous, because when checking the former one can assume for free that $T_nx$ converges to \emph{something}.
 
-Rather than give a consequence of the closed graph theorem, we will give an important example. Let $C[a,b]$ be the Banach space of continious functions on $[a,b]$ with the supremum norm, and let $C^1[a,b]$ be the subspace of all functions with continuous derivative. Let $D\colon C^1[a,b]\to C[a,b]$ be the derivative operator. To check $D$ has a closed graph, we suppose that $f_n\to f$ and $Df_n\to g$ in supremum norm and verify that $Df=g$. For this we integrate both sides of $Df_n\to g$ and use the fundamental theorem of calculus to conclude that $f_n\to G$, where $G$ is the antiderivative of $g$. Since $f_n$ converges to $f$, we have $f=G$. Now differentiating both sides we conclude that $Df=g$, as desired.
+Rather than give a consequence of the closed graph theorem, we will give an important example. Let $C[a,b]$ be the Banach space of continious functions on $[a,b]$ with the supremum norm, and let $D[a,b]$ be the subspace of all functions with continuous derivative. Let $D\colon D[a,b]\to C[a,b]$ be the derivative operator. To check $D$ has a closed graph, we suppose that $f_n\to f$ and $Df_n\to g$ in supremum norm and verify that $Df=g$. For this we integrate both sides of $Df_n\to g$ and use the fundamental theorem of calculus to conclude that $f_n\to G$, where $G$ is an antiderivative of $g$. Since $f_n$ converges to $f$, we have $f=G$. Now differentiating both sides we conclude that $Df=g$, as desired.
 
 While have just checked that $D$ has a closed graph, it is also easy to check that $D$ is not bounded. Thus the contrapositive of the closed graph theorem implies that $D[a,b]$ is not a Banach space! This is an admittedly somewhat silly way to see this fact, since it is also possible to argue directly that $D[a,b]$ is not complete.
 
