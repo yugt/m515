@@ -1,5 +1,12 @@
 ## Math 515 homework
 
+### Homework 10. Due Wednesday, November 29.
+* Ex 19.1. Show that $\|T\|$ is equal to $\sup\{\|Tx\|:\|x\|\leq1\}$.
+* Ex 19.3 (BBT, ex 17:7.5). If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^\*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^\*,X^\*)$ such that $\|T^\*\|=\|T\|$.
+* Ex 19.5. Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\|\phi\|=1$.
+* Ex 20.1. Give an example of a function from $\RR$ to $\RR$ which has a closed graph but is not continuous. Give an example of function from $\RR$ to $\RR$ which is continuous and surjective but not open. Is it possible to give a bijective example?
+* Ex 20.2 (BBT, ex 12:13.2). Equip the space $C[0,1]$ with both the $L^1$ norm and the supremum norm. Show that the $L^1$ norm is bounded by a constant times the supremum norm. Show that the reverse is not true. Explain why the two results do not contradict the corollary to the open mapping theorem.
+
 ### Homework 9. Due Wednesday, November 15
 * Ex 17.2 (12:1.3). Show that the unit ball of a normed vector space is convex. That is, for $x,y$ in the ball and $\lambda\in(0,1)$ we have $\lambda x+(1-\lambda)y$ is also in the ball.
 * Ex 17.3 (12:3.1). Consider the operators $D(f)=f'$, $(Sf)(x)=\int_a^x fd\mu$, and $I(f)=\int fd\mu$. What are appropriate domains and codomains of each operator? Show that $S$ and $I$ are continuous, and $D$ is not continuous.

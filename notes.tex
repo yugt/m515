@@ -2162,11 +2162,25 @@ The above proposition may seem esoteric, but it has many uses. For example, if $
 It can even happen that the map $x\mapsto\hat x$ is surjective onto $X^{**}$. This special property will be investigated in future sections.
 
 \begin{exerc}
-  Check that the operator norm is the sup over the unit ball.
+  Show that $\|T\|$ is equal to $\sup\set{\|Tx\|:\|x\|\leq1}$.
 \end{exerc}
 
+\begin{exerc}[BBT, ex 12:7.2]
+  Show that $\|x\|=\sup\set{|\phi(x)|:\phi\in X^*\text{ and }\|\phi\|=1}$.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 17:7.5]
+  If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^*,X^*)$ such that $\|T^*\|=\|T\|$.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:7.6(b)]
+  Show that a Banach space $X$ is reflexive if and only if $X^*$ is reflexive.
+\end{exerc}
+
+% Include BBT, ex 17:7.6(c)
+
 \begin{exerc}
-  Check the assertions of Corollary~\ref{cor:hb2}(b).
+  Complete the proof of Corollary~\ref{cor:hb2}(b).
 \end{exerc}
 
 \newpage
@@ -2214,6 +2228,7 @@ We present just one simple consequence here concerning equivalence of norms. If 
 In other words, norms are equivalent if their unit balls can be rescaled to fit inside one another. For example, the space $\RR^2$ can be equipped with the usual Euclidean norm $\|(x,y)\|_2=\sqrt{x^2+y^2}$, and also with the taxicab norm $\|(x,y)\|=|x|+|y|$. The Euclidean norm has a circular unit ball, and the taxicab norm has a diamond shaped unit ball. The diamond fits inside the circle, and the circle can be scaled down by $\sqrt2$ to fit inside the diamond. Thus the two norms are equivalent.
 
 \begin{cor}
+  \label{cor:norm-equiv}
   Suppose $X$ is a Banach space with two complete norms $\|\cdot\|_a$ and $\|\cdot\|_b$. Then if there is a constant $c$ such that $\|x\|_a\leq c\|x\|_b$ for all $x\in X$, then $\|\cdot\|_a$ and $\|\cdot\|_b$ are equivalent.
 \end{cor}
 
@@ -2232,6 +2247,16 @@ Observe that $T$ has a closed graph if and only if $x_n\to x$ and $Tx_n\to y$ im
 Rather than give a consequence of the closed graph theorem, we will give an important example. Let $C[a,b]$ be the Banach space of continious functions on $[a,b]$ with the supremum norm, and let $D[a,b]$ be the subspace of all functions with continuous derivative. Let $D\colon D[a,b]\to C[a,b]$ be the derivative operator. To check $D$ has a closed graph, we suppose that $f_n\to f$ and $Df_n\to g$ in supremum norm and verify that $Df=g$. For this we integrate both sides of $Df_n\to g$ and use the fundamental theorem of calculus to conclude that $f_n\to G$, where $G$ is an antiderivative of $g$. Since $f_n$ converges to $f$, we have $f=G$. Now differentiating both sides we conclude that $Df=g$, as desired.
 
 While have just checked that $D$ has a closed graph, it is also easy to check that $D$ is not bounded. Thus the contrapositive of the closed graph theorem implies that $D[a,b]$ is not a Banach space! This is an admittedly somewhat silly way to see this fact, since it is also possible to argue directly that $D[a,b]$ is not complete.
+
+\begin{exerc}
+  Give an example of a function from $\RR$ to $\RR$ which has a closed graph but is not continuous. Give an example of function from $\RR$ to $\RR$ which is continuous and surjective but not open. Is it possible to give a bijective example?
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:13.2]
+  Equip the space $C[0,1]$ with both the $L^1$ norm and the supremum norm. Show that the $L^1$ norm is bounded by a constant times the supremum norm. Show that the reverse is not true. Explain why the two results do not contradict Corollary~\ref{cor:norm-equiv}.
+\end{exerc}
+
+% add 12:11.1
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
