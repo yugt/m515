@@ -2393,66 +2393,71 @@ The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the 
   BBT \S 13.6, Tao ``an $\epsilon$ of room" \S 1.2
 \end{reading}
 
-Recall that if $X$ is a normed vector space, then its dual $X^*$ consists of all bounded linear functionals on $X$. Although it is somewhat rare to be able to describe the space $X^*$ completely, in this section we will do so for $L^p$.
+Recall that if $X$ is a normed vector space, then its dual $X^*$ consists of all bounded linear functionals on $X$. Although it is somewhat rare to be able to describe the space $X^*$ completely, in this section we will be able to provide a complete description of $(L^p)^*$.
 
-To get started looking for bounded linear functionals on $L^p$, a good place to start is in $L^q$ where $q$ is the conjugate exponent to $p$ (that is, $1/p+1/q=1$). To see why, let $g\in L^q$ and consider the mapping
-\[f\mapsto \int fg\,d\mu
+The starting point in our search for bounded linear functionals on $L^p$ is actually H\"older's inquality: if $p,q$ are conjugate exponents (that is, $1/p+1/q=1$), then for any $f\in L^p$ and $g\in L^q$ we have:
+\[\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q
 \]
-This is clearly linear on $L^p$, and H\"older's inequality implies that $\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q$, or in other words, that this mapping is a bounded linear functional on $L^p$! The main result is that \emph{every} bounded linear functional arises this way.
+This statement really says that for any $g\in L^q$, the linear functional $\phi$ defined on $L^p$ defined by
+\[\phi(f)=\int fg\,d\mu
+\]
+is in fact bounded. Thus we have already found a large supply of elements of $(L^p)^*$. Our main result says that \emph{every} element of $(L^p)^*$ arises in this way.
 
 \begin{thm}
   \label{thm:lpdual}
-  Let $(X,\mathcal B)$ be a measure space and $\mu$ a measure on it. Assume that $\mu$ is $\sigma$-finite, that is, $X=\bigcup A_n$ where $\mu(A_n)<\infty$. Let $1\leq p<\infty$ and let $q$ be the conjugate exponent, that is, $1/p+1/q=1$. Then for every $\phi\in L^p(\mu)^*$ there exists a unique $g\in L^q(\mu)$ such that
+  Let $(X,\mathcal B)$ be a measure space, $\mu$ a measure on it, and $L^p=L^p(\mu)$. Assume that $\mu$ is $\sigma$-finite, that is, $X=\bigcup A_n$ where $\mu(A_n)<\infty$. Let $1\leq p<\infty$ and let $q$ be the conjugate exponent, that is, $1/p+1/q=1$. Then for every $\phi\in(L^p)^*$ there exists a unique $g\in L^q$ such that
   \[\phi(f)=\int fg\,d\mu
   \]
-  Moreover $\|\phi\|=\|g\|_q$, and $L^p(\mu)^*\cong L^q(\mu)$.
+  Moreover $\|\phi\|=\|g\|_q$, and $(L^p)^*\cong L^q$.
 \end{thm}
 
-To prove this result, it will be necessary to introduce a generalization of measures called signed measures. To motivate this from the study of functionals on $L^p$-space, observe that a functional $\phi$ on induces something like a finitely additive measure by defining $\nu(E)=\phi(\chi_E)$. Indeed, if $E,F$ are disjoint sets then
-\[\nu(E\cup F)=\phi(\chi_{E\cup F})=\phi(\chi_E+\chi_F)
-  =\phi(\chi_E+\chi_F)=\nu(E)+\nu(F)
+To prove this result, it will be necessary to introduce a generalization of measures called signed measures. To motivate this from the study of linear functionals on $L^p$, observe that any functional $\phi$ on $L^p$ gives rise to something like a finitely additive measure by defining $\nu(A)=\phi(\chi_A)$. Indeed, if $A,B$ are disjoint sets then
+\[\nu(A\cup B)=\phi(\chi_{A\cup B})=\phi(\chi_A+\chi_B)
+  =\phi(\chi_A+\chi_B)=\nu(A)+\nu(B)
 \]
-However we of course see that $\nu$ may take negative values, and so it is not a measure in our original sense.
+However there is no reason why such a function $\nu$ can't take negative values, and so $\nu$ need not be a measure in our original sense.
 
 \begin{defn}
-  Let $(X,\mathcal B$) be a measurable space. A \emph{signed measure} on $(X,\mathcal B)$ is a function $\mu\colon\mathcal B\to[-\infty,\infty]$ with the properties:
+  Let $(X,\mathcal B$) be a measurable space. A \emph{signed measure} on $(X,\mathcal B)$ is a function $\nu\colon\mathcal B\to[-\infty,\infty]$ with the properties:
   \begin{itemize}
-  \item $\mu(\emptyset)=0$;
-  \item $\mu$ does not take both the value $\infty$ and $-\infty$; and
-  \item If $E_n$ are disjoint then $\sum\mu(E_n)$ converges to $\mu(\bigcup E_n)$.
+  \item $\nu(\emptyset)=0$;
+  \item $\nu$ does not take both the value $\infty$ and $-\infty$; and
+  \item If $A_n$ are disjoint then $\sum\nu(A_n)$ converges to $\nu(\bigcup A_n)$.
   \end{itemize}
 \end{defn}
 
-We have seen above how functionals $\phi$ give rise to something like a finitely additive signed measure. For another example of signed measures, recall from Tonelli's theorem that if $\mu$ is a measure on $(X,\mathcal B)$ and $g\geq0$, then we can form a new measure by defining
-\[\mu_g(E)=\int\chi_Eg\,d\mu
+Thus given a linear functional $\phi$ on $L^p$, the function $\nu$ described above could be called a \emph{finitely additive signed measure}. For a proper example of a signed measure, let $\mu$ be an unsigned measure on $(X,\mathcal B)$, let $g$ be any absolutely integrable function on $X$, and define
+\[\mu_g(A)=\int\chi_Ag\,d\mu
 \]
-From this definition, it is clear that if $\mu(E)=0$ then $\mu_g(E)=0$ too. The next result states that this condition is sufficient to guarantee that a signed measure is of the form $\mu_g$.
+Then it is not difficult to see from Tonelli's theorem that $\mu_g$ is a signed measure on $(X,\mathcal B)$.
+
+It is clear from the definition of $\mu_g$ that if $\mu(A)=0$ then $\mu_g(A)=0$ too. The next result states that this condition is sufficient to guarantee that a given signed measure $\nu$ is actually of the form $\mu_g$.
 
 \begin{thm}[Radon--Nikodym]
   Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be an unsigned measure and $\nu$ be a signed measure on it. Assume that $\mu,\nu$ are $\sigma$-finite. Then if $\mu(E)=0\implies\nu(E)=0$, then there exists $g\in L^1(\mu)$ such that $\nu=\mu_g$.
 \end{thm}
 
-We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$. Indeed, using a the simple construction $\nu(E)=\phi(\chi_E)$ we will be able to establish a correspondence between functionals and signed measures. Then the Radon--Nikodym theorem gives us a function $g$ such that $\nu(E)=\int\chi_Eg\,d\mu$. Putting these together, we see that $\phi(\chi_E)=\int\chi_Eg\,d\mu$, or in other words that $\phi$ is as claimed at least for the characteristic functions. We are therefore left to check that this property can be extended to arbitrary functions $f\in L^p$, as well as the other claims.
+We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$. Indeed, we have already introduced a simple correspondence between linear functionals $\phi$ and signed measures $\nu$ with the property that $\nu(A)=\phi(\chi_A)$. Then the Radon--Nikodym theorem gives us a correspondence between signed measures $\nu$ and absolutely integrable functions $g$ such that $\nu(A)=\int\chi_Ag\,d\mu$. Putting these together, we see that $\phi(\chi_A)=\int\chi_Ag\,d\mu$. In other words we see that $\phi$ is of the desired form, at least for the characteristic functions. We are therefore left to check that this property can be extended to arbitrary functions $f\in L^p$, as well as the rest of the claims in the statement.
 
 \begin{proof}[Sketch of proof of Theorem~\ref{thm:lpdual}]
-  In this proof, we will sketch only the case when $1<p<\infty$ and $\mu(X)=0$. It is not essentially more difficult to complete the proof from this simplified version.
+  In this proof, we will sketch only the case when $1<p<\infty$ and $\mu(X)<\infty$. It is not essentially more difficult to complete the proof from this simplified version.
 
-  Given a functional $\phi\in L^p(\mu)^*$, we first define the mapping $\nu(E)=\phi(\chi_E)$. We have already checked that $\nu$ is finitely additive. We claim that in fact $\nu$ is a signed measure. Indeed, if $E_n$ is a given sequence of pairwise disjoint sets, then using the finiteness of $\mu$ and the dominated convergence theorem we have:
-  \[\int|\chi_{\bigcup E_n}-\chi_{\bigcup_1^kE_n}|^p\,d\mu
-    =\int|\chi_{\bigcup_{k+1}^\infty E_n}|^p\,d\mu
+  Given a functional $\phi\in(L^p)^*$, we first define the mapping $\nu(A)=\phi(\chi_A)$. We have already checked that $\nu$ is finitely additive. We claim that in fact $\nu$ is a signed measure. Indeed, if $A_n$ is a given sequence of pairwise disjoint sets, then using the finiteness of $\mu(X)$ and the dominated convergence theorem we have:
+  \[\int|\chi_{\bigcup A_n}-\chi_{\bigcup_1^kA_n}|^p\,d\mu
+    =\int|\chi_{\bigcup_{k+1}^\infty A_n}|^p\,d\mu
     \to0
   \]
   In other words, we have that $\chi_{\bigcup_1^kE_n}\to\chi_{\bigcup E_n}$ in the $L^p$-norm. Using the fact that $\phi$ is a continuous function on $L^p$, it follows that
   \begin{align*}
-    \nu(\bigcup E_n)&=\phi(\chi_{\bigcup E_n})\\
-                    &=\lim_k\phi(\chi_{\bigcup_1^kE_n})\\
-                    &=\lim_k\nu(\bigcup_1^kE_n)\\
-                    &=\lim_k\sum_1^k\nu(E_n)\\
-                    &=\sum\nu(E_n)
+    \nu(\bigcup A_n)&=\phi(\chi_{\bigcup A_n})\\
+                    &=\lim_k\phi(\chi_{\bigcup_1^k A_n})\\
+                    &=\lim_k\nu(\bigcup_1^k A_n)\\
+                    &=\lim_k\sum_1^k\nu(A_n)\\
+                    &=\sum\nu(A_n)
   \end{align*}
   and so $\nu$ is countably additive.
 
-  Now by the Radon--Nikodym theorem, there exists a function $g\in L^1(\mu)$ such that $\phi(\chi_E)=\int\chi_Eg\,d\mu$ for all sets $E$. It therefore follows from linearity that $\phi(f)=\int fg\,d\mu$ for all simple functions $f$.
+  Now by the Radon--Nikodym theorem, there exists a function $g\in L^1$ such that $\phi(\chi_A)=\int\chi_A g\,d\mu$ for all sets $E$. It therefore follows from linearity that $\phi(f)=\int fg\,d\mu$ for all simple functions $f$.
 
   We next claim that $\phi(f)=\int fg\,d\mu$ for all functions $f$ in $L^\infty(\mu)$. For this recall that any bounded measurable function is a \emph{uniform} limit of simple functions. So given $f\in L^\infty(\mu)$ let $f_n$ be a sequence of simple functions such that $f_n\to f$ uniformly. Using the uniform convergence on a finite measure space, we can easily argue that $\int f_ng\,d\mu\to\int fg\,d\mu$. For the same reason, we can also argue that $f_n\to f$ in $L^p$. Since $\phi$ is continuous on $L^p$ we therefore have that:
   \begin{align*}
