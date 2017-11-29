@@ -241,7 +241,7 @@ Figure~\ref{fig:elementary-disjoint} shows an example of the method of the proof
 
 \begin{proof}
   We first note that $I$ is an interval with endpoints $a,b$, and if $a=a_1,a_2,\ldots,a_m=b$ is an increasing sequence then $\len(I)=\sum\len(a_i,a_{i+1})$. This is simply because the latter summation telescopes.
-  
+
   Next if $B$ is a box whose $d$th side has endpoints $a^d,b^d$, and if $a^d=a_1^d,a_2^d,\ldots,a_{m_d}^d=b^d$ then $\vol(B)=$ the sum of all small boxes of the form $\prod(a_{i_d}^d,a_{i_d+1}^d)$. We will call the set of such small boxes a perfect grid. Intuitively, if you break a box into a perfect grid of sub-boxes, then the volume of the box is the sum of the volumes of the sub-boxes.
 
   Now if $B$ is a box and one expresses it as a disjoint union of sub-boxes $B=\bigsqcup B_i$, then $\vol(B)=\sum\vol(B_i)$. This is because it is possible to find a \emph{refinement} of the given disjoint union which is a perfect grid as in the previous paragraph. That is, it is possible to write $B=\bigsqcup D_i$ where $\{D_i\}$ is a perfect grid, and each $B_i$ is the union of a perfect grid of sets taken from the collection $\{D_i\}$. Then one can simply apply the argument of the previous paragraph to $B$ and to each $B_i$.
@@ -327,7 +327,7 @@ Before we begin these results, it will be useful to establish the following char
 \end{lem}
 
 \begin{proof}
-  We establish only the equivalence of Jordan measurability with the first item. To begin, assume that $A$ is Jordan measurable and let $\epsilon>0$ be given. By the $m_{*j}$ definition of Jordan measure, we can find an elementary set $E\subset A$ such that $m(A)-m(E)<\epsilon/2$. By the $m^{*j}$ definition of jordan measure we can find an elementary set $F$ such that $A\subset F$ and $m(F)-m(A)<\epsilon/2$. It follows that 
+  We establish only the equivalence of Jordan measurability with the first item. To begin, assume that $A$ is Jordan measurable and let $\epsilon>0$ be given. By the $m_{*j}$ definition of Jordan measure, we can find an elementary set $E\subset A$ such that $m(A)-m(E)<\epsilon/2$. By the $m^{*j}$ definition of jordan measure we can find an elementary set $F$ such that $A\subset F$ and $m(F)-m(A)<\epsilon/2$. It follows that
 \[m(F\setminus E)=m(F)-m(E)=(m(F)-m(A))+(m(A)-m(E))<\epsilon
 \]
 as desired.
@@ -362,7 +362,7 @@ We are now ready to establish the remaining stated properties of Jordan measure.
   \end{align*}
   Since $\epsilon$ was arbitrary, we achieve the desired inequality.
 % question: do we need to use the outer version here?
-  
+
   Now additionally assume that $A,B$ are disjoint, and again let $\epsilon>0$. This time using $m=m_{*j}$, we can find elementary sets $E,E'$ such that $E\subset A$, $E'\subset B$, $m(A)-m(E)<\epsilon/2$, and $m(B)-m(E')<\epsilon/2$. Using the fact that $E,E'$ are disjoint, the finite additivity of elementary measure, and the definition of Jordan measurability, we now have:
   \begin{align*}
     m(A\cup B)&=m_{*j}(A\cup B)\\
@@ -1212,7 +1212,7 @@ We are now ready to show that the Lebesgue integral behaves well when applied to
   \[\ovint f=\inf\left\{\left.\sint h\;\right|\;f\leq h\text{, $h$ simple}\right\}
   \]
   We claim that under our hypotheses, we in fact have $\lint f=\ovint f$ (and similarly for $g$ and $f+g$).
-  
+
   % The essence of the following paragraph: For simple functions it is immediate that the lower and upper integrals agree; they are both equal to the simple integral. For bounded/bounded support functions, we can use a uniform limit to achieve it for them too.
 
   To see this recall that since $f$ is measurable, we can find simple functions $f_n$ such that $f_n\leq f_{n+1}$ and $f_n\to f$. Note also that since $f$ is bounded, the construction of the $f_n$ from Theorem~\ref{thm:measurable-equiv} in fact showed that the $f_n$ converge \emph{uniformly} to $f$. Thus given $\epsilon>0$ we can find $n$ such that
@@ -1447,7 +1447,7 @@ We still have to give a proof of Fatou's lemma. As a first approximation, we wil
                 &=\sum (1-\epsilon)c_im(A_i)\\
                 &=(1-\epsilon)\int g
   \end{align*}
-  Taking $\epsilon\to0$ we therefore conclude that $\lim\int f_n\geq\int g$, as desired.  
+  Taking $\epsilon\to0$ we therefore conclude that $\lim\int f_n\geq\int g$, as desired.
 \end{proof}
 
 It is worth remarking that the monotone convergence theorem can fail for signed functions $f_n$. As a silly example, if $f_n=-1/n$ then $f_n\to0$, $\int f_n=-\infty$ but $\int f=0$. The monotone convergence theorem has the following easy but important consequence that the nonnegative Lebesgue integral is \emph{countably} linear, not just finitely linear!
@@ -1661,7 +1661,7 @@ The next result shows that the $\mu^*$-measurable sets are a good choice, in the
     &=\mu^*(S\cap A)+\mu^*(S\cap A^c)\\
     &=\mu(S)
   \end{align*}
-  
+
   Next we show that $\mu^*$ is finitely additive on the $\mu^*$-measurable sets. Suppose that $A,B$ are disjoint and $\mu^*$-measurable. Then using the measurability of $A$, we have
   \begin{align*}
     \mu^*(A\cup B)&=\mu^*((A\cup B)\cap A)+\mu^*((A\cup B)\setminus A)\\
@@ -1733,7 +1733,7 @@ It is easy to see that $\mathcal H$ consists of finite disjoint unions of half-o
     &\leq\mu_F(K)+\epsilon\\
     &\leq\sum\mu_F(U_n)+\epsilon\\
     &\leq\sum\mu_F(A_n)+2\epsilon
-  \end{align*}  
+  \end{align*}
   Thus the result follows by taking $\epsilon\to0$.
 \end{proof}
 
@@ -1963,7 +1963,7 @@ In the following lemma, an operator $T\colon X\to Y$ is said to be \emph{bounded
 \end{exerc}
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Hahn--Banach theorem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2047,7 +2047,7 @@ We now return to the proof of the Hahn--Banach theorem.
                        &\leq p(y-z)+p(y'+z)
   \end{align*}
   Thus we can find a suitable value for $\phi_1(z)$ and successfully extend $\phi$ to $\phi'$ as required.
-  
+
   To complete the proof we wish to apply the above step repeatedly. Since the number of steps will be uncountable in general, it is necessary to phrase our construction using the standard \emph{Zorn's lemma}: if $P$ is a partially ordered set and every chain of $P$ has an upper bound, then $P$ has a maximal element.
 
   Now let $P$ be the collection of all linear functionals $\phi$ such that the domain of $\phi$ is a subspace of $X$, $\phi$ extends $\phi_0$, and $\phi\leq p$. We partially order $P$ by function extension. A chain $\mathcal C$ in $P$ always has an upper bound, namely the set-theoretic union $\bigcup\mathcal C$ of the members of the chain. Moreover the union will be $\leq p$ because each member of the chain is $\leq p$.
@@ -2072,7 +2072,7 @@ We now return to the proof of the Hahn--Banach theorem.
 \end{exerc}
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Spaces of operators and the dual space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2102,7 +2102,7 @@ In other words, the operator norm of a bounded operator $T$ is the least value o
   (a) We first show that the operator norm is indeed a norm. The homogeneity and non-vanishing properties are easy to check. For the triangle inequality let $T,T'\in B(X,Y)$, and calculate $\|(T+T')(x)\|=\|Tx+T'x\|\leq\|Tx\|+\|T'x\|\leq\|T\|\|x\|+\|T'\|\|x\|$. It follows that $\|T+T'\|\leq\|T\|+\|T'\|$, as desired.
 
   It also follows from homogeneity and the triangle inequality that $B(X,Y)$ is closed under scalar multiplication and addition. Thus $B(X,Y)$ is a normed vector space.
-  
+
   (b) It remains only to show that $B(X,Y)$ is complete. For this let $T_n$ be a sequence of elements of $B(X,Y)$ and assume that it is Cauchy in the operator norm. This means that for all $\epsilon>0$, there exists $N$ such that for all $m,n\geq N$ we have $\|T_m-T_n\|<\epsilon$.
 
   Now for any fixed $x\in X$, it follows from the last equation that $\|T_mx-T_nx\|<\epsilon\|x\|$. In particular, the sequence $T_nx$ is a Cauchy sequence in the space $Y$. Since we are assuming that $Y$ is complete, the sequence $T_nx$ converges and we define $Tx=\lim T_nx$.
@@ -2110,7 +2110,7 @@ In other words, the operator norm of a bounded operator $T$ is the least value o
   Now $T$ is a well-defined function from $X$ to $Y$, and by definition $T$ is the pointwise limit of the $T_n$. We need to check that $T\in B(X,Y)$ and moreover that $T_n\to T$ in the operator norm.
 
   To see that $T\in B(X,Y)$, first note that it is easy to check $T$ is a linear map. For example, $T(x+y)=\lim T_n(x+y)=\lim T_n(x)+T_n(y)=T(x)+T(y)$. To see that $T$ is bounded, we first claim that the sequence of operator norms $\|T_n\|$ is itself bounded. For this claim, recall from the reverse triangle inequality that $|\|T_n\|-\|T_m\||\leq\|T_n-T_m\|$. Thus the fact that $T_n$ is Cauchy implies that $\|T_n\|$ is Cauchy in $\RR$, and any Cauchy sequence in $\RR$ is bounded. This completes the claim.
-  
+
   Now let $M$ be a bound for the sequence $\|T_n\|$. Then given $x\in X$, for all $n$ we have $\|T_nx\|\leq M\|x\|$. Taking the limit of both sides, we conclude that $\|Tx\|\leq M\|x\|$, and this means that $T$ is a bounded operator. Thus we have shown that $T\in B(X,Y)$.
 
   Last we establish that $T_n\to T$ in operator norm. For this, given $\epsilon>0$ we have already argued that we can find $N$ such that $m,n\geq N$ implies $\|T_mx-T_nx\|<\epsilon\|x\|$ for all $x\in X$. Now let $n\geq N$ be fixed and take the limit as $m\to\infty$. This gives us $\|Tx-T_nx\|\leq\epsilon\|x\|$ for all $x$. We thus have that $\|T-T_n\|\leq\epsilon$, which means that $T_n\to T$ in operator norm.
@@ -2128,17 +2128,17 @@ By the results of this section, the dual space $X^*$ is always a Banach space wi
 
 \begin{cor}
   \label{cor:hb2}
-    Let $X$ be a normed vector space, $Y\leq X$ a subspace of $X$.
+  Let $X$ be a normed vector space, $Y\leq X$ a subspace of $X$.
   \begin{enumerate}
   \item Any $\phi_0\in Y^*$ extends to an element $\phi\in X^*$ such that $\|\phi\|=\|\phi_0\|$.
-  \item If $Y$ is closed and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\|\phi\|=1$.
+  \item If $Y$ is closed and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$ and $\phi(z)\neq0$. Moreover one may take $\|\phi\|=1$ and $\phi(z)=\inf_{y\in Y}\|y+z\|$.
   \end{enumerate}
 \end{cor}
 
 \begin{proof}
   (a) Since $\phi$ is an extension of $\phi_0$, we always have $\|\phi\|\geq\|\phi_0\|$. And in the proof Corollary~\ref{cor:hb}(a), it is apparent that $\|\phi\|\leq\|\phi_0\|$.
 
-  (b) Recall that in the proof of Corollary~\ref{cor:hb}(b), we defined $\phi_0$ on $Y+\RR z$. It is not too difficult to argue that $\|\phi_0\|=1$. Therefore by part~(a) we can extend $\phi_0$ to $\phi$ with $\|\phi\|=1$ as desired.
+  (b) Recall that in the proof of Corollary~\ref{cor:hb}(b), we showed one may define $\phi_0$ on $Y+\RR z$ in such a way that $\phi(Y)=0$ and $\phi(z)=\inf_{y\in Y}\|y+z\|$ and $\phi_0\leq\|\cdot\|$. It is not too difficult to argue that with this definition, $\|\phi_0\|=1$. Therefore by part~(a) we can extend $\phi_0$ to $\phi$ with $\|\phi\|=1$ as desired.
 \end{proof}
 
 We close this section with the following result about the double dual of a space.
@@ -2185,7 +2185,7 @@ It can even happen that the map $x\mapsto\hat x$ is surjective onto $X^{**}$. Th
 \end{exerc}
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Three results on Banach spaces}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2260,7 +2260,7 @@ While have just checked that $D$ has a closed graph, it is also easy to check th
 % add 12:11.1
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Banach space $L^p$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2297,7 +2297,7 @@ The rest of this section is devoted to verifying that whenever $p\geq1$, $L^p$ r
   There are many proofs and one is left as an exercise.
 
   To begine the proof, note that given $f,g$ as in the theorem statement, we can rescale to assume that $\|f\|_p=\|g\|_q=1$. This is because both $\|\cdot\|_p$ and $\|\cdot\|_q$ satisfy the positive homogeneity property.
-  
+
   Now our objective is to show that $\int|fg|\,d\mu\leq1$. For this we plug $a=|f(x)|$ and $b=|g(x)|$ into H\"older's inequality for real numbers to obtain
   \[|f(x)g(x)|\leq\frac1p|f(x)|^p+\frac1q|g(x)|^q
   \]
@@ -2351,7 +2351,7 @@ We are now ready to prove that the $L^p$ spaces are in fact Banach spaces.
   \[\|g_k\|_p\leq\sum_{n=1}^k\|f_{n+1}-f_n\|_p\leq\sum1/2^n=1
   \]
   It then follows from Fatou's lemma that $\int|g|^p\leq\liminf\int|g_k|^p\leq1$. Thus we can conclude that $g$ is finite $\mu$-almost everywhere.
-  
+
   Now using a simple telescoping we can write:
   \[\lim_{n\to\infty} f_n(x)=\lim_{k\to\infty}\left[f_1(x)
       +\sum_{n=1}^k(f_n(x)-f_n(x))\right]
@@ -2359,7 +2359,7 @@ We are now ready to prove that the $L^p$ spaces are in fact Banach spaces.
   We have just observed that for $\mu$-almost every $x$, the latter series is absolutely convergent. Thus the series is convergent, and we can define the function $f(x)=\lim f_n(x)$.
 
   It remains only to show that $f$ lies in $L^p$ and that $f_n\to f$ in the norm $\|\cdot\|_p$. For this, let $\epsilon$ be given and choose $N$ large enough that $m,n\geq N$ implies $\|f_m-f_n\|_p<\epsilon$. Fixing $n$ and applying Fatou's Lemma to the resulting $m$-sequence we obtain
-  \[\int|f-f_n|^p\leq\liminf_n\int|f_m-f_n|^p\leq\epsilon^p
+  \[\int|f-f_n|^p\leq\liminf_m\int|f_m-f_n|^p\leq\epsilon^p
   \]
   This shows that $\|f-f_n\|_p\to0$, or in other words that $f_n\to f$ in the norm of $L^p$. Finally if $n\geq N$ then we have $\|f\|_p\leq\|f-f_n\|_p+\|f_n\|_p<\infty$, so $f\in L^p$ too.
 \end{proof}
@@ -2399,7 +2399,7 @@ The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the 
 \end{exerc}
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The dual space of $L^p$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2502,7 +2502,7 @@ We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$
 \end{notes}
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hilbert space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2605,7 +2605,7 @@ This basic fact has many consequences, beginning with the following. First recal
 \end{proof}
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bases for Hilbert space}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2697,4 +2697,3 @@ Thus the result implies that there is exactly one Hilbert space in each dimensio
 % Additional topic: Haar measure?
 
 \end{document}
-
