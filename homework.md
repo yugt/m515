@@ -1,9 +1,15 @@
 ## Math 515 homework
 
+### Homework 11. Due Wednesday, December 6.
+* Ex 21.3. Prove Holder's inequality for $p=1$ and $q=\infty$. Prove that $L^\infty$ is a Banach space with the norm $\|\cdot\|\_\infty$.
+* Ex 22.1 (BBT, ex 13:6.1). Let $g\in L^1[0,1]$. Show that the map $f\mapsto\int fg$ is a bounded linear functional on $L^\infty[0,1]$.
+* Ex 22.2 (BBT, ex 13:6.2). Show that there is a nonzero bounded linear functional on $L^\infty[0,1]$ that vanishes on the (closed) subspace of continuous functions.
+* Ex 22.3 (BBT, ex 13:6.3) Show that there is a bounded linear functional on $L^\infty[0,1]$ that is not of the form $f\mapsto\int fg$ for any $g\in L^1[0,1]$.
+
 ### Homework 10. Due Wednesday, November 29.
 * Ex 19.1. Show that $\|T\|$ is equal to $\sup\{\|Tx\|:\|x\|\leq1\}$.
 * Ex 19.3 (BBT, ex 17:7.5). If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^\*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^\*,X^\*)$ such that $\|T^\*\|=\|T\|$.
-* Ex 19.5. Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\|\phi\|=1$.
+* Ex 19.5. Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^\*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\|\phi\|=1$.
 * Ex 20.1. Give an example of a function from $\RR$ to $\RR$ which has a closed graph but is not continuous. Give an example of function from $\RR$ to $\RR$ which is continuous and surjective but not open. Is it possible to give a bijective example?
 * Ex 20.2 (BBT, ex 12:13.2). Equip the space $C[0,1]$ with both the $L^1$ norm and the supremum norm. Show that the $L^1$ norm is bounded by a constant times the supremum norm. Show that the reverse is not true. Explain why the two results do not contradict the corollary to the open mapping theorem.
 
