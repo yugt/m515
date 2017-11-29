@@ -1334,6 +1334,7 @@ A seminorm is called a \emph{norm} if it additionally satisfies $\|v\|=0\implies
 While the vector space of absolutely integrable functions is infinite dimensional, the next result shows that it is not too unwieldy topologically. Recall that a subset $D$ of a (semi-)normed vector space $V$ is \emph{dense} if for every $v\in V$ and every $\epsilon$ there exists $d\in D$ such that $\|v-d\|<\epsilon$. In other words, $D$ is dense if every element of $V$ can be approximated by elements of $D$.
 
 \begin{thm}
+  \label{thm:density}
   The following are all dense subsets of the space of absolutely integrable functions.
   \begin{enumerate}
   \item absolutely integrable simple functions;
@@ -2374,15 +2375,28 @@ While the results above apply to values of $p$ such that $1\leq p<\infty$, there
   \]
 \end{defn}
 
-The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the members of $L^\infty$ are said to be \emph{essentially bounded}. We will state without proof the following generalizations of our results for $L^p$ to the case $p=\infty$.
+The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the members of $L^\infty$ are said to be \emph{essentially bounded}. We will leave as an exercise the following generalizations of our results for $L^p$ to the case $p=\infty$.
 
 \begin{thm}
+  \label{thm:L-infty}
   Let $(X,\mathcal B)$ be a measurable space and $\mu$ a measure on it.
   \begin{itemize}
   \item If $f\in L^1(\mu)$ and $g\in L^\infty(\mu)$ then $fg$ is absolutely integrable and H\"older's inequality is true: $\int|fg|\,d\mu\leq\|f\|_1\cdot\|g\|_\infty$.
   \item The space $L^\infty(\mu)$ is a Banach space with the norm $\|\cdot\|_\infty$.
   \end{itemize}
 \end{thm}
+
+\begin{exerc}[BBT, ex 13:1.2]
+  Show that the inequality $\|f+g\|_1\leq\|f\|_1+\|g\|_1$ is strict precisely when there exists a nonnegative measurable function $h$ such that $g=fh$ for almost every element $x$ of the set where $f,g\neq0$.
+\end{exerc}
+
+\begin{exerc}
+  Recall the argument from Theorem~\ref{thm:density} that the absolutely integrable simple functions are dense in $L^1$. Show that the absolutely integrable simple functions are dense in $L^p$.
+\end{exerc}
+
+\begin{exerc}
+  Prove Theorem~\ref{thm:L-infty}.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
