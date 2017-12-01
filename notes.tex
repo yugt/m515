@@ -2519,18 +2519,18 @@ We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reading}
-  BBT \S 13.5, 14.1, 14.3
+  BBT \S 13.5, 14.1, 14.2, 14.3
 \end{reading}
 
 % maybe just do REAL hilbert spaces, and write some info about the complex case in the further reading below
 
 Up until this point in our study of $L^p$ spaces, we have not been concerned with the value of $p$ so long as $1<p<\infty$. However it should not be surprising that there is something special about the case $p=2$. In this section we will uncover some of the special properties of $L^2$, as well as use these properties to define a new type of space called a Hilbert space.
 
-Informally, $L^2$ is the $L^p$ space which is most closely analogous to classical Euclidean space. This is because the norm $\|\cdot\|_2$ is a generalization of the Euclidean norm $\|x\|=\sqrt{x_1^2+\cdots+x_n^2}$. Intuitively, this means that the geometry of $L^2$ has the ``round circle'' geometry of finite-dimensional Euclidean space.
+Informally, $L^2$ is the $L^p$ space which is most closely analogous to classical Euclidean space. This is because the norm $\|\cdot\|_2$ is a generalization of the Euclidean norm $\|x\|=\sqrt{x_1^2+\cdots+x_n^2}$. Intuitively, this means that the geometry of $L^2$ has the ``round ball'' geometry of finite-dimensional Euclidean space.
 
-More formally, $L^2$ shares several key properties with classical Euclidean space that are not shared by any other $L^p$. First, since the conjugate exponent of $2$ is $2$ itself, the previous section shows that $L^2$ is \emph{self-dual}, that is, $(L^2)^*\cong L^2$. In detail, this means that the bounded linear functionals on $L^2$ are all of the form $f\mapsto\int fg$ where $g\in L^2$ itself. This recalls the case of Euclidean space $\RR^d$ where the functionals are all given by an inner product $x\mapsto y^Tx$.
+More formally, $L^2$ shares several key properties with classical Euclidean space that are not shared by any other $L^p$. First, since the conjugate exponent of $p=2$ is $q=2$ also, the previous section shows that $L^2$ is \emph{self-dual}, that is, $(L^2)^*\cong L^2$. In detail, this means that the bounded linear functionals on $L^2$ are all of the form $f\mapsto\int fg$ where $g\in L^2$ itself. This recalls the case of Euclidean space $\RR^d$ where the (bounde) linear functionals are all given by an inner product $x\mapsto y^Tx$.
 
-The key idea of this section is that the pairing $\int fg$ may be regarded as an inner product too, and this leads to the following definition. For for greatest generality, we will now return to vector spaces with complex scalars.
+The key idea of this section is that just like the pairing $y^tx$, the pairing $\int fg$ may be regarded as an inner product, leading to the next definition. For the greatest generality, we will now return to vector spaces with complex scalars.
 
 \begin{defn}
   Let $X$ be a complex vector space. A function $\langle\cdot,\cdot\rangle\colon X\times X\to\CC$ is called an \emph{inner product} if it satisfies
@@ -2542,7 +2542,7 @@ The key idea of this section is that the pairing $\int fg$ may be regarded as an
   If $X$ admits an inner product then it automatically admits a norm $\|x\|=\sqrt{\langle x,x\rangle}$, and $X$ is called a \emph{Hilbert space} if this norm is complete.
 \end{defn}
 
-We will prove shortly that the operation $\|\cdot\|$ defined above is really a norm. We remark that (b) and (c) together imply that $\langle\cdot,\cdot\rangle$ is \emph{conjugate linear} in the second coordinate (we leave it to the reader to state and verify this formally).
+We will prove shortly that the mapping $\|\cdot\|$ defined above really is a norm. We remark that (b) and (c) together imply that $\langle\cdot,\cdot\rangle$ is \emph{conjugate linear} in the second coordinate (we leave it to the reader to state and verify this formally).
 
 Thus the Banach space $X=L^2(\mu)$ (with the complex scalars) is a Hilbert space with respect to the inner product
 \[\langle f,g\rangle=\int f\bar g\,d\mu
@@ -2550,9 +2550,9 @@ Thus the Banach space $X=L^2(\mu)$ (with the complex scalars) is a Hilbert space
 Similarly, the sequence space $\ell^2=\set{x\in\CC^\NN\mid\sum |x_i|^2<\infty}$ is a Hilbert space with respet to the inner product
 \[\langle x,y\rangle=y^*x=\sum x_i\bar{y}_i
 \]
-Of course $\ell^2$ is not really a separate example, since $\ell^2$ is equal to $L^2(\mu)$ where $\mu$ is the counting measure on $\NN$.
+Of course $\ell^2$ is really just an instance of $L^2(\mu)$, corresponding to the case when $\mu$ is the counting measure on $\NN$.
 
-While a Hilbert space may seem like just a small ``upgrade'' from a Banach space, it is quite significant. For example, we will see in the next section that $L^2$ and $\ell^2$ are essentially the only examples of Hilbert spaces.
+While a Hilbert space may seem like just a small ``upgrade'' from a Banach space, it is quite significant. In fact, we will see in the next section that $L^2$ and $\ell^2$ are essentially the only examples of Hilbert spaces.
 
 We now lay out some of the most basic facts about Hilbert space. Our first result is the following analog of H\"older's inequality.
 
@@ -2564,7 +2564,7 @@ We now lay out some of the most basic facts about Hilbert space. Our first resul
   The proof is a simpler version of the proof of H\"older's inequality. First, by multiplying $x$ by a scalar of the form $e^{i\theta}$, we may assume that $\langle x,y\rangle$ is real. Next given $x,y$ we define a real function $p(\alpha)=\langle\alpha x+y,\alpha x+y\rangle$. Then by axiom (a) we have that $p(\alpha)\geq0$. And by axiom (c) we have
   \[p(\alpha)=\alpha^2\|x\|^2+2\alpha\langle x,y\rangle+\|y\|^2
   \]
-  Thus $p$ is a quadratic and $p\geq0$, which implies $p$ has at most one real root. This means that the discriminant is non-positive, that is, $4|\langle x,y\rangle|^2-4\|x\|^2\cdot\|y\|^2\leq0$. This equation easily implies the desired result.
+  Thus $p$ is a quadratic and $p\geq0$, which implies $p$ has at most one real root. This means that the discriminant is non-positive, that is, $4|\langle x,y\rangle|^2-4\|x\|^2\cdot\|y\|^2\leq0$. This last equation is plainly equivalent to the desired result.
 \end{proof}
 
 We are now ready to prove the fact that every inner product space automatically has a norm.
@@ -2591,15 +2591,16 @@ Perhaps the most important feature of Hilbert spaces that is not present in an o
   Let $X$ be a Hilbert space. We say that vectors $x,y\in X$ are \emph{orthogonal} if $\langle x,y\rangle=0$. Given a vector subspace $Y\subset X$ we define its \emph{orthogonal complement} $Y^\perp=\set{x\in X\mid(\forall y\in Y)\;\langle x,y\rangle=0}$.
 \end{defn}
 
-The orthogonal complement does not always behave as one would expect from classical Euclidean space. For example, if $Y$ is a dense subspace of $X$ then $Y^\perp=0$. However if $Y$ is a closed subspace, then the familiar properties hold.
+The orthogonal complement does not always behave as one would expect from classical Euclidean space. For example, it is possible for a proper subspace $Y$ to have $Y^\perp=0$ (this will be the case if $Y$ is dense in $X$). However if $Y$ is a closed subspace, then most familiar properties do hold.
 
 \begin{prop}
+  \label{prop:decomp}
   Let $X$ be a Hilbert space and let $Y\leq X$ be a closed subspace. Then $X=Y\oplus Y^\perp$ in the sense that every $x\in X$ can be uniqely expressed as $x=y+y'$ where $y\in Y$ and $Y'\in Y^\perp$.
 \end{prop}
 
-The idea behind the proof is as follows. Given $x$, let $y\in Y$ be the unique point in $Y$ which is closest to $x$. Such a point $y$ exists and is unique thanks to the familiar geometry of Hilbert space.
+The idea behind the proof is as follows. Given $x$, let $y\in Y$ be the unique point in $Y$ which is closest to $x$. Such a point $y$ exists and is unique thanks to the Euclidean-like geometry of Hilbert space. (The basic fact here is that closed, convex sets have a unique element of minimal norm.)
 
-This basic fact has many consequences, beginning with the following. First recall that our motivation for defining Hilbert spaces was the fact that $L^2$ is sel-dual, and thus the action of $(L^2)^*$ on $L^2$ behaves like an inner product. Our final result of this section states that the converse holds, that is, if $X$ admits an inner product then it is self-dual.
+This key fact makes it possible to define bases in Hilbert space, as we will do in the next section. Here we present another useful consequence of the proposition. First recall that our motivation for defining Hilbert spaces was the fact that $L^2$ is sel-dual, and thus the action of $(L^2)^*$ on $L^2$ behaves like an inner product. The next result states that the converse holds, that is, if $X$ admits an inner product then $X$ is self-dual.
 
 \begin{thm}
   If $X$ is a Hilbert space, then $X$ is self-dual. That is, for any $\phi\in X^*$ there exists $y\in X$ such that $\phi(x)=\langle x,y\rangle$. Moreover the correspondence $\phi\mapsto y$ is a conjugate-linear isomorphism $X^*\cong X$.
@@ -2615,6 +2616,10 @@ This basic fact has many consequences, beginning with the following. First recal
   \end{align*}
   Here the last equality follows from the fact that $\phi(x)z-\phi(z)x$ lies in $Y$.
 \end{proof}
+
+\begin{exerc}
+  Use the discussion in BBT, \S 14.2 to prove Proposition~\ref{prop:decomp}.
+\end{exerc}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
