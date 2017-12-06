@@ -2662,13 +2662,14 @@ Recall that in the study of classical vector spaces, every element can be writte
 \begin{proof}
   In the proof, we will need the \emph{Pythagorean theorem}, which states that if $e_1,\ldots,e_n$ are orthognal, then $\|e_1+\cdots+e_n\|^2=\|e_1\|^2+\cdots+\|e_n\|^2$. The calculation is the same as the classical version, and is obtained by distributing out the expression $\langle e_1+\cdots+e_n,e_1+\cdots+e_n\rangle$.
 
-  We first show one half of Parseval's identity, namely that if  $\sum|\langle x,e_\alpha\rangle|^2\leq\|x\|^2$. (This is called Bessel's inequality.) For this we let $A_0\subset A$ be a finite subset. Then an elementary calculation together with the Pythagorean theorem gives
+  We first show one half of Parseval's identity, namely that $\sum|\langle x,e_\alpha\rangle|^2\leq\|x\|^2$. (This is called Bessel's inequality.) For this we let $A_0\subset A$ be a finite subset. Then an elementary calculation together with the Pythagorean theorem gives
+  % See Folland 5.26
   \begin{equation}
     \label{eq:bessel}
     \left\|\,x-\sum_{\alpha\in A_0}\langle x,e_\alpha\rangle e_\alpha\,\right\|^2
     =\|x\|-\sum_{\alpha\in A_0}|\langle x,e_\alpha\rangle|^2
   \end{equation}
-  Since the left-hand side is nonnegative, this completes the claim.
+  Since the left-hand side is nonnegative, we have $\sum_{\alpha\in A_0}|\langle x,e_\alpha\rangle|^2\leq\|x\|^2$. Since $A_0$ was arbitrary, this completes the claim.
 
   Now we know that $\sum|\langle x,e_\alpha\rangle|^2$ converges. It follows that there are just countably many nonzero terms, let us enumerate them $|\langle x,e_n\rangle|^2$. Then the sequence of partial sums of $\sum|\langle x,e_n\rangle|^2$ is Cauchy. By the Pythagorean theorem,
   \[\left\|\,\sum_m^l\langle x,e_n\rangle e_n\,\right\|^2
@@ -2676,9 +2677,9 @@ Recall that in the study of classical vector spaces, every element can be writte
   \]
   Thus the sequence of partial sums of $\sum\langle x,e_n\rangle e_n$ is Cauchy too. Since $X$ is complete, we conclude that there exists an element $y\in X$ defined by $y=\sum\langle x,e_\alpha\rangle e_\alpha$.
 
-  Next we claim that in fact $x=y$. Indeed, it is easy to see that $\langle x-y,e_\alpha\rangle=0$ for all $\alpha$, so completeness implies that $x-y=0$.
+  Next we claim that in fact $x=y$. Indeed, it is easy to see that $\langle x-y,e_\alpha\rangle=0$ for all $\alpha$, so the completeness of the orthonormal set implies that $x-y=0$.
 
-  Finally, we conclude the proof of Parseval's identity by returning to Equation~\eqref{eq:bessel}. Since we now know that the left-hand side converges to $0$ as $A_0\to A$, it follows that the right-hand side does as well.
+  Finally, we conclude the proof of Parseval's identity by returning to Equation~\eqref{eq:bessel}. Since we now know that the left-hand side converges to $0$ as $A_0\to A$, it follows that the right-hand side does as well, establishing the equality.
 \end{proof}
 
 One can interpret this result as saying that any Hilbert space $X$ looks remarkably like $\ell^2$. That is, each element $x\in X$ is determined by its vector of coefficients $\langle x,e_\alpha\rangle$. Indeed, our last result will show that this is a formal theorem. In order to state it, we need to define a generalization of the sequence space $\ell^2$.
@@ -2691,7 +2692,7 @@ One can interpret this result as saying that any Hilbert space $X$ looks remarka
 
 In other words, $\ell^2(A)$ is like a sequence space where the sequences may be indexed by an arbitrary set other than $\NN$. Another way to say it is that $\ell^2(A)$ is equal to $L^2(\mu)$, where $\mu$ is the counting measure on $A$.
 
-The space $\ell^2(A)$ is determined up to isomorphism by the cardinality of $A$. The cardinality of $A$ is called the \emph{dimension} of $\ell^2(A)$. This is because like $\ell^2$, the space $\ell^2(A)$ has the obvious basis consisting of $\{e_\alpha\}_{\alpha\in A}$, where $e_\alpha(\alpha)=1$ and $e_\alpha(\beta)=0$ whenever $\beta\neq\alpha$.
+The space $\ell^2(A)$ is determined up to isomorphism by the cardinality of $A$. The cardinality of $A$ is called the \emph{dimension} of $\ell^2(A)$. This is because like $\ell^2$, the space $\ell^2(A)$ has the obvious Hilbert space basis consisting of $\{e_\alpha\}_{\alpha\in A}$, where $e_\alpha(\alpha)=1$ and $e_\alpha(\beta)=0$ whenever $\beta\neq\alpha$.
 
 \begin{thm}
   Let $X$ be a Hilbert space. Then $X$ is isomorphic to $\ell^2(A)$ for some $A$ by a linear bijection that preserves inner products.
@@ -2708,6 +2709,14 @@ The space $\ell^2(A)$ is determined up to isomorphism by the cardinality of $A$.
 \end{proof}
 
 Thus the result implies that there is exactly one Hilbert space in each dimension. Note that both $\ell^2$ and $L^2[0,1]$ are Hilbert spaces of countable dimension, because we have seen above that each has a countable basis. The unique countable dimensional Hilbert space, often denoted $\mathcal H$, is by far the most widely used in applications where an operator acts on infinitely many coordinates. Hilbert space appears in the study of differential equations, fourier analysis, quantum physics, and more.
+
+\begin{exerc}
+  Prove the Pythagorean theorem in a Hilbert space.
+\end{exerc}
+
+\begin{exerc}
+  Prove the polarization identity ina  Hilbert space.
+\end{exerc}
 
 % Additional topic: Fourier analysis?
 
