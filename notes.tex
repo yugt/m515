@@ -1861,7 +1861,7 @@ Finally we remark that our major convergence theorems all hold true for integrat
 
 In our study of integration theory, we studied several classes of real and complex-valued functions. For example we studied the class of Lebesgue measurable functions, and the class of absolutely integrable functions. Across analysis there are many other important classes of functions, including the continuous functions, uniformly continuous functions, differentiable functions, and so on.
 
-Such function spaces have a lot of insternal structure. For example if you can add or scale the elements of the function space, then it will have the algebraic structure of a vector space. And if you can measure distances between functions in the space, it should have a geometry too. In the best cases, the algebraic and geometric structures make the function space into a normed vector space.
+Such function spaces have a lot of internal structure. For example if you can add or scale the elements of the function space, then it will have the algebraic structure of a vector space. And if you can measure distances between functions in the space, it should have a geometry too. In the best cases, the algebraic and geometric structures make the function space into a normed vector space.
 
 \begin{defn}
   A \emph{normed vector space} consists of a (real or complex) vector space $X$ together with a mapping $\|\cdot\|\colon X\to[0,\infty)$ satisfying:
@@ -2296,7 +2296,7 @@ The rest of this section is devoted to verifying that whenever $p\geq1$, $L^p$ r
   \]
   There are many proofs and one is left as an exercise.
 
-  To begine the proof, note that given $f,g$ as in the theorem statement, we can rescale to assume that $\|f\|_p=\|g\|_q=1$. This is because both $\|\cdot\|_p$ and $\|\cdot\|_q$ satisfy the positive homogeneity property.
+  To begin the proof, note that given $f,g$ as in the theorem statement, we can rescale to assume that $\|f\|_p=\|g\|_q=1$. This is because both $\|\cdot\|_p$ and $\|\cdot\|_q$ satisfy the positive homogeneity property.
 
   Now our objective is to show that $\int|fg|\,d\mu\leq1$. For this we plug $a=|f(x)|$ and $b=|g(x)|$ into H\"older's inequality for real numbers to obtain
   \[|f(x)g(x)|\leq\frac1p|f(x)|^p+\frac1q|g(x)|^q
@@ -2448,7 +2448,7 @@ Then it is not difficult to see from Tonelli's theorem that $\mu_g$ is a signed 
 It is clear from the definition of $\mu_g$ that if $\mu(A)=0$ then $\mu_g(A)=0$ too. The next result states that this condition is sufficient to guarantee that a given signed measure $\nu$ is actually of the form $\mu_g$.
 
 \begin{thm}[Radon--Nikodym]
-  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be an unsigned measure and $\nu$ be a signed measure on it. Assume that $\mu,\nu$ are $\sigma$-finite. Then if $\mu(E)=0\implies\nu(E)=0$, then there exists $g\in L^1(\mu)$ such that $\nu=\mu_g$.
+  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be an unsigned measure and $\nu$ be a signed measure on it. Assume that $\mu,\nu$ are $\sigma$-finite. Then if $\mu(A)=0\implies\nu(A)=0$, then there exists $g\in L^1(\mu)$ such that $\nu=\mu_g$.
 \end{thm}
 
 We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$. Indeed, we have already introduced a simple correspondence between linear functionals $\phi$ and signed measures $\nu$ with the property that $\nu(A)=\phi(\chi_A)$. Then the Radon--Nikodym theorem gives us a correspondence between signed measures $\nu$ and absolutely integrable functions $g$ such that $\nu(A)=\int\chi_Ag\,d\mu$. Putting these together, we see that $\phi(\chi_A)=\int\chi_Ag\,d\mu$. In other words we see that $\phi$ is of the desired form, at least for the characteristic functions. We are therefore left to check that this property can be extended to arbitrary functions $f\in L^p$, as well as the rest of the claims in the statement.
@@ -2702,7 +2702,7 @@ The space $\ell^2(A)$ is determined up to isomorphism by the cardinality of $A$.
   Let $\{e_\alpha\}_{\alpha\in A}$ be an orthonormal basis for $X$. The index set $A$ will be the same set we use to form $\ell^2(A)$. We define a function $\phi\colon X\to\ell^2(A)$ by $\phi(x)(\alpha)=\langle x,e_\alpha\rangle$.
 
   It is easy to see that $\phi$ is linear, and Parseval's identity implies that $\phi$ preserves the norm. In particular $\phi$ is injective. To see that $\phi$ preserves the inner product, it suffices to note that the inner product can be recovered from the norm by the \emph{polarization identity}
-  \[4\langle x,y\rangle=\|x+y\|^2+\|x-y\|^2+i\|x+iy\|^2-i\|x-iy\|^2
+  \[4\langle x,y\rangle=\|x+y\|^2-\|x-y\|^2+i\|x+iy\|^2-i\|x-iy\|^2
   \]
 
   Finally to see that $\phi$ is surjective, let $f\in\ell^2(A)$ be given. Since $\sum_{\alpha\in A}|f(\alpha)|^2<\infty$, the series has just countably many nonzero terms and its partial sums are Cauchy. By the Pythagorean theorem, the partial sums of $\sum_{\alpha\in A}f(\alpha)e_\alpha$ are Cauchy too. It follows that there exists an element $x\in X$ defined by $x=\sum_{\alpha\in A}f(\alpha)e_\alpha$. Clearly $\phi(x)=f$, as desired.
