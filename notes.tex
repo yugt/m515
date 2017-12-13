@@ -2398,6 +2398,10 @@ The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the 
   Prove Theorem~\ref{thm:L-infty}.
 \end{exerc}
 
+\begin{exerc}
+  Prove H\"older's inequality for real numbers. (Should probably give a hint.)
+\end{exerc}
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The dual space of $L^p$}
@@ -2427,7 +2431,7 @@ is in fact bounded. Thus we have already found a large supply of elements of $(L
 
 To prove this result, it will be necessary to introduce a generalization of measures called signed measures. To motivate this from the study of linear functionals on $L^p$, observe that any functional $\phi$ on $L^p$ gives rise to something like a finitely additive measure by defining $\nu(A)=\phi(\chi_A)$. Indeed, if $A,B$ are disjoint sets then
 \[\nu(A\cup B)=\phi(\chi_{A\cup B})=\phi(\chi_A+\chi_B)
-  =\phi(\chi_A+\chi_B)=\nu(A)+\nu(B)
+  =\phi(\chi_A)+\phi(\chi_B)=\nu(A)+\nu(B)
 \]
 However there is no reason why such a function $\nu$ can't take negative values, and so $\nu$ need not be a measure in our original sense.
 
