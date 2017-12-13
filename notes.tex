@@ -2551,7 +2551,7 @@ We will prove shortly that the mapping $\|\cdot\|$ defined above really is a nor
 Thus the Banach space $X=L^2(\mu)$ (with the complex scalars) is a Hilbert space with respect to the inner product
 \[\langle f,g\rangle=\int f\bar g\,d\mu
 \]
-Similarly, the sequence space $\ell^2=\set{x\in\CC^\NN\mid\sum |x_i|^2<\infty}$ is a Hilbert space with respet to the inner product
+Similarly, the sequence space $\ell^2=\set{x\in\CC^\NN\mid\sum |x_i|^2<\infty}$ is a Hilbert space with respect to the inner product
 \[\langle x,y\rangle=y^*x=\sum x_i\bar{y}_i
 \]
 Of course $\ell^2$ is really just an instance of $L^2(\mu)$, corresponding to the case when $\mu$ is the counting measure on $\NN$.
@@ -2599,12 +2599,12 @@ The orthogonal complement does not always behave as one would expect from classi
 
 \begin{prop}
   \label{prop:decomp}
-  Let $X$ be a Hilbert space and let $Y\leq X$ be a closed subspace. Then $X=Y\oplus Y^\perp$ in the sense that every $x\in X$ can be uniqely expressed as $x=y+y'$ where $y\in Y$ and $Y'\in Y^\perp$.
+  Let $X$ be a Hilbert space and let $Y\leq X$ be a closed subspace. Then $X=Y\oplus Y^\perp$ in the sense that every $x\in X$ can be uniqely expressed as $x=y+y'$ where $y\in Y$ and $y'\in Y^\perp$.
 \end{prop}
 
 The idea behind the proof is as follows. Given $x$, let $y\in Y$ be the unique point in $Y$ which is closest to $x$. Such a point $y$ exists and is unique thanks to the Euclidean-like geometry of Hilbert space. (The basic fact here is that closed, convex sets have a unique element of minimal norm.)
 
-This key fact makes it possible to define bases in Hilbert space, as we will do in the next section. Here we present another useful consequence of the proposition. First recall that our motivation for defining Hilbert spaces was the fact that $L^2$ is sel-dual, and thus the action of $(L^2)^*$ on $L^2$ behaves like an inner product. The next result states that the converse holds, that is, if $X$ admits an inner product then $X$ is self-dual.
+This key fact makes it possible to define bases in Hilbert space, as we will do in the next section. Here we present another useful consequence of the proposition. First recall that our motivation for defining Hilbert spaces was the fact that $L^2$ is self-dual, and thus the action of $(L^2)^*$ on $L^2$ behaves like an inner product. The next result states that the converse holds, that is, if $X$ admits an inner product then $X$ is self-dual.
 
 \begin{thm}
   If $X$ is a Hilbert space, then $X$ is self-dual. That is, for any $\phi\in X^*$ there exists $y\in X$ such that $\phi(x)=\langle x,y\rangle$. Moreover the correspondence $\phi\mapsto y$ is a conjugate-linear isomorphism $X^*\cong X$.
