@@ -2011,7 +2011,7 @@ Before proving the above abstract form of the Hahn--Banach theorem, we present s
 \end{cor}
 
 \begin{proof}
-  (a) Since $\phi_0$ is a bounded linear functional on $Y$, there exists some $M$ such that $\phi(y)\leq M\|y\|$ for all $y\in Y$. We may therefore apply the Hahn--Banach theorem with the sublinear functional $p(x)=M\|x\|$. Thus $\phi_0$ extends to a linear functional $\phi$ on $X$ such that $\phi(x)\leq M\|x\|$. In particular, $\phi$ is bounded too.
+  (a) Since $\phi_0$ is a bounded linear functional on $Y$, there exists some $M$ such that $\phi_0(y)\leq M\|y\|$ for all $y\in Y$. We may therefore apply the Hahn--Banach theorem with the sublinear functional $p(x)=M\|x\|$. Thus $\phi_0$ extends to a linear functional $\phi$ on $X$ such that $\phi(x)\leq M\|x\|$. In particular, $\phi$ is bounded too.
 
   (b) We first define a function $\phi_0$ on the space $Y+\RR z$ which is bounded by $p=$ the norm. For this we will let $\phi_0(y+cz)=c\phi_0(z)$ where $\phi_0(z)$ remains to be determined. In order to satisfy $\phi_0(y+cz)\leq\|y+cz\|$ we require that $c\phi_0(z)\leq\|y+cz\|$ for all $y\in Y$.
 
@@ -2195,7 +2195,7 @@ It can even happen that the map $x\mapsto\hat x$ is surjective onto $X^{**}$. Th
 
 In our introduction to normed vector spaces, we singled out the special case when the space is complete and called it a Banach space. However in our investigation we have said  very little that is special to Banach spaces. In this section we present several key results that are essentially unique to Banach spaces because they rely on the completeness property.
 
-The three key results we will present are called the uniform boundedness principle, the open mapping theorem, and the closed graph theorem. In ecah case, rather than proved a proof we will state the result and give a sample application.
+The three key results we will present are called the uniform boundedness principle, the open mapping theorem, and the closed graph theorem. In ecah case, rather than provide a proof we will state the result and give a sample application.
 
 \begin{thm}[Uniform boundedness principle]
   Let $X,Y$ be Banach spaces and $\mathcal F$ a family of bounded operators from $X$ to $Y$. Suppose that for all $x$ there exists a constant $M_x$ such that for all $T\in\mathcal F$ we have $\|Tx\|\leq M_x$. Then there exists a constant $M$ such that for all $T\in\mathcal F$ we have $\|T\|\leq M$.
