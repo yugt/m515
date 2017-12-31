@@ -7,7 +7,7 @@
 * Ex 22.3 (BBT, ex 13:6.3) Show that there is a bounded linear functional on $L^\infty[0,1]$ that is not of the form $f\mapsto\int fg$ for any $g\in L^1[0,1]$.
 
 ### Homework 10. Due Wednesday, November 29.
-* Ex 19.1. Show that $\|T\|$ is equal to $\sup\{\|Tx\|:\|x\|\leq1\}$.
+* Ex 19.1. Show that $\|T\|$ is equal to $\sup\\{\|Tx\|:\|x\|\leq1\\}$.
 * Ex 19.3 (BBT, ex 17:7.5). If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^\*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^\*,X^\*)$ such that $\|T^\*\|=\|T\|$.
 * Ex 19.5. Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^\*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\|\phi\|=1$.
 * Ex 20.1. Give an example of a function from $\mathbb R$ to $\mathbb R$ which has a closed graph but is not continuous. Give an example of function from $\mathbb R$ to $\mathbb R$ which is continuous and surjective but not open. Is it possible to give a bijective example?
@@ -35,7 +35,7 @@
   * Give a counterexample to the above conclusion, showing that the hypothesis $\sum m(A\_n)<\infty$ cannot be replaced by the weaker condition $\lim m(A\_n)=0$.
 * Ex 14.1 (Tao, ex 1.4.26). Let $\mu$ be a measure on $(X,\mathcal B)$. Show that $\mathcal B$ can be extended to $\sigma$-algebra $\hat{\mathcal B}$ and $\mu$ to a measure $\hat\mu$ on $(X,\hat{\mathcal B})$ in such a way that $\hat\mu$ is complete.
 * Ex 14.2 (Tao, ex 1.4.49). Let $f$ be a nonnegative Lebesgue measurable function. Show that $\mu(A)=\int f\chi\_A$ is a measure.
-* Ex 14.3 (Tao, ex 1.7.6). Give an example of a finitely additive measure that is not a premeasure. [Hint: work on the measurable space $(\NN,\mathcal P(\NN))$ and define $\mu_0$ separately for finite and infinite sets.]
+* Ex 14.3 (Tao, ex 1.7.6). Give an example of a finitely additive measure that is not a premeasure. [Hint: work on the measurable space $(\mathbb N,\mathcal P(\mathbb N))$ and define $\mu_0$ separately for finite and infinite sets.]
 
 ### Homework 6. Due Wednesday, October 18
 * Ex 11.1 (Tao, ex 1.3.13). Let $f$ be a nonnegative measurable function on $\mathbb R$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region ${(x,y)\mid 0\leq y\leq f(x)}$
@@ -43,7 +43,7 @@
   * Show that if $\int f&lt;\infty$ then $f$ is finite almost everywhere. Give a counterexample to show that the converse is false.
   * Show that $\int f=0$ if and only if $f=0$ almost everywhere.
 * Ex 11.3. Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
-* Ex 12.1 (Tao, ex 1.3.25(i)). Let $f$ be absolutely integrable. Show that for any $\epsilon&gt;0$ there exists a bounded measurable set $A$ such that $\int |f|\chi\_{A^c}&lt;\epsilon$.
+* Ex 12.1 (Tao, ex 1.3.25(i)). Let $f$ be absolutely integrable. Show that for any $\epsilon&gt;0$ there exists a bounded measurable set $A$ such that $\int \|f\|\chi\_{A^c}&lt;\epsilon$.
 * Ex 12.2 (Tao ex 1.3.25(ii)). Let $f$ be a nonnegative measurable function with which is finite almost everywhere. (Note Tao has a typo hypo here.) Show that for any $\epsilon&gt;0$, there exists a measurable set $A$ such that $m(A)&lt;\epsilon$ and $f$ is locally bounded outside of $A$. In other words, for every $n$ there exists $M$ such that for all $x\in[-n,n]^d\setminus A$ we have $f(x)\leq M$.
 
 ### Homework 5. Due Wednesday, October 11
@@ -93,4 +93,3 @@
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML'></script>
-</script>
