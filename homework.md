@@ -1,15 +1,15 @@
 ## Math 515 homework
 
 ### Homework 11. Due Wednesday, December 6.
-* Ex 21.3. Prove Holder's inequality for $p=1$ and $q=\infty$. Prove that $L^\infty$ is a Banach space with the norm $\|\cdot\|\_\infty$.
+* Ex 21.3. Prove Holder's inequality for $p=1$ and $q=\infty$. Prove that $L^\infty$ is a Banach space with the norm $\\|\cdot\\|\_\infty$.
 * Ex 22.1 (BBT, ex 13:6.1). Let $g\in L^1[0,1]$. Show that the map $f\mapsto\int fg$ is a bounded linear functional on $L^\infty[0,1]$.
 * Ex 22.2 (BBT, ex 13:6.2). Show that there is a nonzero bounded linear functional on $L^\infty[0,1]$ that vanishes on the (closed) subspace of continuous functions.
 * Ex 22.3 (BBT, ex 13:6.3) Show that there is a bounded linear functional on $L^\infty[0,1]$ that is not of the form $f\mapsto\int fg$ for any $g\in L^1[0,1]$.
 
 ### Homework 10. Due Wednesday, November 29.
-* Ex 19.1. Show that $\|T\|$ is equal to $\sup\\{\|Tx\|:\|x\|\leq1\\}$.
-* Ex 19.3 (BBT, ex 17:7.5). If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^\*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^\*,X^\*)$ such that $\|T^\*\|=\|T\|$.
-* Ex 19.5. Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^\*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\|\phi\|=1$.
+* Ex 19.1. Show that $\\|T\\|$ is equal to $\sup\\{\\|Tx\\|:\\|x\\|\leq1\\}$.
+* Ex 19.3 (BBT, ex 17:7.5). If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^\*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^\*,X^\*)$ such that $\\|T^\*\\|=\\|T\\|$.
+* Ex 19.5. Complete the proof of Corollary 19.4(b) of the notes: If $Y$ is closed in $X$ and $z\notin Y$, then there exists $\phi\in X^\*$ such that $\phi(Y)=0$, $\phi(z)\neq0$, and $\\|\phi\\|=1$.
 * Ex 20.1. Give an example of a function from $\mathbb R$ to $\mathbb R$ which has a closed graph but is not continuous. Give an example of function from $\mathbb R$ to $\mathbb R$ which is continuous and surjective but not open. Is it possible to give a bijective example?
 * Ex 20.2 (BBT, ex 12:13.2). Equip the space $C[0,1]$ with both the $L^1$ norm and the supremum norm. Show that the $L^1$ norm is bounded by a constant times the supremum norm. Show that the reverse is not true. Explain why the two results do not contradict the corollary to the open mapping theorem.
 
@@ -76,8 +76,8 @@
 ### Homework 2. Due Friday, September 8
 
 * Ex 3.2 (see Tao, ex 1.1.5). Show that $A$ is Jordan measurable iff for all $\epsilon>0$ there is an elementary set $E$ such that $m^{\*j}(E\triangle A)&lt;\epsilon$.
-* Ex 3.4 (Tao, ex 1.1.12). Say that $A$ is \emph{Jordan null} if $A$ is Jordan measurable and $m(A)=0$. Show that any subset of a Jordan null set is a Jordan null set.
-* Ex 3.5. Show that the outer Jordan measure $m^{*j}(A)$ is equal to: inf{\vol(B\_1)+\cdots+\vol(B\_k) : B\_1,\ldots,B\_k are boxes and A\subset B\_1\cup\cdots\cup B\_k}.
+* Ex 3.4 (Tao, ex 1.1.12). Say that $A$ is *Jordan null* if $A$ is Jordan measurable and $m(A)=0$. Show that any subset of a Jordan null set is a Jordan null set.
+* Ex 3.5. Show that the outer Jordan measure $m^{*j}(A)$ is equal to:   $\inf\\{\vol(B\_1)+\cdots+\vol(B\_k) : B\_1,\ldots,B\_k are boxes and A\subset B\_1\cup\cdots\cup B\_k\\}$.
 * Ex 4.2 (Tao, ex 1.1.23). Let $f\colon[a,b]\to\mathbb R$. Show that if $f$ is continuous, then $f$ is Riemann integrable. Show that if $f$ is bounded and piecewise continuous, then $f$ is Riemann integrable.
 * Ex 4.3 (Tao, ex 1.1.24). Show that the Riemann integral satisfies the linearity and monotonicity properties. (Hint: first establish these properties for the pc integral.)
 
