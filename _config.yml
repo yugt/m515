@@ -1,2 +1,5 @@
 title: Math 515
 theme: jekyll-theme-midnight
+github:
+  is_project_page: false
+
