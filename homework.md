@@ -2,8 +2,12 @@
 
 ## Homework 1. Due Wednesday, August 29
 
-* Axler, ex 
-* Axler, ex
+* Axler, ex 0C.1
+* Axler, ex 0C.2
+* Axler, ex 0C.4
+* Axler, ex 1A.1
+* Axler, ex 1A.2
+* ...
 
 <script type='text/x-mathjax-config'>
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});
