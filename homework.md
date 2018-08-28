@@ -7,7 +7,6 @@
 * Axler, ex 0C.4
 * Axler, ex 1A.1
 * Axler, ex 1A.2
-* ...
 
 <script type='text/x-mathjax-config'>
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true}});
