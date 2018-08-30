@@ -1,5 +1,13 @@
 ## Math 515 homework
 
+## Homework 2. Due Thursday, September 6, at 12pm
+
+* Axler, ex 1A.11
+* Show that the properties normality, translation invariance, and countable additivity imply the inclusion&ndash;exclusion principle: For any sets A, B we have m(A ∪ B) + m(A ∩ B) = m(A) + m(B).
+* Axler, ex 1B.3
+* Axler, ex 2A.1
+* Axler, ex 2A.4
+
 ## Homework 1. Due Wednesday, August 29
 
 * Axler, ex 0C.1
