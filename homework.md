@@ -2,9 +2,9 @@
 
 ## Homework 3. Due Wednesday, September 12
 
-* Axler, ex 3
-* Axler, ex 7
-* Axler, ex 12
+* Axler, ex 2A.3
+* Axler, ex 2A.7
+* Axler, ex 2A.12
 
 ## Homework 2. Due Thursday, September 6, at 12pm
 
