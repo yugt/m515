@@ -8,7 +8,7 @@ Textbook: Sheldon Axler, *Measure, integration, and real analysis* (draft)
 Web site: `scoskey.org/m515`  
 My email: `scoskey@boisestate.edu`  
 My office: MB 238-B  
-Office hours: M,W,F from 11:30am&ndash;12:15pm, and by appointment
+Office hours: M,W,F from 11:30am&ndash;12:00pm, Tu from 10:30&ndash;11:00, and by appointment
 
 ## Course topics
 
