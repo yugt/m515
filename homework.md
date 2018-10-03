@@ -1,6 +1,6 @@
 ## Math 515 homework
 
-## Homework 5. Due Wednesday, October 3
+## Homework 5. Due Friday, October 5 at 12pm
 
 * Axler, ex 2D.5
 * Axler, ex 2D.8
