@@ -1,6 +1,6 @@
 ## Math 515 homework
 
-## Homework 4. Due Wednesday, September 19
+## Homework 4. Due Thursday, September 20 at 12pm
 
 * Axler, ex 2B.3
 * Axler, ex 2B.10
