@@ -1,5 +1,12 @@
 ## Math 515 homework
 
+## Homework 9. Due Wednesday, November 7
+
+* Axler, ex 6B.10
+* Axler, ex 7A.4
+* Axler, ex 7A.11
+* Axler, ex 7B.4
+
 ## Homework 8. Due Thursday, October 25
 
 * Axler, ex 6A.5(a)
