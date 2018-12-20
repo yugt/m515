@@ -900,7 +900,7 @@ We have now established the existence and all of the promised axioms of the Lebe
 \begin{thm}
   \label{thm:mct}
   \begin{itemize}
-  \item (upwards monotone convergence theorem) If $A_n$ are measurable and $A_n\subset A_{n+1}$ then $m(\bigcup A_n)=\lim m(A_n)$.
+  \item (upwards monotone convergence theorem) If $A_n$ are measurable and $A_{n+1}\supset A_n$ then $m(\bigcup A_n)=\lim m(A_n)$.
   \item (downwards monotone convergence theorem) If $A_n$ are measurable and $A_{n+1}\subset A_n$ then $m(\bigcap A_n)=\lim m(A_n)$, provided some $A_n$ has finite measure.
   \end{itemize}
 \end{thm}
@@ -1536,8 +1536,8 @@ Many of the properties of Lebesgue measure that we have established can be prove
     \item (monotonicity) if $A\subset B$ then $\mu(A)\leq\mu(B)$;
     \item (inclusion--exclusion) $\mu(A\cup B)+\mu(A\cap B)=\mu(A)+\mu(B)$.
     \item (countable subadditivity) $\mu(\bigcup A_n)\leq\sum\mu(A_n)$;
-    \item (upwards monotone convergence) if $A_n\subset A_{n+1}$ then $\mu(\bigcup A_n)=\lim\mu(A_n)$; and
-    \item (downwards monotone convergence) if $A_n\subset A_{n+1}$ and $\mu(A_1)<\infty$ then $\mu(\bigcap A_n)=\lim\mu(A_n)$.
+    \item (upwards monotone convergence) if $A_{n+1}\supset A_n$ then $\mu(\bigcup A_n)=\lim\mu(A_n)$; and
+    \item (downwards monotone convergence) if $A_{n+1}\subset A_n$ and $\mu(A_1)<\infty$ then $\mu(\bigcap A_n)=\lim\mu(A_n)$.
   \end{itemize}
 \end{prop}
 
