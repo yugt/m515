@@ -1,0 +1,877 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Functional analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Normed vector spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 12.1, \S 12.3
+\end{reading}
+
+In our study of integration theory, we studied several classes of real and complex-valued functions. For example we studied the class of Lebesgue measurable functions, and the class of absolutely integrable functions. Across analysis there are many other important classes of functions, including the continuous functions, uniformly continuous functions, differentiable functions, and so on.
+
+Such function spaces have a lot of internal structure. For example if you can add or scale the elements of the function space, then it will have the algebraic structure of a vector space. And if you can measure distances between functions in the space, it should have a geometry too. In the best cases, the algebraic and geometric structures make the function space into a normed vector space.
+
+\begin{defn}
+  A \emph{normed vector space} consists of a (real or complex) vector space $X$ together with a mapping $\|\cdot\|\colon X\to[0,\infty)$ satisfying:
+  \begin{itemize}
+  \item (homogeneity) $\|ax\|=|a|\cdot\|x\|$;
+  \item (triangle inequality) $\|x+y\|\leq\|x\|+\|y\|$; and
+  \item (non-vanishing) $\|x\|=0$ implies $x=0$.
+  \end{itemize}
+  The mapping $\|\cdot\|$ is called a \emph{norm} on $X$.
+\end{defn}
+
+The norm gives rise to a metric on $X$ defined by $d(x,y)=\|x-y\|$. The metric has several special properties not true in a general metric space. For example, it is uniform throughout the space in the sense that it is translation invariant: $d(x+z,y+z)=d(x,y)$.
+
+\begin{defn}
+  A normed vector space is called a \emph{Banach space} if the associated metric $d(x,y)=\|x-y\|$ is complete.
+\end{defn}
+
+Recall the definition of a complete metric $d$: whenever $x_n$ is Cauchy, that is
+\[(\forall\epsilon>0)(\exists N)(\forall n,m\geq N)\;d(x_n,x_m)<\epsilon
+\]
+then there exists $x\in X$ such that $x_n$ converges to $x$, that is
+\[(\forall\epsilon>0)(\exists N)(\forall n\geq N)\;d(x_n,x)<\epsilon
+\]
+The property means that there are no holes in the space---any apparent point which can be approximated actually exists. We will see the value of assuming that our normed vector spaces are complete in later sections.
+
+We now describe several familiar examples of normed vector spaces (in fact most of them will be Banach spaces).
+
+\begin{example}
+  The ordinary finite-dimensional vector space $\RR^d$, together with its usual Euclidean norm $\|x\|=\left(\sum_1^dx_i^2\right)^{1/2}$, is a Banach space. It is a classical annoying exercise to establish the triangle inequality. One can also verify that the completeness property holds, using the classical fact/construction that it is true for $\RR$.
+\end{example}
+
+\begin{example}
+  The space $\RR^\NN$ consisting of all real sequences will not be a Banach space in any reasonable way. However it does contain many classical Banach spaces. For example we can consider the space of all square summable sequences
+  \[\ell^2=\set{x\in\RR^\NN\mid\sum x_n^2<\infty}
+  \]
+  This is a Banach space with its generalized Euclidean norm $\|x\|_2=\left(\sum x_i^2\right)^{1/2}$. It is not particularly easy to verify that $\ell^2$ is a Banach space and $\|\cdot\|_2$ is a complete norm on it. We will do this later!
+\end{example}
+
+\begin{example}
+  As we have mentioned, spaces of integrable functions may also form Banach spaces. Let $(X,\mathcal B)$ be a measurable space and $\mu$ a measure on it. We have already described the space $L^1(\mu)$ of all absolutely integrable functions on $X$. It is also possible to use other powers, for example, let
+  \[L^2(\mu)=\set{f\colon X\to\CC\mid \int|f|^2\,d\mu<\infty}
+  \]
+  We may then define a norm on $L^2$ be $\|f\|_2=\left(\int|f|^2\right)^{1/2}$. The spaces $L^1(\mu)$ and $L^2(\mu)$ are not quite Banach spaces, but only because they fail to satisfy the non-vanishing property. This can easily be remedied by identifying two functions if they agree almost everywhere.
+\end{example}
+
+\begin{example}
+  As a final series of examples, if $[a,b]$ is any closed, bounded interval then let $B[a,b]$ be the space of all bounded functions $f\colon[a,b]\to\RR$ together with the supremum norm $\|f\|=\sup\set{f(x)\mid x\in[a,b]}$. This is a Banach space which contains many other spaces of independent interest. For example it contains the space $C[a,b]$ of continuous functions on $[a,b]$, the space $D[a,b]$ of all differentiable functions on $[a,b]$ with continuous derivative, and the space $P[a,b]$ of all polynomial functions on $[a,b]$. The last two turn out to be incomplete.
+\end{example}
+
+Having given the definition and basic examples of Banach spaces, we now briefly study mappings between them. For ordinary vector spaces, the most natural mappings are the \emph{operators}, or linear mappings. For Banach spaces we primarily study operators which are also continuous.
+
+The motivating examples are the operators from $\CC^n$ to $\CC^m$, which are simply the familiar matrix transformations studied in linear algebra. It turns out that all operators from $\CC^n$ to $\CC^m$ are continuous. It is tempting to believe that all operators are continuous because they are linear, but this turns out not to be the case in infinite-dimensional settings.
+
+Another example of a linear operator is the mapping $L^1(\mu)\to\CC$ given by $f\mapsto\int f\,d\mu$. We have of course seen that the mapping is linear, and it turns out to be continuous as well.
+
+As a final example, the mapping from $D[a,b]$ to $B[a,b]$ which takes a differentiable function to its derivative is also linear. However it fails to be continuous with respect to the supremum norm. Two functions can be very close together but also have very different slopes!
+
+In the next two results, we show that the continuity of operators is very special when compared with arbitrary continuous functions.
+
+\begin{lem}
+  Let $X,Y$ be normed vector spaces and let $T\colon X\to Y$ be an operator. If $T$ is continuous at one point $x\in X$, then $T$ is uniformly continuous.
+\end{lem}
+
+\begin{proof}
+  Using the translation-invariance property, we can assume that $x=0$. By definition this means that for all $\epsilon>0$ there exists $\delta>0$ such that for all $x\in X$ we have $\|x\|<\delta\implies\|Tx\|<\epsilon$. Given two points $x,x'$ we can apply the latter property to $x-x'$ and use the linearity of $T$ to conclude that $\|x-x'\|<\delta\implies\|Tx-Tx'\|<\epsilon$. In other words, $T$ is uniformly continuous.
+\end{proof}
+
+In the following lemma, an operator $T\colon X\to Y$ is said to be \emph{bounded} if there exists a real number $M$ such that $\|Tx\|\leq M\|x\|$ for all $x\in X$. Note the abuse of terminology! A bounded operator is not bounded in the traditional sense that it takes values inside a ball of finite radius. Rather a bounded operator is one which \emph{maps bounded sets to bounded sets}.
+
+\begin{lem}
+  Let $X,Y$ be normed vector spaces and let $T\colon X\to Y$ be an operator. Then $T$ is continuous if and only if $T$ is bounded.
+\end{lem}
+
+\begin{proof}
+  First suppose that $T$ is continous. Apply the continuity with $\epsilon=1$ to obtain $\delta>0$ such that $\|x\|<\delta\implies\|Tx\|<1$. The for any $x\neq0$ we have
+  \[\|Tx\|=\left\|T\left(\frac{x}{\|x\|}\delta\right)\right\|\frac{\|x\|}{\delta}\leq 1\frac{\|x\|}{\delta}
+  \]
+
+  Conversely suppose that $T$ is bounded, and let $M$ be such that $\|Tx\|\leq M\|x\|$ for $x\in X$. Given any $\epsilon>0$ we let $\delta=\epsilon/M$. Then we have
+  \[\|x\|<\delta\implies\|Tx\|\leq M\|x\|<M\left(\frac{\epsilon}{M}\right)=\epsilon
+  \]
+  This shows that $T$ is continuous at the point $0$, and hence by the previous lemma $T$ is continuous.
+\end{proof}
+
+\begin{exerc}[BBT, ex 12:1.2]
+  Show that the addition and constant multiple operations are continuous on a normed vector space.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:1.3]
+  Show that the unit ball of a normed vector space is convex. That is, for $x,y$ in the ball and $\lambda\in(0,1)$ we have $\lambda x+(1-\lambda)y$ is also in the ball.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:3.1]
+  Consider the operators $D(f)=f'$, $(Sf)(x)=\int_a^x fd\mu$, and $I(f)=\int fd\mu$. What are appropriate domains and codomains of each operator? Show that $S$ and $I$ are continuous, and $D$ is not continuous.
+\end{exerc}
+
+\begin{exerc}
+  Let $D[0,1]$ denote the space of differentiable functions on $[0,1]$ with continuous derivative, equipped with the supremum norm of $B[0,1]$. Show that $D[a,b]$ is not complete.
+\end{exerc}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Hahn--Banach theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 1.5
+\end{reading}
+
+In this section we continue our study of operators on a space $X$. However we confine our attention to the simplest operators, which are the ones that take values in the scalar field $\RR$ or $\CC$. Such operators are so fundamental that we give them the special name ``functional''. In this section we consider only the case of real normed vector spaces, but the same results hold for complex spaces too.
+
+\begin{defn}
+  If $X$ is a normed vector space, a \emph{linear functional} on $X$ is an operator $\phi\colon X\to\RR$. A \emph{bounded linear functional} on $X$ is a bounded, which is to say continuous, linear functional $X$.
+\end{defn}
+
+Let us briefly recall the situation for $X=\RR^d$ with any of its norms. Here a linear functional $\phi$ is determined by its values on a basis, and it follows that $\phi$ is of the form $\mathbf{x}\mapsto\mathbf{y}^T\mathbf{x}$, that is, the dot product with a row vector or ``dual vector''. It should not be surprising that these mappings are always bounded, regardless of the norm on $\RR^d$.
+
+When $X$ is an infinite-dimensional normed vector space, it is not true that all linear functionals on $X$ are bounded. In fact, given an infinite dimensional normed vector space $X$, it is not immediately obvious that there are any nonzero bounded linear functionals on $X$. In the rest of this section we present the Hahn--Banach theorem, which implies that on any normed vector space, there really are lots of bounded linear functionals.
+
+In order to state the Hahn--Banach theorem in its most powerful form, we need the following generalization of a norm on a vector space.
+
+\begin{defn}
+  Let $X$ be a vector space. A \emph{sublinear functional} on $X$ is a function $p\colon X\to\RR$ that satisfies:
+  \begin{enumerate}
+  \item (positive homogeneity) $p(cx)=cp(x)$ for all $c\geq0$; and
+  \item (subadditivity) $p(x+y)\leq p(x)+p(y)$.
+  \end{enumerate}
+\end{defn}
+
+Norms and seminorms are both examples of sublinear functionals. Another example is the upper Riemann integral, defined on the space $M[a,b]$ of bounded functions on $[a,b]$.
+
+\begin{thm}[Hahn--Banach]
+  \label{thm:hb}
+  Let $X$ be a vector space, $Y\leq X$ a subspace of $X$, and $p$ a sublinear functional on $X$. Then any linear functional $\phi_0$ on $Y$ such that $\phi_0\leq p$ extends to a linear functional $\phi$ on $X$ such that $\phi\leq p$.
+\end{thm}
+
+Before proving the above abstract form of the Hahn--Banach theorem, we present several key consequences regarding the construction of bounded linear functionals.
+
+\begin{cor}
+  \label{cor:hb}
+  Let $X$ be a normed vector space, and $Y\leq X$ a subspace of $X$.
+  \begin{enumerate}
+  \item Any bounded linear functional $\phi_0$ on $Y$ extends to a bounded linear functional $\phi$ on $X$.
+  \item If $Y$ is closed and $z\notin Y$, then there exists a bounded linear functional $\phi$ on $X$ such that $\phi(Y)=0$ and $\phi(z)\neq0$.
+  \item The bounded linear functionals separate points: for all $x,x'\in X$, if $x\neq x'$ then there is a bounded linear functional $\phi$ on $X$ such that $\phi(x)\neq\phi(x')$.
+  \end{enumerate}
+\end{cor}
+
+\begin{proof}
+  (a) Since $\phi_0$ is a bounded linear functional on $Y$, there exists some $M$ such that $\phi_0(y)\leq M\|y\|$ for all $y\in Y$. We may therefore apply the Hahn--Banach theorem with the sublinear functional $p(x)=M\|x\|$. Thus $\phi_0$ extends to a linear functional $\phi$ on $X$ such that $\phi(x)\leq M\|x\|$. In particular, $\phi$ is bounded too.
+
+  (b) We first define a function $\phi_0$ on the space $Y+\RR z$ which is bounded by $p=$ the norm. For this we will let $\phi_0(y+cz)=c\phi_0(z)$ where $\phi_0(z)$ remains to be determined. In order to satisfy $\phi_0(y+cz)\leq\|y+cz\|$ we require that $c\phi_0(z)\leq\|y+cz\|$ for all $y\in Y$.
+
+  Substituting $y$ with $-cy$, we see that we must choose $\phi_0(z)\leq\|-y+z\|$ for all $y\in Y$. Since $Y$ is closed we must have $\inf_{y\in Y}\|y+z\|\neq0$ (otherwise $z$ would be a limit of elements of $Y$ and hence in $Y$). It follows that we can choose a nonzero value of $\phi_0(z)$, and we may then use part (a) to extend $\phi_0$ to a bounded linear functional $\phi$ on $X$ that meets our requirements.
+
+  (c) If $x\neq x'$ then $x-x'\neq0$. Applying part (b) with $Y=\{0\}$ we can find a bounded linear functional $\phi$ such that $\phi(x-x')\neq0$. It follows that $\phi(x)\neq\phi(x')$.
+\end{proof}
+
+We now return to the proof of the Hahn--Banach theorem.
+
+\begin{proof}[Proof of Theorem \ref{thm:hb}]
+  We begin by showing that we can find a proper extension of $\phi_0$. Specifically, given any $z\in X\setminus Y$ we will find an extension of $\phi_0$ to a linear functional $\phi_1$ on $Y\oplus\RR z$ satisfying $\phi_1\leq p$. For this we will define
+  \[\phi_1(y+cz)=\phi_0(y)+c\phi_1(z)
+  \]
+  where $\phi_1(z)$ will be determined a little bit later. When we do choose $\phi_1(z)$, it will have to satisfy the requirement that for all $y\in Y$ and all $c\in\RR$:
+  \[\phi_0(y)+c\phi_1(z)\leq p(y+cz)
+  \]
+  To isolate $\phi_1(z)$ we must consider the cases of negative and positive values of the coefficient $c$ separately. Thus assume $c>0$ and split the last equation into two conditions:
+  \begin{align*}
+    (\forall y)\;\phi_0(y)+c\phi_1(z)&\leq p(y+cz)\\
+    (\forall y)\;\phi_0(y)-c\phi_1(z)&\leq p(y-cz)
+  \end{align*}
+  Solving each for $\phi'(z)$ and substituting $y$ with $cy$ in each gives us the two new conditions:
+  \begin{align*}
+    (\forall y)\;\phi_1(z)&\leq p(y+z)-\phi_0(y)\\
+    (\forall y)\;\phi_1(z)&\geq-p(y-z)+\phi_0(y)
+  \end{align*}
+  In order for the constraints to be satisfiable, it is sufficient to have for all $y,y'\in Y$ that $-p(y-z)+\phi_0(y)\leq p(y'+z)-\phi_0(y')$. And this is indeed the case, since
+  \begin{align*}
+    \phi_0(y)+\phi_0(y')&=\phi_0(y+y')\\
+                       &\leq p(y+y')\\
+                       &=p(y-z+y'+z)\\
+                       &\leq p(y-z)+p(y'+z)
+  \end{align*}
+  Thus we can find a suitable value for $\phi_1(z)$ and successfully extend $\phi$ to $\phi'$ as required.
+
+  To complete the proof we wish to apply the above step repeatedly. Since the number of steps will be uncountable in general, it is necessary to phrase our construction using the standard \emph{Zorn's lemma}: if $P$ is a partially ordered set and every chain of $P$ has an upper bound, then $P$ has a maximal element.
+
+  Now let $P$ be the collection of all linear functionals $\phi$ such that the domain of $\phi$ is a subspace of $X$, $\phi$ extends $\phi_0$, and $\phi\leq p$. We partially order $P$ by function extension. A chain $\mathcal C$ in $P$ always has an upper bound, namely the set-theoretic union $\bigcup\mathcal C$ of the members of the chain. Moreover the union will be $\leq p$ because each member of the chain is $\leq p$.
+
+  Therefore we can apply Zorn's lemma to find an element $\phi$ of $P$ which is maximal with respect to function extension. We claim moreover that the domain of $\phi$ must be all of $X$. Indeed, otherwise we can use the argument above to properly extend the domain of $\phi$ to find a larger element $\phi'$ of $P$. This contradicts the maximality of $\phi$, and completes the proof.
+\end{proof}
+
+\begin{exerc}[BBT, ex 12:5.1]
+  Let $f$ be a bounded real-valued function on $[0,1]$, and let $U(f)$ denote the Upper Lebesgue integral of $f$. Show that $U$ is a sublinear functional. What can you conclude from the Hahn--Banach theorem?
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:5.2]
+  Let $\ell^\infty$ denote the space of bounded real sequences with the supremum norm, and let $c$ denote the subspace of convergent real sequences. Define $p$ on $\ell^\infty$ by
+  \[p(x)=\limsup_{n\to\infty}\frac{x_1+\cdots+x_n}{n}
+  \]
+  Verify that $p$ is a sublinear functional such that $\lim x\leq p(x)$. If we apply the Hahn--Banach theorem to obtain a bounded linear functional $L$ extending $\lim$, show that $\liminf x\leq L(x)\leq\limsup x$ and calculate the value of $L(0,1,0,1,\ldots)$.
+\end{exerc}
+
+\begin{exerc}
+  Let $\RR^d$ be equipped with any norm that makes it into a normed vector space. Show that every linear functional on $\RR^d$ is continuous.
+  % Maybe this would be better in Sec 20 when we talk about equivalence of norms
+\end{exerc}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spaces of operators and the dual space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 12.3, 12.7
+\end{reading}
+
+In the past two sections we have introduced and discussed the continuous operators $T\colon X\to Y$ between two normed vector spaces. In this section we study the collection of all such operators as a space in its own right.
+
+\begin{defn}
+  Let $X,Y$ be normed vector spaces. Then $B(X,Y)$ denotes the space of bounded linear operators $T\colon X\to Y$.
+\end{defn}
+
+We equip $B(X,Y)$ with the operations of \emph{pointwise addition} and \emph{pointwise scaling}. In other words, if $T,T'\in B(X,Y)$ then $T+T'$ is defined to be the operator $(T+T')(x)=T(x)+T'(x)$ and $cT$ is defined to be the operator $(cT)(x)=cT(x)$. We also equip $B(X,Y)$ with the \emph{operator norm}:
+\[\|T\|=\inf\set{M\mid(\forall x)\;\|Tx\|\leq M\|x\|}
+\]
+In other words, the operator norm of a bounded operator $T$ is the least value of $M$ which witnesses that $T$ is bounded. Naturally we must show that the operations and norm satisfy the properties of a normed vector space.
+
+\begin{prop}
+  \begin{enumerate}
+  \item $B(X,Y)$ is a normed vector space with the operations of pointwise addition and scaling, and with the operator norm.
+  \item If $Y$ is a Banach space then so is $B(X,Y)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  (a) We first show that the operator norm is indeed a norm. The homogeneity and non-vanishing properties are easy to check. For the triangle inequality let $T,T'\in B(X,Y)$, and calculate $\|(T+T')(x)\|=\|Tx+T'x\|\leq\|Tx\|+\|T'x\|\leq\|T\|\|x\|+\|T'\|\|x\|$. It follows that $\|T+T'\|\leq\|T\|+\|T'\|$, as desired.
+
+  It also follows from homogeneity and the triangle inequality that $B(X,Y)$ is closed under scalar multiplication and addition. Thus $B(X,Y)$ is a normed vector space.
+
+  (b) It remains only to show that $B(X,Y)$ is complete. For this let $T_n$ be a sequence of elements of $B(X,Y)$ and assume that it is Cauchy in the operator norm. This means that for all $\epsilon>0$, there exists $N$ such that for all $m,n\geq N$ we have $\|T_m-T_n\|<\epsilon$.
+
+  Now for any fixed $x\in X$, it follows from the last equation that $\|T_mx-T_nx\|<\epsilon\|x\|$. In particular, the sequence $T_nx$ is a Cauchy sequence in the space $Y$. Since we are assuming that $Y$ is complete, the sequence $T_nx$ converges and we define $Tx=\lim T_nx$.
+
+  Now $T$ is a well-defined function from $X$ to $Y$, and by definition $T$ is the pointwise limit of the $T_n$. We need to check that $T\in B(X,Y)$ and moreover that $T_n\to T$ in the operator norm.
+
+  To see that $T\in B(X,Y)$, first note that it is easy to check $T$ is a linear map. For example, $T(x+y)=\lim T_n(x+y)=\lim T_n(x)+T_n(y)=T(x)+T(y)$. To see that $T$ is bounded, we first claim that the sequence of operator norms $\|T_n\|$ is itself bounded. For this claim, recall from the reverse triangle inequality that $|\|T_n\|-\|T_m\||\leq\|T_n-T_m\|$. Thus the fact that $T_n$ is Cauchy implies that $\|T_n\|$ is Cauchy in $\RR$, and any Cauchy sequence in $\RR$ is bounded. This completes the claim.
+
+  Now let $M$ be a bound for the sequence $\|T_n\|$. Then given $x\in X$, for all $n$ we have $\|T_nx\|\leq M\|x\|$. Taking the limit of both sides, we conclude that $\|Tx\|\leq M\|x\|$, and this means that $T$ is a bounded operator. Thus we have shown that $T\in B(X,Y)$.
+
+  Last we establish that $T_n\to T$ in operator norm. For this, given $\epsilon>0$ we have already argued that we can find $N$ such that $m,n\geq N$ implies $\|T_mx-T_nx\|<\epsilon\|x\|$ for all $x\in X$. Now let $n\geq N$ be fixed and take the limit as $m\to\infty$. This gives us $\|Tx-T_nx\|\leq\epsilon\|x\|$ for all $x$. We thus have that $\|T-T_n\|\leq\epsilon$, which means that $T_n\to T$ in operator norm.
+\end{proof}
+
+The argument for part~(b) is our first instance of a standard argument template. To show that a given function space is complete, given a Cauchy sequence $f_n$ one first constructs a proposed limit function $f$, often the pointwise limit. One then checks that $f$ actually lies in the desired space, and that $f_n\to f$ in the desired norm.
+
+In the previous section we investigated the special case of operators valued in the scalar field $\RR$. Thus it is natural to focus on the space $B(X,\RR)$ of bounded linear functionals on a space $X$. We have previously hinted that the bounded linear functionals play the role of dual vectors (or row vectors) in infinite-dimensional spaces. We are now ready to make this a formal definition.
+
+\begin{defn}
+  If $X$ is a normed (real) vector space then the \emph{dual} of $X$ is $X^*=B(X,\RR)$.
+\end{defn}
+
+By the results of this section, the dual space $X^*$ is always a Banach space with the operator norm. By the Corollary to the Hahn--Banach theorem, the elements of the dual space are plentiful in the sense that they separate the points of $X$. In fact, now that we have introduced the operator norm, we can strengthen two of the statements in Corollary~\ref{cor:hb}.
+
+\begin{cor}
+  \label{cor:hb2}
+  Let $X$ be a normed vector space, $Y\leq X$ a subspace of $X$.
+  \begin{enumerate}
+  \item Any $\phi_0\in Y^*$ extends to an element $\phi\in X^*$ such that $\|\phi\|=\|\phi_0\|$.
+  \item If $Y$ is closed and $z\notin Y$, then there exists $\phi\in X^*$ such that $\phi(Y)=0$ and $\phi(z)\neq0$. Moreover one may take $\|\phi\|=1$ and $\phi(z)=\inf_{y\in Y}\|y+z\|$.
+  \end{enumerate}
+\end{cor}
+
+\begin{proof}
+  (a) Since $\phi$ is an extension of $\phi_0$, we always have $\|\phi\|\geq\|\phi_0\|$. And in the proof Corollary~\ref{cor:hb}(a), it is apparent that $\|\phi\|\leq\|\phi_0\|$.
+
+  (b) Recall that in the proof of Corollary~\ref{cor:hb}(b), we showed one may define $\phi_0$ on $Y+\RR z$ in such a way that $\phi(Y)=0$ and $\phi(z)=\inf_{y\in Y}\|y+z\|$ and $\phi_0\leq\|\cdot\|$. It is not too difficult to argue that with this definition, $\|\phi_0\|=1$. Therefore by part~(a) we can extend $\phi_0$ to $\phi$ with $\|\phi\|=1$ as desired.
+\end{proof}
+
+We close this section with the following result about the double dual of a space.
+
+\begin{prop}
+  Let $X$ be a normed vector space. Then there is a norm-preserving operator from $X$ into its double dual $X^{**}$.
+\end{prop}
+
+\begin{proof}
+  We define an embedding $x\mapsto\hat x$ from $X$ to $X^{**}$ as follows. Given an element $x\in X$, we define the corresponding element $\hat x\in X^{**}$ by the formula:
+  \[\hat x(\phi)=\phi(x)
+  \]
+  So $\hat x$ is a function from $X^*$ to $\RR$. And $\hat x$ is linear because $\hat x(\phi_1+\phi_2)=(\phi_1+\phi_2)(x)=\phi_1(x)+\phi_2(x)=\hat x(\phi_1)+\hat x(\phi_2)$. Next $\hat x$ is bounded because $|\hat x(\phi)|=|\phi(x)|\leq\|\phi\|\cdot\|x\|$. Thus we have verified that $\hat x\in X^{**}$.
+
+  Now we verify that the map $x\mapsto\hat x$ is itself linear. Indeed, we have $\widehat{x_1+x_2}(\phi)=\phi(x_1+x_2)=\phi(x_1)+\phi(x_2)=\hat x_1(\phi)+\hat x_2(\phi)$. And similarly for scalar multiplication.
+
+  Finally to show that $x\mapsto\hat x$ is norm-preserving, note that the calculation in the first paragraph shows that $\|\hat x\|\leq\|x\|$. To show that $\|\hat x\|\geq\|x\|$, we use Corollary~\ref{cor:hb2}(a) to obtain $\phi\in X^*$ such that $\phi(x)=\|x\|$ and $\|\phi\|=1$. Thus we have that $\hat x(\phi)=\phi(x)=\|x\|=\|x\|\|\phi\|$, which witnesses that $\|\hat x\|\geq\|x\|$.
+\end{proof}
+
+The above proposition may seem esoteric, but it has many uses. For example, if $X$ is incomplete then we can use it to give a concrete construction of the Banach space completion of $X$. For this, observe that since $x\mapsto\hat x$ is norm-preserving, we have that $X$ is isomorphic to its image $\hat X$ in $X^{**}$. Since we have shown above that every dual is complete, we know that $X^{**}$ is complete. It follows that the completion of $X$ is isomorphic to the closure of $\hat X$ in $X^{**}$.
+
+It can even happen that the map $x\mapsto\hat x$ is surjective onto $X^{**}$. This special property will be investigated in future sections.
+
+\begin{exerc}
+  Show that $\|T\|$ is equal to $\sup\set{\|Tx\|:\|x\|\leq1}$.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:7.2]
+  Show that $\|x\|=\sup\set{|\phi(x)|:\phi\in X^*\text{ and }\|\phi\|=1}$.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 17:7.5]
+  If $X,Y$ are Banach spaces and $T\in B(X,Y)$, show that $(T^*\phi)(x)=\phi(Tx)$ defines an element of $B(Y^*,X^*)$ such that $\|T^*\|=\|T\|$.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:7.6(b)]
+  Show that a Banach space $X$ is reflexive if and only if $X^*$ is reflexive.
+\end{exerc}
+
+% Include BBT, ex 17:7.6(c)
+
+\begin{exerc}
+  Complete the proof of Corollary~\ref{cor:hb2}(b).
+\end{exerc}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Three results on Banach spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 12.11, 12.13, 12.14
+\end{reading}
+
+In our introduction to normed vector spaces, we singled out the special case when the space is complete and called it a Banach space. However in our investigation we have said  very little that is special to Banach spaces. In this section we present several key results that are essentially unique to Banach spaces because they rely on the completeness property.
+
+The three key results we will present are called the uniform boundedness principle, the open mapping theorem, and the closed graph theorem. In ecah case, rather than provide a proof we will state the result and give a sample application.
+
+\begin{thm}[Uniform boundedness principle]
+  Let $X,Y$ be Banach spaces and $\mathcal F$ a family of bounded operators from $X$ to $Y$. Suppose that for all $x$ there exists a constant $M_x$ such that for all $T\in\mathcal F$ we have $\|Tx\|\leq M_x$. Then there exists a constant $M$ such that for all $T\in\mathcal F$ we have $\|T\|\leq M$.
+\end{thm}
+
+It is often remarked that the uniform boundedness principle sounds too good to be true---it has a pointwise hypothesis and a uniform conclusion. Regardless, it is true and has a short proof from the Baire category theorem for complete metric spaces. Because of its power the uniform boundedness principle is used quite frequently. We present just one simple consequence concerning pointwise convergence of operators.
+
+\begin{cor}
+  Let $X,Y$ be Banach spaces and let $T_n\colon X\to Y$ be a sequence of bounded operators. If $T_n\to T$ pointwise, then $T$ is a bounded operator too.
+\end{cor}
+
+\begin{proof}
+  We have already observed that a pointwise limit of operators is an operator. Hence it remains only to check that $T$ is bounded. Now given any $x\in X$, since $\{T_nx\}$ is a convergent sequence of $Y$, it is necessarily a bounded sequence of $Y$. In other words, the sequence $\{\|T_nx\|\}$ is bounded. By the uniform boundedness principle, there exists a constant $M$ such that $\|T_n\|\leq M$ for all $n$. Thus for any $x\in X$ we have
+  \begin{align*}
+    \|Tx\|&=\|\lim T_nx\|\\
+          &=\lim\|T_nx\|\\
+          &\leq\limsup\|T_n\|\|x\|\\
+          &\leq M\|x\|
+  \end{align*}
+  In particular, $T$ is bounded and $\|T\|\leq M$.
+\end{proof}
+
+For our next result, recall that a function is continuous if the preimage of any open set is open. A somewhat less used but still very important property is the reverse. A function is called \emph{open} if the image of any open set is open. In the case that a function has an inverse, the open property simply means that the inverse is continuous. However it is still a valuable property even for functions which are not bijections.
+
+\begin{thm}[Open mapping theorem]
+  Let $X,Y$ be Banach spaces and $T\colon X\to Y$ be a bounded operator. If $T$ is onto, then $T$ is open.
+\end{thm}
+
+We present just one simple consequence here concerning equivalence of norms. If $X$ is a normed vector space with two norms, $\|\cdot\|_a$ and $\|\cdot\|_b$, we say that $a,b$ are \emph{equivalent} if there exist constants $c,d$ such that for all $x\in X$ we have $\|x\|_a\leq c\|x\|_b$ and $\|x\|_b\leq d\|x\|_a$.
+
+In other words, norms are equivalent if their unit balls can be rescaled to fit inside one another. For example, the space $\RR^2$ can be equipped with the usual Euclidean norm $\|(x,y)\|_2=\sqrt{x^2+y^2}$, and also with the taxicab norm $\|(x,y)\|=|x|+|y|$. The Euclidean norm has a circular unit ball, and the taxicab norm has a diamond shaped unit ball. The diamond fits inside the circle, and the circle can be scaled down by $\sqrt2$ to fit inside the diamond. Thus the two norms are equivalent.
+
+\begin{cor}
+  \label{cor:norm-equiv}
+  Suppose $X$ is a Banach space with two complete norms $\|\cdot\|_a$ and $\|\cdot\|_b$. Then if there is a constant $c$ such that $\|x\|_a\leq c\|x\|_b$ for all $x\in X$, then $\|\cdot\|_a$ and $\|\cdot\|_b$ are equivalent.
+\end{cor}
+
+\begin{proof}
+  Let $\id\colon X\to X$ denote the identity mapping. If we consider $\id$ as an operator from $(X,\|\cdot\|_b)$ to $(X,\|\cdot\|_a)$, then the hypothesis implies that $\id$ is bounded and hence continuous. It follows from the open mapping theorem that $\id$ is open, that is, it maps open sets to open sets. Since $\id$ is a bijection, this simply means that $\id^{-1}$ is continuous and hence bounded. Thus we conclude that there exists a constant $d$ suh that $\|x\|_b\leq d\|x\|_d$ for all $x\in X$.
+\end{proof}
+
+Before stating our final result, recall from topology that if $f\colon X\to Y$ is a continuous function then $f$ has a \emph{closed graph}, that is, the set of pairs $\{(x,y)\in X\times Y\mid f(x)=y\}$ is closed in $X\times Y$. The next theorem states that the converse holds for bounded operators on Banach spaces.
+
+\begin{thm}[Closed graph theorem]
+  Let $X,Y$ be Banach spaces and $T\colon X\to Y$ be an operator. If the graph of $T$ is a closed subset of $X\times Y$, then $T$ is bounded.
+\end{thm}
+
+Observe that $T$ has a closed graph if and only if $x_n\to x$ and $Tx_n\to y$ implies $y=Tx$. On the other hand, recall that $T$ is continuous if and only if $x_n\to x$ implies $Tx_n\to Tx$.  So it is easier to check that $T$ has a closed graph than to check that $T$ is continuous, because when checking the former one can assume for free that $T_nx$ converges to \emph{something}.
+
+Rather than give a consequence of the closed graph theorem, we will give an important example. Let $C[a,b]$ be the Banach space of continious functions on $[a,b]$ with the supremum norm, and let $D[a,b]$ be the subspace of all functions with continuous derivative. Let $D\colon D[a,b]\to C[a,b]$ be the derivative operator. To check $D$ has a closed graph, we suppose that $f_n\to f$ and $Df_n\to g$ in supremum norm and verify that $Df=g$. For this we integrate both sides of $Df_n\to g$ and use the fundamental theorem of calculus to conclude that $f_n\to G$, where $G$ is an antiderivative of $g$. Since $f_n$ converges to $f$, we have $f=G$. Now differentiating both sides we conclude that $Df=g$, as desired.
+
+While have just checked that $D$ has a closed graph, it is also easy to check that $D$ is not bounded. Thus the contrapositive of the closed graph theorem implies that $D[a,b]$ is not a Banach space! This is an admittedly somewhat silly way to see this fact, since it is also possible to argue directly that $D[a,b]$ is not complete.
+
+\begin{exerc}
+  Give an example of a function from $\RR$ to $\RR$ which has a closed graph but is not continuous. Give an example of function from $\RR$ to $\RR$ which is continuous and surjective but not open. Is it possible to give a bijective example?
+\end{exerc}
+
+\begin{exerc}[BBT, ex 12:13.2]
+  Equip the space $C[0,1]$ with both the $L^1$ norm and the supremum norm. Show that the $L^1$ norm is bounded by a constant times the supremum norm. Show that the reverse is not true. Explain why the two results do not contradict Corollary~\ref{cor:norm-equiv}.
+\end{exerc}
+
+% add 12:11.1
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Banach space $L^p$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 13.1, 13.2
+\end{reading}
+
+As we have seen, many of the most important Banach spaces are function spaces arising in other areas of analysis. We have already seen the Banach space $L^1$ of absolutely integrable functions, and we have seen that there are several other norms derived from summation and integration. In this section we further investigate the $L^p$-spaces, which generalize many of these important examples.
+
+\begin{defn}
+  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be a measure on it. For any measurable $f$ defined on $X$ we let
+  \[\|f\|_p=\left(\int|f|^p\;d\mu\right)^{1/p}
+  \]
+  We then define the space
+  \[L^p(\mu)=\set{f\mid\text{$f$ is a measurable function on $X$ and } \|f\|_p<\infty}
+  \]
+  with the understanding that $f,g$ are identified when $f-g=0$ almost everywhere.
+\end{defn}
+
+Thus the spaces $L^1(X)$ and $L^2(X)$ are each examples of $L^p$-spaces, but so are a variety of others. When $X$ is the finite set $\{1,\ldots,n\}$ with the counting measure, the resulting space is just $\RR^d$ with its $p$-norm. When $X=\NN$ with the counting measure, the resulting space is the sequence space $\ell^p$ with its $p$-norm.
+
+The rest of this section is devoted to verifying that whenever $p\geq1$, $L^p$ really is a Banach space with respect to the norm $\|\cdot\|_p$. Before we can prove this result, it is necessary to establish the following fundamental inequality.
+
+\begin{thm}[H\"older's inequality]
+  Let $p,q\geq1$ be real numbers such that $1/p+1/q=1$. If $f\in L^p(\mu)$ and $g\in L^q(\mu)$, then $fg$ is absolutely integrable and
+  \[\int|fg|\;d\mu\leq\|f\|_p\|g\|_q
+  \]
+\end{thm}
+
+\begin{proof}
+  The theorem follows from a classical inequality which we will call H\"older's inequality for real numbers:
+  \[ab\leq\frac{a^p}{p}+\frac{b^q}{q}
+  \]
+  There are many proofs and one is left as an exercise.
+
+  To begin the proof, note that given $f,g$ as in the theorem statement, we can rescale to assume that $\|f\|_p=\|g\|_q=1$. This is because both $\|\cdot\|_p$ and $\|\cdot\|_q$ satisfy the positive homogeneity property.
+
+  Now our objective is to show that $\int|fg|\,d\mu\leq1$. For this we plug $a=|f(x)|$ and $b=|g(x)|$ into H\"older's inequality for real numbers to obtain
+  \[|f(x)g(x)|\leq\frac1p|f(x)|^p+\frac1q|g(x)|^q
+  \]
+  Taking the integral of both sides we have
+  \[\int|fg|\,d\mu\leq\frac1p(\|f\|_p)^p+\frac1q(\|g\|_q)^q
+    =\frac1p+\frac1q=1
+  \]
+  as desired.
+\end{proof}
+
+The next result, known officially as Minkowski's inequality, states that the norms $\|\cdot\|_p$ satisfy the triangle inequality.
+
+\begin{thm}[Minkowski's inequality]
+  Suppose that $p\geq1$. If $f,g\in L^p(\mu)$, then $\|f+g\|_p\leq\|f\|_p+\|g\|_p$.
+\end{thm}
+
+\begin{proof}
+  We can assume without loss of generality that $f,g$ never take the value $\infty$. We begin by writing
+  \begin{align*}
+    |f(x)+g(x)|^p&=|f(x)+g(x)|\cdot|f(x)+g(x)|^{p-1}\\
+                 &\leq|f(x)|\cdot|f(x)+g(x)|^{p-1}
+                   +|g(x)|\cdot|f(x)+g(x)|^{p-1}
+  \end{align*}
+  We now integrate both sides of this inequality, and then apply H\"older's inequality to each of the resulting terms. In the following calculation, we also note that our hypothesis implies that the value $q$ used in H\"older's inequality is equal to $p/(p-1)$. Here is the computation:
+  \begin{align*}
+    (\|f+g\|_p)^p&\leq\int|f|\cdot|f+g|^{p-1}\,d\mu
+                   +\int|g|\cdot|f+g|^{p-1}\,d\mu\\
+                 &\leq\|f\|_p\cdot\|(f+g)^{p-1}\|_q
+                   +\|g\|_p\cdot(\|(f+g)^{p-1}\|_q\\
+                 &=\|f\|_p\cdot\|(f+g)^{p-1}\|_{p/(p-1)}
+                   +\|g\|_p\cdot\|(f+g)^{p-1}\|_{p/(p-1)}\\
+                 &=\|f\|_p\cdot(\|f+g\|_p)^{p-1}
+                   +\|g\|_p\cdot(\|f+g\|_p)^{p-1}\\
+                 &=(\|f\|_p+\|g\|_p)(\|f+g\|_p)^{p-1}
+  \end{align*}
+  We may now divide both sides by $(\|f+g\|_p)^{p-1}$ to obtain the desired conclusion.
+\end{proof}
+
+We are now ready to prove that the $L^p$ spaces are in fact Banach spaces.
+
+\begin{thm}
+  The space $L^p(\mu)$ with the norm $\|\cdot\|_p$ is a Banach space.
+\end{thm}
+
+\begin{proof}
+  It is clear that the norm is homogeneous and non-vanishing, and we have just shown it satisfies the triangle inequality. This also implies that $L^p(\mu)$ is closed under linear combinations and therefore it is a vector space. So it only remains to show that the norm $\|\cdot\|_p$ is complete.
+
+  For this let $f_n$ be a sequence of elements of $L^p(\mu)$ which is Cauchy in the $\|\cdot\|_p$ norm. Passing to a subsequence if necessary, we can suppose without loss of generality that for all $n$ we have $\|f_{n+1}-f_n\|_p<1/2^n$. We first wish to show that this implies $f_n$ has a pointwise limit $f$.
+
+  Let $g_k=\sum_1^k|f_{n+1}-f_n|$ and $g=\sum_1^\infty|f_{n+1}-f_n|$. So $g$ is the limit of the $g_k$. While the function $g$ may take the value $+\infty$, we claim that this cannot happen too often. Indeed by Minkowski's inequality we have
+  \[\|g_k\|_p\leq\sum_{n=1}^k\|f_{n+1}-f_n\|_p\leq\sum1/2^n=1
+  \]
+  It then follows from Fatou's lemma that $\int|g|^p\leq\liminf\int|g_k|^p\leq1$. Thus we can conclude that $g$ is finite $\mu$-almost everywhere.
+
+  Now using a simple telescoping we can write:
+  \[\lim_{n\to\infty} f_n(x)=\lim_{k\to\infty}\left[f_1(x)
+      +\sum_{n=1}^k(f_n(x)-f_n(x))\right]
+  \]
+  We have just observed that for $\mu$-almost every $x$, the latter series is absolutely convergent. Thus the series is convergent, and we can define the function $f(x)=\lim f_n(x)$.
+
+  It remains only to show that $f$ lies in $L^p$ and that $f_n\to f$ in the norm $\|\cdot\|_p$. For this, let $\epsilon$ be given and choose $N$ large enough that $m,n\geq N$ implies $\|f_m-f_n\|_p<\epsilon$. Fixing $n$ and applying Fatou's Lemma to the resulting $m$-sequence we obtain
+  \[\int|f-f_n|^p\leq\liminf_m\int|f_m-f_n|^p\leq\epsilon^p
+  \]
+  This shows that $\|f-f_n\|_p\to0$, or in other words that $f_n\to f$ in the norm of $L^p$. Finally if $n\geq N$ then we have $\|f\|_p\leq\|f-f_n\|_p+\|f_n\|_p<\infty$, so $f\in L^p$ too.
+\end{proof}
+
+While the results above apply to values of $p$ such that $1\leq p<\infty$, there is also a version of $L^p$ space for $p=\infty$.
+
+\begin{defn}
+  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be a measure on it. For any measurable $f$ defined on $X$ we let
+  \[\|f\|_\infty=\inf\set{M\mid |f(x))|\leq M\text{ for $\mu$-almost all $x$}}
+  \]
+  We then define the space
+  \[L^\infty(\mu)=\set{f\mid\text{$f$ is a measurable function on $X$ and } \|f\|_\infty<\infty}
+  \]
+\end{defn}
+
+The norm $\|f\|_\infty$ is called the \emph{essential supremum} of $f$, and the members of $L^\infty$ are said to be \emph{essentially bounded}. We will leave as an exercise the following generalizations of our results for $L^p$ to the case $p=\infty$.
+
+\begin{thm}
+  \label{thm:L-infty}
+  Let $(X,\mathcal B)$ be a measurable space and $\mu$ a measure on it.
+  \begin{itemize}
+  \item If $f\in L^1(\mu)$ and $g\in L^\infty(\mu)$ then $fg$ is absolutely integrable and H\"older's inequality is true: $\int|fg|\,d\mu\leq\|f\|_1\cdot\|g\|_\infty$.
+  \item The space $L^\infty(\mu)$ is a Banach space with the norm $\|\cdot\|_\infty$.
+  \end{itemize}
+\end{thm}
+
+\begin{exerc}[BBT, ex 13:1.2]
+  Show that the inequality $\|f+g\|_1\leq\|f\|_1+\|g\|_1$ is strict precisely when there exists a nonnegative measurable function $h$ such that $g=fh$ for almost every element $x$ of the set where $f,g\neq0$.
+\end{exerc}
+
+\begin{exerc}
+  Recall the argument from Theorem~\ref{thm:density} that the absolutely integrable simple functions are dense in $L^1$. Show that the absolutely integrable simple functions are dense in $L^p$.
+\end{exerc}
+
+\begin{exerc}
+  Prove Theorem~\ref{thm:L-infty}.
+\end{exerc}
+
+\begin{exerc}
+  Prove H\"older's inequality for real numbers. (Should probably give a hint.)
+\end{exerc}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The dual space of $L^p$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 13.6, Tao ``an $\epsilon$ of room" \S 1.2
+\end{reading}
+
+Recall that if $X$ is a normed vector space, then its dual $X^*$ consists of all bounded linear functionals on $X$. Although it is somewhat rare to be able to describe the space $X^*$ completely, in this section we will be able to provide a complete description of $(L^p)^*$.
+
+The starting point in our search for bounded linear functionals on $L^p$ is actually H\"older's inquality: if $p,q$ are conjugate exponents (that is, $1/p+1/q=1$), then for any $f\in L^p$ and $g\in L^q$ we have:
+\[\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q
+\]
+This statement really says that for any $g\in L^q$, the linear functional $\phi$ defined on $L^p$ defined by
+\[\phi(f)=\int fg\,d\mu
+\]
+is in fact bounded. Thus we have already found a large supply of elements of $(L^p)^*$. Our main result says that \emph{every} element of $(L^p)^*$ arises in this way.
+
+\begin{thm}
+  \label{thm:lpdual}
+  Let $(X,\mathcal B)$ be a measure space, $\mu$ a measure on it, and $L^p=L^p(\mu)$. Assume that $\mu$ is $\sigma$-finite, that is, $X=\bigcup A_n$ where $\mu(A_n)<\infty$. Let $1\leq p<\infty$ and let $q$ be the conjugate exponent, that is, $1/p+1/q=1$. Then for every $\phi\in(L^p)^*$ there exists a unique $g\in L^q$ such that
+  \[\phi(f)=\int fg\,d\mu
+  \]
+  Moreover $\|\phi\|=\|g\|_q$, and $(L^p)^*\cong L^q$.
+\end{thm}
+
+To prove this result, it will be necessary to introduce a generalization of measures called signed measures. To motivate this from the study of linear functionals on $L^p$, observe that any functional $\phi$ on $L^p$ gives rise to something like a finitely additive measure by defining $\nu(A)=\phi(\chi_A)$. Indeed, if $A,B$ are disjoint sets then
+\[\nu(A\cup B)=\phi(\chi_{A\cup B})=\phi(\chi_A+\chi_B)
+  =\phi(\chi_A)+\phi(\chi_B)=\nu(A)+\nu(B)
+\]
+However there is no reason why such a function $\nu$ can't take negative values, and so $\nu$ need not be a measure in our original sense.
+
+\begin{defn}
+  Let $(X,\mathcal B$) be a measurable space. A \emph{signed measure} on $(X,\mathcal B)$ is a function $\nu\colon\mathcal B\to[-\infty,\infty]$ with the properties:
+  \begin{itemize}
+  \item $\nu(\emptyset)=0$;
+  \item $\nu$ does not take both the values $\infty$ and $-\infty$; and
+  \item If $A_n$ are disjoint then $\sum\nu(A_n)$ converges to $\nu(\bigcup A_n)$.
+  \end{itemize}
+\end{defn}
+
+Thus given a linear functional $\phi$ on $L^p$, the function $\nu$ described above could be called a \emph{finitely additive signed measure}. For a proper example of a signed measure, let $\mu$ be an unsigned measure on $(X,\mathcal B)$, let $g$ be any absolutely integrable function on $X$, and define
+\[\mu_g(A)=\int\chi_Ag\,d\mu
+\]
+Then it is not difficult to see from Fubini's theorem that $\mu_g$ is a signed measure on $(X,\mathcal B)$.
+
+It is clear from the definition of $\mu_g$ that if $\mu(A)=0$ then $\mu_g(A)=0$ too. The next result states that this condition is sufficient to guarantee that a given signed measure $\nu$ is actually of the form $\mu_g$.
+
+\begin{thm}[Radon--Nikodym]
+  Let $(X,\mathcal B)$ be a measurable space and let $\mu$ be an unsigned measure and $\nu$ be a signed measure on it. Assume that $\mu,\nu$ are $\sigma$-finite. Then if $\mu(A)=0\implies\nu(A)=0$, then there exists $g\in L^1(\mu)$ such that $\nu=\mu_g$.
+\end{thm}
+
+We now have all the ingredients we need to prove that the dual of $L^p$ is $L^q$. Indeed, we have already introduced a simple correspondence between linear functionals $\phi$ and signed measures $\nu$ with the property that $\nu(A)=\phi(\chi_A)$. Then the Radon--Nikodym theorem gives us a correspondence between signed measures $\nu$ and absolutely integrable functions $g$ such that $\nu(A)=\int\chi_Ag\,d\mu$. Putting these together, we see that $\phi(\chi_A)=\int\chi_Ag\,d\mu$. In other words we see that $\phi$ is of the desired form, at least for the characteristic functions. We are therefore left to check that this property can be extended to arbitrary functions $f\in L^p$, as well as the rest of the claims in the statement.
+
+\begin{proof}[Sketch of proof of Theorem~\ref{thm:lpdual}]
+  In this proof, we will sketch only the case when $1<p<\infty$ and $\mu(X)<\infty$. It is not essentially more difficult to complete the proof from this simplified version.
+
+  Given a functional $\phi\in(L^p)^*$, we first define the mapping $\nu(A)=\phi(\chi_A)$. We have already checked that $\nu$ is finitely additive. We claim that in fact $\nu$ is a signed measure. Indeed, if $A_n$ is a given sequence of pairwise disjoint sets, then using the finiteness of $\mu(X)$ and the dominated convergence theorem we have:
+  \[\int|\chi_{\bigcup A_n}-\chi_{\bigcup_1^kA_n}|^p\,d\mu
+    =\int|\chi_{\bigcup_{k+1}^\infty A_n}|^p\,d\mu
+    \to0
+  \]
+  In other words, we have that $\chi_{\bigcup_1^kE_n}\to\chi_{\bigcup E_n}$ in the $L^p$-norm. Using the fact that $\phi$ is a continuous function on $L^p$, it follows that
+  \begin{align*}
+    \nu(\bigcup A_n)&=\phi(\chi_{\bigcup A_n})\\
+                    &=\lim_k\phi(\chi_{\bigcup_1^k A_n})\\
+                    &=\lim_k\nu(\bigcup_1^k A_n)\\
+                    &=\lim_k\sum_1^k\nu(A_n)\\
+                    &=\sum\nu(A_n)
+  \end{align*}
+  and so $\nu$ is countably additive.
+
+  Now by the Radon--Nikodym theorem, there exists a function $g\in L^1$ such that $\phi(\chi_A)=\int\chi_A g\,d\mu$ for all sets $E$. It therefore follows from linearity that $\phi(f)=\int fg\,d\mu$ for all simple functions $f$.
+
+  We next claim that $\phi(f)=\int fg\,d\mu$ for all functions $f$ in $L^\infty$. For this recall that any bounded measurable function is a \emph{uniform} limit of simple functions. So given $f\in L^\infty$ let $f_n$ be a sequence of simple functions such that $f_n\to f$ uniformly. Using the uniform convergence on a finite measure space, we can easily argue that $\int f_ng\,d\mu\to\int fg\,d\mu$. For the same reason, we can also argue that $f_n\to f$ in $L^p$. Since $\phi$ is continuous on $L^p$ we therefore have that:
+  \begin{align*}
+    \phi(f)&=\lim_n\phi(f_n)\\
+           &=\lim_n\int f_ng\,d\mu\\
+           &=\int fg\,d\mu
+  \end{align*}
+  as desired.
+
+  While our next goal is of course to show that $\phi(f)=\int fg\,d\mu$ for all functions $f\in L^p$, we first take a break and show that $g$ lies in $L^q$. In fact we will show that $\|g\|_q\leq\|\phi\|$. First we can use the truncation lemma to suppose that $g$ is bounded. Then $|g|^q/g$ is bounded too, and so by our work for functions in $L^\infty$ we can calculate:
+  \begin{align*}
+    \int|g|^q\,d\mu&=\int(|g|^q/g)g\,d\mu\\
+                   &=\phi(|g|^q/g)\\
+                   &\leq\|\phi\|\cdot\|g^{q-1}\|_p\\
+                   &=\|\phi\|\cdot\left(\int|g|^q\,d\mu\right)^{1/p}
+  \end{align*}
+  This inequality implies that $\|g\|_q\leq\|\phi\|$, as desired. We remark that this implies the functional $f\mapsto\int fg\,d\mu$ is continuous, since H\"older's inequality states that $\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q$.
+
+  We now claim that we have $\phi(f)=\int fg\,d\mu$ for any $f\in L^p$. For this, recall that we have previously shown that the simple functions are \emph{dense} in $L^1$, that is any $L^1$ function is an $L^1$-limit of simple functions. The same argument can be used to show that the simple functions are dense in $L^p$. We have shown above that the two functionals, $f\mapsto\phi(f)$ and $f\mapsto\int fg\,d\mu$, agree on the simple functions. Our hypothesis states that $\phi$ continuous, and the previous paragraph implies that $f\mapsto\int fg\,d\mu$ is continuous too. Since two continuous functions that agree on a dense set must agree on their domain, we can conclude that $\phi(f)=\int fg\,d\mu$ for all $f\in L^p(\mu)$.
+
+  Finally we claim that $\|g\|_q=\|\phi\|$. Indeed we now know that $|\phi(f)|=\left|\int fg\,d\mu\right|\leq\|f\|_p\cdot\|g\|_q$, and hence that $\|\phi\|\leq\|g\|_q$. We have also shown two paragraphs previously that $\|g\|_q\leq\|\phi\|$. This concludes the proof.
+\end{proof}
+
+\begin{notes}
+  The Radon--Nikodym theorem has a generalization called the Lebesgue--Radon--Nykodym theorem which states that given $\mu$, any signed measure $\nu$ can be decomposed $\nu=\mu_g+\delta$ where $\mu,\delta$ have disjoint supports.
+
+  We have stated that the dual of $L^1$ is equal to $L^\infty$ when $\mu$ is $\sigma$-finite. However the reverse is usually not true. Instead the dual of $L^\infty(\mu)$ is the space of all finitely additive signed measures $\nu$ such that $\mu(E)=0\implies\nu(E)=0$.
+\end{notes}
+
+\begin{exerc}[BBT, ex 13:6.1]
+  Let $g\in L^1[0,1]$. Show that the map $f\mapsto\int fg$ is a bounded linear functional on $L^\infty[0,1]$.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 13:6.2]
+  Show that there is a nonzero bounded linear functional on $L^\infty[0,1]$ that vanishes on the (closed) subspace of continuous functions.
+\end{exerc}
+
+\begin{exerc}[BBT, ex 13:6.3]
+  Show that there is a bounded linear functional on $L^\infty[0,1]$ that is not of the form $f\mapsto\int fg$ for any $g\in L^1[0,1]$.
+\end{exerc}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hilbert space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT \S 13.5, 14.1, 14.2, 14.3
+\end{reading}
+
+% maybe just do REAL hilbert spaces, and write some info about the complex case in the further reading below
+
+Up until this point in our study of $L^p$ spaces, we have not been concerned with the value of $p$ so long as $1<p<\infty$. However it should not be surprising that there is something special about the case $p=2$. In this section we will uncover some of the special properties of $L^2$, as well as use these properties to define a new type of space called a Hilbert space.
+
+Informally, $L^2$ is the $L^p$ space which is most closely analogous to classical Euclidean space. This is because the norm $\|\cdot\|_2$ is a generalization of the Euclidean norm $\|x\|=\sqrt{x_1^2+\cdots+x_n^2}$. Intuitively, this means that the geometry of $L^2$ has the ``round ball'' geometry of finite-dimensional Euclidean space.
+
+More formally, $L^2$ shares several key properties with classical Euclidean space that are not shared by any other $L^p$. First, since the conjugate exponent of $p=2$ is $q=2$ also, the previous section shows that $L^2$ is \emph{self-dual}, that is, $(L^2)^*\cong L^2$. In detail, this means that the bounded linear functionals on $L^2$ are all of the form $f\mapsto\int fg$ where $g\in L^2$ itself. This recalls the case of Euclidean space $\RR^d$ where the (bounded) linear functionals are all given by an inner product $x\mapsto y^Tx$.
+
+The key idea of this section is that just like the pairing $y^tx$, the pairing $\int fg$ may be regarded as an inner product, leading to the next definition. For the greatest generality, we will now return to vector spaces with complex scalars.
+
+\begin{defn}
+  Let $X$ be a complex vector space. A function $\langle\cdot,\cdot\rangle\colon X\times X\to\CC$ is called an \emph{inner product} if it satisfies
+  \begin{enumerate}
+  \item (positivity/nonvanishing) for $x\in X$ we have $\langle x,x\rangle\geq0$, and $\langle x,x\rangle=0$ iff $x=0$;
+  \item (conjugate symmetry) for $x,y\in X$ we have $\langle x,y\rangle=\overline{\langle y,x\rangle}$; and
+  \item (linearity in the first coordinate) $\langle c_1x_1+c_2x_2,y\rangle=c_1\langle x_1,y\rangle+c_2\langle x_2,y\rangle$
+  \end{enumerate}
+  If $X$ admits an inner product then it automatically admits a norm $\|x\|=\sqrt{\langle x,x\rangle}$, and $X$ is called a \emph{Hilbert space} if this norm is complete.
+\end{defn}
+
+We will prove shortly that the mapping $\|\cdot\|$ defined above really is a norm. We remark that (b) and (c) together imply that $\langle\cdot,\cdot\rangle$ is \emph{conjugate linear} in the second coordinate (we leave it to the reader to state and verify this formally).
+
+Thus the Banach space $X=L^2(\mu)$ (with the complex scalars) is a Hilbert space with respect to the inner product
+\[\langle f,g\rangle=\int f\bar g\,d\mu
+\]
+Similarly, the sequence space $\ell^2=\set{x\in\CC^\NN\mid\sum |x_i|^2<\infty}$ is a Hilbert space with respect to the inner product
+\[\langle x,y\rangle=y^*x=\sum x_i\bar{y}_i
+\]
+Of course $\ell^2$ is really just an instance of $L^2(\mu)$, corresponding to the case when $\mu$ is the counting measure on $\NN$.
+
+While a Hilbert space may seem like just a small ``upgrade'' from a Banach space, it is quite significant. In fact, we will see in the next section that $L^2$ and $\ell^2$ are essentially the only examples of Hilbert spaces.
+
+We now lay out some of the most basic facts about Hilbert space. Our first result is the following analog of H\"older's inequality.
+
+\begin{thm}[Schwarz inequality]
+  Let $X$ be an inner product space. Then $|\langle x,y\rangle|\leq\|x\|\cdot\|y\|$.
+\end{thm}
+
+\begin{proof}
+  The proof is a simpler version of the proof of H\"older's inequality. First, by multiplying $x$ by a scalar of the form $e^{i\theta}$, we may assume that $\langle x,y\rangle$ is real. Next given $x,y$ we define a real function $p(\alpha)=\langle\alpha x+y,\alpha x+y\rangle$. Then by axiom (a) we have that $p(\alpha)\geq0$. And by axiom (c) we have
+  \[p(\alpha)=\alpha^2\|x\|^2+2\alpha\langle x,y\rangle+\|y\|^2
+  \]
+  Thus $p$ is a quadratic and $p\geq0$, which implies $p$ has at most one real root. This means that the discriminant is non-positive, that is, $4|\langle x,y\rangle|^2-4\|x\|^2\cdot\|y\|^2\leq0$. This last equation is plainly equivalent to the desired result.
+\end{proof}
+
+We are now ready to prove the fact that every inner product space automatically has a norm.
+
+\begin{prop}
+  Let $X$ be an inner product space. Then $\|x\|=\sqrt{\langle x,x\rangle}$ makes $X$ into a normed vector space.
+\end{prop}
+
+\begin{proof}
+  Since the nonvanishing and homogeneity properties are automatic from the axioms, it remains only to verify the triangle inequality. For this we simply calculate:
+  \begin{align*}
+    \|x+y\|^2&=\langle x+y,x+y\rangle\\
+             &=\langle x,x\rangle+\langle x,y\rangle+\langle y,x\rangle+\langle y,y\rangle\\
+             &\leq \langle x,x\rangle+2|\langle x,y\rangle|+\langle y,y\rangle\\
+             &\leq\|x\|^2+2\|x\|\cdot\|y\|+\|y\|^2\\
+             &=(\|x\|+\|y\|)^2
+  \end{align*}
+  Here, the first inequality uses axiom (b) and the ordinary triangle inequality, and the second inequality uses the Schwarz inequality. Taking the square root of both sides, we achieve the desired result.
+\end{proof}
+
+Perhaps the most important feature of Hilbert spaces that is not present in an ordinary Banach space is that of orthogonality.
+
+\begin{defn}
+  Let $X$ be a Hilbert space. We say that vectors $x,y\in X$ are \emph{orthogonal} if $\langle x,y\rangle=0$. Given a vector subspace $Y\subset X$ we define its \emph{orthogonal complement} $Y^\perp=\set{x\in X\mid(\forall y\in Y)\;\langle x,y\rangle=0}$.
+\end{defn}
+
+The orthogonal complement does not always behave as one would expect from classical Euclidean space. For example, it is possible for a proper subspace $Y$ to have $Y^\perp=0$ (this will be the case if $Y$ is dense in $X$). However if $Y$ is a closed subspace, then most familiar properties do hold.
+
+\begin{prop}
+  \label{prop:decomp}
+  Let $X$ be a Hilbert space and let $Y\leq X$ be a closed subspace. Then $X=Y\oplus Y^\perp$ in the sense that every $x\in X$ can be uniqely expressed as $x=y+y'$ where $y\in Y$ and $y'\in Y^\perp$.
+\end{prop}
+
+The idea behind the proof is as follows. Given $x$, let $y\in Y$ be the unique point in $Y$ which is closest to $x$. Such a point $y$ exists and is unique thanks to the Euclidean-like geometry of Hilbert space. (The basic fact here is that closed, convex sets have a unique element of minimal norm.)
+
+This key fact makes it possible to define bases in Hilbert space, as we will do in the next section. Here we present another useful consequence of the proposition. First recall that our motivation for defining Hilbert spaces was the fact that $L^2$ is self-dual, and thus the action of $(L^2)^*$ on $L^2$ behaves like an inner product. The next result states that the converse holds, that is, if $X$ admits an inner product then $X$ is self-dual.
+
+\begin{thm}
+  If $X$ is a Hilbert space, then $X$ is self-dual. That is, for any $\phi\in X^*$ there exists $y\in X$ such that $\phi(x)=\langle x,y\rangle$. Moreover the correspondence $\phi\mapsto y$ is a conjugate-linear isomorphism $X^*\cong X$.
+\end{thm}
+
+\begin{proof}
+  Given $\phi$, we let $Y=\set{x\in X\mid\phi(x)=0}$. Assuming $Y\neq X$, we may choose $z\in Y^\perp$ such that $\|z\|=1$. We then let $y=\overline{\phi(z)}z$. Then we have
+  \begin{align*}
+    \phi(x)-\langle x,y\rangle&=\phi(x)-\phi(z)\langle x,z\rangle\\
+                              &=\phi(x)\langle z,z\rangle-\phi(z)\langle x,z\rangle\\
+                              &=\langle\phi(x)z-\phi(z)x,z\rangle\\
+                              &=0
+  \end{align*}
+  Here the last equality follows from the fact that $\phi(x)z-\phi(z)x$ lies in $Y$.
+\end{proof}
+
+\begin{exerc}
+  Use the discussion in BBT, \S 14.2 to prove Proposition~\ref{prop:decomp}.
+\end{exerc}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bases for Hilbert space}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  BBT, \S 14.4
+\end{reading}
+
+In the previous section we have seen that Hilbert spaces possess many properties which are familiar from $\RR^n$ and $L^2$. The special properties are made possible by the inner product and its corresponding notion of orthogonality. In this section we make further use of orthogonality, in particular introducing orthonormal bases.
+
+Although bases are essential to the study of classical linear algebra, they have been absent so far in our study of Banach spaces.
+
+\begin{defn}
+  Let $X$ be a Hilbert space. A subset $\{e_\alpha\}_{\alpha\in A}$ of $X$ is called an \emph{orthonormal basis} if it satisfies the following properties:
+  \begin{enumerate}
+  \item (normality) for all $\alpha$, $\|e_\alpha\|=1$;
+  \item (orthogonality) for all $\alpha\neq\beta$, $\langle e_\alpha,e_\beta\rangle=0$; and
+  \item (maximality) for any $x\in X$, if $\langle x,e_\alpha\rangle=0$ for all $\alpha\in A$, then $x=0$.
+  \end{enumerate}
+\end{defn}
+
+It is important to note that for an infinite-dimensional Hilbert space, the concept of orthonormal basis is very different than the concept of ``basis'' in a classical vector space. It is true that the Hilbert space orthonormal basis is an independent set. However, it is not true that the Hilbert space orthonormal basis is a maximal independent set. The maximality property above states only that it is maximal with respect to being orthonormal.
+
+Just as every vector space has a basis, every Hilbert space has an orthonormal basis. Indeed, this follows from an elementary application of Zorn's lemma. However, for our concrete examples of Hilbert spaces, it is not difficult to identify a simple concrete basis.
+
+For example, regard $X=\ell^2$ as the space of complex vectors with countably many coordinates such that the coordinates are square-summable. We let $e_i$ be the vector with a $1$ in the $i$th coordinate and a $0$ in every other coordinate. Then it is easy to see that $\{e_i\}$ is an orthonormal basis for $\ell^2$.
+
+For another example, let $X=L^2[0,1]$. Let $e_n=e^{2\pi i nx}$, where $n$ ranges over the integers $\ZZ$. Then an easy calculation shows that $e_n$ have unit norm and are pairwise orthogonal. Maximality is somewhat harder to check; it follows from the Stone--Weierstra\ss\ theorem, which we omit but easily implies that the $e_n$ are dense in $L^2$.
+
+Note that in the case of real $L^2$ space, one instead uses the basis consisting of functions $\sin(2\pi nx)$ and $\cos(2\pi nx)$ for $n\in\NN$. This is the foundation of Fourier analysis. As we will see in the next result, the fact that this is a Hilbert space basis means that any $L^2$ function can be expressed uniquely as a countable linear combination of waves of different periods!
+
+Recall that in the study of classical vector spaces, every element can be written uniqely as a finite linear combination of basis elements. The following result shows that a Hilbert space basis has an analogous property: every element can be written uniqely as an \emph{infinite} linear combination of Hilbert space basis elements.
+
+\begin{thm}
+  Let $X$ be a Hilbert space and $\{e_\alpha\}_{\alpha\in A}$ an orthonormal basis for $X$. Then for any $x\in X$, we have $x=\sum\langle x,e_\alpha\rangle e_\alpha$, with the convergence being in norm. Moreover, we have Parseval's identity, which states that $\|x\|^2=\sum_{\alpha\in A}|\langle x,e_\alpha\rangle|^2$.
+\end{thm}
+
+\begin{proof}
+  In the proof, we will need the \emph{Pythagorean theorem}, which states that if $e_1,\ldots,e_n$ are orthognal, then $\|e_1+\cdots+e_n\|^2=\|e_1\|^2+\cdots+\|e_n\|^2$. The calculation is the same as the classical version, and is obtained by distributing out the expression $\langle e_1+\cdots+e_n,e_1+\cdots+e_n\rangle$.
+
+  We first show one half of Parseval's identity, namely that $\sum|\langle x,e_\alpha\rangle|^2\leq\|x\|^2$. (This is called Bessel's inequality.) For this we let $A_0\subset A$ be a finite subset. Then an elementary calculation together with the Pythagorean theorem gives
+  % See Folland 5.26
+  \begin{equation}
+    \label{eq:bessel}
+    \left\|\,x-\sum_{\alpha\in A_0}\langle x,e_\alpha\rangle e_\alpha\,\right\|^2
+    =\|x\|-\sum_{\alpha\in A_0}|\langle x,e_\alpha\rangle|^2
+  \end{equation}
+  Since the left-hand side is nonnegative, we have $\sum_{\alpha\in A_0}|\langle x,e_\alpha\rangle|^2\leq\|x\|^2$. Since $A_0$ was arbitrary, this completes the claim.
+
+  Now we know that $\sum|\langle x,e_\alpha\rangle|^2$ converges. It follows that there are just countably many nonzero terms, let us enumerate them $|\langle x,e_n\rangle|^2$. Then the sequence of partial sums of $\sum|\langle x,e_n\rangle|^2$ is Cauchy. By the Pythagorean theorem,
+  \[\left\|\,\sum_m^l\langle x,e_n\rangle e_n\,\right\|^2
+    =\sum_m^l|\langle x,e_n\rangle|^2
+  \]
+  Thus the sequence of partial sums of $\sum\langle x,e_n\rangle e_n$ is Cauchy too. Since $X$ is complete, we conclude that there exists an element $y\in X$ defined by $y=\sum\langle x,e_\alpha\rangle e_\alpha$.
+
+  Next we claim that in fact $x=y$. Indeed, it is easy to see that $\langle x-y,e_\alpha\rangle=0$ for all $\alpha$, so the completeness of the orthonormal set implies that $x-y=0$.
+
+  Finally, we conclude the proof of Parseval's identity by returning to Equation~\eqref{eq:bessel}. Since we now know that the left-hand side converges to $0$ as $A_0\to A$, it follows that the right-hand side does as well, establishing the equality.
+\end{proof}
+
+One can interpret this result as saying that any Hilbert space $X$ looks remarkably like $\ell^2$. That is, each element $x\in X$ is determined by its vector of coefficients $\langle x,e_\alpha\rangle$. Indeed, our last result will show that this is a formal theorem. In order to state it, we need to define a generalization of the sequence space $\ell^2$.
+
+\begin{defn}
+  For any index set $A$, we let
+  \[\ell^2(A)=\set{f\colon A\to\CC\;\left|\;\sum_{\alpha\in A}|f(\alpha)|^2<\infty\right.}
+  \]
+\end{defn}
+
+In other words, $\ell^2(A)$ is like a sequence space where the sequences may be indexed by an arbitrary set other than $\NN$. Another way to say it is that $\ell^2(A)$ is equal to $L^2(\mu)$, where $\mu$ is the counting measure on $A$.
+
+The space $\ell^2(A)$ is determined up to isomorphism by the cardinality of $A$. The cardinality of $A$ is called the \emph{dimension} of $\ell^2(A)$. This is because like $\ell^2$, the space $\ell^2(A)$ has the obvious Hilbert space basis consisting of $\{e_\alpha\}_{\alpha\in A}$, where $e_\alpha(\alpha)=1$ and $e_\alpha(\beta)=0$ whenever $\beta\neq\alpha$.
+
+\begin{thm}
+  Let $X$ be a Hilbert space. Then $X$ is isomorphic to $\ell^2(A)$ for some $A$ by a linear bijection that preserves inner products.
+\end{thm}
+
+\begin{proof}
+  Let $\{e_\alpha\}_{\alpha\in A}$ be an orthonormal basis for $X$. The index set $A$ will be the same set we use to form $\ell^2(A)$. We define a function $\phi\colon X\to\ell^2(A)$ by $\phi(x)(\alpha)=\langle x,e_\alpha\rangle$.
+
+  It is easy to see that $\phi$ is linear, and Parseval's identity implies that $\phi$ preserves the norm. In particular $\phi$ is injective. To see that $\phi$ preserves the inner product, it suffices to note that the inner product can be recovered from the norm by the \emph{polarization identity}
+  \[4\langle x,y\rangle=\|x+y\|^2-\|x-y\|^2+i\|x+iy\|^2-i\|x-iy\|^2
+  \]
+
+  Finally to see that $\phi$ is surjective, let $f\in\ell^2(A)$ be given. Since $\sum_{\alpha\in A}|f(\alpha)|^2<\infty$, the series has just countably many nonzero terms and its partial sums are Cauchy. By the Pythagorean theorem, the partial sums of $\sum_{\alpha\in A}f(\alpha)e_\alpha$ are Cauchy too. It follows that there exists an element $x\in X$ defined by $x=\sum_{\alpha\in A}f(\alpha)e_\alpha$. Clearly $\phi(x)=f$, as desired.
+\end{proof}
+
+Thus the result implies that there is exactly one Hilbert space in each dimension. Note that both $\ell^2$ and $L^2[0,1]$ are Hilbert spaces of countable dimension, because we have seen above that each has a countable basis. The unique countable dimensional Hilbert space, often denoted $\mathcal H$, is by far the most widely used in applications where an operator acts on infinitely many coordinates. Hilbert space appears in the study of differential equations, fourier analysis, quantum physics, and more.
+
+\begin{exerc}
+  Prove the Pythagorean theorem in a Hilbert space.
+\end{exerc}
+
+\begin{exerc}
+  Prove the polarization identity ina  Hilbert space.
+\end{exerc}

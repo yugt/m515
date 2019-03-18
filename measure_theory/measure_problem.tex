@@ -1,0 +1,78 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The measure problem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reading}
+  Tao, \S1.1 introduction, and \S1.2.3.
+\end{reading}
+
+Before discussing the measure problem, let's talk intuitively about what we mean by ``measure.'' In this area of mathematics, measure is a number assigned to a set which represents its size. Of course the term ``size'' also has many meanings. Our concept of measure can accommodate many different types of sizes, such as: length, area, volume, mass, and even probability. On the other hand, some other types of size are not usually associated with the mathematical concept of measure, such as: cardinality, diameter, and density.
+
+The mathematical concept of a measure is thus beginning to seem geometric. But considering our models of sets and spaces, in which coordinate axes are indexed by the infinitesimal points of the real number line, measure really turns out to be an analytic concept. (In particular, this means lots of $\epsilon$'s will show up in our studies!)
+
+For a simple set, it may be easy to decide what its measure should be. For example, if we use the term measure to mean length, then the measure of the interval $[4,7]$ should be $3$. But for a more complicated set, the decision may not be so easy. If you have seen the construction of the Cantor set, think about how you would measure the length of that!
+
+Thus we arrive at the ``measure problem,'' which asks whether it is even possible to find a function which adequately measures subsets of the real line $\RR$. Of course it is necessary to say what is considered adequate. The classical version of the measure problem proposed the three properties below. Formally, the measure problem asks: Does there exist a measure function $m$ which assigns to each subset $A\subset\RR$ a value $m(A)\in[0,\infty]$ satisfying:
+\begin{enumerate}
+\item (normality) $m(I)=$ the length of $I$ for every interval $I$;
+\item (translation-invariance) $m(x+A)=m(A)$ for every $A$; and
+\item (countable additivity) $m(\bigcup_{n=1}^{\infty} A_n)=\sum m(A_n)$ for every seqence of pairwise disjoint sets $A_n$.
+\end{enumerate}
+
+Perhaps surprisingly, no such measure function $m$ exists! While properties~(a)--(c) seem very natural, the three items unfortunately turn out to be mutually inconsistent.
+
+\begin{thm}[Vitali]
+  There exists a set $A\subset\RR$ such that no measure can be assigned to $A$ consistently with (a)--(c).
+\end{thm}
+
+\begin{proof}
+  Rather than work on $\RR$, we will work on the half-open unit interval $[0,1)$ with the addition operation taken modulo $1$. This is ok, since if there is a measure $m$ on all subsets of $\RR$, then by properties~(b) and~(c), $m$ restricts to a measure on subsets of $[0,1)$ which satisfies property~(b) with respect to addition modulo $1$.
+
+  Now let $\QQ_1$ denote the rationals of $[0,1)$, that is, $\QQ_1=\QQ\cap[0,1)$, and consider the collection of additive cosets of $\QQ_1$ inside $[0,1)$. The cosets are of the form $a+\QQ_1$ where again addition is interpreted modulo $1$. We now let $A\subset[0,1)$ denote a system of coset representatives for this collection.
+
+  Now every number in $[0,1)$ can be written uniquely as $a+q$ for $a\in A$ and $q\in\QQ_1$. This means that the collection of translates of $A$ by elements $q\in\QQ_1$ covers all of $[0,1)$. In particular, by (a) the measure of $\bigcup_{q\in\QQ_1}(A+q)$ is exactly $1$.
+
+  On the other hand, by (b) and (c) we have that
+  \[m\left(\bigcup\nolimits_{q\in\QQ_1}(A+q)\right)
+  =\sum\nolimits_{q\in\QQ_1}m(A+q)=\sum\nolimits_{q\in\QQ_1}m(A)
+  \]
+  By the previous paragraph, the left-hand side of the above equation is $1$. On the other hand the right-hand side is an infinite sum of some nonnegative constant, and hence must be either $0$ or $\infty$. This is a contradiction!
+\end{proof}
+
+We remark that it is possible to modify the argument to apply directly to a measure on $\RR$ rather than going via the unit interval with addition modulo $1$. See Tao for this version.
+
+The lesson is that we must weaken our demands on a measure $m$. Dropping condition (a) can lead to trivial measures. Dropping condition (b) takes away the geometric aspects of the measure, and leads to interesting set-theoretic questions and constructions. Weakening condition (c) to finite additivity leads to interesting solutions, but only in dimensions $\leq2$. (In dimensions $\geq3$ the Banach--Tarski paradox again gives a contradiction.)
+
+Yet the simplest path forward (and the one that we take) is to drop the tacit condition that \emph{every} set be measurable. The set $A$ constructed in Vitali's proof is very artificial and isn't likely to occur in any of the most common analytical applications (see the notes below). We want to be excused from the burden of deciding the measure of the set $A$. This means we need to figure out what sets we will measure, and what sets we will not measure. In the end, our measure function $m$ will have a domain which is a proper subset of $\mathcal P(\RR)$, but which still contains a rich collection of sets. And the measure will satisy properties (a)--(c) as long as they are applied to the sets in the domain of $m$.
+
+Of course we are also interested in the measure problem for subsets $\RR^n$. It can be formulated in just the same way, with condition (a) replaced by the condition that the measure of a box is equal to its volume. And a Vitali-type result can also easily be established for this version of the measure problem.
+
+In the next section, we will begin this process by taking a step backwards and build measures with much smaller domains, and satisfying just fragments of (a)--(c).
+
+\begin{notes}
+  The proof of Vitali's theorem requires the Axiom of Choice. Specifically, it is needed to find a system of coset representatives for an uncountable collection. Solovay showed that the use of AC is essential, and that it is consistent with $\neg$AC that there is a measure function $m$ on all subsets of $\RR$.
+\end{notes}
+
+\begin{exerc}
+  Show that the properties (a)--(c) of a measure imply finite addivitity: If $A$ and $B$ are disjoint then $m(A\cup B)=m(A)+m(B)$.
+\end{exerc}
+
+\begin{exerc}
+  Show that the properties (a)--(c) of a measure imply the inclusion--exclusion principle: For any sets $A,B$ we have $m(A\cup B)+m(A\cap B)=m(A)+m(B)$.
+\end{exerc}
+
+\begin{exerc}
+  Complete the details of the proof that if there is a measure on $\RR$ satisfying properties (a)--(c), then there is a measure on $[0,1)$ (with additional modulo $1$) satisfying properties (a)--(c).
+\end{exerc}
+
+\begin{exerc}
+  If $A$ is a bounded set of real numbers, the supremum $\sup(A)$ is the least upper bound of $A$, and the infemum $\inf(A)$ is the greatest lower bound of $A$. Show that $s=\sup(A)$ if and only if:
+  \begin{itemize}
+    \item for all $a\in A$ we have $a\leq s$, and;
+    \item for all $\epsilon>0$, there exists $a\in A$ such that $s-a<\epsilon$.
+  \end{itemize}
+  Formulate and prove the analogous statement for the infemum.
+\end{exerc}
+
+\newpage
