@@ -1,10 +1,10 @@
-\documentclass[10pt,oneside]{amsbook}
+\documentclass[10pt,oneside,a3paper]{amsbook}
 
 \title{Real and linear analysis}
 \author{Course notes based on material from\\``Measure theory'' by Terence Tao, and\\``Real analysis'' by Bruckner, Bruckner, and Thompson}
 
-\usepackage[vscale=.8,vmarginratio=4:3]{geometry}
-\usepackage{mathpazo,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb}
 \usepackage{setspace}\onehalfspacing\raggedbottom
 \renewcommand{\labelitemi}{$\circ$}
 \renewcommand{\labelenumi}{(\alph{enumi})}
@@ -21,6 +21,7 @@
 % \makeatother
 \usepackage[linktoc=all]{hyperref}
 \usepackage{tikz}
+\pagestyle{empty}
 
 \newcommand{\set}[1]{\left\{\,#1\,\right\}}
 \renewcommand{\setminus}{\smallsetminus}
@@ -40,15 +41,15 @@
 \newcommand{\ovint}{\overline\int}
 
 \theoremstyle{definition}
-\newtheorem{exerc}{Exercise}[section]
+\newtheorem{exerc}{Exer}[section]
 \swapnumbers
 \theoremstyle{plain}
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{cor}[thm]{Corollary}
+\newtheorem{thm}{Thm}[section]
+\newtheorem{cor}[thm]{Cor}
 \newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposition}
+\newtheorem{prop}[thm]{Prop}
 \theoremstyle{definition}
-\newtheorem{defn}[thm]{Definition}
+\newtheorem{defn}[thm]{Def}
 \theoremstyle{remark}
 \newtheorem{rem}[thm]{Remark}
 \newtheorem{example}[thm]{Example}
@@ -63,14 +64,14 @@
 
 % \maketitle
 
-\tableofcontents
-\newpage
+% \tableofcontents
+% \newpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Measure theory}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \chapter{Measure theory}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \input{measure_theory/measure_problem.tex}
 
 
@@ -78,55 +79,24 @@
 \section{Introduction to Lebesgue measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S1.2, first few pages
-\end{reading}
-
-The Jordan measure that we have constructed works very well for the sets that it measures. And the Riemann integral works very well for the functions that it integrates. But there are several shortcomings that we have discussed, and several more too.
-\begin{itemize}
-\item Unbounded sets are not Jordan measurable, and unbounded functions are not Riemann integrable
-\item There are examples of bounded sets which are open or closed, but still not Jordan measurable
-\item A countable union of Jordan measurable sets need not be Jordan measurable
-\item A pointwise limit of Riemann integrable functions need not be Riemann integrable, even if it is again bounded
-\end{itemize}
-
-In this section we will strenghten the definiton of Jordan measure to obtain the Lebesgue measure. The Lebesgue measure possesses stronger properties than the Jordan measure, including the ability to measure a wider class of sets. The price for this is that it will be harder to establish these properties.
-
-To begin, recall from an exercise in the Jordan measure section that we can rewrite the definition of outer Jordan measure as follows.
-\[m^{*j}(A)=\inf\set{\left.\sum_1^k \vol(B_i)\;\right|\;\text{$B_i$ are boxes and }A\subset\bigcup_1^kB_i}
-\]
-The idea of the Lebesgue measure is simply to replace the finite union and summation with a countable union and summation.
-
 \begin{defn}
   Let $A$ be any subset of $\RR^n$. The \emph{Lebesgue outer measure} of $A$ is
   \[m^*(A)=\inf\set{\left.\sum_1^\infty \vol(B_i)\;\right|\;\text{$B_i$ are boxes and }A\subset\bigcup_1^\infty B_i}
   \]
 \end{defn}
 
-Notice that we have dropped the assumption that $A$ is bounded. There are many examples of unbounded sets with Lebesgue outer measure zero. In fact, every countable set has lebesgue outer measure zero.
-
-We also remark that we will not define an ``inner'' version of Lebesgue measure analogous to the Jordan inner measure. The reason is that we do not wish to assume that positive measure sets will contain any positive volume boxes. For example, the set $[0,1]\setminus\QQ$ should have a measure of $1$ but has lower Jordan measure $0$. In fact, even if we replace the finite summation from Jordan inner measure with a countable summation, the resulting inner measure would still be $0$!
-
-Without an inner measure, we cannot define Lebesgue measurability simply by requiring the outer and inner measures to agree. In order to find another way to define Lebesgue measurability, we recall from an earlier exercise that $A$ is Jordan measurable if and only if for all $\epsilon>0$ there exists an elementary set $E$ such that $A\subset E$ and $m^{*j}(E\setminus A)<\epsilon$. This leads to the following definition.
-
 \begin{defn}
   Let $A$ be any subset of $\RR^n$. We say that $A$ is \emph{Lebesgue measurable} if for every $\epsilon>0$ there exists a sequence of boxes $B_i$ such that $A\subset\bigcup B_i$ and $m^*(\bigcup B_i\setminus A)<\epsilon$. When this is the case, we define $m(A)=m^*(A)$ to be the \emph{Lebesgue measure} of $A$.
 \end{defn}
 
-Most sources actually define $A$ to be Lebesgue measurable if for every $\epsilon>0$ there exists an \emph{open set} $O$ such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. While this definition using open sets is more elegant, our official definition using unions of boxes agrees more closely with our definition of Lebesgue outer measure. Our work of the next few sections will reveal how to show that these two definitions are equivalent.
-
-We will see in the rest of this section and the next that the Lebesgue measure agrees with the Jordan measure on the Jordan measurable sets, and moreover is capable of measuring significantly more sets. In fact the Lebesgue measurable sets encompass almost everything seen in real analysis and its applications, with exceptions essentially boiling down to certain Axiom of Choice constructions. The Lebesgue measure also satisfies all the measure axioms that we have mentioned so far, including their countable versions.
-
-Likewise, later on we will introduce the corresponding Lebesgue integral. This integral agrees with the Riemann integral, and is capable of integrating significantly more functions. It also has significantly stronger properties than the Riemann integral, including a countable version of linearity.
-
-Before we begin working to establish all these claims, we study the Lebesgue outer measure further. In order to proceed, it is useful to lay out what properties are expected of an outer measure. The following will be referred to as the \emph{outer measure axioms}.
+Before we begin working to establish all these claims, we study the Lebesgue outer measure further.
+In order to proceed, it is useful to lay out what properties are expected of an outer measure.
+The following will be referred to as the \emph{outer measure axioms}.
 \begin{enumerate}
 \item (empty set) $m^*(\emptyset)=0$
 \item (monotonicity) If $A\subset B$ then $m^*(A)\leq m^*(B)$
 \item (countable subadditivity) $m^*(\bigcup A_n)\leq\sum m^*(A_n)$
 \end{enumerate}
-Since the outer measure applies to all sets, and we have seen there exist non-measurable sets, we do not expect outer measure to satisfy countable additivity in general. Still axiom (c) is quite strong: the Jordan outer measure does not satisfy countable subadditivity.
-
 \begin{prop}
   The Lebesgue outer measure satisfies the outer measure axioms (a)--(c).
 \end{prop}
@@ -136,51 +106,41 @@ Since the outer measure applies to all sets, and we have seen there exist non-me
 
   Taking unions, we have $\bigcup A_n\subset\bigcup_n\bigcup_iB_i^n$, and moreover:
   \begin{align*}
-    m^*(\bigcup A_n)&\leq\sum_n\sum_i\vol(B_i^n)\\
-                    &\leq\sum_n\left(m^*(A_n)+\epsilon/2^n\right)\\
-                    &\leq\sum_nm^*(A_n)+2\epsilon
+    m^*(\bigcup A_n)&&\leq\sum_n\sum_i\vol(B_i^n)
+                    &&\leq\sum_n\left(m^*(A_n)+\epsilon/2^n\right)
+                    &&\leq\sum_nm^*(A_n)+2\epsilon
   \end{align*}
   Taking $\epsilon\to0$, we obtain the desired inequality $m^*(\bigcup A_n)\leq\sum m^*(A_n)$.
 \end{proof}
 
-The bookkeeping used in the above proof is called an ``$\epsilon/2^n$ argument'', and is used frequently in countable approximations.
 
-In the next sections we will work to address under what circumstances the Lebesgue outer measure satisfies additivity or otherwise behaves well.
+% \begin{exerc}[Tao, Ex 1.2.1]
+%   Show that the countable union of Jordan measurable sets need not be Jordan measurable, even when bounded. Show that the countable intersection of Jordan measurable sets need not be Jordan measurable.
+% \end{exerc}
 
-\begin{exerc}[Tao, Ex 1.2.1]
-  Show that the countable union of Jordan measurable sets need not be Jordan measurable, even when bounded. Show that the countable intersection of Jordan measurable sets need not be Jordan measurable.
-\end{exerc}
+% \begin{exerc}[Tao, Ex 1.2.2]
+%   Give an example of a sequence of uniformly bounded, Riemann integrable functions on $[0,1]$ which converges pointwise to a function that is not Riemann integrable. Is it possible to give an example which converges uniformly?
+% \end{exerc}
 
-\begin{exerc}[Tao, Ex 1.2.2]
-  Give an example of a sequence of uniformly bounded, Riemann integrable functions on $[0,1]$ which converges pointwise to a function that is not Riemann integrable. Is it possible to give an example which converges uniformly?
-\end{exerc}
+% \begin{exerc}
+%   Show that $m^*(A)\leq m^{*j}(A)$. Give an example of a set $A$ such that $m^*(A)<m^{*j}(A)$.
+% \end{exerc}
 
-\begin{exerc}
-  Show that $m^*(A)\leq m^{*j}(A)$. Give an example of a set $A$ such that $m^*(A)<m^{*j}(A)$.
-\end{exerc}
+% \begin{exerc}
+%   Show that Jordan outer measure does not satisfy countable subadditivity.
+% \end{exerc}
 
-\begin{exerc}
-  Show that Jordan outer measure does not satisfy countable subadditivity.
-\end{exerc}
-
-\begin{exerc}
-  Show that if $A$ is Lebesgue null, that is, $m^*(A)=0$, then $A$ is Lebesgue measurable.
-\end{exerc}
+% \begin{exerc}
+%   Show that if $A$ is Lebesgue null, that is, $m^*(A)=0$, then $A$ is Lebesgue measurable.
+% \end{exerc}
 
 % Show that the Jordan inner measure is the same if you use infinitely many sets.
 
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue outer measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.2.1.
-\end{reading}
-
-We have shown that the Lebesgue outer measure satisfies countable subadditivity. We are really interested in additivity, but we know that even the finite additivity axiom cannot hold for all sets. In the end, we will prove that countable additivity is true for measurable sets. For the moment, we will be satisfied with the following version of additivity which holds in special cases.
-
-% This is not used this section. It's actually in 7 in showing closed sets are Lebesgue measurable. And again in 8 to show additivity I think. Not sure where to sequence it... Maybe later this section.
 
 \begin{lem}
   \label{lem:separated}
@@ -189,90 +149,26 @@ We have shown that the Lebesgue outer measure satisfies countable subadditivity.
   Then $m^*(A\cup B)=m^*(A)+m^*(B)$.
 \end{lem}
 
-\begin{proof}
-  Subbaditivity implies that $m^*(A\cup B)\leq m^*(A)+m^*(B)$, so it remains only to show $m^*(A\cup B)\geq m^*(A)+m^*(B)$. Applying the definition of $m^*(A\cup B)$, given any $\epsilon>0$ we can find boxes $C_i$ such that $A\cup B\subset\bigcup C_i$ and $\sum\vol(C_i)-m^*(A\cup B)<\epsilon$.
-
-  Let us first consider an easy case when each $C_i$ meets at most one of the sets $A,B$. Then we can rewrite the sequence $\{C_i\}$ as $\{D_i\}\cup\{E_i\}$, where the $D_i$'s meet only $A$ and the $E_i$'s meet only $B$. Now
-  \begin{align*}
-    m^*(A\cup B)&>\sum\vol(C_i)-\epsilon\\
-                &=\sum\vol(D_i)+\sum\vol(E_i)-\epsilon\\
-                &\geq m^*(A)+m^*(A)-\epsilon
-  \end{align*}
-  Taking $\epsilon\to0$, we are done in this case.
-
-  In the general case, we can reduce to the easy one by partitioning each $B_i$ into smaller boxes, each with diameter smaller than $d(A,B)$. Once this is done, each new box meets at most one of $A,B$ and we may proceed as above.
-\end{proof}
-
-Up to this point, we have not yet shown that $m^*$ ever takes a nonzero value! In fact $m^*$ satisfies a strong normality axiom, which states that the outer measure of an elementary set is equal to its elementary measure. When we proved this property for Jordan measure, we started by showing that one cannot partition an interval into finitely many subintervals whose lengths somehow add up to less than the original. For countable partitions this is intuitively still true, but much harder to show!
-
-\begin{thm}
-  If $E$ is an elementary subset of $\RR^n$, then $m^*(E)$ agrees with the elementary measure $m_e(E)$.
-\end{thm}
-
-\begin{proof}
-  It is clear that $m^*(E)\leq m_e(E)$, since $E$ is itself a union of boxes whose volumes sum to $m(E)$. Thus it remains only to show $m^*(E)\geq m_e(E)$. Appealing to the definition of $m^*(E)$, given any $\epsilon>0$ we can find boxes $B_i$ such that $E\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(E)<\epsilon$. Rearranging, this says $m^*(E)>\sum\vol(B_i)-\epsilon$. Now we would like to say that $\sum\vol(B_i)\geq m_e(E)$, but unfortunately the elementary measure is only \emph{finitely} subadditive.
-
-  In order to proceed, let us temporarily assume that $E$ is closed and the $B_i$ are open. We recall that any closed and bounded set is \emph{compact}, and that any covering of a compact set by open sets has a finite subcovering. Thus under these assumptions, we have that just finitely many of the $B_i$ are needed to cover $E$. Thus the argument of the previous paragraph works in this case!
-
-  In order to assume that the $B_i$ are open, we can enlarge each slightly and find an open box $B'_i$ such that $B_i\subset B'_i$ and $\vol(B'_i)-\vol(B_i)<\epsilon/2^i$.
-
-  In order to assume that $E$ is closed, first write it as a finite union of disjoint boxes $C_1,\ldots,C_k$. Shrinking each $C_i$ slightly, we can find a closed box $C'_i\subset C_i$ such that $m_e(C_i\setminus C'_i)<\epsilon/k$. Replacing $E$ with $\bigcup C'_i$ we obtain a closed set as desired.
-\end{proof}
-
-As a consequence of the theorem, we now know that finite additivity holds for $m^*$ for finite unions of disjoint boxes (after all it is true for the elementary measure). In fact it also holds for finite unions of almost disjoint boxes: here two boxes are said to be \emph{almost disjoint} if they have disjoint interiors. This is because the elementary measure of the boundary of a box is always zero. The next result extends this from finite to countable unions.
-
 \begin{thm}
   Suppose $B_i$ is a sequence of pairwise almost disjoint boxes. Then $m^*(\bigcup B_i)=\sum\vol(B_i)$.
 \end{thm}
-
-\begin{proof}
-  By subadditivity together with the previous theorem, we have 
-  \[ m^*(\bigcup B_i)\leq\sum m^*(B_i)=\sum\vol(B_i). \]
-  Hence it remains only to show $m^*(\bigcup B_i)\geq\sum\vol(B_i)$. For this, let $N\in\NN$ be given, and note that $\bigcup_1^NB_i$ is an elementary set. Thus by monotonicity together with the previous theorem, we have
-  \begin{align*}
-    m^*(\bigcup B_i)&\geq m^*(\bigcup_1^NB_i)\\
-                    &=m_e(\bigcup_1^NB_i)\\
-                    &=\sum_1^N\vol(B_i)
-  \end{align*}
-  Taking $N\to\infty$, we obtain the desired inequality.
-\end{proof}
-
-We are finally making some progress: for unions of almost disjoint sequences of boxes, the additivity property holds and the measure of the union is equal to the expected quantity. This leads one to ask what kinds of sets can be written as unions of almost disjoint sequences of boxes, and the following result shows this at least includes the open sets.
 
 \begin{prop}
   \label{prop:open-decomp}
   Any open set $O$ can be written as a union of a sequence of pairwise almost disjoint boxes.
 \end{prop}
 
-\begin{proof}
-  Consider the family $\mathcal Q$ of \emph{dyadic cubes}, that is, cubes with each side of the form $[m/2^n,(m+1)/2^n]$ where $n\geq0$. The family $\mathcal Q$ has a \emph{nesting property}: for any two cubes in $\mathcal Q$, either one is contained in the other or else the two cubes are almost disjoint.
 
-  It is not difficult to observe that $\mathcal Q$ is a basis for the topology of $\RR^n$. In particular, for any $x\in O$ there exists a cube $B_x\in\mathcal Q$ such that $x\in B_x\subset O$. Thu union of all $B_x$ for $x\in O$ is a covering of $O$ by dyadic cubes. Now we eliminate duplicates from this covering, that is, remove any cube in the covering that is contained in some other cube of the covering. Since any nested chain of cubes has a maximal element, the cubes which remain will still cover $O$. And by the nesting property, the cubes which remain will also be almost disjoint.
-\end{proof}
-
-The above result gives a very direct method of calculating the Lebesgue outer measure (and hence the Lebesgue measure) of any open set! We close this section with the following so-called ``outer regularity lemma'', which shows that the Lebesgue outer measure is determined by its values on the open sets. When combined with the previous result, this gives a kind of general formula for the outer measure.
-
-% And where is this one used? Consider moving it.
 
 \begin{lem}
   Let $A$ be any subset of $\RR^n$. Then $m^*(A)=\inf\set{m^*(O)\mid\text{$O$ is open and }A\subset O}$.
 \end{lem}
 
-\begin{proof}
-  It is clear from monotonicity of $m^*$ that $\leq$ holds. Thus it remains only to show $\geq$. Applying the definition of $m^*(A)$ we can find boxes $B_i$ such that $A\subset\bigcup B_i$ and $\sum\vol(B_i)-m^*(A)<\epsilon$. Arguing as in an earlier proof, we can enlarge the $B_i$ slightly to assume without loss of generality that they are open. Then
-  \begin{align*}
-    m^*(A)&\geq\sum\vol(B_i)-\epsilon\\
-          &\geq m^*(\bigcup B_i)\\
-          &\geq \inf\set{m^*(O)\mid\text{$O$ is open and }A\subset O}-\epsilon
-  \end{align*}
-  Taking $\epsilon\to0$, we obtain the desired result.
-\end{proof}
 
-In the next section we will use these partial results to conclude that the Lebesgue (outer) measure always behaves well on the measurable sets.
 
-\begin{exerc}[Tao, Ex 1.2.5]
-  Suppose $A$ is expressible as a countable union of pairwise almost disjoint boxes. Show that $m^*(A)=m_{*j}(A)$.
-\end{exerc}
+% \begin{exerc}[Tao, Ex 1.2.5]
+%   Suppose $A$ is expressible as a countable union of pairwise almost disjoint boxes. Show that $m^*(A)=m_{*j}(A)$.
+% \end{exerc}
 
 \begin{exerc}[Tao, Ex 1.2.6]
   Show that it is not true in general that
@@ -281,92 +177,26 @@ In the next section we will use these partial results to conclude that the Lebes
 \end{exerc}
 
 
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue measurability}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{reading}
-  Tao, \S 1.2.2.
-\end{reading}
-
-Recall that a set $A$ is called Lebesgue measurable if it can be well-approximated from the outside by a countable union of boxes: for all $\epsilon>0$ there is a sequence of boxes $B_i$ such that $A\subset\bigcup B_i$ and $m^*(\bigcup B_i\setminus A)<\epsilon$. In particular, this implies tautologically that countable unions of boxes are Lebesgue measurable. In the next result we work to establish that many, many other sets are Lebesgue measurable too.
 
 \begin{thm}
   Open and closed sets are Lebesgue measurable. Complements, countable unions, and countable intersections of measurable sets are measurable.
 \end{thm}
 
-\begin{proof}
-  Since the boxes form a base for the topology of $\RR^n$, any open set can be written as a union of boxes. (Or see Proposition~\ref{prop:open-decomp}.) Thus by the remark above, open sets are Lebesgue measurable.
-
-  For countable unions, suppose that $A_n$ are Lebesgue measurable. Given $\epsilon>0$, find for each $n$ a countable union of boxes $U_n$ such that $A_n\subset U_n$ and $m^*(U_n\setminus A_n)<\epsilon/2^n$. Then we have
-  \begin{align*}
-    m^*(\bigcup U_n\smallsetminus\bigcup A_n)
-    &\leq m^*(\bigcup U_n\setminus A_n)\\
-    &\leq \sum m^*(U_n\setminus A_n)\\
-    &\leq \sum \epsilon/2^n=2\epsilon
-  \end{align*}
-  This shows that $\bigcup A_n$ is measurable.
-
-  For closed sets, assume first that $A$ is closed and bounded, and thus compact. Using the outer regularity lemma we can find an open set $O$ such that $A\subset O$ and $m^*(O)-m^*(A)<\epsilon$. We wish to show that $m^*(O\setminus A)<\epsilon$ too. Since $O\setminus A$ is open, we can use Proposition~\ref{prop:open-decomp} to write $O\setminus A$ as an almost disjoint union of closed dyadic cubes $C_n$. Then $\bigcup_1^N C_n$ is compact and thus positively separated from the compact set $A$. By Lemma~\ref{lem:separated}, additivity holds for positively separated sets, so we have:
-  \begin{align*}
-    m^*(A)+m^*(\bigcup_1^N C_i)&=m^*(A\cup\bigcup_1^N C_i)\\
-                              &\leq m^*(O)\\
-                              &<m^*(A)+\epsilon
-  \end{align*}
-  It follows that $\sum_1^N\vol(C_i)=m^*(\bigcup_1^NC_i)<\epsilon$, and taking $N\to\infty$ we have $\sum\vol(C_i)\leq\epsilon$. This shows that $m^*(O\setminus A)\leq\epsilon$, as desired.
-
-  In general a closed set can be written as a countable union of compact sets, and we have already handled the case of countable unions.
-
-  For complements, let $A$ be measurable and for each $n$ find a union of boxes $U_n$ such that $A\subset U_n$ and $m^*(U_n\setminus A)<1/n$. We can enlarge the constituent boxes of each $U_n$ slightly to find an open set $O_n$ such that $U_n\subset O_n$ and $m^*(U_n\setminus O_n)<1/n$. (Here we are using normality and subadditivity to achieve this estimate.) Taking the intersection of the $O_n$ we now have $A\subset\cap O_n$ and $m^*(\bigcap O_n\setminus A)=0$. Writing these two expressions in complement, they become $\bigcup O_n^c\subset A^c$ and $m^*(A^c\setminus\bigcup O_n^c)=0$. Now $A^c$ can be expressed as a union of two sets: $\bigcup O_n^c$ and $A^c\setminus\bigcup O_n^c$. The first is Lebesgue measurable because it is a countable union of closed sets. The second is Lebesgue measurable because it is null (see an earlier exercise). Appealing again to the closure under unions, we conclude that $A^c$ is measurable too.
-
-  For countable intersections, we can simply apply Demorgan's laws to reduce it to complements and countable unions. Whew!
-\end{proof}
-
-The above theorem thus shows that the Lebesgue measurable sets form a \emph{$\sigma$-algebra}, that is, a family of sets that is closed under countable unions, countable intersections, and complements. It moreover shows that the Lebesgue measurable sets includes the well-known class of \emph{Borel sets}, that is, the $\sigma$-algebra generated by the open and closed sets. The Borel sets are often identified as those which can be \emph{explicitly described}. Most sets we encounter in analysis can be explicitly described and are thus Borel and Lebesgue measurable.
-
-We now know that Borel sets are Lebesgue measurable, null sets are Lebesgue measurable, and the measurable sets form a $\sigma$-algebra. The next result concludes that this information characterizes the Lebesgue measurable sets.
-
 \begin{prop}
   The collection of Lebesgue measurable sets is the least $\sigma$-algebra containing both the open sets and the Lebesgue null sets.
 \end{prop}
-
-\begin{proof}
-  It is clear that the Lebesgue measurable sets are a $\sigma$-algebra containing the open sets and the Lebesgue null sets. On the other hand suppose that $E$ is a Lebesgue measurable set. By the previous lemma for all $n$ we can find open sets $O_n$ such that $E\subset O_n$ and $m^*(O_n\setminus E)<1/n$. It follows that $N=\bigcap O_n\setminus E$ is Lebesgue null. Now have that
-  \[E=\bigcap(O_n)\cap N^c
-  \]
-  and thus $E$ lies in the $\sigma$-algebra generated by the open sets and the Lebesgue null sets.
-\end{proof}
-
-We conclude this section with some useful equivalents of Lebesgue measurability, similar to the ones we developed for Jordan measurability. The following result implies that the Lebesgue measurable sets can be characterized as those which are ``almost open.''
 
 \begin{lem}
   A set $A$ is Lebesgue measurable if and only if for all $\epsilon>0$ there exists an open set $O$ such that $m^*(O\triangle A)<\epsilon$.
 \end{lem}
 
-\begin{proof}
-  Our original definition of Lebesgue measurability automatically gives an open set $O$ such that $m^*(O\triangle A)<\epsilon$. Conversely, let $A$ be any set and suppose the condition holds. Then for any $\epsilon$ we can find an open set $O_\epsilon$ such that $m^*(O_\epsilon\triangle E)<\epsilon$. Let $U_\epsilon=\bigcup O_{\epsilon/2^k}$. Then it is not difficult to check that $m^*(U_\epsilon\setminus A)\leq\epsilon$, and $m^*(A\setminus U_\epsilon)=0$. Finally letting $B=\bigcap_nU_{1/n}$ we have that $B$ is a measurable set and both $m^*(A\setminus B)=0$ and $m^*(B\smallsetminus A)=0$. We have thus shown that $A$ differs from a measurable set by a null set, and we leave it as an exercise to check that this implies $A$ is measurable too.
-\end{proof}
-
-Perhaps even more surprising, the Lebesgue measurable sets of finite measure can be characterized as those which are ``almost elementary''.
-
 \begin{lem}
   A set $A$ is Lebesgue measurable with finite Lebesgue measure if and only if for all $\epsilon>0$ there exists an elementary set $E$ such that $m^*(E\triangle A)<\epsilon$.
 \end{lem}
-
-\begin{proof}
-  Suppose that $A$ is Lebesgue measurable and let $\epsilon>0$ be given. Let $O$ be an open set such that $A\subset O$ and $m^*(O\setminus A)<\epsilon$. Then $O$ can be written as a union of almost disjoint boxes $O=\bigcup B_i$, and we know that $m(O)=\sum\vol(B_i)$.
-
-  Now $m(O)<m(A)+\epsilon$ and the right-hand side is finite, so the sum $\sum\vol(B_i)$ converges. Thus there exists some $N$ such that $\sum_{N+1}^\infty\vol(B_i)<\epsilon$. Letting $E=\bigcup_1^N B_i$, we have that $E$ is elementary and $m(O\setminus E)<\epsilon$. Thus we have
-  \begin{align*}
-    m^*(E\triangle A)&=m^*(E\setminus A)+m^*(A\setminus E)\\
-                     &\leq m^*(O\setminus A)+m^*(O\setminus E)\\
-                     &<2\epsilon
-  \end{align*}
-  which is sufficient to prove the implication. The converse implication is similar to the previous lemma.
-\end{proof}
-
-We have now established many useful properties of the outer measure $m^*$ and shown that it has a broad collection of measurable sets. In the next section we will confirm as promised that $m^*$ behaves very well when restricted to the collection of measurable sets.
 
 \begin{exerc}[See Tao, Ex 1.2.7]
   \begin{enumerate}
@@ -386,19 +216,14 @@ We have now established many useful properties of the outer measure $m^*$ and sh
   \]
 \end{exerc}
 
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue measure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.2.2
-\end{reading}
-
-In the previous section we established that many sets are Lebesgue measurable. When $A$ is Lebesgue measurable we simply write $m(A)$ for $m^*(A)$, and we call $m$ the \emph{Lebesgue measure}. We are finally ready to prove that the Lebesgue measure satisfies the requirements of a measure that we laid out in the first section, at least when they are applied to Lebesgue measurable sets.
 
 \begin{thm}
-  The Lebesge measure satisfies the axioms
+  The Lebesgue measure satisfies the axioms
   \begin{enumerate}
   \item (normality) if $B$ is a box then $m(B)=\vol(B)$;
   \item (translation-invariance) $m(x+A)=m(A)$ for every $x\in\RR^n$ and measurable set $A$;
@@ -406,62 +231,17 @@ In the previous section we established that many sets are Lebesgue measurable. W
   \end{enumerate}
 \end{thm}
 
-\begin{proof}
-  We have already established normality for $m^*$ and hence for $m$. Translation-invariance of $m^*$ is clear from the definition since it is clear for boxes.
-
-  For countable additivity, first recall that we always have subadditivity so we need only show $m(\bigcup A_n)\geq\sum m(A_n)$. Suppose first that the $A_n$ are compact. Then they are pairwise positively separated, so using Lemma~\ref{lem:separated} inductively we can establish that $m(\bigcup_1^N A_n)=\sum_1^N m(A_n)$. It follows that $m(\bigcup A_n)\geq\sum_1^Nm(A_n)$. Taking $N\to\infty$ we have $m(\bigcup A_n)\geq\sum m(A_n)$ as desired.
-
-  Next assume that the $A_n$ are bounded but not necessarily closed. By the measurability of $A_n^c$ we can find open sets $O_n$ such that $A_n^c\subset O_n$ and $m^*(O_n\setminus A_n^c)<\epsilon/2^n$. Taking complements we thus have compact sets $K_n\subset E_n$ such that $m^*(A_n\setminus K_n)<\epsilon/2^n$. Now using the additivity for compact sets,
-  \begin{align*}
-    m(\bigcup A_n)&\geq m(\bigcup K_n)\\
-                  &=\sum m(K_n)\\
-                  &\geq\sum(m(A_n)-\epsilon/2^n)\\
-                  &=\sum m(A_n)-\epsilon
-  \end{align*}
-  Taking $\epsilon\to0$, we are finished in this case.
-
-  Finally for general $A_n$, decompose $\RR^d$ into disjoint bounded cells $C_m$. Then $A_n=\bigcup_m A_n\cap C_m$. Now the sets $A_n\cap C_n$ are bounded, so applying the result for bounded sets twice we have:
-  \begin{align*}
-    m(\bigcup A_n)&=\sum_n\sum_m m(A_n\cap C_m)\\
-                  &=\sum_n m(A_n)
-  \end{align*}
-  and the proof is complete.
-\end{proof}
-
-We have now established the existence and all of the promised axioms of the Lebesgue measure. Additional useful properties can be derived from the axioms, such as the following result concerning continuity of the measure function.
-
 \begin{thm}
   \label{thm:mct}
   \begin{itemize}
-  \item (upwards monotone convergence theorem) If $A_n$ are measurable and $A_{n+1}\supset A_n$ then $m(\bigcup A_n)=\lim m(A_n)$.
-  \item (downwards monotone convergence theorem) If $A_n$ are measurable and $A_{n+1}\subset A_n$ then $m(\bigcap A_n)=\lim m(A_n)$, provided some $A_n$ has finite measure.
+  \item (upwards monotone convergence theorem) If $A_n$ are measurable and\\ $A_{n+1}\supset A_n$ then $m(\bigcup A_n)=\lim m(A_n)$.
+  \item (downwards monotone convergence theorem) If $A_n$ are measurable and\\ $A_{n+1}\subset A_n$ then $m(\bigcap A_n)=\lim m(A_n)$, provided some $A_n$ has finite measure.
   \end{itemize}
 \end{thm}
 
-\begin{proof}
-  For the upwards MCT, let $A'_n=A_n\setminus A_{n-1}$ and note that the $A'_n$ are disjoint and have the same union as before: $\bigcup A'_n=\bigcup A_n$. Note that we implicitly set the value $A_0=\emptyset$. Applying countable additivity, we now have
-  \begin{align*}
-    m(\bigcup A_n)&=m(\bigcup A'_n)\\
-                  &=\sum m(A'_n)\\
-                  &=\sum m(A_n)-m(A_{n-1})\\
-                  &=\lim_N \sum_1^N m(A_n)-m(A_{n-1})\\
-                  &=\lim_N m(A_N)
-  \end{align*}
-  The last equality holds simply by telescoping cancellation.
-
-  For the downwards MCT, we can suppose without loss of generality that $A_1$ has finite measure. We thus take complements inside $A_1$ to obtain the sequence $B_n=A_1\setminus A_n$. Then the $B_n$ form an increasing sequence and $\bigcup B_n=A_1\setminus\bigcap A_n$. Using this and the upwards MCT, we now have
-  \begin{align*}
-    m(A_1)&=m(\bigcap A_n)+m(\bigcup B_n)\\
-          &=m(\bigcap A_n)+\lim m(B_n)\\
-          &=m(\bigcap A_n)+\lim (m(A_1)-m(A_n))\\
-          &=m(\bigcap A_n)+m(A_1)-\lim m(A_n)
-  \end{align*}
-  Cancelling the $m(A_1)$ from the first and last expression, we obtain that $0=m(\bigcap A_n)-\lim m(A_n)$, which implies the desired result.
-\end{proof}
-
-\begin{exerc}[Tao Ex 1.2.11(iii)]
-  Give a counterexample showing that the hypothesis that some $A_n$ has finite measure is necessary for the downwards MCT.
-\end{exerc}
+% \begin{exerc}[Tao Ex 1.2.11(iii)]
+%   Give a counterexample showing that the hypothesis that some $A_n$ has finite measure is necessary for the downwards MCT.
+% \end{exerc}
 
 \begin{exerc}[Tao Ex 1.2.12]
   Suppose you know that the domain of $m$ is a $\sigma$-algebra, and $m$ satisfies $m(\emptyset)=0$ and the countable additivity property. Show that $m$ satisfies the monotonicity property and the countable subadditivity property.
@@ -476,11 +256,11 @@ We have now established the existence and all of the promised axioms of the Lebe
   \end{enumerate}
 \end{exerc}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Measure and integration}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \chapter{Measure and integration}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Preview of integration, simple integration}
@@ -488,50 +268,17 @@ We have now established the existence and all of the promised axioms of the Lebe
 
 % Start with bounded, bounded support, simple functions and simple integrals, and then bounded, bounded support measurable functions and their integrals? Or maybe this only makes sense when Darboux has been covered (and not moved to appendix).
 
-\begin{reading}
-  Tao, \S 1.3 introduction
-\end{reading}
-
-In this chapter of the course, we investigate integration of real and complex-valued functions. Just as the Jordan measure corresponded tightly with the Darboux/Riemann integral, the Lebesgue measure can be associated with the so-called Lebesgue integral. The integral will serve most of the purposes needed in calculus, and will also help set the stage for the next chapter when we will introduce functional analysis.
-
-Just as the Lebesgue measure generalized and extended the Jordan measure, the Lebesgue integral will generalize and extend the Darboux/Riemann integral while still ensuring that many of its key properties hold. In addition many new stronger properties will hold as well, such as infinite versions of additivity and stability under limits.
-
-Recall that the Darboux/Riemann integral was defined first for piecewise constant functions, that is, functions which take constant values on each of finitely many intervals. It was then extended using approximations or limits. Similarly, the Lebesgue integral will be defined first for the so-called ``simple'' functions, and later extended using approximations or limits.
-
 \begin{defn}
   A function $f$ mapping $\RR^d$ into the extended real numbers $[0,\infty]$ (or sometimes into $\CC$) is called \emph{simple} if there exists a partition of $\RR^d$ into finitely many Lebesgue measurable subsets $A_1,\ldots,A_k$ such that $f$ takes a constant value $c_i$ on each $A_i$.
 \end{defn}
-
-Equivalently, we may say that $f$ is simple if it is of the form $f=\sum_1^kc_n\chi_{A_i}$ where $A_i$ are Lebesgue measurable sets.
-
-The simple functions are the source of the following commonly held intuition about Lebesgue integration: While Riemann integration relies on cutting into vertical strips, Lebesgue integration relies on cutting into horizontal strips. The idea is that the region below a simple function consists of finitely many horizontal strips with measurable cross-sections, and thus it is very simple to compute the integral of such a function, as is done in the next definition. We can then approximate many non-simple functions using simple functions, as is done in the next section.
 
 \begin{defn}
   If $f=\sum_1^kc_i\chi_{A_i}$ is a simple function and $f\geq0$, then the \emph{simple integral} of $f$ is defined to be $\sint f=\sum_1^kc_im(A_i)$.
 \end{defn}
 
-Note that we assume $f\geq0$ to ensure that the value of the simple integral is never indeterminate. As was the case with both elementary measure and pc integral, we have to check that the simple integral is well-defined.
-
 \begin{lem}
   If $f=\sum_1^lc_i\chi_{A_i}$ and $f=\sum_1^md_j\chi_{B_j}$ then we have $\sum_1^l c_i m(A_i)=\sum_1^m d_j m(B_j)$.
 \end{lem}
-
-\begin{proof}
-  We use a common refinement approach. By considering intersections of all $k+l$ sets, we can find a sequence of nonempty disjoint sets $C_1,\ldots,C_n$ such that each of the $A_i$ and $B_j$ can be written as a union of some of the $C_k$'s. Note that since the $A_i$ and $B_j$ are measurable, the $C_k$ are measurable too. Now let $x_k$ be an arbitrary point in $A_k$. We can calculate
-  \begin{align*}
-    \sum_{i=1}^lc_im(A_i)
-    &=\sum_{i=1}^lc_i\sum_{k:A_i\supset C_k}m(C_k)\\
-    &=\sum_{k=1}^n\sum_{i:A_i\supset C_k}c_im(C_k)\\
-    &=\sum_{k=1}^nf(x_k)m(C_k)\\
-    &=\sum_{k=1}^n\sum_{j:B_j\supset C_k}d_jm(C_k)\\
-    &=\sum_{j=1}^md_j\sum_{k:B_j\supset C_k}m(C_k)=\sum_{j=1}^md_jm(B_j)
-  \end{align*}
-  This is what we desired.
-\end{proof}
-
-Having defined the simple integral, we outline some of its important properties that will be used later on. The first of these is that the value of the simple integral is insensitive to changes on a null set.
-
-In order to state this property and others cleanly, we introduce the terminology \emph{almost everywhere}. If a statement $S(x)$ with variable $x\in\RR$ holds for every $x$ outside of a null set, we sat that $S$ is true almost everywhere. For example, if $f(x)=0$ for $x\notin\QQ$ and $f(x)=1$ for $x\in\QQ$ (the Dirichlet function) we can say that $f=0$ almost everywhere.
 
 \begin{prop}
   Let $f,g$ be simple functions.
@@ -542,15 +289,6 @@ In order to state this property and others cleanly, we introduce the terminology
   \end{enumerate}
 \end{prop}
 
-\begin{proof}
-  We prove the first property (i), since after that properties (ii) and (iii) are very similar to the analogous properties of the Riemann integral. Given simple functions $f$ and $g$, we can refine their expressions to find measurable sets $A_1,\ldots,A_n$ and a null set $N$ such that $f(x)=\sum c_i\chi_{A_i}(x)$ for all $x\notin N$ and $g(x)=\sum c_i\chi_{A_i}(x)$ for all $x\notin N$. Then clearly the simple integral of both $f$ and $g$ evaluates to $\sum c_im(A_i)+0$.
-\end{proof}
-
-Throwing away null sets is common in analysis, and thanks to our understanding of the Lebesgue measure it carries with it a lot of power. When studying sets and functions in the measure context, it will even be useful to modify our logic. We will use the quantifiers $\forall^*x$ and $\exists^*x$ to mean ``the statement holds for all but a null set of $x$'' and ``there exists a non-null set of $x$ such that the statement holds''.
-
-We close this section with a preview of how the definition of the Lebesgue integral will proceed in several stages. In the next section, we will use a familiar approximation or limit idea to extend the simple integral to a much wider class of nonnegative functions. In two sections, we will show how to extend the integral from nonnegative function to complex-valued functions.
-
-To imagine how this latter part will go, it is useful to recall the development of infinite series. Recall that if $a_n\geq0$ we can define $\sum a_n$ as simply $\sup_N\sum_1^Na_n$. Next if $a_n$ are arbitrary real numbers we say that the terms are \emph{absolutely summable} if $\sum|a_n|<\infty$. In that case we split each term into its positive part $a_n^+=\max(a_n,0)$ and its negative part $a_n^-=\max(-a_n,0)$. In this way we have for each term $a_n=a_n^+-a_n^-$ and we may define $\sum a_n=\sum a_n^+-\sum a_n^-$. Note that the assumption that $a_n$ is absolutely summable guarantees that the latter expression is not indeterminate. Finally if $a_n$ are complex numbers then we again assume that $\sum|a_n|<\infty$, that is, the terms are absolutely summable in the complex sense. In that case we can divide each term into its real part $\Re a_n$ and imaginary part $\Im a_n$, and define $\sum a_n=\sum\Re a_n+i\sum\Im a_n$.
 
 % Could consider moving the above paragraph to the corresponding section
 
@@ -567,119 +305,12 @@ To imagine how this latter part will go, it is useful to recall the development 
   \end{enumerate}
 \end{exerc}
 
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Lebesgue measurability of functions}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.3.2
-\end{reading}
-
-Just as the Riemann integral was able to integrate functions that can be well approximated by pc functions, the Lebesgue integral will be able to integrate functions that can be well approximated by simple functions. At the time we did not give a direct definition of the Riemann integrable functions. This time we will define in advance the class of functions for which the Lebesgue integral will make sense. As indicated, we begin with just the nonnegative real-valued functions.
-
-\begin{defn}
-  A nonnegative function $f$ on $\RR^n$ is said to be a \emph{measurable function} if $f$ is the pointwise limit of nonnegative simple functions.
-\end{defn}
-
-As was the case with Lebsegue measurable sets, the Lebesgue measurable functions can be equivalently described in a number of ways, each being in useful in some situations.
-
-\begin{thm}
-  \label{thm:measurable-equiv}
-  A nonnegative function $f$ is measurable if and only if either of the following holds.
-  \begin{enumerate}
-  \item there is a sequence $f_n$ of simple functions such that the $f_n$ are bounded and have bounded support, the $f_n$ are increasing $f_n\leq f_{n+1}$, and $f=\sup f_n$;
-  \item for any open set $S$ (respectively: closed set, interval, ray, etc) the preimage $f^{-1}(S)$ is Lebesgue measurable.
-  \end{enumerate}
-\end{thm}
-
-Before the proof, recall that given a sequence $x_n$ we define $\limsup x_n=\inf_N\sup_{n\geq N}x_n$ and $\liminf x_n=\sup_N\inf_{n\geq N}x_n$. The $\limsup$ is the largest limit point of $x_n$, that is, the largest number that is the limit of a subsequence of $x_n$. Similarly, the $\liminf$ is the smallest limit point of $x_n$. The limit $\lim x_n$ exists if and only if $\limsup x_n=\liminf x_n$, and $\lim x_n$ equals this common value.
-
-\begin{proof}
-  We first show that if $f$ is measurable, then (b) holds. So let $f_n$ be simple functions such that $f=\lim f_n$ pointwise. Note that by the above discussion, we have that $f=\limsup f_n$ pointwise. Now suppose that $S=(\lambda,\infty)$ is an open ray. Then we want to say that
-  \begin{align*}
-    x\in f^{-1}(S)&\iff f(x)>\lambda\\
-          &\iff \inf_N\sup_{n\geq N}f_n(x)>\lambda\\
-          &\iff (\forall N)(\exists n\geq N)f_n(x)>\lambda\\
-          &\iff x\in\bigcap_N\bigcup_{n\geq N}f_n^{-1}(\lambda,\infty]
-  \end{align*}
-  Since the $f_n$ are simple, it is clear that the set in the last line is measurable and therefore $f^{-1}(S)$ would be measurable. However the argument isn't right, since for instance it isn't quite true that $(\forall n)z_n>\lambda$ implies $\inf_n z_n>\lambda$. The correct calculation introduces a couple additional steps but ultimately accomplishes the same thing:
-  \begin{align*}
-    x\in f^{-1}(S)&\iff f(x)>\lambda\\
-          &\iff (\exists\epsilon)f(x)\geq \lambda+\epsilon\\
-          &\iff (\exists\epsilon)(\forall N)\sup_{n\geq N} f_n(x)\geq\lambda+\epsilon\\
-          &\iff (\exists\epsilon)(\forall N)(\forall\eta)\sup_{n\geq N}f_n(x)>\lambda+\epsilon-\eta\\
-          &\iff (\exists\epsilon)(\forall N)(\forall\eta)(\exists n\geq N)f_n(x)>\lambda+\epsilon-\eta\\
-          &\iff x\in\bigcup_i\bigcap_N\bigcap_j\bigcup_{n\geq N}f_n^{-1}\left(\lambda+\frac1i-\frac1j,\infty\right]
-  \end{align*}
-  Once again, this establishes that $f^{-1}(S)$ is measurable. Now an analogous argument will allow us to handle the case when $S=(-\infty,\mu)$. Since any open interval is an intersection of two open rays, and any open set is a countable union of intervals, we can conclude that for any open $S$ the set $f^{-1}(S)$ is measurable. This establishes (b).
-
-  Next we argue that (b) implies (a). Suppose that $f$ satisfies condition (b). Given any $n$, we will define a nonnegative simple function $f_n\leq f$ as follows:
-  \[f_n(x)=
-    \begin{cases}
-      \max\set{\frac{i}{2^n}\mid \frac{i}{2^n}\leq f(x)\text{ and } \frac{i}{2^n}\leq n}&x\in[-n,n]^d\\
-      0&\text{otherwise}
-    \end{cases}
-  \]
-  The above prescription clearly ensures that $f_n\leq f$, that $f_n$ is bounded above by $n$, and that $f_n$ has bounded support $[-n,n]^d$. Moreover it is not difficult to check that $f_n\leq f_{n+1}$ and that $f_n\to f$. It remains only to show that $f_n$ is simple, and since $f_n$ clearly takes just finitely many values we really only have to check that it takes each of its values on a measurable set. For this, for example we have $f_n(x)=\frac{i}{2^n}$ if and only if $f(x)$ lies in the interval $[\frac{i}{2^n},\frac{i+1}{2^n})$. It follows from property (b) that $f_n^{-1}(\frac{i}{2^n})$ is a measurable set, and therefore we have that $f_n$ is simple and $f$ satisfies property (a).
-
-  Finally it is trivial that (a) implies $f$ is measurable, so we have completed the proof.
-\end{proof}
-
-It is worth remarking that by property (b) of the Lemma, measurability can be viewed as a massive generalization of continuity. Recall that a function $f$ is continuous if and only if whenever $S$ is open we have $f^{-1}(S)$ open. In property (b), we ask merely that $f^{-1}(S)$ be Lebesgue measurable, a much weaker demand.
-
-Notice also that since preimages are stable under unions, intersections, and complements, property (b) implies that if $S$ is Borel then $f^{-1}(S)$ will be measurable too. But if $S$ is merely measurable, there is no guarantee that $f^{-1}(S)$ will be measurable! To see this consider a function $f$ which is a bijection between $[0,1]$ and a null set. For example one can map $[0,1]$ into the Cantor set $C$ injectively almost everywhere by operating on binary and ternary expansions as follows:
-\[0.b_1b_2b_3\cdots\text{ (base 2)}\quad\mapsto\quad 0.(2b_1)(2b_2)(2b_3)\cdots\text{ (base 3)}
-\]
-Now if $N$ is a Lebesgue nonmeasurable subset of $[0,1]$, we have that $S=f(N)$ is null but the preimage $f^{-1}(S)$ is non-measurable.
-
-To close the section, we extended the definition of measurable function from nonnegative functions only to complex-valued functions in the following way. Recall that if $f$ is a real-valued function, then we can define its \emph{positive and negative parts}:
-\begin{align*}
-  f^+&=\max(f,0)\\
-  f^-&=\max(-f,0)
-\end{align*}
-We then have that $f^+$ and $f^-$ are nonnegative functions with $f=f^+-f^-$.
-
-\begin{defn}
-  If $f$ is an almost-everywhere defined complex-valued function on $\RR^n$ then $f$ is a \emph{measurable function} if and only if the positive and negative parts of its real and imaginary parts are measurable functions.
-\end{defn}
-
-We note that the above defintion is equivalent to the alternate approach of simply replacing nonnegative simple functions with complex-valued simple functions in the definition of measurable function.
-
-\begin{lem}
-  If $f$ is a complex-valued function on $\RR^d$ then $f$ is measurable if and only if $f$ is a pointwise limit of complex-valued simple functions.
-\end{lem}
-
-\begin{exerc}
-  Show that $\lim x_n=x$ if and only if $\liminf x_n=x=\limsup x_n$.
-\end{exerc}
-
-\begin{exerc}[Tao, Ex 1.3.3]
-  \ldots
-\end{exerc}
-
-\begin{exerc}[Tao, Ex 1.3.4]
-  Show that if $f$ is a bounded, nonnegative measurable function on $\RR^d$, then there is a sequence of bounded simple functions $f_n$ which converges uniformly to $f$ (not just pointwise).
-\end{exerc}
-
-\begin{exerc}[Tao, Ex 1.3.5]
-  Let $f$ be a nonnegative function on $\RR^d$. Show that $f$ is simple if and only if $f$ is measurable and takes on at most finitely many values.
-\end{exerc}
-
-\begin{exerc}[Tao, Ex 1.3.6]
-  If $f$ is a nonnegative measurable function, show that the region under $f$ is a measurable set.
-\end{exerc}
-
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue integration of nonnegative functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.3.3
-\end{reading}
 
-Previously we defined the simple functions, showed that they can be integrated in an obvious way, and showed that integral satisfied basic desirable properties such as additivity. Next we will define the lower integral for an arbitrary nonnegative function using approximations by simple integrals. After establishing some basic properties of the lower integral, we will see that it behaves very well when applied to measurable functions, and in that case we will simply call it the Lebesgue integral.
 
 \begin{defn}
   Let $f$ be a nonnegative function on $\RR^d$. We define the \emph{lower Lebesgue integral} of $f$ by
@@ -687,10 +318,6 @@ Previously we defined the simple functions, showed that they can be integrated i
   \]
   If $f$ is measurable, we define the \emph{Lebesgue integral} of $f$ to be $\int f=\lint f$.
 \end{defn}
-
-Before investigating the Lebesgue integral itself, we will describe several properties of the lower Lebesgue integral. While it is also possible to define the upper Lebesgue integral, it is of more limited use than in the Riemann case. Later we will define the upper Lebesgue integral just for bounded functions with bounded support. In general there are functions which are measurable and should have finite integral, that do have the correct lower Lebesgue integral, but do not have a finite upper Lebesgue integral.
-
-It is clear that the lower Lebesgue integral agrees with the simple integral on the simple functions. It also inherits the equivalence and monotonicity properties from the simple integral, but not linearity. Recall that $m^*$ was merely subadditive; this is essentially because it was defined as an infumum. On the other hand the lower Lebesgue integral will be superadditive; this is essentially because it is defined as a supremum.
 
 \begin{prop}
   The lower Lebesgue integral satisfies the properties:
@@ -701,20 +328,6 @@ It is clear that the lower Lebesgue integral agrees with the simple integral on 
   \end{enumerate}
 \end{prop}
 
-\begin{proof}
-  The equivalence and monotonicity properties are clear from the analogous properties of simple integrals. For superadditivity, let $\epsilon>0$ be given and find simple functions $h$ and $k$ such that $h\leq f$, $k\leq g$, $\lint f-\sint h<\epsilon$, and $\lint g-\sint k<\epsilon$. Then we have $h+k\leq f+g$, and using monotinicity plus additivity for simple integrals:
-  \begin{align*}
-    \lint(f+g)&\geq\sint(h+k)\\
-              &=\sint h+\sint k\\
-              &>\lint f+\lint g-2\epsilon
-  \end{align*}
-  Letting $\epsilon\to0$, we obtain the desired result.
-\end{proof}
-
-The following fundamental pair of results establish that arbitrary functions can be approximated well by bounded functions with bounded support. This will be very useful since the Lebesgue integral is much easier to work with in this case.
-
-% The essence of the truncation lemmas: for simple functions, range truncation is trivial, and support truncation just boils down to the upwards MCT. In both cases we then pass to sups in a straightforward way.
-
 \begin{lem}
   Let $f$ be a nonnegative function on $\RR^d$. The lower Lebesgue integral satisfies the following identities.
   \begin{enumerate}
@@ -723,45 +336,9 @@ The following fundamental pair of results establish that arbitrary functions can
   \end{enumerate}
 \end{lem}
 
-\begin{proof}
-  (a) Let us first assume that $\lint f<\infty$. Given $\epsilon>0$ we can find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. By our assumption $g$ must be bounded almost everywhere, which implies that for $N$ large enough we have $g\leq f^N$ too. Now by monotonicity $\lint f-\lint f^N\leq \lint f-\sint g<\epsilon$, which shows the desired result. The argument is similar in the case $\lint f=\infty$.
-
-  (b) Again let $\epsilon$ be given and find a simple function $g$ such that $g\leq f$ and $\lint f-\sint g<\epsilon$. Write $g=\sum_1^kc_i\chi_{A_i}$. Now we look at the simple integral of $g_N$:
-  \begin{align*}
-    \sint g_N&=\sum_1^kc_im(A_i\cap[-N,N]^d)\\
-                    &\to\sum_1^kc_im(A_i)=\sint g
-  \end{align*}
-  Where here $N\to\infty$ and we are applying the upwards monotone convergence theorem. Thus we can find $N$ large enough that $\sint g-\sint g_N<\epsilon$. Again using monotonicity we conclude that $\lint f-\lint f_N\leq\lint f-\sint g_N<2\epsilon$.
-\end{proof}
-
-We are now ready to show that the Lebesgue integral behaves well when applied to measurable functions.
-
 \begin{thm}
   If $f,g$ are nonnegative measurable functions, then $\int(f+g)=\int f+\int g$.
 \end{thm}
-
-\begin{proof}
-  First suppose that $f,g$ are bounded functions with bounded supports. For such functions, it is useful to define the upper Lebesgue integral in the obvious way:
-  \[\ovint f=\inf\left\{\left.\sint h\;\right|\;f\leq h\text{, $h$ simple}\right\}
-  \]
-  We claim that under our hypotheses, we in fact have $\lint f=\ovint f$ (and similarly for $g$ and $f+g$).
-
-  % The essence of the following paragraph: For simple functions it is immediate that the lower and upper integrals agree; they are both equal to the simple integral. For bounded/bounded support functions, we can use a uniform limit to achieve it for them too.
-
-  To see this recall that since $f$ is measurable, we can find simple functions $f_n$ such that $f_n\leq f_{n+1}$ and $f_n\to f$. Note also that since $f$ is bounded, the construction of the $f_n$ from Theorem~\ref{thm:measurable-equiv} in fact showed that the $f_n$ converge \emph{uniformly} to $f$. Thus given $\epsilon>0$ we can find $n$ such that
-  \[f\geq f_n\geq f-\epsilon\chi_S
-  \]
-  where $S$ is a support for $f$. Taking $\lint$ of the first inequality and $\ovint$ of the second, we obtain
-  \[\lint f\geq\sint f_n\geq\ovint(f-\epsilon\chi_S)=\ovint f-\epsilon m(S)
-  \]
-  Letting $\epsilon\to0$ we obtain the desired result.
-
-  Now we have already shown that $\lint$ satisfies the superadditivity property. Using a parallel argument, it is easy to show that $\ovint$ satisfies the analogous \emph{subadditivity} property. And since $\lint=\ovint$ on the functions $f$, $g$, and $f+g$, we can put the two together to conclude the additivity property!
-
-  Finally for general measurable functions $f$ and $g$, we can always apply the truncation lemmas to replace $f$ and $g$ with bounded functions with bounded supports. Each truncation costs us an $\epsilon$ in the additivity property, but afterwards we can let $\epsilon\to0$ and obtain the desired result.
-\end{proof}
-
-Later we will show that the Lebesgue integral even satisfies countable additivity for nonnegative measurable functions.
 
 \begin{exerc}[Tao, ex 1.3.13]
   Let $f$ be a nonnegative measurable function on $\RR$. Show that $\int f$ is equal to the $2$-dimensional Lebesgue measure of the region
@@ -781,32 +358,77 @@ Later we will show that the Lebesgue integral even satisfies countable additivit
   Give an example of a nonnegative function which is measurable, but has different lower and upper Lebesgue integrals.
 \end{exerc}
 
-\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lebesgue measurability of functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{defn}
+  A nonnegative function $f$ on $\RR^n$ is said to be a \emph{measurable function} if $f$ is the pointwise limit of nonnegative simple functions.
+\end{defn}
+
+\begin{thm}
+  \label{thm:measurable-equiv}
+  A nonnegative function $f$ is measurable if and only if either of the following holds.
+  \begin{enumerate}
+  \item there is a sequence $f_n$ of simple functions such that the $f_n$ are bounded and have bounded support, the $f_n$ are increasing $f_n\leq f_{n+1}$, and $f=\sup f_n$;
+  \item for any open set $S$ (respectively: closed set, interval, ray, etc) the preimage $f^{-1}(S)$ is Lebesgue measurable.
+  \end{enumerate}
+\end{thm}
+
+It is worth remarking that by property (b) of the Lemma, measurability can be viewed as a massive generalization of continuity. Recall that a function $f$ is continuous if and only if whenever $S$ is open we have $f^{-1}(S)$ open. In property (b), we ask merely that $f^{-1}(S)$ be Lebesgue measurable, a much weaker demand.
+
+Notice also that since preimages are stable under unions, intersections, and complements, property (b) implies that if $S$ is Borel then $f^{-1}(S)$ will be measurable too. But if $S$ is merely measurable, there is no guarantee that $f^{-1}(S)$ will be measurable! To see this consider a function $f$ which is a bijection between $[0,1]$ and a null set. For example one can map $[0,1]$ into the Cantor set $C$ injectively almost everywhere by operating on binary and ternary expansions as follows:
+\[0.b_1b_2b_3\cdots\text{ (base 2)}\quad\mapsto\quad 0.(2b_1)(2b_2)(2b_3)\cdots\text{ (base 3)}
+\]
+Now if $N$ is a Lebesgue nonmeasurable subset of $[0,1]$, we have that $S=f(N)$ is null but the preimage $f^{-1}(S)$ is non-measurable.
+
+To close the section, we extended the definition of measurable function from nonnegative functions only to complex-valued functions in the following way. Recall that if $f$ is a real-valued function, then we can define its \emph{positive and negative parts}:
+\begin{align*}
+  f^+&=\max(f,0)&
+  f^-&=\max(-f,0)
+\end{align*}
+We then have that $f^+$ and $f^-$ are nonnegative functions with $f=f^+-f^-$.
+
+\begin{defn}
+  If $f$ is an almost-everywhere defined complex-valued function on $\RR^n$ then $f$ is a \emph{measurable function} if and only if the positive and negative parts of its real and imaginary parts are measurable functions.
+\end{defn}
+
+\begin{lem}
+  If $f$ is a complex-valued function on $\RR^d$ then $f$ is measurable if and only if $f$ is a pointwise limit of complex-valued simple functions.
+\end{lem}
+
+% \begin{exerc}
+%   Show that $\lim x_n=x$ if and only if $\liminf x_n=x=\limsup x_n$.
+% \end{exerc}
+
+\begin{exerc}[Tao, Ex 1.3.4]
+  Show that if $f$ is a bounded, nonnegative measurable function on $\RR^d$, then there is a sequence of bounded simple functions $f_n$ which converges uniformly to $f$ (not just pointwise).
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.3.5]
+  Let $f$ be a nonnegative function on $\RR^d$. Show that $f$ is simple if and only if $f$ is measurable and takes on at most finitely many values.
+\end{exerc}
+
+\begin{exerc}[Tao, Ex 1.3.6]
+  If $f$ is a nonnegative measurable function, show that the region under $f$ is a measurable set.
+\end{exerc}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lebesgue integration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.3.4
-\end{reading}
-
-We have now defined and explored the Lebesgue integral for nonnegative functions. As previously explained, we will now proceed to extend this definition to signed and even complex-valued functions. Some care will of course be needed; to see this consider what would happen when trying to find the integral of $\sin(x)$ or of $1/x$ over the whole real line! In order to proceed, we will provide an assumption which guarantees that such issues will not occur.
 
 \begin{defn}
   Let $f$ be a complex-valued measurable function on $\RR^d$ (it need only be defined almost everywhere). We say that $f$ is \emph{absolutely integrable}, or a member of $L^1$, if $\int|f|<\infty$.
 \end{defn}
 
-We can now define the Lebesgue integral for absolutely integrable functions $f$, by using the real, imaginary, positive, and negative parts.
-
 \begin{defn}
   If $f$ is absolutely integrable and real-valued, let $\int f=\int f^+-\int f^-$. If $f$ is absolutely integrable and complex-valued, let $\int f=\int\Re f+i\int\Im f$.
 \end{defn}
-
-Since $f^+,f^-\leq|f|$, the hypothesis of absolute integrability means that $\int f$ will not be an indeterminate expression. The definition of $\int f$ agrees with the nonnegative integral when both are defined.
-
-Functions which are not absolutely integrable include $\sin(x)$ and $1/x$, defined on all of $\RR$. Another interesting example is the function $f=(-1)^n/n\chi_{[n,n+1)}$. In some sense this integral ``should'' have value $\sum(-1)^n/n$, which is a convergent series. One may wish to define an improper integral which works for $f$, but it is difficult to do so without sacrificing some of the properties of the Lebesgue integral.
-
-Next, we consider some of the elementary properties of the absolutely convergent integral. Our first result states that the real-valued version of the absolutely convergent Lebesgue integral agrees with and extends the Riemann integral.
 
 %% monotonicity?
 
@@ -816,13 +438,6 @@ Next, we consider some of the elementary properties of the absolutely convergent
   Let $f\colon[a,b]\to\RR$ be a Riemann integrable function. Then intepreting $f$ as a function defined on all of $\RR$ which is zero outside of $[a,b]$, we have that $f$ is Lebesgue absolutely integrable with the same value.
 \end{prop}
 
-\begin{proof}
-  Let us first assume that $f$ is nonnegative. Then since pc functions are simple, we clearly have that the lower Darboux integral of $f$ is less than or equal to the lower Lebesgue integral of $f$. On the other hand by monotonicity the lower Lebesgue integral of $f$ is less than or equal to the upper Darboux integral of $f$. Since the lower and upper Darboux integrals are equal, we must have that it agrees with the Lebesgue integral of $f$.
-
-  If $f$ is real-valued, then we can write $\int f=\int f^+-\int f^-$, and this expression is valid for both the Darboux and absolutely convergent Lebesgue integrals. Applying the previous argument to both $f^+$ and $f^-$, we have the desired result.
-\end{proof}
-
-Next, the absolutely convergent Lebsegue integral of course inherits many of the properties of the nonnegative integral, and has some new ones too.
 
 \begin{prop}
   \begin{enumerate}
@@ -831,40 +446,9 @@ Next, the absolutely convergent Lebsegue integral of course inherits many of the
   \end{enumerate}
 \end{prop}
 
-\begin{proof}
-  We should first check that if $f,g$ are absolutely integrable, then $f+g$ and $cf$ are absolutely integrable. For the first we can simply use the classical triangle inequality $|f+g|\leq|f|+|g|$. Then monotonicity implies that $\int|f+g|\leq\int|f|+\int|g|$ is finite. For the second, simply note that $\int|cf|=\int|c||f|=|c|\int|f|$ is again finite.
-
-  Now linearity is easily proved using the analogous property for the nonnegative integral. For example, if $f,g$ are real-valued and $h=f+g$, then $h^+-h^-=f^+-f^-+g^+-g^-$. Rearranging terms we have $f^-+g^-+h^+=f^++g^++h^-$. From the nonnegative linearity we know $\int f^-+\int g^-+\int h^+=\int f^++\int g^++\int h^-$. Rearranging back, we obtain $\int h=\int f+\int g$.
-
-  For the triangle inequality for integrals, first assume that $f$ is real-valued. Then we can write $f=f^+-f^-$ and $|f|=f^++f^-$. Thus using linearity together with the triangle inequality, we have
-  \begin{align*}
-    \left|\int f\right|&=\left|\int f^+-\int f^-\right|\\
-                       &\leq\int f^++\int f^-\\
-                       &=\int|f|
-  \end{align*}
-  Next if $f$ is complex-valued we can find an angle $\theta$ such that $e^{i\theta}\int f=\left|\int f\right|$. Again using linearity, together with the definition of the complex-valued integral, we have
-  \begin{align*}
-    \left|\int f\right|&=\Re\left|\int f\right|\\
-                       &=\Re e^{i\theta}\int f\\
-                       &=\int \Re e^{i\theta}f\\
-                       &\leq\int|f|
-  \end{align*}
-  The last inequality following from monotonicity, and gives the desired result.
-\end{proof}
-
-One of the most appreciable aspects of the theory of integration is that the class of absolutely integrable functions forms a vector space. Although the space is of course infinite dimensional, it has a substantial amount of structure! Recall that a nonnegative function $\|\cdot\|$ defined on a vector space is called a \emph{seminorm} if $\|v+w\|\leq\|v\|+\|w\|$, and $\|cv\|=|c|\|v\|$.
-
 \begin{prop}
   The collection of absolutely integrable functions forms a vector space. In fact it is a seminormed vector space with the seminorm $\|f\|=\int|f|$.
 \end{prop}
-
-\begin{proof}
-  We argued in the previous proof that $\int|f+g|\leq\int|f|+\int|g|$ and also that $\int|cf|=|c|\int|f|$. These two identities imply that the space of absolutely integrable functions is closed under linear combinations and moreover that the two properties of the seminorm hold.
-\end{proof}
-
-A seminorm is called a \emph{norm} if it additionally satisfies $\|v\|=0\implies v=0$. If one is willing to \emph{identify} functions $f,g$ which agree almost everywhere as being equal, then the norm $\|f\|=\int|f|$ becomes a true norm. Indeed, it is an exercise to check that if $\int|f|=0$ then $f=0$ almost everywhere, and thus in this sense $f=0$.
-
-While the vector space of absolutely integrable functions is infinite dimensional, the next result shows that it is not too unwieldy topologically. Recall that a subset $D$ of a (semi-)normed vector space $V$ is \emph{dense} if for every $v\in V$ and every $\epsilon$ there exists $d\in D$ such that $\|v-d\|<\epsilon$. In other words, $D$ is dense if every element of $V$ can be approximated by elements of $D$.
 
 \begin{thm}
   \label{thm:density}
@@ -876,15 +460,24 @@ While the vector space of absolutely integrable functions is infinite dimensiona
   \end{enumerate}
 \end{thm}
 
-\begin{proof}
-  (a) First assume that $f$ is nonnegative. Then by the definition of the integral, we can find a simple function $g$ such that $g\leq f$ and $\int f-\int g<\epsilon$. It follows that $\int(f-g)<\epsilon$, and since $f-g$ is nonnegative, clearly $\int|f-g|<\epsilon$. It is easy to extend this argument to complex-valued functions using the standard technique.
+\begin{cor}
+  Given \(f\) absolutely integrable  and \(\epsilon>0\)
+  \begin{enumerate}
+  \item \(\exists g\) simple integrable s.t. \(\int|f-g|<\epsilon\) (symmetric triangle inequality)
+  \item \(\exists h\) boxwise const s.t. \(\int|f-h|<\epsilon\)
+  \item \(\exists \psi\) continuous with \(\psi\equiv0\) on complement of a bdd set s.t.  \(\int|f-\psi|<\epsilon\)
+  \end{enumerate}
+\end{cor}
 
-  (b) We now know from (a) that it is sufficient to approximate any simple function by a function of this type. Using linearity, it is enough to approximate a single term $\chi_A$, with $m(A)<\infty$, by a function of this type. We have already seen that for any such $A$ there exists an elementary set $E$ such that $m(A\triangle E)<\epsilon$. This means that $\int|\chi_A-\chi_E|<\epsilon$, so the result follows.
+\begin{thm}[Egorov]
+  Measurable \(f_n\to f\) pointwise a.e., then \(\exists B\) meas. (bad set) with \(m(B)<\epsilon\) s.t. \(f_n\to f\) uniformly on each bdd subset of \(\RR\backslash B\).
+\end{thm}
 
-  (c) We now know from (b) that it is sufficient to approximate any $\chi_B$, $B$ a box, by a function of this type. It is possible to do this explicity. For example in one dimension we have $B=I$ is an interval, and the step function $I$ can easily be approximated by a continuous function which looks like a trapezoid.
-\end{proof}
+\begin{thm}[Lusin]
+  Measurable \(f\) absolutely integrable, \(\epsilon>0\), then \(\exists B\) meas. (bad set) with \(m(B)<\epsilon\) s.t. \(f|_{\RR^d\backslash B}\) is a continuous function on \(\RR^d\backslash B\).
+  (can choose \(B\) open and \(\RR^d\backslash B\) closed).
+\end{thm}
 
-We will see later that this density result fits in with several results which loosely state that integrable functions are ``almost continuous.''
 
 \begin{exerc}[Tao, ex 1.3.25(i)]
   Let $f$ be absolutely integrable. Show that for any $\epsilon>0$ there exists a bounded measurable set $A$ such that $\int |f|\chi_{A^c}<\epsilon$.
@@ -898,143 +491,10 @@ We will see later that this density result fits in with several results which lo
   Show that the space of absolutely integrable functions is separable, that is, has a countable dense subset.
 \end{exerc}
 
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Convergence theorems}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.4.5, though assume all functions are defined on $\RR^d$.
-\end{reading}
-
-In the previous section we have seen that the Lebesgue integral satisfies all of the key properties that the Riemann integral does, while at the same time being able to integrate many more functions. But given that the Lebesgue measure enjoys much stronger properties than the Jordan measure does, it is natural to ask whether the Lebesgue integral does too.
-
-In order to find such strong properties, a good test question to ask is whether $f_n\to f$ implies $\int f_n\to f$. We saw that in the case of the Riemann integral, this does hold if $f_n,f$ are all defined on an interval and $f_n\to f$ uniformly. In the case of the Lebesgue integral, the same proof shows that it works when $f_n,f$ are all supported on a common set of finite measure, and $f_n\to f$ uniformly.
-
-But without these special hypotheses, such a convergence theorem can fail. So before looking for situations where it does hold, let us examine some of the examples where it does not.
-
-\begin{example}[Domain escape to infinity]
-  Let $f_n=\chi_{[n,n+1]}$ and $f=0$. That is, $f_n$ is a sequence of moving unit bumps. Then $f_n\to f$ pointwise (not uniformly), but we have $\int f_n=1$ for all $n$, and $\int f=0$.
-\end{example}
-
-\begin{example}[Support escape to infinity]
-  Let $f_n=\frac1n\chi_{[0,n]}$ and $f=0$. That is, $f_n$ is a sequence of widening and shortening bumps. Then $f_n\to f$ uniformly, but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
-\end{example}
-
-\begin{example}[Range escape to infinity]
-  Let $f_n=n\chi_{[1/n,2/n]}$ and $f=0$. That is, $f_n$ is a sequence of narrowing and tallening bumps. Then $f_n\to f$ pointwise (not uniformly), but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
-\end{example}
-
-One should observe that in all three of our examples where a convergence theorem fails, mass was destroyed in the limit. In particular, we do not have an example where new mass is created in the limit. The next result states that mass can only be destroyed, and never created.
-
-\begin{thm}[Fatou's lemma]
-  Let $f_n$ be nonnegative measurable functions. Then
-  \[\int\liminf f_n\leq\liminf\int f_n
-  \]
-  In particular, if $f_n\to f$ then we have $\int f\leq\liminf\int f_n$.
-\end{thm}
-
-We will prove Fatou's lemma shortly, but first we will use it to prove the dominated convergence theorem. The dominated convergence theorem essentially states that so long as we can close off the avenues through which the mass of a region can escape to infinity, then we will have a convergence theorem.
-
-\begin{thm}[Dominated convergence theorem]
-  Let $f_n$ be a sequence of measurable complex-valued functions and suppose that $f_n\to f$. Suppose that there exists a nonnegative function $G$ such that $\int|G|<\infty$ and for all $n$, we have $|f_n|\leq G$. Then $\int f_n\to \int f$.
-\end{thm}
-
-Intuitively speaking, the function $G$ acts as an umbrella under which the convergence $f_n\to f$ occurs. The assumption that the umbrella covers just a finite amount of area guarantees that mass cannot escape! The following proof will be carried out under the assumption that Fatou's lemma is true.
-
-\begin{proof}[Proof of the dominated convergence theorem]
-  By separating $f_n$ and $f$ into their real and imaginary parts, we may assume that they are all real-valued. Thus our hypothesis says that $-G\leq f_n\leq G$. Since $f_n\to f$ we also have that $-G\leq f\leq G$. Now $f_n+G$ is nonnegative, so we can use Fatou's lemma to obtain:
-  \[\int f+G\leq\liminf\int f_n+G
-  \]
-  Similarly $G-f_n$ is nonnegative so we can again use Fatou's lemma to obtain:
-  \[\int G-f\leq\liminf\int G-f_n
-  \]
-  Putting the two equations together, we conclude that
-  \[\limsup\int f_n\leq\int f\leq\liminf\int f_n
-  \]
-  It follows that $\int f=\lim\int f_n$.
-\end{proof}
-
-We still have to give a proof of Fatou's lemma. As a first approximation, we will examine what happens in the special case that the functions $f_n$ are nonnegative and the sequence of $f_n$'s is monotone increasing in $n$.
-
-\begin{thm}[Monotone convergence theorem]
-  Let $f_n$ be a sequence of nonnegative measurable functions, and suppose that $f_n\leq f_{n+1}$ for all $n$. Let $f=\sup f_n$, so that we automatically have $f_n\to f$. Then $\int f_n\to\int f$.
-\end{thm}
-
-\begin{proof}
-  We first observe that if the $f_n$ were all characteristic functions, then this theorem would follow directly from the upwards monotone convergence theorem for Lebesgue measurable sets. Thus our strategy is to reduce to a situation in which we can apply the upwards monotone convergence theorem.
-
-  First, since $f_n\leq f_{n+1}$, by the montonicity of the integral we know that $\int f_n\leq\int f_{n+1}$. Similarly since $f_n\leq f$ we know that $\int f_n\leq\int f$. It follows that the values $\int f_n$ converge and that $\lim\int f_n\leq\int f$.
-
-  To show that $\int f\leq\lim\int f_n$, it is sufficient to show that $\int g\leq \lim\int f_n$ for any simple function $g$ such that $g\leq f$. Given such a $g$, we can express it as $g=\sum c_i\chi_{A_i}$ where the $A_i$ are disjoint measurable sets. Using the range truncation lemma, we can suppose that $c_i\neq\infty$ for all $i$.
-
-  Now fix just one of the sets $A_i$ and let $\epsilon>0$ be given. We define the sets
-  \[A_{i,n}=\{x\in A_i\mid f_n(x)>(1-\epsilon)c_i\}
-  \]
-  About this defintion, we first note that it immediately implies $f_n>\sum(1-\epsilon)c_i\chi_{A_{i,n}}$. We second note that for all $x\in A_i$, for $n$ large enough, we have $f_n(x)\geq(1-\epsilon)g(x)=(1-\epsilon)c_i$. This means that $A_i$ is the union of the $A_{i,n}$. Thus the upwards monotone convergence theorem for sets implies that $m(A_{i,n})\to m(A_i)$ as $n\to\infty$.
-
-  Putting this all together, we have
-  \begin{align*}
-    \lim\int f_n&\geq\lim\int\sum(1-\epsilon)c_i\chi_{A_{i,n}}\\
-                &=\lim\sum (1-\epsilon)c_im(A_{i,n})\\
-                &=\sum (1-\epsilon)c_im(A_i)\\
-                &=(1-\epsilon)\int g
-  \end{align*}
-  Taking $\epsilon\to0$ we therefore conclude that $\lim\int f_n\geq\int g$, as desired.
-\end{proof}
-
-It is worth remarking that the monotone convergence theorem can fail for signed functions $f_n$. As a silly example, if $f_n=-1/n$ then $f_n\to0$, $\int f_n=-\infty$ but $\int f=0$. The monotone convergence theorem has the following easy but important consequence that the nonnegative Lebesgue integral is \emph{countably} linear, not just finitely linear!
-
-\begin{cor}[Tonelli's theorem]
-  If $f_n$ is a sequence of nonnegative measurable functions, then $\int\sum f_n=\sum\int f_n$.
-\end{cor}
-
-\begin{proof}
-  Using the monotone convergence theorem and then finite linearity, we have:
-  \begin{align*}
-    \int\sum f_n
-    &&=\int\lim\sum_1^Nf_n
-    &&=\lim_N\int\sum_1^Nf_n
-    &&=\lim_N\sum_1^N\int f_n
-    &&=\sum\int f_n
-  \end{align*}
-  as desired.
-\end{proof}
-
-Next we use the very special monotone convergence theorem to establish Fatou's lemma, which we needed in the proof of the dominated convergence theorem.
-
-\begin{proof}[Proof of Fatou's lemma]
-  We will need the general fact that $\int\inf g_n\leq\inf\int g_n$. This holds simply because $\int\inf g_n\leq\int g_n$ for any particular $n$, and then one can take the $\inf_n$ over both sides.
-
-  Now recall that $\liminf f_n=\lim_N\inf_{n\geq N}f_n$. The functions $\inf_{n\geq N}f_n$ are increasing in $N$, so using the monotone convergence theorem together with the above we have
-  \begin{align*}
-    \int\liminf f_n&&=\int\lim_N\inf_{n\geq N} f_n
-                    &&=\lim_N\int\inf_{n\geq N}f_n
-                    &&\leq\lim_N\inf_{n\geq N}\int f_n
-                    &&=\liminf\int f_n
-  \end{align*}
-  as desired.
-\end{proof}
-
-\begin{exerc}[Tao, ex 1.44, 1.45]
-  \begin{enumerate}
-    \item Let $A_n$ be measurable sets and assume that $\sum m(A_n)<\infty$. Show that almost every $x\in\RR^d$ is contained in at most finitely many of the $A_n$. [Hint: Use Tonelli's theorem on the functions $\chi_{A_n}$.] This is the Borel--Cantelli lemma.
-    \item Give a counterexample to the above conclusion, showing that the hypothesis $\sum m(A_n)<\infty$ cannot be replaced by the weaker condition $\lim m(A_n)=0$.
-  \end{enumerate}
-\end{exerc}
-
-\begin{exerc}
-  Use the dominated convergence theorem to show that the harmonic series $\sum\frac1n$ diverges. [Hint: Let $f_n=\frac1n\chi_{[0,n]}$, show that $\sum\frac1n<\infty$ plus the dominated convergence theorem implies $\int f_n\to 0$, and obtain a contradiction from this.]
-\end{exerc}
-
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract measure theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{reading}
-  Tao, \S 1.4.1--1.4.3
-\end{reading}
 
 The Lebesgue measure and integration theory that we have developed can be regarded as a model for an abstract concept of a measure and integral. The situation is very similar to other areas of mathematics. Consider the following examples of a concrete and abstract concept:
 \begin{itemize}
@@ -1044,13 +504,9 @@ The Lebesgue measure and integration theory that we have developed can be regard
 \item the space $\RR^d$ with its $\RR$-linear combinations is a model for the definiton of vector space.
 \end{itemize}
 
-An abstract measure function $\mu$ on a space $X$ will be one which satisfies the most fundamental properties that we have worked to prove for the Lebesgue measure. Of course the Lebesgue measure $m$ can only be applied to the measurable subsets of $\RR^d$, so we should only expect to be able to apply an abstract measure $\mu$ to a subcollection of the subsets of $X$. Thus we make the following definition of an abstract space to take the place of $\RR^d$ and its measurable sets.
-
 \begin{defn}
   A \emph{measurable space} is a pair $(X,\mathcal B)$ where $X$ is any set and $\mathcal B$ is a Boolean \emph{$\sigma$-algebra} on $X$: a collection of subsets of $X$ which contains the sets $\emptyset$ and $X$, and is closed under countable intersections, countable unions, and complements.
 \end{defn}
-
-Thus if we let $\mathcal L$ denote the Lebesgue measurable subsets of $\RR^d$, we have that $(\RR^d,\mathcal L)$ is a measurable space. For another example, if $X$ is any set then we can always let $\mathcal F$ be the collection of all countable or co-countable subsets of $X$. Finally if $X$ is any topological space then it can be viewed as a measurable space by taking its $\sigma$-algebra to be the collection of Borel subsets of $X$: A set is said to be Borel if it is constructible from the open sets using countable intersections, countable unions, and complements.
 
 \begin{defn}
   Suppose $X$ is a set and $\mathcal B$ is a $\sigma$-algebra on $X$. A function $\mu\colon\mathcal B\to[0,\infty]$ is said to be a \emph{measure} if it satisfies
@@ -1059,10 +515,6 @@ Thus if we let $\mathcal L$ denote the Lebesgue measurable subsets of $\RR^d$, w
   \item (countable additivity) for every sequence of pairwise disjoint sets $A_n\in\mathcal B$, we have $\mu(\bigcup A_n)=\sum(\mu(A_n))$.
   \end{enumerate}
 \end{defn}
-
-Thus the Lebesgue measure $m$ on $(\RR^d,\mathcal L)$ is an example of a measure. For another example, the cardinality measure $\mu(A)=|A|$ is a measure on the measurable space $(X,\mathcal P(X))$. Another very simple example is a Dirac measure on $(X,\mathcal P(X))$: if $x\in X$ we can define $\mu_x(A)=1$ if $x\in A$ and $=0$ if $x\notin A$. Finally it is worth noting that given several measures $\mu_i$ on the same measurable space $(X,\mathcal B)$, we can form new measures using linear combinations. That is, the measure $\mu=\sum c_i\mu_i$ is defined by $\mu(A)=\sum c_i\mu_i(A)$.
-
-Many of the properties of Lebesgue measure that we have established can be proved solely using the axioms of a measure.
 
 \begin{prop}
   Suppose that $\mathcal B$ is a $\sigma$-algebra on $X$, and $\mu$ is a measure on $\mathcal B$. Let $A,B$, and $A_n$ denote elements of $\mathcal B$. Then we have:
@@ -1075,19 +527,9 @@ Many of the properties of Lebesgue measure that we have established can be prove
   \end{itemize}
 \end{prop}
 
-Each of these items may be proved in exactly the same way as we have done for Lebesgue measure. Of course some properties of Lebesgue measure don't even make sense to state for a general measure. For instance the normality and translation-invariance properties don't make sense in general, since we may not have the notions of boxes or translations on a general space $X$.
-
-One further property of the Lebesgue measure which does not appear in the above list is that subsets of null sets should be null. This property does not follow directly from the axioms of a measure, and instead must be made into an additional axiom. We say that a $\sigma$-algebra $\mathcal B$ is \emph{complete} if whenever $A\in\mathcal B$ and $A'\subset A$ then $A'\subset\mathcal B$. We also say that measure $\mu$ is \emph{complete} if it is defined on a complete $\sigma$-algebra. It is an exercise to check that if $\mu$ is a measure, then it can always be extended to a complete measure.
-
-At this point we have only given very trivial examples of measure, besides the Lebesgue measure. Given the effort we invested to find the right construction of the Lebesgue measure, it may not surprise you to know that it is difficult to construct interesting examples of measures. In fact there is a very general and powerful method for constructing measures. The basic idea behind it is that it is easy to construct measures which are just finitely additive first. This mirrors the construction of Lebesgue measure, where we first constructed the elementary and Jordan measures.
-
-In order to define finitely additive measures, we have to modify the definition of measurable space.
-
 \begin{defn}
   A \emph{Boolean algebra} on $X$ is a collection of subsets of $X$ which contains the sets $\emptyset$, and $X$, and is closed under pairwise intersections, pairwise unions, and complements.
 \end{defn}
-
-We have seen several key examples of Boolean algebras on $\RR^d$: the collection of elementary sets together with their complements, and the collection of Jordan measurable sets together with their complements. If $X$ is any set we can always discuss the trivial Boolean algebra $\{\emptyset,X\}$ and the maximal Boolean algebra $\mathcal P(X)$.
 
 \begin{defn}
   Suppose $X$ is a set and $\mathcal A$ is a Boolean algebra on $X$. A function $\mu\colon\mathcal A\to[0,\infty]$ is said to be a \emph{finitely additive measure} if it satisfies
@@ -1097,12 +539,6 @@ We have seen several key examples of Boolean algebras on $\RR^d$: the collection
   \end{enumerate}
 \end{defn}
 
-The elementary measure is an example of a finitely additive measure, provided we take its value to be $\infty$ on any set which is the complement of an elementary set. A similar statement holds for the Jordan measure. But there are many other examples of finitely additive measures. For a simple example let $X$ be any set, and $\mathcal A$ the Boolean algebra of all finite or cofinite subsets of $X$. Then we can define a finitely additive measure by $\mu(A)=|A|$, the cardinality of $A$.
-
-Similar to the case with measures, the two simple axioms of a finitely additive measure further imply the monotonicity, inclusion--exclusion, and finite subadditivity properties.
-
-Unfortunately not all finitely additive measures give rise to true measures, necessitating the following definition.
-
 \begin{defn}
   Let $X$ be any set, $\mathcal A$ a Boolean algebra on $X$, and $\mu_0$ a finitely additive measure on $\mathcal A$. Then $\mu_0$ is said to be a \emph{premeasure} if it satisfies the additional axiom:
   \begin{itemize}
@@ -1110,13 +546,9 @@ Unfortunately not all finitely additive measures give rise to true measures, nec
   \end{itemize}
 \end{defn}
 
-The condition does not quite say that $\mu_0$ is countably additive, but rather that it has the potential to be countably additive. This is confirmed by the following keystone result of the subject, which we will prove in the next section.
-
 \begin{thm}[Consequence of Carath\'eodory's extension theorem]
   Let $X$ be a set, $\mathcal A$ an algebra on $X$, and $\mu_0$ a premeasure on $\mathcal A$. Let $\mathcal B$ be the $\sigma$-algebra generated by $\mathcal A$. Then $\mu_0$ extends to a measure $\mu$ on $\mathcal B$.
 \end{thm}
-
-The idea behind the proof is to use an analog of our construction of the Lebesgue outer measure $m^*$. First we define the notion of an abstract outer measure.
 
 \begin{defn}
   Let $X$ be any set and $\mu^*$ a function on all subsets of $X$. Then $\mu^*$ is said to be a \emph{outer measure} if it satisfies
@@ -1137,11 +569,6 @@ If $\mathcal A$ is an algebra on $X$, and $\mu_0$ is any function on $\mathcal A
   If $\mu^*$ is constructed as in Equation~\eqref{eq:outer}, then $\mu^*$ is an outer measure.
 \end{prop}
 
-\begin{proof}
-  The empty set and monotonicity axioms are clear from the definition. For countable subadditivity, let $E_i$ be given and $\epsilon>0$. Then for every $i$ there exists a sequence of $A_i^n$ such that $E_i\subset A_i^n$ and $\sum_n\mu_0(A_i^n)-\mu^*(E_i)<\epsilon/2^i$. It follows that $\bigcup E_i\subset\bigcup_{i,n} A_i^n$ and $\sum_{n.i}\mu(A_i^n)-\sum\mu^*(E_i)\leq\epsilon$. Therefore we have $\mu^*(\bigcup E_i)-\sum(\mu^*(E_i))\leq\epsilon$. Taking $\epsilon\to0$ the proof is complete.
-\end{proof}
-
-Recall that after we constructed Lebesgue outer measure $m^*$ we defined the collection of $m^*$-measurable sets as those which could be approximated well by open sets. If $X$ is just a set with an algebra or $\sigma$-algebra, we can't refer to the open sets. Thus to prove Carath\'eodory's extension theorem, it remains to show how to identify the collection of $\mu^*$-measurable sets. We will investigate this in the next section, as well as some applications of the extension theorem.
 
 \begin{exerc}[Tao, ex 1.4.26]
   Let $\mu$ be a measure on $(X,\mathcal B)$. Show that $\mathcal B$ can be extended to $\sigma$-algebra $\hat{\mathcal B}$ and $\mu$ to a measure $\hat\mu$ on $(X,\hat{\mathcal B})$ in such a way that $\hat\mu$ is complete.
@@ -1157,145 +584,61 @@ Recall that after we constructed Lebesgue outer measure $m^*$ we defined the col
 %   Give an example of a finitely additive measure that is not a premeasure. [Hint: work on the measurable space $(\NN,\mathcal P(\NN))$ and define $\mu_0$ separately for finite and infinite sets.]
 % \end{exerc}
 
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Construction of abstract measures}
+\section{Convergence theorems}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.7
-\end{reading}
+\begin{example}[Domain escape to infinity]
+  Let $f_n=\chi_{[n,n+1]}$ and $f=0$. That is, $f_n$ is a sequence of moving unit bumps. Then $f_n\to f$ pointwise (not uniformly), but we have $\int f_n=1$ for all $n$, and $\int f=0$.
+\end{example}
 
-In the previous section, we showed how to abstract the properties of the elementary measure to a finitely additive measure, and how to abstract the properties of the Lebesgue outer measure too. What we lacked was a definition of measurability, which in the Lebesgue case relied on the boxes or open subsets of $\RR^d$. For a general space $X$, we use the following much more subtle definition.
+\begin{example}[Support escape to infinity]
+  Let $f_n=\frac1n\chi_{[0,n]}$ and $f=0$. That is, $f_n$ is a sequence of widening and shortening bumps. Then $f_n\to f$ uniformly, but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
+\end{example}
 
-\begin{defn}
-  Suppose that $X$ is any set and $\mu^*$ is an outer measure on $X$. Then a subset $A\subset X$ is said to be \emph{$\mu^*$-measurable} if for every subset $S\subset X$ we have
-  \[\mu^*(S)=\mu^*(S\cap A)+\mu^*(S\setminus A)
+\begin{example}[Range escape to infinity]
+  Let $f_n=n\chi_{[1/n,2/n]}$ and $f=0$. That is, $f_n$ is a sequence of narrowing and tallening bumps. Then $f_n\to f$ pointwise (not uniformly), but once again we have $\int f_n=1$ for all $n$, and $\int f=0$.
+\end{example}
+
+\begin{thm}[Fatou's lemma]
+  Let $f_n$ be nonnegative measurable functions. Then
+  \[\int\liminf f_n\leq\liminf\int f_n
   \]
-\end{defn}
-
-To put this definition in context, it is an exercise to show that this property holds for Lebesgue measurable sets. Moreover it is this property that can be used to prove that a bounded set is Lebesgue measurable if and only if its inner and outer measures agree.
-
-The next result shows that the $\mu^*$-measurable sets are a good choice, in the sense that $\mu^*$ behaves well on the $\mu^*$-measurable sets (it is a measure).
-
-\begin{thm}[Carath\'eodory's extension theorem part 1]
-  If $\mu^*$ is an outer measure on $X$, then the $\mu^*$-measurable subsets of $X$ form a $\sigma$-algebra, and $\mu^*$ is a measure when restricted to the $\mu^*$-measurable sets.
+  In particular, if $f_n\to f$ then we have $\int f\leq\liminf\int f_n$.
 \end{thm}
 
-\begin{proof}
-  The first part of the proof will be to show that the collection of $\mu^*$-measurable sets is a Boolean algebra and $\mu^*$ is finitely additive on the $\mu^*$-measurable sets. To begin, it is clear that a set $A$ is $\mu^*$-measurable if and only if $A^c$ is $\mu^*$-measurable.
-
-  We now show that the $\mu^*$-measurable sets are closed under pairwise unions. Suppose that $A,B$ are $\mu^*$-measurable. Since we have already proved $\mu^*$ is subadditive for arbitrary sets, it suffices to prove that for any set $S$ we have
-  \[\mu^*(S)\geq\mu^*(S\cap(A\cup B))+\mu^*(S\setminus(A\cup B))
-  \]
-  To achieve this, we expand the right-hand side and then apply the measurability of $B$ followed by the measurability of $A$:
-  \begin{align*}
-    &\mu^*(S\cap(A\cup B))+\mu^*(S\cap(A\cup B)^c)\\
-    &\leq \mu^*(S\cap A\cap B^c)+\mu^*(S\cap A\cap B)+\mu^*(S\cap A^c\cap B)+\mu^*(S\cap A^c\cap B^c)\\
-    &=\mu^*(S\cap A)+\mu^*(S\cap A^c)=\mu(S)
-  \end{align*}
-
-  Next we show that $\mu^*$ is finitely additive on the $\mu^*$-measurable sets. Suppose that $A,B$ are disjoint and $\mu^*$-measurable. Then using the measurability of $A$, we have
-  \begin{align*}
-    \mu^*(A\cup B)&=\mu^*((A\cup B)\cap A)+\mu^*((A\cup B)\setminus A)\\
-                  &=\mu^*(A)+\mu^*(B)
-  \end{align*}
-
-  The second part of the proof is to show that the $\mu^*$-measurable sets form a $\sigma$-algebra and that $\mu^*$ is countably additive on the $\mu^*$-measurable sets. Let $A_n$ be a sequence of $\mu^*$-measurable sets. Since the $\mu^*$-measurable sets form an algebra, we can assume without loss of generality that the $A_n$ are pairwise disjoint. Then using the argument of the previous paragraph, with $S\cap$ inserted and then induction, for any set $S$ we have $\mu^*(S\cap\bigcup_1^N A_n)=\sum_1^N\mu^*(S\cap A_n)$. It follows that
-  \begin{align*}
-    \mu^*(S)&=\mu^*(S\cap\bigcup_1^N A_n)+\mu^*(S\setminus\bigcup_1^N A_n)\\
-            &=\sum_1^N\mu^*(S\cap A_n)+\mu^*(S\setminus\bigcup A_n)
-  \end{align*}
-  Taking $N\to\infty$, we obtain
-  \begin{align*}
-    \mu^*(S)&=\sum\mu^*(S\cap A_n)+\mu^*(S\setminus\bigcup A_n)\\
-            &\geq\mu^*(\bigcup (S\cap A_n))+\mu^*(S\setminus\bigcup A_n)\\
-            &=\mu^*(S\cap\bigcup A_n)+\mu^*(S\setminus\bigcup A_n)
-  \end{align*}
-  Thus we have shown that $\bigcup A_n$ is $\mu^*$-measurable.
-
-  Finally if we take $S=\bigcup A_n$ in the above, we obtain that $\mu^*(\bigcup A_n)\geq\sum\mu^*(A_n)$, which shows that $\mu^*$ is countably additive as desired.
-\end{proof}
-
-Now we return to the motivational context where the outer measure $\mu^*$ is constructed from a finitely additive measure $\mu_0$, as was done for Lebesgue measure. In this case, provided the finitely additive measure $\mu_0$ was in fact a premeasure, $\mu^*$ will be the desired Carath\'eodory extension of $\mu_0$.
-
-\begin{thm}[Carath\'eodory's extension theorem part 2/Hahn--Kolmogorov]
-  Let $\mathcal A$ be a Boolean algebra on $X$, and $\mu_0$ a premeasure on $\mathcal A$. Let $\mu^*$ be the outer measure induced by $\mu_0$ according to Equation~\eqref{eq:outer} and $\mathcal B$ the $\sigma$-algebra of $\mu^*$-measurable sets. Then $\mathcal B$ is an extension of $\mathcal A$, and $\mu^*$ is an extension of $\mu_0$.
+\begin{thm}[Dominated convergence theorem]
+  Let $f_n$ be a sequence of measurable complex-valued functions and suppose that $f_n\to f$. Suppose that there exists a nonnegative function $G$ such that $\int|G|<\infty$ and for all $n$, we have $|f_n|\leq G$. Then $\int f_n\to \int f$.
 \end{thm}
 
-\begin{proof}
-  We first show that if $A$ lies in $\mathcal A$ then $A$ is $\mu^*$-measurable. For this, let $S$ be an arbitrary set and find sets $B_n\in\mathcal A$ such that $S\subset\bigcup B_n$ and $\sum\mu_0(B_n)-\mu^*(S)<\epsilon$. Then
-  \begin{align*}
-    \mu^*(S\cap A)+\mu^*(S\setminus A)&\leq\sum\mu_0(B_n\cap A)
-                                        +\sum\mu_0(B_n\setminus A)\\
-                                      &=\sum\mu_0(B_n)\\
-                                      &<\mu^*(S)+\epsilon
-  \end{align*}
-  Taking $\epsilon\to0$, we conclude that $A$ is $\mu^*$-measurable.
-
-  Next we show that if $A$ lies in $\mathcal A$ then $\mu^*(A)=\mu_0(A)$. It is clear from the definition that $\mu^*(A)\leq\mu_0(A)$. To show that $\mu_0(A)\leq\mu^*(A)$, let $B_n\in\mathcal A$ be such that $A\subset\bigcup B_n$. We can assume without loss of generality that the $B_n$ are pairwise disjoint. Then using the axiom of a premeasure, we obtain
-  \begin{align*}
-    \mu_0(A)&=\sum\mu_0(A\cap B_n)\\
-            &\leq\sum\mu_0(B_n)
-  \end{align*}
-  Taking the infemum over all such sequences $B_n$, we conclude that $\mu_0(A)\leq\mu^*(A)$, as desired.
-\end{proof}
-
-This concludes our proof of Carath\'eodory's extension theorem. As an application, we will now show how to produce a family of interesting measures on the real line, beyond just the Lebesgue measures.
-
-\begin{defn}
-  An interval is said to be \emph{half-open} if it is of the form $(a,b]$ where $a\in[-\infty,\infty)$ and $b\in\RR$, or else of the form $(a,\infty)$. We let $\mathcal H$ denote the Boolean algebra generated by the half-open intervals.
-\end{defn}
-
-It is easy to see that $\mathcal H$ consists of finite disjoint unions of half-open intervals. The $\sigma$-aglebra generated by $\mathcal H$ is exactly the $\sigma$-algebra of Borel subsets of $\RR$. If $F\colon\RR\to\RR$ is an increasing, right-continuous function, then we can define a measuring function on $\mathcal H$ by letting $\mu_F((a,b])=F(b)-F(a)$, and extending $\mu_F$ to disjoint unions in the obvious way.
-
-\begin{thm}
-  For any increasing, right-continuous function $F$, $\mu_F$ is a premeasure on $\mathcal H$.
+\begin{thm}[Monotone convergence theorem]
+  Let $f_n$ be a sequence of nonnegative measurable functions, and suppose that $f_n\leq f_{n+1}$ for all $n$. Let $f=\sup f_n$, so that we automatically have $f_n\to f$. Then $\int f_n\to\int f$.
 \end{thm}
 
-\begin{proof}[Proof outline]
-  It is not difficult to see that $\mu_F$ is well-defined on $\mathcal H$. Moreover $\mu_F$ is finitely additive by construction.
 
-  Thus it remains only to show that $\mu_F$ satisfies the axiom of a premeasure. Suppose that $A_n\in\mathcal H$ and that $\bigcup A_n\in\mathcal H$ too. We can assume without loss of generality that $A_n$ are each single half-open intervals, and that $\bigcup A_n$ is a single half-open interval $I$.
+It is worth remarking that the monotone convergence theorem can fail for signed functions $f_n$. As a silly example, if $f_n=-1/n$ then $f_n\to0$, $\int f_n=-\infty$ but $\int f=0$. The monotone convergence theorem has the following easy but important consequence that the nonnegative Lebesgue integral is \emph{countably} linear, not just finitely linear!
 
-  It is clear from monotonicity that $\mu_F(\bigcup A_n)\geq\sum\mu_F(A_n)$, so it suffices to show that $\mu_F(\bigcup A_n)\leq\sum\mu_F(A_n)$. In order to achieve this, let us define $\mu_F$ on open intervals by letting $\mu_F((a,b))=\lim_{x\to b^-}F(x)-F(a)$, and similarly for closed intervals. Then using the right-continuity of $F$, we can pay $\epsilon$ to replace each $A_n$ with an open $U_n$ such that $A_n\subset U_n$. Similarly we can pay $\epsilon$ to replace $I$ with a closed (bounded) interval $K$ such that $K\subset I$.
+\begin{cor}[Tonelli's theorem]
+  If $f_n$ is a sequence of nonnegative measurable functions, then $\int\sum f_n=\sum\int f_n$.
+\end{cor}
 
-  Now by the Heine--Borel theorem, just finitely many of the $U_n$ suffice to cover $K$, and hence $\mu_F(K)\leq\sum\mu_F(U_n)$. It follows that
-  \begin{align*}
-    \mu_F(\bigcup A_n)
-    &\leq\mu_F(K)+\epsilon\\
-    &\leq\sum\mu_F(U_n)+\epsilon\\
-    &\leq\sum\mu_F(A_n)+2\epsilon
-  \end{align*}
-  Thus the result follows by taking $\epsilon\to0$.
-\end{proof}
-
-If $F(x)=x$, then the above construction simply gives $\mu_F=$ the Lebesgue measure $m$. And in general, $F$ acts as the cumulative density of the measure $\mu_F$. Measures of this form are called \emph{Lebesgue-Stieltjes measures}.
-
-\begin{exerc}[Tao, ex 1.7.9(i)]
-  Let $\mu_0$ be a premeasure on $(X,\mathcal A)$ and let $\mu$ on $(X,\mathcal B)$ be the Carath\'eodory extension. Show that for any $B\in\mathcal B$ [such that $\mu(B)<\infty$?] there exists $C$ in the $\sigma$-algebra generated by $\mathcal A$ such that $B\subset C$ and $\mu(C\setminus B)=0$.
+\begin{exerc}[Tao, ex 1.44, 1.45]
+  \begin{enumerate}
+    \item Let $A_n$ be measurable sets and assume that\\ $\sum m(A_n)<\infty$. Show that almost every $x\in\RR^d$ is contained in at most finitely many of the $A_n$. [Hint: Use Tonelli's theorem on the functions $\chi_{A_n}$.] This is the Borel--Cantelli lemma.
+    \item Give a counterexample to the above conclusion, showing that the hypothesis $\sum m(A_n)<\infty$ cannot be replaced by the weaker condition $\lim m(A_n)=0$.
+  \end{enumerate}
 \end{exerc}
 
-\begin{exerc}[Tao, ex 1.7.9(ii)(iii)]
-  Let $\mu_0$ be a premeasure on $(X,\mathcal A)$, $\mu^*$ the corresponding outer measure, and $\mu$ on $(X,\mathcal B)$ the Carath\'eodory extension. Show that for any set $B$ such that $\mu^*(B)<\infty$, we have $B\in\mathcal B$ if and only if for all $\epsilon>0$ there exists $A\in\mathcal A$ such that $\mu^*(A\triangle B)<\epsilon$.
+\begin{exerc}
+  Use the dominated convergence theorem to show that the harmonic series $\sum\frac1n$ diverges. [Hint: Let $f_n=\frac1n\chi_{[0,n]}$, show that $\sum\frac1n<\infty$ plus the dominated convergence theorem implies $\int f_n\to 0$, and obtain a contradiction from this.]
 \end{exerc}
 
-\begin{exerc}[Tao, ex 1.7.15(i)]
-  Suppose $F$ is a monotone and non-decreasing function. Show that $F$ is continuous if and only if $\mu_F(\{x\})=0$ for every $x\in\RR$.
-\end{exerc}
 
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abstract integration theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reading}
-  Tao, \S 1.4.4
-\end{reading}
-
-In the past several sections we have explained in detail how the theory of the Lebesgue measure on $\RR^d$ can be abstracted to yield a theory of abstract measures on abstract measurable spaces. In this section we give a brief tour of how the theory can also be used to describe abstract measurable functions, and to carry out integration with respect to arbitrary measures.
-
-Although the definition of measurable functions has many equivalent formulations, our official definition will be the following ``pre-image'' version.
 
 \begin{defn}
   Suppose that $(X,\mathcal B)$ is a measurable space. A function $f$ which maps $X$ to $[0,\infty]$, $\RR$, or $\CC$ is called \emph{measurable} if the pre-image of any open set is in $\mathcal B$, that is, for every open subset $U$ of the codomain, $f^{-1}(U)\in\mathcal B$.
@@ -1305,13 +648,7 @@ Although the definition of measurable functions has many equivalent formulations
   The measurable functions on $(X,\mathcal B)$ are closed under sums, products, continuous compositions, and pointwise limits.
 \end{prop}
 
-\begin{proof}[Proof outline]
-  We address only the last point, that measurable functions are closed under pointwise limits. For this we refer to the method of proof of Theorem~\ref{thm:measurable-equiv}. The idea is that if $f$ is the limit of the functions $f_n$, then it is also the $\limsup$ of the functions $f_n$. This allows one to write $f^{-1}(U)$ as a countable Boolean combination of the sets $f_n^{-1}(U)$.
-\end{proof}
 
-We next turn to the task of defining integration with respect to an abstract measure $\mu$. Intuitively $\mu$ is a distribution or density on the space $X$, and $\int f\,d\mu$ is a weighted, continuous sum. For another kind of intuition, if $\mu$ is a probability on a probability space, and $f$ is a random variable, then $\int f\,d\mu$ denotes the expectation of $f$.
-
-In order to define the integral with respect to $\mu$, we mimic our original strategy and begin with simple functions.
 
 \begin{defn}
   Let $(X,\mathcal B)$ be a measurable space. A function $f\colon X\to[0,\infty]$ is said to be \emph{simple} if it is measurable and takes finitely many values, that is, if $f=\sum_1^kc_i\chi_{A_i}$ where $A_i\in\mathcal B$.
@@ -1329,8 +666,6 @@ It is possible to check, as we have done in the case of Lebesgue integration, th
   \]
 \end{defn}
 
-It is not difficult to establish most of the basic properties of measurable functions previously stated in the Lebesgue case.
-
 \begin{prop}
   The integral of nonnegative measurable functions satisfies the following properties
   \begin{enumerate}
@@ -1343,29 +678,15 @@ It is not difficult to establish most of the basic properties of measurable func
   \end{enumerate}
 \end{prop}
 
-\begin{proof}
-  All of the properties (a)--(d) can be proved in a fashion similar to the case of the Lebesgue integral.
-
-  The same is true of property (e), but we neglected to state it earlier so let us provide the proof now. Let $g=\lambda\chi_{\{x\mid f(x)\geq\lambda\}}$. Then clearly $g$ is a simple function and $g\leq f$. It follows that the simple integral of $g$ is a lower bound for the integral of $f$, so $\lambda\mu(\{x\mid f(x)\geq\lambda\})\leq\int f\,d\mu$, as desired.
-
-  The proof of additivity is similar to the Lebesgue case, with one wrinkle. Recall that in the Lebesgue proof we applied the truncation lemma to the sets $[-N,N]^d$ to assume without loss of generality that $f,g$ have finite measure support. In general we cannot assume that $X$ is a union of countably many sets of finite measure. Instead we let $A_n=\{x\mid f(x)>\frac1n\text{ or }g(x)>\frac1n\}$. This family of sets is increasing and the union contains the supports of $f$ and $g$. By Markov's inequality, the sets $A_n$ have finite measure, and the proof can now proceed by truncating to $A_n$.
-\end{proof}
-
-Now that the integral of nonnegative functions has been defined, we may again define the absolutely convergent Lebesgue integral for complex-valued functions.
-
 \begin{defn}
   Suppose that $(X,\mathcal B)$ is a measurable space and $\mu$ is a measure on it. If $f\colon X\to\CC$ is measurable and defined $\mu$-almost everywhere, we say that $f$ is \emph{absolutely integrable with respect to $\mu$} if $\int|f|\,d\mu<\infty$.
 
   In this case, we define $\int f\,d\mu=\int\Re f\,d\mu+i\int\Im f\,d\mu$, where for real-valued functions $f$ we define $\int f\,d\mu=\int f^+\,d\mu-\int f^-\,d\mu$.
 \end{defn}
 
-Once again, if $(X,\mathcal B)$ is a measurable space and $\mu$ is a measure on it, we can define $L^1(\mu)$ to be the space of measurable complex-valued functions on $X$, where two such functions are identified if they agree $\mu$-almost everywhere. We can also define a norm on the space $L^1(\mu)$ by $\|f\|=\int|f|\,d\mu$. The following result follows using the same proof as before.
-
 \begin{prop}
   The space $L^1(\mu)$ together with the norm $\|\cdot\|$ is a normed vector space.
 \end{prop}
-
-Finally we remark that our major convergence theorems all hold true for integration with respect to an abstract measure $\mu$. These include the monotone convergence theorem, Tonelli's theorem, Fatou's lemma, and the dominated convergence theorem.
 
 \begin{exerc}[See Tao, ex 1.4.29]
   \begin{itemize}
