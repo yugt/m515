@@ -1,4 +1,4 @@
-\documentclass[10pt,oneside,a3paper]{amsbook}
+\documentclass[10pt,oneside]{amsbook}
 
 \title{Real and linear analysis}
 \author{Course notes based on material from\\``Measure theory'' by Terence Tao, and\\``Real analysis'' by Bruckner, Bruckner, and Thompson}
@@ -470,7 +470,8 @@ We then have that $f^+$ and $f^-$ are nonnegative functions with $f=f^+-f^-$.
 \end{cor}
 
 \begin{thm}[Egorov]
-  Measurable \(f_n\to f\) pointwise a.e., then \(\exists B\) meas. (bad set) with \(m(B)<\epsilon\) s.t. \(f_n\to f\) uniformly on each bdd subset of \(\RR\backslash B\).
+  Measurable \(f_n\to f\) pointwise a.e. on \(A\subseteq X\), \(\mu(A)<\infty\), then \(\exists B\subseteq A\) meas. (bad set) with \(m(B)<\epsilon\) s.t. \(f_n\to f\) uniformly on  \(A\backslash B\).
+  (If \(\mu(A)<\infty\) dropped, counterexample \(f_n=\mathbf{1}_{[n,n+1]}\))
 \end{thm}
 
 \begin{thm}[Lusin]
